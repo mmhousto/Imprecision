@@ -5,6 +5,7 @@ using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
 using Unity.Services.Core;
 using UnityEngine;
+using Facebook.Unity;
 
 namespace CloudSaveSample
 {
