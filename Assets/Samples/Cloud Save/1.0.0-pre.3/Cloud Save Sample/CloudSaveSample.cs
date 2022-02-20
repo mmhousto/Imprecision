@@ -9,14 +9,6 @@ using Facebook.Unity;
 
 namespace CloudSaveSample
 {
-    [Serializable]
-    public class SampleObject
-    {
-        public string SophisticatedString;
-        public int SparklingInt;
-        public float AmazingFloat;
-    }
-
     public class CloudSaveSample : MonoBehaviour
     {
         private async void Awake()
@@ -30,15 +22,16 @@ namespace CloudSaveSample
 
             await ForceSaveSingleData("primitive_key", "value!");
 
-            SampleObject outgoingSample = new SampleObject
+            /*Player outgoingSample = new Player
             {
                 AmazingFloat = 13.37f,
                 SparklingInt = 1337,
                 SophisticatedString = "hi there!"
             };
             await ForceSaveObjectData("object_key", outgoingSample);
-            SampleObject incomingSample = await RetrieveSpecificData<SampleObject>("object_key");
+            Player incomingSample = await RetrieveSpecificData<SampleObject>("object_key");
             Debug.Log($"Loaded sample object: {incomingSample.AmazingFloat}, {incomingSample.SparklingInt}, {incomingSample.SophisticatedString}");
+            */
 
             await ForceDeleteSpecificData("object_key");
             await ListAllKeys();
@@ -98,7 +91,7 @@ namespace CloudSaveSample
             }
         }
 
-        private async Task ForceSaveObjectData(string key, SampleObject value)
+        private async Task ForceSaveObjectData(string key, Player value)
         {
             try
             {
