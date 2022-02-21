@@ -10,9 +10,15 @@ using System;
 
 public class CloudSaveLogin : MonoBehaviour
 {
+    public enum ssoOption { Anonymous, Facebook, Google }
+
     public GameObject mainMenuScreen;
 
     public Player player;
+
+    private ssoOption currentSSO = ssoOption.Anonymous;
+
+    private List<string> playerInfo = new List<string>();
 
     // Start is called before the first frame update
     async void Awake()
@@ -41,13 +47,18 @@ public class CloudSaveLogin : MonoBehaviour
 
     public async void SignInAnonymously()
     {
+        currentSSO = ssoOption.Anonymous;
         await SignInAnonymouslyAsync();
+        
     }
 
     public void SignInFacebook()
     {
+        currentSSO = ssoOption.Facebook;
+        //FB.Android.RetrieveLoginStatus(LoginStatusCallback);
 
-        FB.Android.RetrieveLoginStatus(LoginStatusCallback);
+        var perms = new List<string>() { "public_profile", "email" };
+        FB.LogInWithReadPermissions(perms, AuthCallback);
 
     }
 
@@ -88,9 +99,30 @@ public class CloudSaveLogin : MonoBehaviour
 
     private async void SetPlayerData(string id)
     {
-        Player incomingSample = await RetrieveSpecificData<Player>(id);
+        SavePlayerData incomingSample = await RetrieveSpecificData<SavePlayerData>(id);
 
-        player.SetData(incomingSample.UserID, incomingSample.Points, incomingSample.PlayerName, incomingSample.PlayerEmail, incomingSample.PlayerLevel, incomingSample.PlayerExperience);
+        if (incomingSample != null)
+        {
+            LoadPlayerData(incomingSample);
+        }
+        else
+        {
+            LoadPlayerData(id);
+        }
+
+        
+    }
+
+    private async void SetPlayerData(string id, string name, string email)
+    {
+        SavePlayerData incomingSample = await RetrieveSpecificData<SavePlayerData>(id);
+
+        if (incomingSample != null)
+            LoadPlayerData(incomingSample);
+        else
+        {
+            LoadPlayerData(id, name, email);
+        }
     }
 
     private void InitCallback()
@@ -131,13 +163,14 @@ public class CloudSaveLogin : MonoBehaviour
             // Print current access token's User ID
             Debug.Log(aToken.UserId);
 
-            SetPlayerData(aToken.UserId);
-
             // Print current access token's granted permissions
             foreach (string perm in aToken.Permissions)
             {
                 Debug.Log(perm);
+                playerInfo.Add(perm);
             }
+
+            //SetPlayerData(aToken.UserId, playerInfo[0], playerInfo[1]);
 
             await SignInWithFacebookAsync(aToken.TokenString);
             
@@ -154,6 +187,7 @@ public class CloudSaveLogin : MonoBehaviour
         {
             await AuthenticationService.Instance.SignInWithFacebookAsync(accessToken);
             Debug.Log("SignIn is successful.");
+
             Login();
         }
         catch (AuthenticationException ex)
@@ -349,6 +383,36 @@ public class CloudSaveLogin : MonoBehaviour
         {
             Debug.LogError(e);
         }
+    }
+
+    private void LoadPlayerData(SavePlayerData incomingSample)
+    {
+        player.userID = incomingSample.userID;
+        player.userPoints = incomingSample.userPoints;
+        player.userName = incomingSample.userName;
+        player.userEmail = incomingSample.userEmail;
+        player.userLevel = incomingSample.userLevel;
+        player.userXP = incomingSample.userXP;
+    }
+
+    private void LoadPlayerData(string id)
+    {
+        player.userID = id;
+        player.userPoints = 0;
+        player.userName = "Guest_" + id;
+        player.userEmail = null;
+        player.userLevel = 1;
+        player.userXP = 0;
+    }
+
+    private void LoadPlayerData(string id, string name, string email)
+    {
+        player.userID = id;
+        player.userPoints = 0;
+        player.userName = name;
+        player.userEmail = email;
+        player.userLevel = 1;
+        player.userXP = 0;
     }
 }
 

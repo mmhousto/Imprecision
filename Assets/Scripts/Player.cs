@@ -8,38 +8,65 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using System;
 
-[Serializable]
 public class Player : MonoBehaviour
 {
+    public string userID;
+    public string userName;
+    public string userEmail;
 
-    public string UserID { get; set; }
+    public int userPoints;
+    public int userLevel;
+    public int userXP;
 
-    public int Points { get; set; }
+    /*public string UserID { get { return userID; } set { userID = value; } }
 
-    public string PlayerName { get; set; }
+    public int Points { get { return userPoints; } set { userPoints = value; } }
 
-    public string PlayerEmail { get; set; }
+    public string PlayerName { get { return userName; } set { userName = value; } }
 
-    public int PlayerLevel { get; set; }
+    public string PlayerEmail { get { return userEmail; } set { userEmail = value; } }
 
-    public int PlayerExperience { get; set; }
+    public int PlayerLevel { get { return userLevel; } set { userLevel = value; } }
 
-    public void SetData(string id, int points, string name, string email, int level, int xp)
+    public int PlayerExperience { get { return userXP; } set { userXP = value; } }*/
+
+    /*public void SetData(SavePlayerData savePlayer)
+    {
+        UserID = savePlayer.userID;
+        Points = savePlayer.userPoints;
+        PlayerName = savePlayer.userName;
+        PlayerEmail = savePlayer.userEmail;
+        PlayerLevel = savePlayer.userLevel;
+        PlayerExperience = savePlayer.userXP;
+    }
+
+    public void SetData(string id)
     {
         UserID = id;
-        Points = points;
+        Points = 0;
+        PlayerName = "Guest_" + id;
+        PlayerEmail = null;
+        PlayerLevel = 1;
+        PlayerExperience = 0;
+    }
+
+    public void SetData(string id, string name, string email)
+    {
+        UserID = id;
+        Points = 0;
         PlayerName = name;
         PlayerEmail = email;
-        PlayerLevel = level;
-        PlayerExperience = xp;
-    }
+        PlayerLevel = 1;
+        PlayerExperience = 0;
+    }*/
 
     private async void OnApplicationQuit()
     {
-        await ForceSaveObjectData(UserID, this);
+        SavePlayerData data = new SavePlayerData(this);
+        await ForceSaveObjectData(userID, data);
     }
 
-    private async Task ForceSaveObjectData(string key, Player value)
+    private async Task ForceSaveObjectData(string key, SavePlayerData value)
     {
         try
         {

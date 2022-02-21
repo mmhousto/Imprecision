@@ -1,114 +1,122 @@
+Unity Editor version:    2020.3.29f1 (2ff179115da0)
+Branch:                  2020.3/staging
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 12.1 (Build 21C52)
+Darwin version:          21.2.0
+Architecture:            x86_64
+Running under Rosetta:   YES
+Available memory:        16384 MB
 Using pre-set license
-Built from '2020.3/staging' branch; Version is '2020.3.29f1 (2ff179115da0) revision 3142009'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10  (10.0.19043) 64bit Professional' Language: 'en' Physical Memory: 65169 MB
-BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+Pro License: NO
 
 COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2020.3.29f1\Editor\Unity.exe
+/Applications/Unity/Hub/Editor/2020.3.29f1/Unity.app/Contents/MacOS/Unity
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/mhouston/Documents/GitHub/Imprecision
+/Users/morganhouston/Documents/GitHub/Imprecision
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-55723
-Successfully changed project path to: C:/Users/mhouston/Documents/GitHub/Imprecision
-C:/Users/mhouston/Documents/GitHub/Imprecision
+50302
+Successfully changed project path to: /Users/morganhouston/Documents/GitHub/Imprecision
+/Users/morganhouston/Documents/GitHub/Imprecision
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 47.11 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 49.45 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.29f1 (2ff179115da0)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/mhouston/Documents/GitHub/Imprecision/Assets
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2020.3.29f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/morganhouston/Documents/GitHub/Imprecision/Assets
 GfxDevice: creating device client; threaded=0
-Direct3D:
-    Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA Quadro RTX 5000 (ID=0x1eb5)
-    Vendor:   
-    VRAM:     16170 MB
-    Driver:   27.21.14.6230
+2022-02-21 14:59:23.223 Unity[30518:380073] (null) preferred device: Apple M1 (high power)
+2022-02-21 14:59:23.223 Unity[30518:380073] Metal devices available: 1
+2022-02-21 14:59:23.223 Unity[30518:380073] 0: Apple M1 (high power)
+2022-02-21 14:59:23.224 Unity[30518:380073] Using device Apple M1 (high power)
+Initializing Metal device caps: Apple M1
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56048
+Mono path[0] = '/Applications/Unity/Hub/Editor/2020.3.29f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/2020.3.29f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = '/Applications/Unity/Hub/Editor/2020.3.29f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56518
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001793 seconds.
-Native extension for WindowsStandalone target not found
+Register platform support module: /Applications/Unity/Hub/Editor/2020.3.29f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/2020.3.29f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.000509 seconds.
+Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 48.73 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 51.49 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.498 seconds
+- Completed reload, in  1.305 seconds
 Domain Reload Profiling:
-	ReloadAssembly (498ms)
-		BeginReloadAssembly (49ms)
+	ReloadAssembly (1305ms)
+		BeginReloadAssembly (90ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (391ms)
-			LoadAssemblies (47ms)
+			CreateAndSetChildDomain (3ms)
+		EndReloadAssembly (1104ms)
+			LoadAssemblies (90ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (117ms)
+			SetupTypeCache (173ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (26ms)
-			SetupLoadedEditorAssemblies (161ms)
+			RebuildScriptCaches (40ms)
+			SetupLoadedEditorAssemblies (604ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
+				InitializePlatformSupportModulesInManaged (14ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (49ms)
-				BeforeProcessingInitializeOnLoad (15ms)
-				ProcessInitializeOnLoadAttributes (69ms)
-				ProcessInitializeOnLoadMethodAttributes (24ms)
+				RefreshPlugins (52ms)
+				BeforeProcessingInitializeOnLoad (91ms)
+				ProcessInitializeOnLoadAttributes (328ms)
+				ProcessInitializeOnLoadMethodAttributes (118ms)
 				AfterProcessingInitializeOnLoad (0ms)
-				EditorAssembliesLoaded (0ms)
+				EditorAssembliesLoaded (1ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.011087 seconds.
+Registered in 0.004533 seconds.
 Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.62 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.74 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
+  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/PackageConfig.cs:15 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:50 
   at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
   at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:41 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:20 
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/buildslave/unity/build/Runtime/Export/Scripting/StackTrace.cs:37)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[]) (at /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs:138)
+
+(Filename: /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs Line: 138)
 
 System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeInitializationException: The type initializer for 'Unity.Services.Core.Editor.OperatePackageVersionConfigProvider' threw an exception. ---> System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
+  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/PackageConfig.cs:15 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:50 
   at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
   at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:41 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:20 
    --- End of inner exception stack trace ---
   at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
   at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
@@ -119,637 +127,140 @@ System.Reflection.TargetInvocationException: Exception has been thrown by the ta
   at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
   at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
   at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder+<>c.<GenerateOrderedConfigurationProviders>b__5_1 (System.Type type) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:46 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder+<>c.<GenerateOrderedConfigurationProviders>b__5_1 (System.Type type) [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Configuration/ProjectConfigurationBuilder.cs:46 
   at System.Linq.Enumerable+WhereSelectEnumerableIterator`2[TSource,TResult].ToArray () [0x0002b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Buffer`1[TElement]..ctor (System.Collections.Generic.IEnumerable`1[T] source) [0x0000a] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.OrderedEnumerable`1[TElement].ToArray () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable.ToArray[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.GenerateOrderedConfigurationProviders () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:44 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.CreateEditorInstanceIfNone () [0x00008] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:38 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.GenerateOrderedConfigurationProviders () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Configuration/ProjectConfigurationBuilder.cs:44 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.CreateEditorInstanceIfNone () [0x00008] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Configuration/ProjectConfigurationBuilder.cs:38 
   at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
   at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
    --- End of inner exception stack trace ---
   at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
   at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <7ebb9dc74040436998557fc331a964ba>:0 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs:154 
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/buildslave/unity/build/Runtime/Export/Scripting/StackTrace.cs:37)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes () (at /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs:158)
+
+(Filename: /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs Line: 158)
 
 Mono: successfully reloaded assembly
-- Completed reload, in  2.296 seconds
+- Completed reload, in  4.155 seconds
 Domain Reload Profiling:
-	ReloadAssembly (2297ms)
-		BeginReloadAssembly (116ms)
+	ReloadAssembly (4157ms)
+		BeginReloadAssembly (259ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (32ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (15ms)
-		EndReloadAssembly (2129ms)
-			LoadAssemblies (88ms)
+			CreateAndSetChildDomain (33ms)
+		EndReloadAssembly (3801ms)
+			LoadAssemblies (217ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (287ms)
+			SetupTypeCache (436ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (48ms)
-			SetupLoadedEditorAssemblies (1630ms)
+			RebuildScriptCaches (89ms)
+			SetupLoadedEditorAssemblies (2778ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
-				SetLoadedEditorAssemblies (0ms)
+				InitializePlatformSupportModulesInManaged (13ms)
+				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (100ms)
-				ProcessInitializeOnLoadAttributes (1504ms)
-				ProcessInitializeOnLoadMethodAttributes (17ms)
-				AfterProcessingInitializeOnLoad (4ms)
+				BeforeProcessingInitializeOnLoad (252ms)
+				ProcessInitializeOnLoadAttributes (2453ms)
+				ProcessInitializeOnLoadMethodAttributes (56ms)
+				AfterProcessingInitializeOnLoad (1ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
+			AwakeInstancesAfterBackupRestoration (31ms)
 Platform modules already initialized, skipping
+Validating Project structure ... 0.001189 seconds.
+Shader import version has changed; will reimport all shaders...
+Upgrading shader files ...0.009068 seconds.
+Application.AssetDatabase Initial Script Refresh Start
+RefreshInfo: InitialScriptRefreshV2(NoUpdateAssetOptions) scanfilter:  ... 1 filters
+RefreshProfiler: Total: 0.000ms
+Application.AssetDatabase Initial Script Refresh End
+Application.AssetDatabase.Refresh Start
+Application.AssetDatabase.Refresh End
+RefreshInfo: StopAssetImportingV2(ForceSynchronousImport) scanfilter: 
+RefreshProfiler: Total: 0.000ms
+Launching external process: /Applications/Unity/Hub/Editor/2020.3.29f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Initializing Unity extensions:
+2022-02-21 14:59:30.286 Unity[30518:380073] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600001eabdb0 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+2022-02-21 14:59:30.289 Unity[30518:380073] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600001ec7330 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 0.59 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3086 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 128.5 MB.
-System memory in use after: 128.7 MB.
-
-Unloading 56 unused Assets to reduce memory usage. Loaded Objects now: 3512.
-Total: 3.561200 ms (FindLiveObjects: 0.224900 ms CreateObjectMapping: 0.130800 ms MarkObjects: 3.076200 ms  DeleteObjects: 0.128500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  path: Assets/Scenes/MainMenu.unity
-  artifactKey: Guid(caf66549cdc60492cb122a87aa2ee671) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/MainMenu.unity using Guid(caf66549cdc60492cb122a87aa2ee671) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6141d26ef9dfc885485211eaa74100b2') in 0.020776 seconds 
-  Import took 0.025693 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 227.582516 seconds.
-  path: Assets/Scripts
-  artifactKey: Guid(241c09e0ae33346c4a7b73cd9bb83cdf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts using Guid(241c09e0ae33346c4a7b73cd9bb83cdf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad40998d3057ff94bcccf3f090f40e3d') in 0.008479 seconds 
-  Import took 0.012771 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.695998 seconds.
-  path: Assets/Scripts/CloudSaveLogin.cs
-  artifactKey: Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/CloudSaveLogin.cs using Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7a4544af55db1126596daedf698bd13') in 0.017648 seconds 
-  Import took 0.021337 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 62.924622 seconds.
-  path: Assets/Scripts/CloudSaveLogin.cs
-  artifactKey: Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/CloudSaveLogin.cs using Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9128120e2e9bd1a94d05adeb74a11c4') in 0.003826 seconds 
-  Import took 0.008880 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011295 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.63 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
-  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
-  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
-
-System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeInitializationException: The type initializer for 'Unity.Services.Core.Editor.OperatePackageVersionConfigProvider' threw an exception. ---> System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
-  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
-  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
-   --- End of inner exception stack trace ---
-  at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
-  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
-   --- End of inner exception stack trace ---
-  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00014] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceMono (System.Boolean nonPublic) [0x000a8] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceSlow (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00009] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder+<>c.<GenerateOrderedConfigurationProviders>b__5_1 (System.Type type) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:46 
-  at System.Linq.Enumerable+WhereSelectEnumerableIterator`2[TSource,TResult].ToArray () [0x0002b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Buffer`1[TElement]..ctor (System.Collections.Generic.IEnumerable`1[T] source) [0x0000a] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.OrderedEnumerable`1[TElement].ToArray () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToArray[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.GenerateOrderedConfigurationProviders () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:44 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.CreateEditorInstanceIfNone () [0x00008] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:38 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
-   --- End of inner exception stack trace ---
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <7ebb9dc74040436998557fc331a964ba>:0 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
-
-Mono: successfully reloaded assembly
-- Completed reload, in  2.192 seconds
-Domain Reload Profiling:
-	ReloadAssembly (2193ms)
-		BeginReloadAssembly (124ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (42ms)
-		EndReloadAssembly (2013ms)
-			LoadAssemblies (109ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (287ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (32ms)
-			SetupLoadedEditorAssemblies (1526ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (75ms)
-				ProcessInitializeOnLoadAttributes (1426ms)
-				ProcessInitializeOnLoadMethodAttributes (15ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.62 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3067 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 127.1 MB.
-System memory in use after: 127.3 MB.
-
-Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 3514.
-Total: 3.220700 ms (FindLiveObjects: 0.201200 ms CreateObjectMapping: 0.145200 ms MarkObjects: 2.848000 ms  DeleteObjects: 0.025700 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 754.531729 seconds.
-  path: Assets/Scripts/CloudSaveLogin.cs
-  artifactKey: Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/CloudSaveLogin.cs using Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5cd085829f5a098593da997e46c25a01') in 0.006053 seconds 
-  Import took 0.011126 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010011 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.64 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
-  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
-  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
-
-System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeInitializationException: The type initializer for 'Unity.Services.Core.Editor.OperatePackageVersionConfigProvider' threw an exception. ---> System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
-  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
-  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
-   --- End of inner exception stack trace ---
-  at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
-  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
-   --- End of inner exception stack trace ---
-  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00014] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceMono (System.Boolean nonPublic) [0x000a8] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceSlow (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00009] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder+<>c.<GenerateOrderedConfigurationProviders>b__5_1 (System.Type type) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:46 
-  at System.Linq.Enumerable+WhereSelectEnumerableIterator`2[TSource,TResult].ToArray () [0x0002b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Buffer`1[TElement]..ctor (System.Collections.Generic.IEnumerable`1[T] source) [0x0000a] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.OrderedEnumerable`1[TElement].ToArray () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToArray[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.GenerateOrderedConfigurationProviders () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:44 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.CreateEditorInstanceIfNone () [0x00008] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:38 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
-   --- End of inner exception stack trace ---
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <7ebb9dc74040436998557fc331a964ba>:0 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
-
-Mono: successfully reloaded assembly
-- Completed reload, in  2.217 seconds
-Domain Reload Profiling:
-	ReloadAssembly (2218ms)
-		BeginReloadAssembly (105ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (6ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (37ms)
-		EndReloadAssembly (2057ms)
-			LoadAssemblies (96ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (272ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (33ms)
-			SetupLoadedEditorAssemblies (1574ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (79ms)
-				ProcessInitializeOnLoadAttributes (1465ms)
-				ProcessInitializeOnLoadMethodAttributes (19ms)
-				AfterProcessingInitializeOnLoad (5ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.64 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3067 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 127.2 MB.
-System memory in use after: 127.4 MB.
-
-Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 3516.
-Total: 3.758400 ms (FindLiveObjects: 0.229800 ms CreateObjectMapping: 0.127400 ms MarkObjects: 3.341200 ms  DeleteObjects: 0.059500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 343.443371 seconds.
-  path: Assets/Scripts/CloudSaveLogin.cs
-  artifactKey: Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/CloudSaveLogin.cs using Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cda5009be6a9ec5564463c929c577514') in 0.007863 seconds 
-  Import took 0.012546 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010039 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.63 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
-  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
-  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
-
-System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeInitializationException: The type initializer for 'Unity.Services.Core.Editor.OperatePackageVersionConfigProvider' threw an exception. ---> System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
-  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
-  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
-   --- End of inner exception stack trace ---
-  at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
-  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
-   --- End of inner exception stack trace ---
-  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00014] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceMono (System.Boolean nonPublic) [0x000a8] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceSlow (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00009] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder+<>c.<GenerateOrderedConfigurationProviders>b__5_1 (System.Type type) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:46 
-  at System.Linq.Enumerable+WhereSelectEnumerableIterator`2[TSource,TResult].ToArray () [0x0002b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Buffer`1[TElement]..ctor (System.Collections.Generic.IEnumerable`1[T] source) [0x0000a] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.OrderedEnumerable`1[TElement].ToArray () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToArray[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.GenerateOrderedConfigurationProviders () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:44 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.CreateEditorInstanceIfNone () [0x00008] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:38 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
-   --- End of inner exception stack trace ---
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <7ebb9dc74040436998557fc331a964ba>:0 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
-
-Mono: successfully reloaded assembly
-- Completed reload, in  2.310 seconds
-Domain Reload Profiling:
-	ReloadAssembly (2311ms)
-		BeginReloadAssembly (101ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (34ms)
-		EndReloadAssembly (2157ms)
-			LoadAssemblies (97ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (294ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (32ms)
-			SetupLoadedEditorAssemblies (1638ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (79ms)
-				ProcessInitializeOnLoadAttributes (1531ms)
-				ProcessInitializeOnLoadMethodAttributes (17ms)
-				AfterProcessingInitializeOnLoad (5ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.64 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3067 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 127.2 MB.
-System memory in use after: 127.4 MB.
-
-Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 3518.
-Total: 4.048200 ms (FindLiveObjects: 0.217300 ms CreateObjectMapping: 0.129200 ms MarkObjects: 3.665600 ms  DeleteObjects: 0.035500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 9.649567 seconds.
-  path: Assets/Scripts/CloudSaveLogin.cs
-  artifactKey: Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/CloudSaveLogin.cs using Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '386b57ee2d9983a41a7e002600e95abc') in 0.006632 seconds 
-  Import took 0.012047 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009895 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.61 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
-  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
-  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
-
-System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeInitializationException: The type initializer for 'Unity.Services.Core.Editor.OperatePackageVersionConfigProvider' threw an exception. ---> System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
-  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
-  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
-   --- End of inner exception stack trace ---
-  at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
-  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
-   --- End of inner exception stack trace ---
-  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00014] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceMono (System.Boolean nonPublic) [0x000a8] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceSlow (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00009] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder+<>c.<GenerateOrderedConfigurationProviders>b__5_1 (System.Type type) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:46 
-  at System.Linq.Enumerable+WhereSelectEnumerableIterator`2[TSource,TResult].ToArray () [0x0002b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Buffer`1[TElement]..ctor (System.Collections.Generic.IEnumerable`1[T] source) [0x0000a] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.OrderedEnumerable`1[TElement].ToArray () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at System.Linq.Enumerable.ToArray[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.GenerateOrderedConfigurationProviders () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:44 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.CreateEditorInstanceIfNone () [0x00008] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:38 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
-   --- End of inner exception stack trace ---
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <7ebb9dc74040436998557fc331a964ba>:0 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
-
-Mono: successfully reloaded assembly
-- Completed reload, in  2.278 seconds
-Domain Reload Profiling:
-	ReloadAssembly (2278ms)
-		BeginReloadAssembly (106ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (36ms)
-		EndReloadAssembly (2118ms)
-			LoadAssemblies (97ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (288ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (31ms)
-			SetupLoadedEditorAssemblies (1630ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (83ms)
-				ProcessInitializeOnLoadAttributes (1522ms)
-				ProcessInitializeOnLoadMethodAttributes (16ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.63 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3067 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 127.2 MB.
-System memory in use after: 127.5 MB.
-
-Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 3520.
-Total: 3.133200 ms (FindLiveObjects: 0.256800 ms CreateObjectMapping: 0.146400 ms MarkObjects: 2.701900 ms  DeleteObjects: 0.027500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 8.474126 seconds.
-  path: Assets/Scripts/CloudSaveLogin.cs
-  artifactKey: Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/CloudSaveLogin.cs using Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f88365e9b5f5107e5a31f1f1c14b54e2') in 0.004599 seconds 
-  Import took 0.008028 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010705 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
 Refreshing native plugins compatible for Editor in 0.65 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3089 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 266.4 MB.
+System memory in use after: 265.7 MB.
+
+Unloading 146 unused Assets to reduce memory usage. Loaded Objects now: 3554.
+Total: 3.611667 ms (FindLiveObjects: 0.165000 ms CreateObjectMapping: 0.073833 ms MarkObjects: 2.947333 ms  DeleteObjects: 0.424667 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/Scripts/CloudSaveLogin.cs
+  artifactKey: Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CloudSaveLogin.cs using Guid(985681d92c2f44eda8bcd74e434df9ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2cb2ece5b2bf2ab6579b9b1019147937') in 0.851995 seconds 
+  Import took 0.857814 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005302 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.70 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+2022-02-21 15:34:38.858 Unity[30518:380073] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600001ec7170 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
 System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
+  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/PackageConfig.cs:15 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:50 
   at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
   at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:41 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:20 
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/buildslave/unity/build/Runtime/Export/Scripting/StackTrace.cs:37)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[]) (at /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs:138)
+
+(Filename: /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs Line: 138)
 
 System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeInitializationException: The type initializer for 'Unity.Services.Core.Editor.OperatePackageVersionConfigProvider' threw an exception. ---> System.NullReferenceException: Object reference not set to an instance of an object
-  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\PackageConfig.cs:15 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
+  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/PackageConfig.cs:15 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:50 
   at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
   at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
-  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:41 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:20 
    --- End of inner exception stack trace ---
   at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
   at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
@@ -760,71 +271,203 @@ System.Reflection.TargetInvocationException: Exception has been thrown by the ta
   at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
   at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
   at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder+<>c.<GenerateOrderedConfigurationProviders>b__5_1 (System.Type type) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:46 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder+<>c.<GenerateOrderedConfigurationProviders>b__5_1 (System.Type type) [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Configuration/ProjectConfigurationBuilder.cs:46 
   at System.Linq.Enumerable+WhereSelectEnumerableIterator`2[TSource,TResult].ToArray () [0x0002b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Buffer`1[TElement]..ctor (System.Collections.Generic.IEnumerable`1[T] source) [0x0000a] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.OrderedEnumerable`1[TElement].ToArray () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
   at System.Linq.Enumerable.ToArray[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.GenerateOrderedConfigurationProviders () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:44 
-  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.CreateEditorInstanceIfNone () [0x00008] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.41\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:38 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.GenerateOrderedConfigurationProviders () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Configuration/ProjectConfigurationBuilder.cs:44 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.CreateEditorInstanceIfNone () [0x00008] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Configuration/ProjectConfigurationBuilder.cs:38 
   at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
   at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
    --- End of inner exception stack trace ---
   at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
   at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
-  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <7ebb9dc74040436998557fc331a964ba>:0 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs:154 
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/buildslave/unity/build/Runtime/Export/Scripting/StackTrace.cs:37)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes () (at /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs:158)
+
+(Filename: /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs Line: 158)
 
 Mono: successfully reloaded assembly
-- Completed reload, in  2.225 seconds
+- Completed reload, in  2.813 seconds
 Domain Reload Profiling:
-	ReloadAssembly (2225ms)
-		BeginReloadAssembly (104ms)
+	ReloadAssembly (2814ms)
+		BeginReloadAssembly (213ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (34ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (36ms)
-		EndReloadAssembly (2060ms)
-			LoadAssemblies (100ms)
+			CreateAndSetChildDomain (80ms)
+		EndReloadAssembly (2509ms)
+			LoadAssemblies (186ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (293ms)
+			SetupTypeCache (416ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (33ms)
-			SetupLoadedEditorAssemblies (1552ms)
+			RebuildScriptCaches (51ms)
+			SetupLoadedEditorAssemblies (1564ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
-				SetLoadedEditorAssemblies (0ms)
+				InitializePlatformSupportModulesInManaged (16ms)
+				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (82ms)
-				ProcessInitializeOnLoadAttributes (1441ms)
-				ProcessInitializeOnLoadMethodAttributes (18ms)
-				AfterProcessingInitializeOnLoad (5ms)
-				EditorAssembliesLoaded (0ms)
+				BeforeProcessingInitializeOnLoad (299ms)
+				ProcessInitializeOnLoadAttributes (1188ms)
+				ProcessInitializeOnLoadMethodAttributes (57ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (1ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
+			AwakeInstancesAfterBackupRestoration (34ms)
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.62 ms, found 2 plugins.
+Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.63 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3067 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 127.3 MB.
-System memory in use after: 127.5 MB.
+Unloading 3072 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 267.3 MB.
+System memory in use after: 267.6 MB.
 
-Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 3522.
-Total: 3.698900 ms (FindLiveObjects: 0.220500 ms CreateObjectMapping: 0.128600 ms MarkObjects: 3.278800 ms  DeleteObjects: 0.070100 ms)
+Unloading 52 unused Assets to reduce memory usage. Loaded Objects now: 3557.
+Total: 2.954708 ms (FindLiveObjects: 0.130750 ms CreateObjectMapping: 0.069042 ms MarkObjects: 2.724209 ms  DeleteObjects: 0.030084 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005066 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.77 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+2022-02-21 15:36:40.861 Unity[30518:380073] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600001ed8af0 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/PackageConfig.cs:15 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:50 
+  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
+  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:41 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:20 
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/buildslave/unity/build/Runtime/Export/Scripting/StackTrace.cs:37)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[]) (at /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs:138)
+
+(Filename: /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs Line: 138)
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeInitializationException: The type initializer for 'Unity.Services.Core.Editor.OperatePackageVersionConfigProvider' threw an exception. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/PackageConfig.cs:15 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:50 
+  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
+  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:41 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Telemetry/OperatePackageVersionConfigProvider.cs:20 
+   --- End of inner exception stack trace ---
+  at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00014] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceMono (System.Boolean nonPublic) [0x000a8] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceSlow (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00009] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder+<>c.<GenerateOrderedConfigurationProviders>b__5_1 (System.Type type) [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Configuration/ProjectConfigurationBuilder.cs:46 
+  at System.Linq.Enumerable+WhereSelectEnumerableIterator`2[TSource,TResult].ToArray () [0x0002b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Buffer`1[TElement]..ctor (System.Collections.Generic.IEnumerable`1[T] source) [0x0000a] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.OrderedEnumerable`1[TElement].ToArray () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable.ToArray[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.GenerateOrderedConfigurationProviders () [0x00000] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Configuration/ProjectConfigurationBuilder.cs:44 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.CreateEditorInstanceIfNone () [0x00008] in /Users/morganhouston/Documents/GitHub/Imprecision/Library/PackageCache/com.unity.services.core@1.1.0-pre.41/Editor/Core/Configuration/ProjectConfigurationBuilder.cs:38 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs:154 
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/buildslave/unity/build/Runtime/Export/Scripting/StackTrace.cs:37)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes () (at /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs:158)
+
+(Filename: /Users/bokken/buildslave/unity/build/Editor/Mono/EditorAssemblies.cs Line: 158)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  2.798 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2799ms)
+		BeginReloadAssembly (221ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (35ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (75ms)
+		EndReloadAssembly (2488ms)
+			LoadAssemblies (212ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (397ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (49ms)
+			SetupLoadedEditorAssemblies (1521ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (18ms)
+				SetLoadedEditorAssemblies (2ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (284ms)
+				ProcessInitializeOnLoadAttributes (1156ms)
+				ProcessInitializeOnLoadMethodAttributes (58ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (1ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (35ms)
+Platform modules already initialized, skipping
+Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.70 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3072 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 267.7 MB.
+System memory in use after: 267.9 MB.
+
+Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 3559.
+Total: 2.949833 ms (FindLiveObjects: 0.156542 ms CreateObjectMapping: 0.074000 ms MarkObjects: 2.686042 ms  DeleteObjects: 0.032209 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 2479.524026 seconds.
+  path: Assets/FacebookSDK/SDK/Resources/FacebookSettings.asset
+  artifactKey: Guid(43654be388af84c169b899ed10e89f7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/SDK/Resources/FacebookSettings.asset using Guid(43654be388af84c169b899ed10e89f7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31f8010b9e46007b364c8aeef40f3a41') in 0.547472 seconds 
+  Import took 0.554487 seconds .
+
