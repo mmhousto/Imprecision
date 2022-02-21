@@ -17,7 +17,15 @@ public class CloudSaveLogin : MonoBehaviour
     // Start is called before the first frame update
     async void Awake()
     {
-        await UnityServices.InitializeAsync();
+
+        if(UnityServices.State == ServicesInitializationState.Initialized)
+        {
+
+        }else
+        {
+            await UnityServices.InitializeAsync();
+        }
+        
 
         if (!FB.IsInitialized)
         {
@@ -38,8 +46,9 @@ public class CloudSaveLogin : MonoBehaviour
 
     public void SignInFacebook()
     {
-        var perms = new List<string>() { "public_profile", "email" };
-        FB.LogInWithReadPermissions(perms, AuthCallback);
+
+        FB.Android.RetrieveLoginStatus(LoginStatusCallback);
+
     }
 
     // Update is called once per frame
@@ -113,7 +122,7 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
-    private void AuthCallback(ILoginResult result)
+    private async void AuthCallback(ILoginResult result)
     {
         if (FB.IsLoggedIn)
         {
@@ -130,11 +139,61 @@ public class CloudSaveLogin : MonoBehaviour
                 Debug.Log(perm);
             }
 
-            Login();
+            await SignInWithFacebookAsync(aToken.TokenString);
+            
         }
         else
         {
             Debug.Log("User cancelled login");
+        }
+    }
+
+    async Task SignInWithFacebookAsync(string accessToken)
+    {
+        try
+        {
+            await AuthenticationService.Instance.SignInWithFacebookAsync(accessToken);
+            Debug.Log("SignIn is successful.");
+            Login();
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+    }
+
+    private async void LoginStatusCallback(ILoginStatusResult result)
+    {
+        if (!string.IsNullOrEmpty(result.Error))
+        {
+            Debug.Log("Error: " + result.Error);
+
+            var perms = new List<string>() { "public_profile", "email" };
+            FB.LogInWithReadPermissions(perms, AuthCallback);
+        }
+        else if (result.Failed)
+        {
+            Debug.Log("Failure: Access Token could not be retrieved");
+
+            var perms = new List<string>() { "public_profile", "email" };
+            FB.LogInWithReadPermissions(perms, AuthCallback);
+        }
+        else
+        {
+            // Successfully logged user in
+            // A popup notification will appear that says "Logged in as <User Name>"
+            Debug.Log("Success: " + result.AccessToken.UserId);
+
+            await AuthenticationService.Instance.SignInWithFacebookAsync(result.AccessToken.TokenString);
+            Login();
         }
     }
 
