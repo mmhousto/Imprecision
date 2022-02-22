@@ -18,7 +18,7 @@ public class CloudSaveLogin : MonoBehaviour
 
     private ssoOption currentSSO = ssoOption.Anonymous;
 
-    private List<string> playerInfo = new List<string>();
+    public string userName, email, userID;
 
     // Start is called before the first frame update
     async void Awake()
@@ -167,15 +167,15 @@ public class CloudSaveLogin : MonoBehaviour
             var aToken = Facebook.Unity.AccessToken.CurrentAccessToken;
             // Print current access token's User ID
             Debug.Log(aToken.UserId);
+            userID = aToken.UserId;
 
-            playerInfo.Add(aToken.UserId);
-
-            // Print current access token's granted permissions
-            foreach (string perm in aToken.Permissions)
+            var profile = FB.Mobile.CurrentProfile();
+            if(profile != null)
             {
-                Debug.Log(perm);
-                playerInfo.Add(perm);
+                userName = profile.Name;
+                email = profile.Email;
             }
+
 
             await SignInWithFacebookAsync(aToken.TokenString);
 
@@ -196,7 +196,7 @@ public class CloudSaveLogin : MonoBehaviour
             await AuthenticationService.Instance.SignInWithFacebookAsync(accessToken);
             Debug.Log("SignIn is successful.");
 
-            SetPlayerData(playerInfo[0], playerInfo[1], playerInfo[2]);
+            SetPlayerData(userID, userName, email);
 
             Login();
         }
