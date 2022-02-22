@@ -12,7 +12,7 @@ public class CloudSaveLogin : MonoBehaviour
 {
     public enum ssoOption { Anonymous, Facebook, Google }
 
-    public GameObject mainMenuScreen;
+    public GameObject mainMenuScreen, signInScreen;
 
     public Player player;
 
@@ -60,6 +60,11 @@ public class CloudSaveLogin : MonoBehaviour
         var perms = new List<string>() { "public_profile", "email" };
         FB.LogInWithReadPermissions(perms, AuthCallback);
 
+    }
+
+    public void FacebookLogout()
+    {
+        FB.LogOut();
     }
 
     // Update is called once per frame
@@ -163,6 +168,8 @@ public class CloudSaveLogin : MonoBehaviour
             // Print current access token's User ID
             Debug.Log(aToken.UserId);
 
+            playerInfo.Add(aToken.UserId);
+
             // Print current access token's granted permissions
             foreach (string perm in aToken.Permissions)
             {
@@ -170,9 +177,10 @@ public class CloudSaveLogin : MonoBehaviour
                 playerInfo.Add(perm);
             }
 
-            //SetPlayerData(aToken.UserId, playerInfo[0], playerInfo[1]);
-
             await SignInWithFacebookAsync(aToken.TokenString);
+
+            
+
             
         }
         else
@@ -187,6 +195,8 @@ public class CloudSaveLogin : MonoBehaviour
         {
             await AuthenticationService.Instance.SignInWithFacebookAsync(accessToken);
             Debug.Log("SignIn is successful.");
+
+            SetPlayerData(playerInfo[0], playerInfo[1], playerInfo[2]);
 
             Login();
         }
@@ -233,7 +243,7 @@ public class CloudSaveLogin : MonoBehaviour
 
     private void Login()
     {
-        this.gameObject.SetActive(false);
+        signInScreen.gameObject.SetActive(false);
         mainMenuScreen.SetActive(true);
     }
 
@@ -290,7 +300,7 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
-    private async Task ForceSaveObjectData(string key, Player value)
+    private async Task ForceSaveObjectData(string key, SavePlayerData value)
     {
         try
         {
@@ -382,6 +392,20 @@ public class CloudSaveLogin : MonoBehaviour
         catch (CloudSaveException e)
         {
             Debug.LogError(e);
+        }
+    }
+
+    private async void OnApplicationQuit()
+    {
+        if (AuthenticationService.Instance.IsSignedIn)
+        {
+            SavePlayerData data = new SavePlayerData(player);
+            await ForceSaveObjectData(player.userID, data);
+        }
+
+        if (FB.IsLoggedIn)
+        {
+            FacebookLogout();
         }
     }
 

@@ -60,34 +60,5 @@ public class Player : MonoBehaviour
         PlayerExperience = 0;
     }*/
 
-    private async void OnApplicationQuit()
-    {
-        SavePlayerData data = new SavePlayerData(this);
-        await ForceSaveObjectData(userID, data);
-    }
-
-    private async Task ForceSaveObjectData(string key, SavePlayerData value)
-    {
-        try
-        {
-            // Although we are only saving a single value here, you can save multiple keys
-            // and values in a single batch.
-            Dictionary<string, object> oneElement = new Dictionary<string, object>
-                {
-                    { key, value }
-                };
-
-            await SaveData.ForceSaveAsync(oneElement);
-
-            Debug.Log($"Successfully saved {key}:{value}");
-        }
-        catch (CloudSaveValidationException e)
-        {
-            Debug.LogError(e);
-        }
-        catch (CloudSaveException e)
-        {
-            Debug.LogError(e);
-        }
-    }
+    
 }
