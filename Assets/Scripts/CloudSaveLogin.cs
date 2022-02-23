@@ -12,7 +12,7 @@ public class CloudSaveLogin : MonoBehaviour
 {
     public enum ssoOption { Anonymous, Facebook, Google }
 
-    public GameObject mainMenuScreen, signInScreen;
+    public GameObject mainMenuScreen, signInScreen, devMenu;
 
     public Player player;
 
@@ -52,25 +52,31 @@ public class CloudSaveLogin : MonoBehaviour
         
     }
 
+    public async void SignInDeveloper()
+    {
+        await SignInAnonymouslyAsync();
+        devMenu.SetActive(true);
+    }
+
     public void SignInFacebook()
     {
         currentSSO = ssoOption.Facebook;
         //FB.Android.RetrieveLoginStatus(LoginStatusCallback);
 
-        var perms = new List<string>() { "public_profile", "email" };
+        var perms = new List<string>() { "gaming_profile", "email" };
         FB.LogInWithReadPermissions(perms, AuthCallback);
 
+    }
+
+    public async void DevSignOut()
+    {
+
+        await DeleteEverythingSignOut();
     }
 
     public void FacebookLogout()
     {
         FB.LogOut();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     async Task SignInAnonymouslyAsync()
@@ -164,23 +170,16 @@ public class CloudSaveLogin : MonoBehaviour
         if (FB.IsLoggedIn)
         {
             // AccessToken class will have session details
-            var aToken = Facebook.Unity.AccessToken.CurrentAccessToken;
+            var aToken = AccessToken.CurrentAccessToken;
             // Print current access token's User ID
             Debug.Log(aToken.UserId);
             userID = aToken.UserId;
 
-            var profile = FB.Mobile.CurrentProfile();
-            if(profile != null)
-            {
-                userName = profile.Name;
-                email = profile.Email;
-            }
+            FB.API("me?fields=id,name,email", HttpMethod.GET, AssignInfo);
 
 
-            await SignInWithFacebookAsync(aToken.TokenString);
 
-            
-
+            await SignInWithSessionTokenAsync();
             
         }
         else
@@ -189,11 +188,27 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
-    async Task SignInWithFacebookAsync(string accessToken)
+    void AssignInfo(IGraphResult result)
+    {
+        if (result.Error != null)
+        {
+            Debug.Log("Error: " + result.Error);
+        }
+        else if (!FB.IsLoggedIn)
+            Debug.Log("Login Canceled By Player");
+        else
+        {
+            userID = result.ResultDictionary["id"].ToString();
+            userName = result.ResultDictionary["name"].ToString();
+            email = result.ResultDictionary["email"].ToString();
+        }
+    }
+
+    async Task SignInWithSessionTokenAsync()
     {
         try
         {
-            await AuthenticationService.Instance.SignInWithFacebookAsync(accessToken);
+            await AuthenticationService.Instance.SignInWithSessionTokenAsync();
             Debug.Log("SignIn is successful.");
 
             SetPlayerData(userID, userName, email);
@@ -220,14 +235,14 @@ public class CloudSaveLogin : MonoBehaviour
         {
             Debug.Log("Error: " + result.Error);
 
-            var perms = new List<string>() { "public_profile", "email" };
+            var perms = new List<string>() { "gaming_profile", "email" };
             FB.LogInWithReadPermissions(perms, AuthCallback);
         }
         else if (result.Failed)
         {
             Debug.Log("Failure: Access Token could not be retrieved");
 
-            var perms = new List<string>() { "public_profile", "email" };
+            var perms = new List<string>() { "gaming_profile", "email" };
             FB.LogInWithReadPermissions(perms, AuthCallback);
         }
         else
@@ -352,7 +367,7 @@ public class CloudSaveLogin : MonoBehaviour
         return default;
     }
 
-    private async Task RetrieveEverything()
+    private async Task DeleteEverythingSignOut()
     {
         try
         {
@@ -365,7 +380,10 @@ public class CloudSaveLogin : MonoBehaviour
             foreach (var element in results)
             {
                 Debug.Log($"Key: {element.Key}, Value: {element.Value}");
+                await ForceDeleteSpecificData(element.Key);
             }
+
+            AuthenticationService.Instance.SignOut();
         }
         catch (CloudSaveValidationException e)
         {
