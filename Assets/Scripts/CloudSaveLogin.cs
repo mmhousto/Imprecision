@@ -7,16 +7,26 @@ using System.Threading.Tasks;
 using Unity.Services.Core;
 using Facebook.Unity;
 using System;
+using AppleAuth;
+using AppleAuth.Native;
+using AppleAuth.Enums;
+using AppleAuth.Extensions;
+using AppleAuth.Interfaces;
+using System.Text;
 
 public class CloudSaveLogin : MonoBehaviour
 {
-    public enum ssoOption { Anonymous, Facebook, Google }
+    public enum ssoOption { Anonymous, Facebook, Google, Apple }
 
     public GameObject mainMenuScreen, signInScreen, devMenu;
 
     public Player player;
 
     private ssoOption currentSSO = ssoOption.Anonymous;
+
+    private IAppleAuthManager appleAuthManager;
+
+    private bool triedQuickLogin = false;
 
     public string userName, email, userID;
 
@@ -43,6 +53,33 @@ public class CloudSaveLogin : MonoBehaviour
             // Already initialized, signal an app activation App Event
             FB.ActivateApp();
         }
+
+        // If the current platform is supported initialize apple authentication.
+        if (AppleAuthManager.IsCurrentPlatformSupported)
+        {
+            // Creates a default JSON deserializer, to transform JSON Native responses to C# instances
+            var deserializer = new PayloadDeserializer();
+            // Creates an Apple Authentication manager with the deserializer
+            this.appleAuthManager = new AppleAuthManager(deserializer);
+        }
+    }
+
+    void Update()
+    {
+        // Updates the AppleAuthManager instance to execute
+        // pending callbacks inside Unity's execution loop
+        if (this.appleAuthManager != null)
+        {
+            this.appleAuthManager.Update();
+        }
+
+#if UNITY_IOS
+        if(triedQuickLogin == false)
+        {
+            triedQuickLogin = true;
+            QuickLoginApple();
+        }
+#endif
     }
 
     public async void SignInAnonymously()
@@ -61,11 +98,96 @@ public class CloudSaveLogin : MonoBehaviour
     public void SignInFacebook()
     {
         currentSSO = ssoOption.Facebook;
-        //FB.Android.RetrieveLoginStatus(LoginStatusCallback);
 
+#if UNITY_ANDROID
+        FB.Android.RetrieveLoginStatus(LoginStatusCallback);
+#else
         var perms = new List<string>() { "gaming_profile", "email" };
         FB.LogInWithReadPermissions(perms, AuthCallback);
+#endif
 
+    }
+
+    private async void QuickLoginApple()
+    {
+        Debug.Log("Quick Login Apple Called");
+        var quickLoginArgs = new AppleAuthQuickLoginArgs();
+
+        this.appleAuthManager.QuickLogin(
+            quickLoginArgs,
+            credential =>
+            {
+                // Received a valid credential!
+                // Try casting to IAppleIDCredential or IPasswordCredential
+
+                // Previous Apple sign in credential
+                var appleIdCredential = credential as IAppleIDCredential;
+
+                // Saved Keychain credential (read about Keychain Items)
+                var passwordCredential = credential as IPasswordCredential;
+
+                userID = appleIdCredential.User;
+                email = appleIdCredential.Email;
+                userName = appleIdCredential.FullName.GivenName;
+            },
+            error =>
+            {
+                Debug.Log("Quick Login Apple Failed");
+                return;
+            // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
+            });
+
+        await SignInWithSessionTokenAsync();
+        Debug.Log("Quick Login Apple Succeeded");
+    }
+
+    public async void SignInApple()
+    {
+        var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
+
+        this.appleAuthManager.LoginWithAppleId(
+            loginArgs,
+            credential =>
+            {
+        // Obtained credential, cast it to IAppleIDCredential
+        var appleIdCredential = credential as IAppleIDCredential;
+                if (appleIdCredential != null)
+                {
+            // Apple User ID
+            // You should save the user ID somewhere in the device
+            userID = appleIdCredential.User;
+                    PlayerPrefs.SetString("AppleUserIdKey", userID);
+
+            // Email (Received ONLY in the first login)
+            email = appleIdCredential.Email;
+
+            // Full name (Received ONLY in the first login)
+            userName = appleIdCredential.FullName.GivenName;
+
+            // Identity token
+            var identityToken = Encoding.UTF8.GetString(
+                        appleIdCredential.IdentityToken,
+                        0,
+                        appleIdCredential.IdentityToken.Length);
+
+            // Authorization code
+            var authorizationCode = Encoding.UTF8.GetString(
+                        appleIdCredential.AuthorizationCode,
+                        0,
+                        appleIdCredential.AuthorizationCode.Length);
+
+                    // And now you have all the information to create/login a user in your system
+                    
+        }
+            },
+            error =>
+            {
+        // Something went wrong
+        var authorizationErrorCode = error.GetAuthorizationErrorCode();
+                return;
+            });
+
+        await SignInWithSessionTokenAsync();
     }
 
     public async void DevSignOut()
