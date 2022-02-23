@@ -34,14 +34,15 @@ public class CloudSaveLogin : MonoBehaviour
     async void Awake()
     {
 
-        if(UnityServices.State == ServicesInitializationState.Initialized)
+        if (UnityServices.State == ServicesInitializationState.Initialized)
         {
 
-        }else
+        }
+        else
         {
             await UnityServices.InitializeAsync();
         }
-        
+
 
         if (!FB.IsInitialized)
         {
@@ -72,21 +73,13 @@ public class CloudSaveLogin : MonoBehaviour
         {
             this.appleAuthManager.Update();
         }
-
-#if UNITY_IOS
-        if(triedQuickLogin == false)
-        {
-            triedQuickLogin = true;
-            QuickLoginApple();
-        }
-#endif
     }
 
     public async void SignInAnonymously()
     {
         currentSSO = ssoOption.Anonymous;
         await SignInAnonymouslyAsync();
-        
+
     }
 
     public async void SignInDeveloper()
@@ -108,7 +101,7 @@ public class CloudSaveLogin : MonoBehaviour
 
     }
 
-    private async void QuickLoginApple()
+    public async void QuickLoginApple()
     {
         Debug.Log("Quick Login Apple Called");
         var quickLoginArgs = new AppleAuthQuickLoginArgs();
@@ -126,22 +119,23 @@ public class CloudSaveLogin : MonoBehaviour
                 // Saved Keychain credential (read about Keychain Items)
                 var passwordCredential = credential as IPasswordCredential;
 
-                userID = appleIdCredential.User;
-                email = appleIdCredential.Email;
-                userName = appleIdCredential.FullName.GivenName;
+                userID = PlayerPrefs.GetString("AppleUserIdKey", appleIdCredential.User);
+                email = PlayerPrefs.GetString("AppleUserEmailKey", appleIdCredential.Email);
+                userName = PlayerPrefs.GetString("AppleUserNameKey", appleIdCredential.FullName.GivenName);
             },
             error =>
             {
                 Debug.Log("Quick Login Apple Failed");
+                SignInApple();
                 return;
-            // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
+                // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
             });
 
         await SignInWithSessionTokenAsync();
         Debug.Log("Quick Login Apple Succeeded");
     }
 
-    public async void SignInApple()
+    private async void SignInApple()
     {
         var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
 
@@ -149,41 +143,43 @@ public class CloudSaveLogin : MonoBehaviour
             loginArgs,
             credential =>
             {
-        // Obtained credential, cast it to IAppleIDCredential
-        var appleIdCredential = credential as IAppleIDCredential;
+                //      Obtained credential, cast it to IAppleIDCredential
+                var appleIdCredential = credential as IAppleIDCredential;
                 if (appleIdCredential != null)
                 {
-            // Apple User ID
-            // You should save the user ID somewhere in the device
-            userID = appleIdCredential.User;
+                    // Apple User ID
+                    // You should save the user ID somewhere in the device
+                    userID = appleIdCredential.User;
                     PlayerPrefs.SetString("AppleUserIdKey", userID);
 
-            // Email (Received ONLY in the first login)
-            email = appleIdCredential.Email;
+                    // Email (Received ONLY in the first login)
+                    email = appleIdCredential.Email;
+                    PlayerPrefs.SetString("AppleUserEmailKey", email);
 
-            // Full name (Received ONLY in the first login)
-            userName = appleIdCredential.FullName.GivenName;
+                    // Full name (Received ONLY in the first login)
+                    userName = appleIdCredential.FullName.GivenName;
+                    PlayerPrefs.SetString("AppleUserNameKey", userName);
 
-            // Identity token
-            var identityToken = Encoding.UTF8.GetString(
+                    // Identity token
+                    var identityToken = Encoding.UTF8.GetString(
                         appleIdCredential.IdentityToken,
                         0,
                         appleIdCredential.IdentityToken.Length);
 
-            // Authorization code
-            var authorizationCode = Encoding.UTF8.GetString(
-                        appleIdCredential.AuthorizationCode,
-                        0,
-                        appleIdCredential.AuthorizationCode.Length);
+                    // Authorization code
+                    var authorizationCode = Encoding.UTF8.GetString(
+                                appleIdCredential.AuthorizationCode,
+                                0,
+                                appleIdCredential.AuthorizationCode.Length);
 
                     // And now you have all the information to create/login a user in your system
-                    
-        }
+
+                }
             },
             error =>
             {
-        // Something went wrong
-        var authorizationErrorCode = error.GetAuthorizationErrorCode();
+                // Something went wrong
+                var authorizationErrorCode = error.GetAuthorizationErrorCode();
                 return;
             });
 
@@ -243,7 +239,7 @@ public class CloudSaveLogin : MonoBehaviour
             LoadPlayerData(id);
         }
 
-        
+
     }
 
     private async void SetPlayerData(string id, string name, string email)
@@ -302,7 +298,7 @@ public class CloudSaveLogin : MonoBehaviour
 
 
             await SignInWithSessionTokenAsync();
-            
+
         }
         else
         {
@@ -570,7 +566,7 @@ public class CloudSaveLogin : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveLogout();
-        
+
     }
 
     private void LoadPlayerData(SavePlayerData incomingSample)
