@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -50}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 890, y: -50}
+  m_SizeDelta: {x: 802.1157, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3072852165431886134
 CanvasRenderer:
@@ -167,7 +167,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0.27690125, y: 0}
   m_SizeDelta: {x: 10.5537, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 100
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
@@ -350,6 +350,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec9ed8874df64baf96ce91af5c4cb6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userNameTxt: {fileID: 3072852166093936422}
+  pointsTxt: {fileID: 3072852165431886121}
+  levelTxt: {fileID: 3072852166726420446}
+  xpSlider: {fileID: 3072852165759949438}
+  player: {fileID: 0}
 --- !u!1 &3072852166093936408
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,8 +389,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 176.5, y: -50}
-  m_SizeDelta: {x: 253, y: 50}
+  m_AnchoredPosition: {x: 250, y: -50}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3072852166093936423
 CanvasRenderer:
@@ -415,7 +420,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: UserName
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

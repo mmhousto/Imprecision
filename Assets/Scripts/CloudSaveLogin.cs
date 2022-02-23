@@ -262,6 +262,38 @@ public class CloudSaveLogin : MonoBehaviour
         mainMenuScreen.SetActive(true);
     }
 
+    private void LogoutScreenActivate()
+    {
+        signInScreen.gameObject.SetActive(true);
+        mainMenuScreen.SetActive(false);
+    }
+
+    private async void SaveLogout()
+    {
+        if (AuthenticationService.Instance.IsSignedIn)
+        {
+            SavePlayerData data = new SavePlayerData(player);
+            await ForceSaveObjectData(player.userID, data);
+        }
+
+        if (FB.IsLoggedIn)
+        {
+            FacebookLogout();
+        }
+
+        if (AuthenticationService.Instance.IsSignedIn)
+        {
+            AuthenticationService.Instance.SignOut();
+        }
+    }
+
+    public void Logout()
+    {
+        SaveLogout();
+
+        LogoutScreenActivate();
+    }
+
     private async Task ListAllKeys()
     {
         try
@@ -413,18 +445,10 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
-    private async void OnApplicationQuit()
+    private void OnApplicationQuit()
     {
-        if (AuthenticationService.Instance.IsSignedIn)
-        {
-            SavePlayerData data = new SavePlayerData(player);
-            await ForceSaveObjectData(player.userID, data);
-        }
-
-        if (FB.IsLoggedIn)
-        {
-            FacebookLogout();
-        }
+        SaveLogout();
+        
     }
 
     private void LoadPlayerData(SavePlayerData incomingSample)

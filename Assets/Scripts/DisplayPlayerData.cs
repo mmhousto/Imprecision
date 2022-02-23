@@ -18,7 +18,8 @@ public class DisplayPlayerData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        xpSlider.minValue = 0;
+        xpSlider.maxValue = 150 * level;
     }
 
     // Update is called once per frame
@@ -31,7 +32,10 @@ public class DisplayPlayerData : MonoBehaviour
             points = player.userPoints;
 
         if (level != player.userLevel)
+        {
             level = player.userLevel;
+            xpSlider.maxValue = 150 * level;
+        }
 
         if (userName != player.userName)
             userName = player.userName;
@@ -41,4 +45,8 @@ public class DisplayPlayerData : MonoBehaviour
         levelTxt.text = $"Level: {level}";
         xpSlider.value = xp;
     }
+
+
+
+
 }
