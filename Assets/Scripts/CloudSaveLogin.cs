@@ -119,14 +119,13 @@ public class CloudSaveLogin : MonoBehaviour
                 // Saved Keychain credential (read about Keychain Items)
                 var passwordCredential = credential as IPasswordCredential;
 
-                userID = PlayerPrefs.GetString("AppleUserIdKey", appleIdCredential.User);
+                userID = PlayerPrefs.GetString("AppleUserIdKey", appleIdCredential.IdentityToken.ToString());
                 email = PlayerPrefs.GetString("AppleUserEmailKey", appleIdCredential.Email);
                 userName = PlayerPrefs.GetString("AppleUserNameKey", appleIdCredential.FullName.GivenName);
             },
             error =>
             {
                 Debug.Log("Quick Login Apple Failed");
-                SignInApple();
                 return;
                 // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
             });
@@ -135,11 +134,11 @@ public class CloudSaveLogin : MonoBehaviour
         Debug.Log("Quick Login Apple Succeeded");
     }
 
-    private async void SignInApple()
+    public async void SignInApple()
     {
         var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
 
-        this.appleAuthManager.LoginWithAppleId(
+        appleAuthManager.LoginWithAppleId(
             loginArgs,
             credential =>
             {
@@ -252,6 +251,12 @@ public class CloudSaveLogin : MonoBehaviour
         {
             LoadPlayerData(id, name, email);
         }
+
+        // updates facebook gaming name
+        if (FB.IsInitialized && name != player.name)
+        {
+            player.userName = name;
+        }
     }
 
     private void InitCallback()
@@ -327,6 +332,31 @@ public class CloudSaveLogin : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithSessionTokenAsync();
+            Debug.Log("SignIn is successful.");
+
+            SetPlayerData(userID, userName, email);
+
+            Login();
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+    }
+
+    async Task SignInWithAppleAsync(string idToken)
+    {
+        try
+        {
+            await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
             Debug.Log("SignIn is successful.");
 
             SetPlayerData(userID, userName, email);
