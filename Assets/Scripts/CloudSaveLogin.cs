@@ -18,7 +18,7 @@ public class CloudSaveLogin : MonoBehaviour
 {
     public enum ssoOption { Anonymous, Facebook, Google, Apple }
 
-    public GameObject mainMenuScreen, signInScreen, devMenu;
+    public GameObject mainMenuScreen, signInScreen, devMenu, appleLogoutScreen;
 
     public Player player;
 
@@ -29,6 +29,9 @@ public class CloudSaveLogin : MonoBehaviour
     private bool triedQuickLogin = false;
 
     public string userName, email, userID;
+
+    private string appleTokenID;
+
 
     // Start is called before the first frame update
     async void Awake()
@@ -55,13 +58,19 @@ public class CloudSaveLogin : MonoBehaviour
             FB.ActivateApp();
         }
 
+
+    }
+
+    private void Start()
+    {
         // If the current platform is supported initialize apple authentication.
         if (AppleAuthManager.IsCurrentPlatformSupported)
         {
             // Creates a default JSON deserializer, to transform JSON Native responses to C# instances
-            var deserializer = new PayloadDeserializer();
+            IPayloadDeserializer deserializer = new PayloadDeserializer();
             // Creates an Apple Authentication manager with the deserializer
-            this.appleAuthManager = new AppleAuthManager(deserializer);
+            appleAuthManager = new AppleAuthManager(deserializer);
+            Debug.Log("Apple Auth Created!");
         }
     }
 
@@ -69,10 +78,18 @@ public class CloudSaveLogin : MonoBehaviour
     {
         // Updates the AppleAuthManager instance to execute
         // pending callbacks inside Unity's execution loop
-        if (this.appleAuthManager != null)
+        if (appleAuthManager != null)
         {
-            this.appleAuthManager.Update();
+            appleAuthManager.Update();
         }
+
+        if (triedQuickLogin == false && appleAuthManager != null)
+        {
+            GetCredentialState();
+            triedQuickLogin = true;
+        }
+
+        
     }
 
     public async void SignInAnonymously()
@@ -104,6 +121,10 @@ public class CloudSaveLogin : MonoBehaviour
     public async void QuickLoginApple()
     {
         Debug.Log("Quick Login Apple Called");
+        if (appleAuthManager == null) return;
+
+        currentSSO = ssoOption.Apple;
+
         var quickLoginArgs = new AppleAuthQuickLoginArgs();
 
         this.appleAuthManager.QuickLogin(
@@ -119,9 +140,15 @@ public class CloudSaveLogin : MonoBehaviour
                 // Saved Keychain credential (read about Keychain Items)
                 var passwordCredential = credential as IPasswordCredential;
 
-                userID = PlayerPrefs.GetString("AppleUserIdKey", appleIdCredential.IdentityToken.ToString());
+                userID = PlayerPrefs.GetString("AppleUserIdKey", appleIdCredential.User);
                 email = PlayerPrefs.GetString("AppleUserEmailKey", appleIdCredential.Email);
                 userName = PlayerPrefs.GetString("AppleUserNameKey", appleIdCredential.FullName.GivenName);
+                // Authorization code
+                appleTokenID = Encoding.UTF8.GetString(
+                            appleIdCredential.AuthorizationCode,
+                            0,
+                            appleIdCredential.AuthorizationCode.Length);
+
             },
             error =>
             {
@@ -130,15 +157,61 @@ public class CloudSaveLogin : MonoBehaviour
                 // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
             });
 
-        await SignInWithSessionTokenAsync();
+        await SignInWithAppleAsync(appleTokenID);
         Debug.Log("Quick Login Apple Succeeded");
+    }
+
+    public void GetCredentialState()
+    {
+        userID = PlayerPrefs.GetString("AppleUserIdKey");
+        this.appleAuthManager.GetCredentialState(
+                    userID,
+                    state =>
+                    {
+                        switch (state)
+                        {
+                            case CredentialState.Authorized:
+                                // User ID is still valid. Login the user.
+                                Debug.Log("User ID is valid!");
+                                QuickLoginApple();
+                                break;
+
+                            case CredentialState.Revoked:
+                                // User ID was revoked. Go to login screen.
+                                Debug.Log("User ID was revoked.");
+                                if (AuthenticationService.Instance.IsSignedIn)
+                                {
+                                    AuthenticationService.Instance.SignOut();
+                                }
+                                break;
+
+                            case CredentialState.NotFound:
+                                // User ID was not found. Go to login screen.
+                                Debug.Log("User ID was not found.");
+                                break;
+                        }
+                    },
+                    error =>
+                    {
+                        // Something went wrong
+                        Debug.Log("Credential Failed");
+                        if (AuthenticationService.Instance.IsSignedIn)
+                        {
+                            AuthenticationService.Instance.SignOut();
+                        }
+                        return;
+                    });
     }
 
     public async void SignInApple()
     {
+        if (appleAuthManager == null) return;
+
+        currentSSO = ssoOption.Apple;
+
         var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
 
-        appleAuthManager.LoginWithAppleId(
+        this.appleAuthManager.LoginWithAppleId(
             loginArgs,
             credential =>
             {
@@ -160,13 +233,13 @@ public class CloudSaveLogin : MonoBehaviour
                     PlayerPrefs.SetString("AppleUserNameKey", userName);
 
                     // Identity token
-                    var identityToken = Encoding.UTF8.GetString(
+                    var idToken = Encoding.UTF8.GetString(
                         appleIdCredential.IdentityToken,
                         0,
                         appleIdCredential.IdentityToken.Length);
 
                     // Authorization code
-                    var authorizationCode = Encoding.UTF8.GetString(
+                    appleTokenID = Encoding.UTF8.GetString(
                                 appleIdCredential.AuthorizationCode,
                                 0,
                                 appleIdCredential.AuthorizationCode.Length);
@@ -182,7 +255,8 @@ public class CloudSaveLogin : MonoBehaviour
                 return;
             });
 
-        await SignInWithSessionTokenAsync();
+        await SignInWithAppleAsync(appleTokenID);
+        Debug.Log("Apple Login Successful!");
     }
 
     public async void DevSignOut()
@@ -416,13 +490,9 @@ public class CloudSaveLogin : MonoBehaviour
         mainMenuScreen.SetActive(false);
     }
 
-    private async void SaveLogout()
+    private void SaveLogout()
     {
-        if (AuthenticationService.Instance.IsSignedIn)
-        {
-            SavePlayerData data = new SavePlayerData(player);
-            await ForceSaveObjectData(player.userID, data);
-        }
+        SaveCloudData();
 
         if (FB.IsLoggedIn)
         {
@@ -433,13 +503,32 @@ public class CloudSaveLogin : MonoBehaviour
         {
             AuthenticationService.Instance.SignOut();
         }
+
+        ResetPlayerData();
+    }
+
+    private async void SaveCloudData()
+    {
+        if (AuthenticationService.Instance.IsSignedIn)
+        {
+            SavePlayerData data = new SavePlayerData(player);
+            await ForceSaveObjectData(player.userID, data);
+        }
     }
 
     public void Logout()
     {
-        SaveLogout();
+        if(currentSSO == ssoOption.Apple)
+        {
+            appleLogoutScreen.SetActive(true);
+        }
+        else
+        {
+            SaveLogout();
 
-        LogoutScreenActivate();
+            LogoutScreenActivate();
+        }
+        
     }
 
     private async Task ListAllKeys()
@@ -595,7 +684,7 @@ public class CloudSaveLogin : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SaveLogout();
+        SaveCloudData();
 
     }
 
@@ -628,5 +717,16 @@ public class CloudSaveLogin : MonoBehaviour
         player.userLevel = 1;
         player.userXP = 0;
     }
+
+    private void ResetPlayerData()
+    {
+        player.userID = "";
+        player.userPoints = 0;
+        player.userName = "";
+        player.userEmail = "";
+        player.userLevel = 0;
+        player.userXP = 0;
+    }
 }
+
 
