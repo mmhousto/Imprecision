@@ -95,6 +95,7 @@ public class CloudSaveLogin : MonoBehaviour
     public async void SignInAnonymously()
     {
         currentSSO = ssoOption.Anonymous;
+        AuthenticationService.Instance.SwitchProfile("default");
         await SignInAnonymouslyAsync();
 
     }
@@ -108,6 +109,7 @@ public class CloudSaveLogin : MonoBehaviour
     public void SignInFacebook()
     {
         currentSSO = ssoOption.Facebook;
+        AuthenticationService.Instance.SwitchProfile("facebook");
 
 #if UNITY_ANDROID
         FB.Android.RetrieveLoginStatus(LoginStatusCallback);
@@ -124,6 +126,7 @@ public class CloudSaveLogin : MonoBehaviour
         if (appleAuthManager == null) return;
 
         currentSSO = ssoOption.Apple;
+        AuthenticationService.Instance.SwitchProfile("apple");
 
         var quickLoginArgs = new AppleAuthQuickLoginArgs();
 
@@ -145,9 +148,9 @@ public class CloudSaveLogin : MonoBehaviour
                 userName = PlayerPrefs.GetString("AppleUserNameKey", appleIdCredential.FullName.GivenName);
                 // Authorization code
                 appleTokenID = Encoding.UTF8.GetString(
-                            appleIdCredential.AuthorizationCode,
+                            appleIdCredential.IdentityToken,
                             0,
-                            appleIdCredential.AuthorizationCode.Length);
+                            appleIdCredential.IdentityToken.Length);
 
             },
             error =>
@@ -157,7 +160,7 @@ public class CloudSaveLogin : MonoBehaviour
                 // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
             });
 
-        await SignInWithAppleAsync(appleTokenID);
+        await SignInWithSessionTokenAsync();
         Debug.Log("Quick Login Apple Succeeded");
     }
 
@@ -208,6 +211,7 @@ public class CloudSaveLogin : MonoBehaviour
         if (appleAuthManager == null) return;
 
         currentSSO = ssoOption.Apple;
+        AuthenticationService.Instance.SwitchProfile("apple");
 
         var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
 
@@ -233,13 +237,13 @@ public class CloudSaveLogin : MonoBehaviour
                     PlayerPrefs.SetString("AppleUserNameKey", userName);
 
                     // Identity token
-                    var idToken = Encoding.UTF8.GetString(
+                    appleTokenID = Encoding.UTF8.GetString(
                         appleIdCredential.IdentityToken,
                         0,
                         appleIdCredential.IdentityToken.Length);
 
                     // Authorization code
-                    appleTokenID = Encoding.UTF8.GetString(
+                    var AuthCode = Encoding.UTF8.GetString(
                                 appleIdCredential.AuthorizationCode,
                                 0,
                                 appleIdCredential.AuthorizationCode.Length);
@@ -255,7 +259,7 @@ public class CloudSaveLogin : MonoBehaviour
                 return;
             });
 
-        await SignInWithAppleAsync(appleTokenID);
+        await SignInWithSessionTokenAsync();
         Debug.Log("Apple Login Successful!");
     }
 
@@ -431,6 +435,31 @@ public class CloudSaveLogin : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
+            Debug.Log("SignIn is successful.");
+
+            SetPlayerData(userID, userName, email);
+
+            Login();
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+    }
+
+    async Task SignInWithFacebookAsync(string accessToken)
+    {
+        try
+        {
+            await AuthenticationService.Instance.SignInWithFacebookAsync(accessToken);
             Debug.Log("SignIn is successful.");
 
             SetPlayerData(userID, userName, email);
