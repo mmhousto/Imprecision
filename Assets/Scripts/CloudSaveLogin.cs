@@ -106,10 +106,15 @@ public class CloudSaveLogin : MonoBehaviour
         devMenu.SetActive(true);
     }
 
-    public void SignInFacebook()
+    public async void SignInFacebook()
     {
         currentSSO = ssoOption.Facebook;
         AuthenticationService.Instance.SwitchProfile("facebook");
+
+        if (!AuthenticationService.Instance.SessionTokenExists)
+        {
+            await SignInPlatformAnonymouslyAsync();
+        }
 
 #if UNITY_ANDROID
         FB.Android.RetrieveLoginStatus(LoginStatusCallback);
@@ -127,6 +132,11 @@ public class CloudSaveLogin : MonoBehaviour
 
         currentSSO = ssoOption.Apple;
         AuthenticationService.Instance.SwitchProfile("apple");
+
+        if (!AuthenticationService.Instance.SessionTokenExists)
+        {
+            await SignInPlatformAnonymouslyAsync();
+        }
 
         var quickLoginArgs = new AppleAuthQuickLoginArgs();
 
@@ -212,6 +222,11 @@ public class CloudSaveLogin : MonoBehaviour
 
         currentSSO = ssoOption.Apple;
         AuthenticationService.Instance.SwitchProfile("apple");
+
+        if (!AuthenticationService.Instance.SessionTokenExists)
+        {
+            await SignInPlatformAnonymouslyAsync();
+        }
 
         var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
 
@@ -303,6 +318,36 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
+    async Task SignInPlatformAnonymouslyAsync()
+    {
+        try
+        {
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            Debug.Log("Created Platform Player");
+
+            // Shows how to get the playerID
+            Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
+
+            AuthenticationService.Instance.SignOut();
+            Debug.Log("Signed Out Anonymous account");
+
+
+
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException exception)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(exception);
+        }
+    }
+
     private async void SetPlayerData(string id)
     {
         SavePlayerData incomingSample = await RetrieveSpecificData<SavePlayerData>(id);
@@ -331,7 +376,7 @@ public class CloudSaveLogin : MonoBehaviour
         }
 
         // updates facebook gaming name
-        if (FB.IsInitialized && name != player.name)
+        if (FB.IsInitialized)
         {
             player.userName = name;
         }
@@ -460,7 +505,7 @@ public class CloudSaveLogin : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithFacebookAsync(accessToken);
-            Debug.Log("SignIn is successful.");
+            Debug.Log("SignIn Apple is successful.");
 
             SetPlayerData(userID, userName, email);
 
