@@ -30,8 +30,6 @@ public class CloudSaveLogin : MonoBehaviour
 
     public string userName, email, userID;
 
-    private string appleTokenID;
-
 
     // Start is called before the first frame update
     async void Awake()
@@ -113,7 +111,8 @@ public class CloudSaveLogin : MonoBehaviour
 
         if (!AuthenticationService.Instance.SessionTokenExists)
         {
-            await SignInPlatformAnonymouslyAsync();
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            AuthenticationService.Instance.SignOut();
         }
 
 #if UNITY_ANDROID
@@ -131,47 +130,18 @@ public class CloudSaveLogin : MonoBehaviour
         if (appleAuthManager == null) return;
 
         currentSSO = ssoOption.Apple;
-        AuthenticationService.Instance.SwitchProfile("apple");
+        if(!AuthenticationService.Instance.IsSignedIn)
+            AuthenticationService.Instance.SwitchProfile("apple");
 
-        if (!AuthenticationService.Instance.SessionTokenExists)
-        {
-            await SignInPlatformAnonymouslyAsync();
-        }
+        userID = PlayerPrefs.GetString("AppleUserIdKey");
+        userName = PlayerPrefs.GetString("AppleUserNameKey");
+        email = PlayerPrefs.GetString("AppleUserEmailKey");
+        var idToken = PlayerPrefs.GetString("AppleTokenIdKey");
+        
+        await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
 
-        var quickLoginArgs = new AppleAuthQuickLoginArgs();
-
-        this.appleAuthManager.QuickLogin(
-            quickLoginArgs,
-            credential =>
-            {
-                // Received a valid credential!
-                // Try casting to IAppleIDCredential or IPasswordCredential
-
-                // Previous Apple sign in credential
-                var appleIdCredential = credential as IAppleIDCredential;
-
-                // Saved Keychain credential (read about Keychain Items)
-                var passwordCredential = credential as IPasswordCredential;
-
-                userID = PlayerPrefs.GetString("AppleUserIdKey", appleIdCredential.User);
-                email = PlayerPrefs.GetString("AppleUserEmailKey", appleIdCredential.Email);
-                userName = PlayerPrefs.GetString("AppleUserNameKey", appleIdCredential.FullName.GivenName);
-                // Authorization code
-                appleTokenID = Encoding.UTF8.GetString(
-                            appleIdCredential.IdentityToken,
-                            0,
-                            appleIdCredential.IdentityToken.Length);
-
-            },
-            error =>
-            {
-                Debug.Log("Quick Login Apple Failed");
-                return;
-                // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
-            });
-
-        await SignInWithSessionTokenAsync();
-        Debug.Log("Quick Login Apple Succeeded");
+        SetPlayerData(userID, userName, email);
+        Login();
     }
 
     public void GetCredentialState()
@@ -218,15 +188,25 @@ public class CloudSaveLogin : MonoBehaviour
 
     public async void SignInApple()
     {
-        if (appleAuthManager == null) return;
-
         currentSSO = ssoOption.Apple;
-        AuthenticationService.Instance.SwitchProfile("apple");
+        if (!AuthenticationService.Instance.IsSignedIn)
+            AuthenticationService.Instance.SwitchProfile("apple");
 
-        if (!AuthenticationService.Instance.SessionTokenExists)
-        {
-            await SignInPlatformAnonymouslyAsync();
-        }
+        var idToken = await GetAppleIdTokenAsync();
+
+        await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
+
+        SetPlayerData(userID, userName, email);
+
+        Login();
+
+    }
+
+    private Task<string> GetAppleIdTokenAsync()
+    {
+        var tcs = new TaskCompletionSource<string>();
+
+        if (appleAuthManager == null) return null;
 
         var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
 
@@ -252,10 +232,14 @@ public class CloudSaveLogin : MonoBehaviour
                     PlayerPrefs.SetString("AppleUserNameKey", userName);
 
                     // Identity token
-                    appleTokenID = Encoding.UTF8.GetString(
+                    var idToken = Encoding.UTF8.GetString(
                         appleIdCredential.IdentityToken,
                         0,
                         appleIdCredential.IdentityToken.Length);
+
+                    tcs.SetResult(idToken);
+
+                    PlayerPrefs.SetString("AppleTokenIdKey", idToken);
 
                     // Authorization code
                     var AuthCode = Encoding.UTF8.GetString(
@@ -266,16 +250,74 @@ public class CloudSaveLogin : MonoBehaviour
                     // And now you have all the information to create/login a user in your system
 
                 }
+                else
+                {
+                    tcs.SetException(new Exception("Retrieving Apple Id Token failed."));
+                }
             },
             error =>
             {
                 // Something went wrong
+                tcs.SetException(new Exception("Retrieving Apple Id Token failed."));
                 var authorizationErrorCode = error.GetAuthorizationErrorCode();
                 return;
             });
 
-        await SignInWithSessionTokenAsync();
-        Debug.Log("Apple Login Successful!");
+        return tcs.Task;
+
+    }
+
+    private Task<string> GetQuickAppleIdTokenAsync()
+    {
+        var tcs = new TaskCompletionSource<string>();
+
+        if (appleAuthManager == null) return null;
+
+        var quickLoginArgs = new AppleAuthQuickLoginArgs();
+
+        this.appleAuthManager.QuickLogin(
+            quickLoginArgs,
+            credential =>
+            {
+                // Received a valid credential!
+                // Try casting to IAppleIDCredential or IPasswordCredential
+
+                // Previous Apple sign in credential
+                var appleIdCredential = credential as IAppleIDCredential;
+
+                // Saved Keychain credential (read about Keychain Items)
+                var passwordCredential = credential as IPasswordCredential;
+
+                if(appleIdCredential != null)
+                {
+                    userID = PlayerPrefs.GetString("AppleUserIdKey", appleIdCredential.User);
+                    email = PlayerPrefs.GetString("AppleUserEmailKey", appleIdCredential.Email);
+                    userName = PlayerPrefs.GetString("AppleUserNameKey", appleIdCredential.FullName.GivenName);
+
+                    // Authorization code
+                    var idToken = Encoding.UTF8.GetString(
+                                appleIdCredential.IdentityToken,
+                                0,
+                                appleIdCredential.IdentityToken.Length);
+
+                    tcs.SetResult(idToken);
+                }
+                else
+                {
+                    tcs.SetException(new Exception("Retrieving Apple Id Token failed."));
+                }
+
+            },
+            error =>
+            {
+                Debug.Log("Quick Login Apple Failed");
+                tcs.SetException(new Exception("Retrieving Apple Id Token failed."));
+                return;
+                // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
+            });
+
+        return tcs.Task;
+
     }
 
     public async void DevSignOut()
@@ -328,10 +370,26 @@ public class CloudSaveLogin : MonoBehaviour
             // Shows how to get the playerID
             Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
 
-            AuthenticationService.Instance.SignOut();
-            Debug.Log("Signed Out Anonymous account");
+            var idToken = await GetAppleIdTokenAsync();
 
+            Debug.Log(idToken);
 
+            switch (currentSSO)
+            {
+                case ssoOption.Anonymous:
+                    break;
+                case ssoOption.Facebook:
+                    break;
+                case ssoOption.Google:
+                    break;
+                case ssoOption.Apple:
+                    await LinkWithAppleAsync(idToken);
+                    break;
+                default:
+                    break;
+            }
+
+            
 
         }
         catch (AuthenticationException ex)
@@ -345,6 +403,38 @@ public class CloudSaveLogin : MonoBehaviour
             // Compare error code to CommonErrorCodes
             // Notify the player with the proper error message
             Debug.LogException(exception);
+        }
+    }
+
+    async Task LinkWithAppleAsync(string idToken)
+    {
+        try
+        {
+            Debug.Log(idToken);
+            await AuthenticationService.Instance.LinkWithAppleAsync(idToken);
+            Debug.Log("Link is successful.");
+
+            SetPlayerData(userID, userName, email);
+
+            Login();
+
+        }
+        catch (AuthenticationException ex) when (ex.ErrorCode == AuthenticationErrorCodes.AccountAlreadyLinked)
+        {
+            // Prompt the player with an error message.
+            Debug.LogError("This user is already linked with another account. Log in instead.");
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
         }
     }
 
