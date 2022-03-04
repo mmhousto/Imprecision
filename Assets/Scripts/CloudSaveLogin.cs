@@ -671,7 +671,7 @@ public class CloudSaveLogin : MonoBehaviour
         ResetPlayerData();
     }
 
-    private async void SaveCloudData()
+    public async void SaveCloudData()
     {
         if (AuthenticationService.Instance.IsSignedIn)
         {
@@ -850,6 +850,14 @@ public class CloudSaveLogin : MonoBehaviour
     {
         SaveCloudData();
 
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+#if (UNITY_IOS || UNITY_ANDROID)
+        if(pause)
+            SaveCloudData();
+#endif
     }
 
     private void LoadPlayerData(SavePlayerData incomingSample)

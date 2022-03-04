@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 
     private int maxXP;
 
+    public CloudSaveLogin cloudSaveLogin;
+
     public void GainXP(int xpToAdd)
     {
         userXP += xpToAdd;
@@ -30,11 +32,13 @@ public class Player : MonoBehaviour
             int rem = userXP % maxXP;
             userXP = 0 + rem;
         }
+        cloudSaveLogin.SaveCloudData();
     }
 
     public void GainPoints(int pointsToAdd)
     {
         userPoints += pointsToAdd;
+        cloudSaveLogin.SaveCloudData();
     }
     
 }
