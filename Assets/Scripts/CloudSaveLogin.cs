@@ -68,7 +68,6 @@ public class CloudSaveLogin : MonoBehaviour
             IPayloadDeserializer deserializer = new PayloadDeserializer();
             // Creates an Apple Authentication manager with the deserializer
             appleAuthManager = new AppleAuthManager(deserializer);
-            Debug.Log("Apple Auth Created!");
         }
     }
 
@@ -140,7 +139,7 @@ public class CloudSaveLogin : MonoBehaviour
         
         await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
 
-        SetPlayerData(userID, userName, email);
+        SetPlayerData(AuthenticationService.Instance.PlayerId, userName, email);
         Login();
     }
 
@@ -196,7 +195,7 @@ public class CloudSaveLogin : MonoBehaviour
 
         await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
 
-        SetPlayerData(userID, userName, email);
+        SetPlayerData(AuthenticationService.Instance.PlayerId, userName, email);
 
         Login();
 
