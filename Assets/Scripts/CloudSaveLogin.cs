@@ -13,6 +13,8 @@ using AppleAuth.Enums;
 using AppleAuth.Extensions;
 using AppleAuth.Interfaces;
 using System.Text;
+using GooglePlayGames.BasicApi;
+using GooglePlayGames;
 
 public class CloudSaveLogin : MonoBehaviour
 {
@@ -68,7 +70,8 @@ public class CloudSaveLogin : MonoBehaviour
             FB.ActivateApp();
         }
 
-
+        // Initializes Google Play Games Login
+        InitializePlayGamesLogin();
     }
 
     private void Start()
@@ -597,6 +600,55 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
+
+    #endregion
+
+
+    #region Google Play Auth
+
+
+    void InitializePlayGamesLogin()
+    {
+        var config = new PlayGamesClientConfiguration.Builder()
+            // Requests an ID token be generated.  
+            // This OAuth token can be used to
+            // identify the player to other services such as Firebase.
+            .RequestEmail()
+            .RequestIdToken()
+            .Build();
+
+        PlayGamesPlatform.InitializeInstance(config);
+        PlayGamesPlatform.DebugLogEnabled = true;
+        PlayGamesPlatform.Activate();
+    }
+
+    public void LoginGooglePlayGames()
+    {
+        Social.localUser.Authenticate(OnGooglePlayGamesLogin);
+    }
+
+    async void OnGooglePlayGamesLogin(bool success)
+    {
+        if (success)
+        {
+            // Call Unity Authentication SDK to sign in or link with Google.
+            var idToken = ((PlayGamesLocalUser)Social.localUser).GetIdToken();
+            Debug.Log("Login with Google Play Games done. IdToken: " + ((PlayGamesLocalUser)Social.localUser).GetIdToken());
+            userID = Social.localUser.id;
+            userName = Social.localUser.userName;
+            email = ((PlayGamesLocalUser)Social.localUser).Email;
+
+            await AuthenticationService.Instance.SignInWithGoogleAsync(idToken);
+
+            SetPlayerData(AuthenticationService.Instance.PlayerId, userName, email);
+
+            Login();
+        }
+        else
+        {
+            Debug.Log("Unsuccessful login");
+        }
+    }
 
     #endregion
 
