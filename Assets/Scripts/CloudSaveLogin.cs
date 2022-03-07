@@ -592,11 +592,8 @@ public class CloudSaveLogin : MonoBehaviour
             // A popup notification will appear that says "Logged in as <User Name>"
             Debug.Log("Success: " + result.AccessToken.UserId);
 
-            await AuthenticationService.Instance.SignInWithFacebookAsync(result.AccessToken.TokenString);
+            await SignInWithFacebookAsync(result.AccessToken.TokenString);
 
-            SetPlayerData(result.AccessToken.UserId);
-
-            Login();
         }
     }
 

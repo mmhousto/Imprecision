@@ -1,0 +1,757 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.29f1 (2ff179115da0) revision 3142009'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19043) 64bit Professional' Language: 'en' Physical Memory: 65169 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.29f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/mhouston/Documents/GitHub/Imprecision
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+62563
+Successfully changed project path to: C:/Users/mhouston/Documents/GitHub/Imprecision
+C:/Users/mhouston/Documents/GitHub/Imprecision
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 67.48 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.29f1 (2ff179115da0)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/mhouston/Documents/GitHub/Imprecision/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA Quadro RTX 5000 (ID=0x1eb5)
+    Vendor:   
+    VRAM:     16170 MB
+    Driver:   27.21.14.6230
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56048
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.29f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001837 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 54.33 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.566 seconds
+Domain Reload Profiling:
+	ReloadAssembly (566ms)
+		BeginReloadAssembly (54ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (449ms)
+			LoadAssemblies (52ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (133ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (30ms)
+			SetupLoadedEditorAssemblies (188ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (54ms)
+				BeforeProcessingInitializeOnLoad (16ms)
+				ProcessInitializeOnLoadAttributes (87ms)
+				ProcessInitializeOnLoadMethodAttributes (26ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.012000 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.98 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\PackageConfig.cs:15 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
+  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
+  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeInitializationException: The type initializer for 'Unity.Services.Core.Editor.OperatePackageVersionConfigProvider' threw an exception. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\PackageConfig.cs:15 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
+  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
+  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
+   --- End of inner exception stack trace ---
+  at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00014] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceMono (System.Boolean nonPublic) [0x000a8] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceSlow (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00009] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder+<>c.<GenerateOrderedConfigurationProviders>b__5_1 (System.Type type) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:46 
+  at System.Linq.Enumerable+WhereSelectEnumerableIterator`2[TSource,TResult].ToArray () [0x0002b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Buffer`1[TElement]..ctor (System.Collections.Generic.IEnumerable`1[T] source) [0x0000a] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.OrderedEnumerable`1[TElement].ToArray () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable.ToArray[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.GenerateOrderedConfigurationProviders () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:44 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.CreateEditorInstanceIfNone () [0x00008] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:38 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <7ebb9dc74040436998557fc331a964ba>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Completed reload, in  2.832 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2833ms)
+		BeginReloadAssembly (135ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (17ms)
+		EndReloadAssembly (2641ms)
+			LoadAssemblies (101ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (322ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (50ms)
+			SetupLoadedEditorAssemblies (2084ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (107ms)
+				ProcessInitializeOnLoadAttributes (1948ms)
+				ProcessInitializeOnLoadMethodAttributes (19ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 1.00 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3182 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.8 MB.
+System memory in use after: 131.0 MB.
+
+Unloading 116 unused Assets to reduce memory usage. Loaded Objects now: 3548.
+Total: 4.869800 ms (FindLiveObjects: 0.226600 ms CreateObjectMapping: 0.143000 ms MarkObjects: 4.368800 ms  DeleteObjects: 0.130300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/FacebookSDK/Plugins/Editor/Facebook.Unity.Editor.dll
+  artifactKey: Guid(137a102f808364a0fb444bedefe2575d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Plugins/Editor/Facebook.Unity.Editor.dll using Guid(137a102f808364a0fb444bedefe2575d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7bb7b9a77e5436565ff030653177ec4') in 0.031582 seconds 
+  Import took 0.036521 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005573 seconds.
+  path: Assets/FacebookSDK/Examples/Scripts/LogView.cs
+  artifactKey: Guid(910cbe16250cb4363b70464c39fc701a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Examples/Scripts/LogView.cs using Guid(910cbe16250cb4363b70464c39fc701a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4bbe27be7a1fbfdf6cc94dbc2bedd484') in 0.011574 seconds 
+  Import took 0.015673 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005917 seconds.
+  path: Assets/FacebookSDK/Examples/Scripts/ConsoleBase.cs
+  artifactKey: Guid(e8659f5605d094c19a8b7ef9471c3603) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Examples/Scripts/ConsoleBase.cs using Guid(e8659f5605d094c19a8b7ef9471c3603) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6dea27cd18e22c1a4cc04c68ca0f02a') in 0.006330 seconds 
+  Import took 0.010553 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.049147 seconds.
+  path: Assets/FacebookSDK/Plugins/Canvas/CanvasJSSDKBindings.jslib
+  artifactKey: Guid(082cd93ddb11e4437b52ea3d121816d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Plugins/Canvas/CanvasJSSDKBindings.jslib using Guid(082cd93ddb11e4437b52ea3d121816d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ce87445e68ac063605114fc3650ef3c') in 0.014635 seconds 
+  Import took 0.018584 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004947 seconds.
+  path: Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll.mdb
+  artifactKey: Guid(3aa17cd5f43042a1a7381759dc1258a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll.mdb using Guid(3aa17cd5f43042a1a7381759dc1258a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9998cb0dd4735223aeb82e7bc8e1473f') in 0.023766 seconds 
+  Import took 0.028144 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005666 seconds.
+  path: Assets/FacebookSDK/Plugins/Android/Facebook.Unity.Android.dll
+  artifactKey: Guid(fb286cd0f33ce4f5e81baf10dab8d865) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Plugins/Android/Facebook.Unity.Android.dll using Guid(fb286cd0f33ce4f5e81baf10dab8d865) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3adcd23f69a0e1d7b36b3353cd3e4a80') in 0.005288 seconds 
+  Import took 0.009690 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005276 seconds.
+  path: Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll
+  artifactKey: Guid(99f23b07cdda04baea08736723cf3aad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll using Guid(99f23b07cdda04baea08736723cf3aad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42ee1d89586c713529d3581c2f8a5632') in 0.005416 seconds 
+  Import took 0.010008 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005080 seconds.
+  path: Assets/FacebookSDK/SDK/Editor/iOS/FBSDK+Internal.h
+  artifactKey: Guid(66952bdb75cae4c348f3d0521da59bfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/SDK/Editor/iOS/FBSDK+Internal.h using Guid(66952bdb75cae4c348f3d0521da59bfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3bdd7c6c17033f6f3c2d908b907ec5b') in 0.009692 seconds 
+  Import took 0.014408 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005831 seconds.
+  path: Assets/FacebookSDK/Examples/Scripts/SubMenus/AccessTokenMenu.cs
+  artifactKey: Guid(4cc408e158eec46b28b93a44fc8819ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Examples/Scripts/SubMenus/AccessTokenMenu.cs using Guid(4cc408e158eec46b28b93a44fc8819ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d56eefbcfe42fc156789bc8ac78db4d') in 0.004677 seconds 
+  Import took 0.009254 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005557 seconds.
+  path: Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll
+  artifactKey: Guid(bb6999c8a5ce4ba99688ec579babe5b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll using Guid(bb6999c8a5ce4ba99688ec579babe5b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85facd79c3ee2cdee0a93665cead8964') in 0.005153 seconds 
+  Import took 0.009172 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005205 seconds.
+  path: Assets/FacebookSDK/SDK/Editor/iOS/FBUnitySDKDelegate.h
+  artifactKey: Guid(7461bcc2e2c714a03a3f60d68ec79369) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/SDK/Editor/iOS/FBUnitySDKDelegate.h using Guid(7461bcc2e2c714a03a3f60d68ec79369) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1c5244181224311135e8a0d5239a36b') in 0.005635 seconds 
+  Import took 0.010386 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004268 seconds.
+  path: Assets/FacebookSDK/Examples/Scripts/SubMenus/AppLinks.cs
+  artifactKey: Guid(f9f0b7257fa054227be6e26bf1f6b339) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Examples/Scripts/SubMenus/AppLinks.cs using Guid(f9f0b7257fa054227be6e26bf1f6b339) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '066003838f90cc14b56e0f227688440f') in 0.005372 seconds 
+  Import took 0.009759 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004446 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-Blue_144.png
+  artifactKey: Guid(2dfb329ea2ae94f1595fa43449c5a9d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-Blue_144.png using Guid(2dfb329ea2ae94f1595fa43449c5a9d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '093be4cbd377eb8786b57c96df13d6a6') in 0.056909 seconds 
+  Import took 0.061335 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004430 seconds.
+  path: Assets/FacebookSDK/Examples/Scripts/SubMenus/GraphRequest.cs
+  artifactKey: Guid(23c3cb06c2209474e9a8441e2712d5d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Examples/Scripts/SubMenus/GraphRequest.cs using Guid(23c3cb06c2209474e9a8441e2712d5d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '692df4fc55dbcec12bc24df5cc5a96de') in 0.004991 seconds 
+  Import took 0.009171 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005715 seconds.
+  path: Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.135.0.dll
+  artifactKey: Guid(369cd88e7aa04bd98e0f6c229f7c1510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.135.0.dll using Guid(369cd88e7aa04bd98e0f6c229f7c1510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21cdb02c4735e06763cecf6386f04261') in 0.004158 seconds 
+  Import took 0.008829 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005179 seconds.
+  path: Assets/FacebookSDK/SDK/Editor/iOS/fixup.projmods
+  artifactKey: Guid(aead30834362b490ea67fdd7fd0351c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/SDK/Editor/iOS/fixup.projmods using Guid(aead30834362b490ea67fdd7fd0351c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '260e2b26a7f9bae9a4e170f0d3ae90b2') in 0.005494 seconds 
+  Import took 0.009442 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005513 seconds.
+  path: Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.135.0.dll.mdb
+  artifactKey: Guid(5b5bb7be859c4fd1bd3c41a472792657) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.135.0.dll.mdb using Guid(5b5bb7be859c4fd1bd3c41a472792657) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '318d55bd0691ffd5a3ac24fb863a3a6e') in 0.004744 seconds 
+  Import took 0.008861 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005271 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-Blue_114.png
+  artifactKey: Guid(570a7ae45f9ff4e2b9a74017642a1f69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-Blue_114.png using Guid(570a7ae45f9ff4e2b9a74017642a1f69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '154e8b3a6a8a7475815e1794e8ff6ff4') in 0.009762 seconds 
+  Import took 0.014452 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005807 seconds.
+  path: Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.135.0.dll
+  artifactKey: Guid(a1e8415cfe85469f9aa0aea941166031) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.135.0.dll using Guid(a1e8415cfe85469f9aa0aea941166031) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7458ac320e2cb9edf9ba71579cbcc8cd') in 0.004197 seconds 
+  Import took 0.008101 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005822 seconds.
+  path: Assets/FacebookSDK/Plugins/Android/libs/facebook-android-wrapper-11.0.0.aar
+  artifactKey: Guid(abcfdae5d23df40e9a7ec554ddc17a22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Plugins/Android/libs/facebook-android-wrapper-11.0.0.aar using Guid(abcfdae5d23df40e9a7ec554ddc17a22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf689f99a52bdc23ed0681e173b92a39') in 0.006716 seconds 
+  Import took 0.010923 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005445 seconds.
+  path: Assets/FacebookSDK/Plugins/Canvas/Facebook.Unity.Canvas.dll
+  artifactKey: Guid(c57105322a98c474faf1ce607f20c3f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Plugins/Canvas/Facebook.Unity.Canvas.dll using Guid(c57105322a98c474faf1ce607f20c3f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19c20f4d1e059cb01e85b2367f4add0a') in 0.005472 seconds 
+  Import took 0.009713 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005542 seconds.
+  path: Assets/FacebookSDK/SDK/Editor/iOS/FBUnityUtility.mm
+  artifactKey: Guid(5cafb2af7ca9641f58022a816236d1ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/SDK/Editor/iOS/FBUnityUtility.mm using Guid(5cafb2af7ca9641f58022a816236d1ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f38c0869f13bf5d42c8a7e2ff76711c7') in 0.006260 seconds 
+  Import took 0.010398 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004316 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-Blue_512.png
+  artifactKey: Guid(64d2480ae1701446fb36b5147765c12b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-Blue_512.png using Guid(64d2480ae1701446fb36b5147765c12b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0dfa8efeb3cb87547ebd841afe1b8bf') in 0.029634 seconds 
+  Import took 0.034598 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005034 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-White_250.png
+  artifactKey: Guid(5420975c2660e46458de24be0a6d17bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-White_250.png using Guid(5420975c2660e46458de24be0a6d17bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60ff073592713fbfb36cff070557f66b') in 0.013329 seconds 
+  Import took 0.017849 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004180 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-White_1024.png
+  artifactKey: Guid(9fee25dae87584473931c500f2ef5a23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-White_1024.png using Guid(9fee25dae87584473931c500f2ef5a23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4335668d1f80be59e9ad7a1b8d9c881c') in 0.063213 seconds 
+  Import took 0.067111 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005434 seconds.
+  path: Assets/FacebookSDK/SDK/Editor/iOS/FBUnityInterface.h
+  artifactKey: Guid(511e95bcdad89425999ccbb3e315246a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/SDK/Editor/iOS/FBUnityInterface.h using Guid(511e95bcdad89425999ccbb3e315246a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'baeac72aafa353aef3d89938181dd846') in 0.005473 seconds 
+  Import took 0.009789 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003782 seconds.
+  path: Assets/FacebookSDK/Examples/Scripts/SubMenus/Pay.cs
+  artifactKey: Guid(7f08c9721703046ec883e57562184726) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Examples/Scripts/SubMenus/Pay.cs using Guid(7f08c9721703046ec883e57562184726) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '713ae3a3e54705540e9e3a2fb987e0ee') in 0.004966 seconds 
+  Import took 0.009200 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005086 seconds.
+  path: Assets/FacebookSDK/SDK/Editor/iOS/FBUnitySDKDelegate.m
+  artifactKey: Guid(fbc51482e3ca248329707d61959f9d9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/SDK/Editor/iOS/FBUnitySDKDelegate.m using Guid(fbc51482e3ca248329707d61959f9d9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd34b7b069332d557b295a31376302a79') in 0.012631 seconds 
+  Import took 0.016614 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004437 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-Blue_250.png
+  artifactKey: Guid(dfc90cf061aff446a9f37eaa4a058af3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-Blue_250.png using Guid(dfc90cf061aff446a9f37eaa4a058af3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c578dfa9b34b913653a75b4f12b5af9') in 0.011768 seconds 
+  Import took 0.017122 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005917 seconds.
+  path: Assets/FacebookSDK/Plugins/Gameroom/FacebookNamedPipeClient.dll
+  artifactKey: Guid(cfd587f32401443d0b223aa6246fe5bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Plugins/Gameroom/FacebookNamedPipeClient.dll using Guid(cfd587f32401443d0b223aa6246fe5bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee2db1072207dbe549e2e4bacdf4fafb') in 0.004221 seconds 
+  Import took 0.008288 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005485 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-Blue_100.png
+  artifactKey: Guid(cb6719e88255a4800b558d495503c55f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-Blue_100.png using Guid(cb6719e88255a4800b558d495503c55f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5286e56f26e5fec3be31e74bad19487') in 0.009649 seconds 
+  Import took 0.014690 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005697 seconds.
+  path: Assets/FacebookSDK/Examples/Scripts/SubMenus/DialogShare.cs
+  artifactKey: Guid(e93c4155902d3496399630ee494eab6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Examples/Scripts/SubMenus/DialogShare.cs using Guid(e93c4155902d3496399630ee494eab6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cef58d011d6e7af22b5f576c43736a09') in 0.004204 seconds 
+  Import took 0.008177 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005360 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-White_100.png
+  artifactKey: Guid(728d7dec5097c4e99b2bff7968203987) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-White_100.png using Guid(728d7dec5097c4e99b2bff7968203987) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6774fb76a43cd93caca9f17e40be6ea3') in 0.008877 seconds 
+  Import took 0.013862 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005430 seconds.
+  path: Assets/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll
+  artifactKey: Guid(c49f2b3ca212b47fc9cd8ce655177c89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll using Guid(c49f2b3ca212b47fc9cd8ce655177c89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46da55b48e0dca4f5a6d3fb25097e9d1') in 0.004399 seconds 
+  Import took 0.008438 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005446 seconds.
+  path: Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.135.0.dll.mdb
+  artifactKey: Guid(cae8f5dff2144389b07fadccfe1c949c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.135.0.dll.mdb using Guid(cae8f5dff2144389b07fadccfe1c949c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41ac4077c82caaaacd83cdcb42e851f7') in 0.005041 seconds 
+  Import took 0.009423 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.006055 seconds.
+  path: Assets/FacebookSDK/SDK/Editor/iOS/FBUnityUtility.h
+  artifactKey: Guid(b4469d6625a664618b68231ee0dcc093) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/SDK/Editor/iOS/FBUnityUtility.h using Guid(b4469d6625a664618b68231ee0dcc093) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32931db5f6455341e780cfe06a9629fe') in 0.002240 seconds 
+  Import took 0.006516 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004855 seconds.
+  path: Assets/FacebookSDK/SDK/Editor/iOS/FBUnityInterface.mm
+  artifactKey: Guid(4c29c5d59509848c4bc24c13ac976932) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/SDK/Editor/iOS/FBUnityInterface.mm using Guid(4c29c5d59509848c4bc24c13ac976932) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2bfddd572cb26e449750daab5799051f') in 0.002252 seconds 
+  Import took 0.006971 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004633 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-White_114.png
+  artifactKey: Guid(f7943a45f1a2341e4925ee6c35dd7d94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-White_114.png using Guid(f7943a45f1a2341e4925ee6c35dd7d94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb94c11bff0497813548c6df6b94e2a0') in 0.010272 seconds 
+  Import took 0.014822 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004586 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-White_58.png
+  artifactKey: Guid(9212e9058d7df4e71bf440b2e04a4088) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-White_58.png using Guid(9212e9058d7df4e71bf440b2e04a4088) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a8c6e22c9fbd2432d1447ff3da7beae') in 0.011830 seconds 
+  Import took 0.015777 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005484 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-White_72.png
+  artifactKey: Guid(f1d00a8fe135f4ebeadfba5440d60245) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-White_72.png using Guid(f1d00a8fe135f4ebeadfba5440d60245) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91359bdec3a1a1bc4ebe934b8c0ababc') in 0.039797 seconds 
+  Import took 0.044677 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005617 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-Blue_72.png
+  artifactKey: Guid(f8d4b5a9718d040c899242feeba5cba9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-Blue_72.png using Guid(f8d4b5a9718d040c899242feeba5cba9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4816446a34377aeaaaa2f5ef91e6886') in 0.011976 seconds 
+  Import took 0.017631 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007053 seconds.
+  path: Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.135.0.dll
+  artifactKey: Guid(97738b29c18143b0a469277b09d35889) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.135.0.dll using Guid(97738b29c18143b0a469277b09d35889) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e832c5417ffb3eddba4b3bcfa548be3a') in 0.004621 seconds 
+  Import took 0.009679 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004858 seconds.
+  path: Assets/FacebookSDK/Examples/Scripts/SubMenus/AppRequests.cs
+  artifactKey: Guid(3b4c675f81a254b87adc8ad01006c580) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Examples/Scripts/SubMenus/AppRequests.cs using Guid(3b4c675f81a254b87adc8ad01006c580) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b94a2b7687d68dfa71f6c3bf58421d0') in 0.004140 seconds 
+  Import took 0.008277 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005687 seconds.
+  path: Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.135.0.dll.mdb
+  artifactKey: Guid(35304689a45d428197d8060697686528) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.135.0.dll.mdb using Guid(35304689a45d428197d8060697686528) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c311a34eeaf1cc6444bf6e92d1c0cfde') in 0.004751 seconds 
+  Import took 0.008896 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.006496 seconds.
+  path: Assets/FacebookSDK/Plugins/iOS/Facebook.Unity.IOS.dll
+  artifactKey: Guid(516664901472b44fe83b720b195b5b60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Plugins/iOS/Facebook.Unity.IOS.dll using Guid(516664901472b44fe83b720b195b5b60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c254e3e305a8447c99204d6ec4a72feb') in 0.004496 seconds 
+  Import took 0.008613 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004669 seconds.
+  path: Assets/FacebookSDK/Examples/Scripts/SubMenus/AppEvents.cs
+  artifactKey: Guid(e3c0dd81ff77c4c30834810815c69f6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Examples/Scripts/SubMenus/AppEvents.cs using Guid(e3c0dd81ff77c4c30834810815c69f6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6dc7740108c82161b7bba5910a11dd8') in 0.006333 seconds 
+  Import took 0.010716 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004743 seconds.
+  path: Assets/FacebookSDK/Examples/Scripts/MenuBase.cs
+  artifactKey: Guid(8f28f9112a7d44d3c999fbd95333abbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Examples/Scripts/MenuBase.cs using Guid(8f28f9112a7d44d3c999fbd95333abbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34617bc2fe4196cb54d09b9b85157199') in 0.005007 seconds 
+  Import took 0.009923 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004597 seconds.
+  path: Assets/FacebookSDK/link.xml
+  artifactKey: Guid(51f4619c385224a23a3edb9092c7d49b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/link.xml using Guid(51f4619c385224a23a3edb9092c7d49b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f87f5a598f08f0039ac3ba4866fc6d6') in 0.008866 seconds 
+  Import took 0.013287 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004368 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-White_144.png
+  artifactKey: Guid(77b6718bae3de479e8c5b5c01d311786) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-White_144.png using Guid(77b6718bae3de479e8c5b5c01d311786) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7f4e8eb7e971329bd934409d7239b75') in 0.009819 seconds 
+  Import took 0.014422 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004943 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-White_512.png
+  artifactKey: Guid(48338a469658c4184820cc056f17b6a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-White_512.png using Guid(48338a469658c4184820cc056f17b6a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '923ef2bc23722c4aaa0bdbaf5c8ca359') in 0.021837 seconds 
+  Import took 0.026113 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004945 seconds.
+  path: Assets/FacebookSDK/Plugins/Facebook.Unity.dll
+  artifactKey: Guid(08462833fafe743b8bd59914b9f52696) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Plugins/Facebook.Unity.dll using Guid(08462833fafe743b8bd59914b9f52696) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e655ebf2ddbc8a68030021c0dbcc217') in 0.004870 seconds 
+  Import took 0.009217 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003797 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-Blue_1024.png
+  artifactKey: Guid(c112783b1ee5c432c9dcf7abacf95cd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-Blue_1024.png using Guid(c112783b1ee5c432c9dcf7abacf95cd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91efbf50c4d73d52b99e23b051d9e548') in 0.058303 seconds 
+  Import took 0.062268 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004279 seconds.
+  path: Assets/FacebookSDK/f_logo_RGB-Blue_58.png
+  artifactKey: Guid(b9a681681811949e3a4a36a2b4b4ff3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/f_logo_RGB-Blue_58.png using Guid(b9a681681811949e3a4a36a2b4b4ff3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '400589549d864f789a828bec4b8ee544') in 0.009388 seconds 
+  Import took 0.013360 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004957 seconds.
+  path: Assets/FacebookSDK/Plugins/Editor/Dependencies.xml
+  artifactKey: Guid(1543e5f9bab73423c96b42cab90363ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Plugins/Editor/Dependencies.xml using Guid(1543e5f9bab73423c96b42cab90363ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f4e967db89480505f054af9b3afe8d2') in 0.005616 seconds 
+  Import took 0.010181 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003907 seconds.
+  path: Assets/PlayServicesResolver/Editor/play-services-resolver_v1.2.135.0.txt
+  artifactKey: Guid(54730702a56740858922d24dc3f26918) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlayServicesResolver/Editor/play-services-resolver_v1.2.135.0.txt using Guid(54730702a56740858922d24dc3f26918) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '974d4e4b7bf419777846200c27a52a26') in 0.010494 seconds 
+  Import took 0.014493 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004186 seconds.
+  path: Assets/FacebookSDK/Examples/Scripts/SubMenus/MainMenu.cs
+  artifactKey: Guid(922e3ad8d88a146b3b392cd8c84edd6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FacebookSDK/Examples/Scripts/SubMenus/MainMenu.cs using Guid(922e3ad8d88a146b3b392cd8c84edd6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba93cbea840c9cdcbcae3385992d28dd') in 0.005299 seconds 
+  Import took 0.009567 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.011800 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.15 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\PackageConfig.cs:15 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
+  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
+  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeInitializationException: The type initializer for 'Unity.Services.Core.Editor.OperatePackageVersionConfigProvider' threw an exception. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.Services.Core.Editor.PackageConfig..ctor (UnityEditor.PackageManager.PackageInfo packageInfo) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\PackageConfig.cs:15 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.<FindAllOperatePackageInProject>g__GetPackageConfigFrom|7_0 (System.Type type) [0x0000b] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:50 
+  at (wrapper delegate-invoke) System.Func`2[System.Type,Unity.Services.Core.Editor.PackageConfig].invoke_TResult_T(System.Type)
+  at System.Linq.Enumerable+SelectIListIterator`2[TSource,TResult].MoveNext () [0x00048] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Set`1[TElement].UnionWith (System.Collections.Generic.IEnumerable`1[T] other) [0x00018] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].FillSet () [0x0000b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable+DistinctIterator`1[TSource].ToList () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable.ToList[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider.FindAllOperatePackageInProject () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:41 
+  at Unity.Services.Core.Editor.OperatePackageVersionConfigProvider..cctor () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Telemetry\OperatePackageVersionConfigProvider.cs:20 
+   --- End of inner exception stack trace ---
+  at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00014] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceMono (System.Boolean nonPublic) [0x000a8] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceSlow (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00009] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder+<>c.<GenerateOrderedConfigurationProviders>b__5_1 (System.Type type) [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:46 
+  at System.Linq.Enumerable+WhereSelectEnumerableIterator`2[TSource,TResult].ToArray () [0x0002b] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Buffer`1[TElement]..ctor (System.Collections.Generic.IEnumerable`1[T] source) [0x0000a] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.OrderedEnumerable`1[TElement].ToArray () [0x00000] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at System.Linq.Enumerable.ToArray[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x0001f] in <351e49e2a5bf4fd6beabb458ce2255f3>:0 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.GenerateOrderedConfigurationProviders () [0x00000] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:44 
+  at Unity.Services.Core.Configuration.Editor.ProjectConfigurationBuilder.CreateEditorInstanceIfNone () [0x00008] in C:\Users\mhouston\Documents\GitHub\Imprecision\Library\PackageCache\com.unity.services.core@1.1.0-pre.69\Editor\Core\Configuration\ProjectConfigurationBuilder.cs:38 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <7ebb9dc74040436998557fc331a964ba>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Completed reload, in  2.446 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2446ms)
+		BeginReloadAssembly (123ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (45ms)
+		EndReloadAssembly (2267ms)
+			LoadAssemblies (112ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (325ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (39ms)
+			SetupLoadedEditorAssemblies (1702ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (97ms)
+				ProcessInitializeOnLoadAttributes (1573ms)
+				ProcessInitializeOnLoadMethodAttributes (21ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 1.30 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3166 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 132.5 MB.
+System memory in use after: 132.7 MB.
+
+Unloading 111 unused Assets to reduce memory usage. Loaded Objects now: 3557.
+Total: 4.374200 ms (FindLiveObjects: 0.225000 ms CreateObjectMapping: 0.143500 ms MarkObjects: 3.938600 ms  DeleteObjects: 0.066500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
