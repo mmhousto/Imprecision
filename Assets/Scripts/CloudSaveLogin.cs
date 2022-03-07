@@ -16,10 +16,15 @@ using System.Text;
 
 public class CloudSaveLogin : MonoBehaviour
 {
+
+    #region Fields/Variables
+
+    // What SSO Option the use is using atm.
     public enum ssoOption { Anonymous, Facebook, Google, Apple }
 
     public GameObject mainMenuScreen, signInScreen, devMenu, appleLogoutScreen;
 
+    // Player Data Object
     public Player player;
 
     private ssoOption currentSSO = ssoOption.Anonymous;
@@ -28,7 +33,14 @@ public class CloudSaveLogin : MonoBehaviour
 
     private bool triedQuickLogin = false;
 
+    // User Info.
     public string userName, email, userID;
+
+
+    #endregion
+
+
+    #region MonoBehaviour Methods
 
 
     // Start is called before the first frame update
@@ -80,6 +92,7 @@ public class CloudSaveLogin : MonoBehaviour
             appleAuthManager.Update();
         }
 
+        // Tries to quick login on Apple, if user previously logged in.
         if (triedQuickLogin == false && appleAuthManager != null)
         {
             GetCredentialState();
@@ -89,6 +102,37 @@ public class CloudSaveLogin : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Saves data on application exit.
+    /// </summary>
+    private void OnApplicationQuit()
+    {
+        SaveCloudData();
+
+    }
+
+    /// <summary>
+    /// Saves data to cloud on application pause or swipe out.
+    /// </summary>
+    /// <param name="pause"></param>
+    private void OnApplicationPause(bool pause)
+    {
+#if (UNITY_IOS || UNITY_ANDROID)
+        if(pause)
+            SaveCloudData();
+#endif
+    }
+
+
+    #endregion
+
+
+    #region Public Sign In/Out Methods
+
+
+    /// <summary>
+    /// Signs user into an anonymous account.
+    /// </summary>
     public async void SignInAnonymously()
     {
         currentSSO = ssoOption.Anonymous;
@@ -97,22 +141,22 @@ public class CloudSaveLogin : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Signs user into dev account.
+    /// </summary>
     public async void SignInDeveloper()
     {
         await SignInAnonymouslyAsync();
         devMenu.SetActive(true);
     }
 
-    public async void SignInFacebook()
+    /// <summary>
+    /// Signs user into facebook account with authentication from Facebook.
+    /// </summary>
+    public void SignInFacebook()
     {
         currentSSO = ssoOption.Facebook;
         AuthenticationService.Instance.SwitchProfile("facebook");
-
-        if (!AuthenticationService.Instance.SessionTokenExists)
-        {
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            AuthenticationService.Instance.SignOut();
-        }
 
 #if UNITY_ANDROID
         FB.Android.RetrieveLoginStatus(LoginStatusCallback);
@@ -123,6 +167,125 @@ public class CloudSaveLogin : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Signs user into Apple with Auth from Apple.
+    /// </summary>
+    public async void SignInApple()
+    {
+        currentSSO = ssoOption.Apple;
+        if (!AuthenticationService.Instance.IsSignedIn)
+            AuthenticationService.Instance.SwitchProfile("apple");
+
+        var idToken = await GetAppleIdTokenAsync();
+
+        await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
+
+        SetPlayerData(AuthenticationService.Instance.PlayerId, userName, email);
+
+        Login();
+
+    }
+
+    /// <summary>
+    /// Saves player data to cloud if user is signed in.
+    /// </summary>
+    public async void SaveCloudData()
+    {
+        if (AuthenticationService.Instance.IsSignedIn)
+        {
+            SavePlayerData data = new SavePlayerData(player);
+            await ForceSaveObjectData(player.userID, data);
+        }
+    }
+
+    /// <summary>
+    /// Logs out the user, unless logged in with Apple account will display message.
+    /// </summary>
+    public void Logout()
+    {
+        if (currentSSO == ssoOption.Apple)
+        {
+            appleLogoutScreen.SetActive(true);
+        }
+        else
+        {
+            SaveLogout();
+
+            LogoutScreenActivate();
+        }
+
+    }
+
+    /// <summary>
+    /// Developer sign out option to delete all player data and sign out.
+    /// </summary>
+    public async void DevSignOut()
+    {
+
+        await DeleteEverythingSignOut();
+    }
+
+    /// <summary>
+    /// Logs out of facebook.
+    /// </summary>
+    public void FacebookLogout()
+    {
+        FB.LogOut();
+    }
+
+
+    #endregion
+
+
+    #region Private Login/Logout Methods
+
+    /// <summary>
+    /// Disables sign in screen and enables the main menu on login.
+    /// </summary>
+    private void Login()
+    {
+        signInScreen.gameObject.SetActive(false);
+        mainMenuScreen.SetActive(true);
+    }
+
+    /// <summary>
+    /// Activates the sign in screen and disables the main menu screen.
+    /// </summary>
+    private void LogoutScreenActivate()
+    {
+        signInScreen.gameObject.SetActive(true);
+        mainMenuScreen.SetActive(false);
+    }
+
+    /// <summary>
+    /// Saves and logs out of user and resets player data.
+    /// </summary>
+    private void SaveLogout()
+    {
+        SaveCloudData();
+
+        if (FB.IsLoggedIn)
+        {
+            FacebookLogout();
+        }
+
+        if (AuthenticationService.Instance.IsSignedIn)
+        {
+            AuthenticationService.Instance.SignOut();
+        }
+
+        ResetPlayerData();
+    }
+
+
+    #endregion
+
+
+    #region Apple Auth
+
+    /// <summary>
+    /// Performs continue with Apple login.
+    /// </summary>
     public async void QuickLoginApple()
     {
         Debug.Log("Quick Login Apple Called");
@@ -132,9 +295,37 @@ public class CloudSaveLogin : MonoBehaviour
         if(!AuthenticationService.Instance.IsSignedIn)
             AuthenticationService.Instance.SwitchProfile("apple");
 
-        userID = PlayerPrefs.GetString("AppleUserIdKey");
-        userName = PlayerPrefs.GetString("AppleUserNameKey");
-        email = PlayerPrefs.GetString("AppleUserEmailKey");
+        var quickLoginArgs = new AppleAuthQuickLoginArgs();
+
+        this.appleAuthManager.QuickLogin(
+            quickLoginArgs,
+            credential =>
+            {
+                // Received a valid credential!
+                // Try casting to IAppleIDCredential or IPasswordCredential
+
+                // Previous Apple sign in credential
+                var appleIdCredential = credential as IAppleIDCredential;
+
+                // Saved Keychain credential (read about Keychain Items)
+                var passwordCredential = credential as IPasswordCredential;
+
+                if (appleIdCredential != null)
+                {
+                    userID = PlayerPrefs.GetString("AppleUserIdKey", appleIdCredential.User);
+                    email = PlayerPrefs.GetString("AppleUserEmailKey", appleIdCredential.Email);
+                    userName = PlayerPrefs.GetString("AppleUserNameKey", appleIdCredential.FullName.GivenName);
+
+                }
+
+            },
+            error =>
+            {
+                Debug.Log("Quick Login Apple Failed");
+                return;
+                // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
+            });
+
         var idToken = PlayerPrefs.GetString("AppleTokenIdKey");
         
         await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
@@ -143,6 +334,9 @@ public class CloudSaveLogin : MonoBehaviour
         Login();
     }
 
+    /// <summary>
+    /// Checks if user has logged in with apple before on device, if so continues to quick login.
+    /// </summary>
     public void GetCredentialState()
     {
         userID = PlayerPrefs.GetString("AppleUserIdKey");
@@ -185,22 +379,13 @@ public class CloudSaveLogin : MonoBehaviour
                     });
     }
 
-    public async void SignInApple()
-    {
-        currentSSO = ssoOption.Apple;
-        if (!AuthenticationService.Instance.IsSignedIn)
-            AuthenticationService.Instance.SwitchProfile("apple");
-
-        var idToken = await GetAppleIdTokenAsync();
-
-        await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
-
-        SetPlayerData(AuthenticationService.Instance.PlayerId, userName, email);
-
-        Login();
-
-    }
-
+    
+    /// <summary>
+    /// Gets the Apple Identity Token to Authenticate the user.
+    /// Stores username, userID, Identity Token and email in Player Prefs.
+    /// Returns the Identity Token.
+    /// </summary>
+    /// <returns></returns>
     private Task<string> GetAppleIdTokenAsync()
     {
         var tcs = new TaskCompletionSource<string>();
@@ -266,211 +451,15 @@ public class CloudSaveLogin : MonoBehaviour
 
     }
 
-    private Task<string> GetQuickAppleIdTokenAsync()
-    {
-        var tcs = new TaskCompletionSource<string>();
 
-        if (appleAuthManager == null) return null;
-
-        var quickLoginArgs = new AppleAuthQuickLoginArgs();
-
-        this.appleAuthManager.QuickLogin(
-            quickLoginArgs,
-            credential =>
-            {
-                // Received a valid credential!
-                // Try casting to IAppleIDCredential or IPasswordCredential
-
-                // Previous Apple sign in credential
-                var appleIdCredential = credential as IAppleIDCredential;
-
-                // Saved Keychain credential (read about Keychain Items)
-                var passwordCredential = credential as IPasswordCredential;
-
-                if(appleIdCredential != null)
-                {
-                    userID = PlayerPrefs.GetString("AppleUserIdKey", appleIdCredential.User);
-                    email = PlayerPrefs.GetString("AppleUserEmailKey", appleIdCredential.Email);
-                    userName = PlayerPrefs.GetString("AppleUserNameKey", appleIdCredential.FullName.GivenName);
-
-                    // Authorization code
-                    var idToken = Encoding.UTF8.GetString(
-                                appleIdCredential.IdentityToken,
-                                0,
-                                appleIdCredential.IdentityToken.Length);
-
-                    tcs.SetResult(idToken);
-                }
-                else
-                {
-                    tcs.SetException(new Exception("Retrieving Apple Id Token failed."));
-                }
-
-            },
-            error =>
-            {
-                Debug.Log("Quick Login Apple Failed");
-                tcs.SetException(new Exception("Retrieving Apple Id Token failed."));
-                return;
-                // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
-            });
-
-        return tcs.Task;
-
-    }
-
-    public async void DevSignOut()
-    {
-
-        await DeleteEverythingSignOut();
-    }
-
-    public void FacebookLogout()
-    {
-        FB.LogOut();
-    }
-
-    async Task SignInAnonymouslyAsync()
-    {
-        try
-        {
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            Debug.Log("Sign in anonymously succeeded!");
-
-            SetPlayerData(AuthenticationService.Instance.PlayerId);
-
-            Login();
-
-            // Shows how to get the playerID
-            Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
-
-        }
-        catch (AuthenticationException ex)
-        {
-            // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-        catch (RequestFailedException exception)
-        {
-            // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(exception);
-        }
-    }
-
-    async Task SignInPlatformAnonymouslyAsync()
-    {
-        try
-        {
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            Debug.Log("Created Platform Player");
-
-            // Shows how to get the playerID
-            Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
-
-            var idToken = await GetAppleIdTokenAsync();
-
-            Debug.Log(idToken);
-
-            switch (currentSSO)
-            {
-                case ssoOption.Anonymous:
-                    break;
-                case ssoOption.Facebook:
-                    break;
-                case ssoOption.Google:
-                    break;
-                case ssoOption.Apple:
-                    await LinkWithAppleAsync(idToken);
-                    break;
-                default:
-                    break;
-            }
-
-            
-
-        }
-        catch (AuthenticationException ex)
-        {
-            // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-        catch (RequestFailedException exception)
-        {
-            // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(exception);
-        }
-    }
-
-    async Task LinkWithAppleAsync(string idToken)
-    {
-        try
-        {
-            Debug.Log(idToken);
-            await AuthenticationService.Instance.LinkWithAppleAsync(idToken);
-            Debug.Log("Link is successful.");
-
-            SetPlayerData(userID, userName, email);
-
-            Login();
-
-        }
-        catch (AuthenticationException ex) when (ex.ErrorCode == AuthenticationErrorCodes.AccountAlreadyLinked)
-        {
-            // Prompt the player with an error message.
-            Debug.LogError("This user is already linked with another account. Log in instead.");
-        }
-        catch (AuthenticationException ex)
-        {
-            // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-        catch (RequestFailedException ex)
-        {
-            // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-    }
-
-    private async void SetPlayerData(string id)
-    {
-        SavePlayerData incomingSample = await RetrieveSpecificData<SavePlayerData>(id);
-
-        if (incomingSample != null)
-        {
-            LoadPlayerData(incomingSample);
-        }
-        else
-        {
-            LoadPlayerData(id);
-        }
+    #endregion
 
 
-    }
+    #region Facebook Auth
 
-    private async void SetPlayerData(string id, string name, string email)
-    {
-        SavePlayerData incomingSample = await RetrieveSpecificData<SavePlayerData>(id);
-
-        if (incomingSample != null)
-            LoadPlayerData(incomingSample);
-        else
-        {
-            LoadPlayerData(id, name, email);
-        }
-
-        // updates facebook gaming name
-        if (FB.IsInitialized)
-        {
-            player.userName = name;
-        }
-    }
-
+    /// <summary>
+    /// Initializes Facebook SDK
+    /// </summary>
     private void InitCallback()
     {
         if (FB.IsInitialized)
@@ -500,6 +489,10 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Callback to get player info on login.
+    /// </summary>
+    /// <param name="result"></param>
     private async void AuthCallback(ILoginResult result)
     {
         if (FB.IsLoggedIn)
@@ -514,7 +507,7 @@ public class CloudSaveLogin : MonoBehaviour
 
 
 
-            await SignInWithSessionTokenAsync();
+            await SignInWithFacebookAsync(aToken.TokenString);
 
         }
         else
@@ -523,6 +516,10 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Assigns player info on login.
+    /// </summary>
+    /// <param name="result"></param>
     void AssignInfo(IGraphResult result)
     {
         if (result.Error != null)
@@ -539,6 +536,156 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Signs the player into Unity Services and sets player data.
+    /// </summary>
+    /// <param name="accessToken"></param>
+    /// <returns></returns>
+    async Task SignInWithFacebookAsync(string accessToken)
+    {
+        try
+        {
+            await AuthenticationService.Instance.SignInWithFacebookAsync(accessToken);
+            Debug.Log("Sign-In With Facebook is successful.");
+
+            SetPlayerData(AuthenticationService.Instance.PlayerId, userName, email);
+
+            Login();
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+    }
+
+    /// <summary>
+    /// Logs the player in, if they were logged in before.
+    /// </summary>
+    /// <param name="result"></param>
+    private async void LoginStatusCallback(ILoginStatusResult result)
+    {
+        if (!string.IsNullOrEmpty(result.Error))
+        {
+            Debug.Log("Error: " + result.Error);
+
+            var perms = new List<string>() { "gaming_profile", "email" };
+            FB.LogInWithReadPermissions(perms, AuthCallback);
+        }
+        else if (result.Failed)
+        {
+            Debug.Log("Failure: Access Token could not be retrieved");
+
+            var perms = new List<string>() { "gaming_profile", "email" };
+            FB.LogInWithReadPermissions(perms, AuthCallback);
+        }
+        else
+        {
+            // Successfully logged user in
+            // A popup notification will appear that says "Logged in as <User Name>"
+            Debug.Log("Success: " + result.AccessToken.UserId);
+
+            await AuthenticationService.Instance.SignInWithFacebookAsync(result.AccessToken.TokenString);
+
+            SetPlayerData(result.AccessToken.UserId);
+
+            Login();
+        }
+    }
+
+
+    #endregion
+
+
+    #region Private Methods
+
+    /// <summary>
+    /// Signs in an anonymous player.
+    /// </summary>
+    /// <returns></returns>
+    async Task SignInAnonymouslyAsync()
+    {
+        try
+        {
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            Debug.Log("Sign in anonymously succeeded!");
+
+            SetPlayerData(AuthenticationService.Instance.PlayerId);
+
+            Login();
+
+            // Shows how to get the playerID
+            Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
+
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException exception)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(exception);
+        }
+    }
+
+    /// <summary>
+    /// Loads player data from cloud or creates a new player.
+    /// </summary>
+    /// <param name="id"></param>
+    private async void SetPlayerData(string id)
+    {
+        SavePlayerData incomingSample = await RetrieveSpecificData<SavePlayerData>(id);
+
+        if (incomingSample != null)
+        {
+            LoadPlayerData(incomingSample);
+        }
+        else
+        {
+            LoadPlayerData(id);
+        }
+
+
+    }
+
+    /// <summary>
+    /// Loads player data from cloud or creates a new player.
+    /// </summary>
+    /// <param name="id"></param>
+    private async void SetPlayerData(string id, string name, string email)
+    {
+        SavePlayerData incomingSample = await RetrieveSpecificData<SavePlayerData>(id);
+
+        if (incomingSample != null)
+            LoadPlayerData(incomingSample);
+        else
+        {
+            LoadPlayerData(id, name, email);
+        }
+
+        // updates facebook gaming name
+        if (FB.IsInitialized)
+        {
+            player.userName = name;
+        }
+    }
+
+    
+    /// <summary>
+    /// Signs in with Session Token.
+    /// </summary>
+    /// <returns></returns>
     async Task SignInWithSessionTokenAsync()
     {
         try
@@ -564,136 +711,10 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
-    async Task SignInWithAppleAsync(string idToken)
-    {
-        try
-        {
-            await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
-            Debug.Log("SignIn is successful.");
-
-            SetPlayerData(userID, userName, email);
-
-            Login();
-        }
-        catch (AuthenticationException ex)
-        {
-            // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-        catch (RequestFailedException ex)
-        {
-            // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-    }
-
-    async Task SignInWithFacebookAsync(string accessToken)
-    {
-        try
-        {
-            await AuthenticationService.Instance.SignInWithFacebookAsync(accessToken);
-            Debug.Log("SignIn Apple is successful.");
-
-            SetPlayerData(userID, userName, email);
-
-            Login();
-        }
-        catch (AuthenticationException ex)
-        {
-            // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-        catch (RequestFailedException ex)
-        {
-            // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-    }
-
-    private async void LoginStatusCallback(ILoginStatusResult result)
-    {
-        if (!string.IsNullOrEmpty(result.Error))
-        {
-            Debug.Log("Error: " + result.Error);
-
-            var perms = new List<string>() { "gaming_profile", "email" };
-            FB.LogInWithReadPermissions(perms, AuthCallback);
-        }
-        else if (result.Failed)
-        {
-            Debug.Log("Failure: Access Token could not be retrieved");
-
-            var perms = new List<string>() { "gaming_profile", "email" };
-            FB.LogInWithReadPermissions(perms, AuthCallback);
-        }
-        else
-        {
-            // Successfully logged user in
-            // A popup notification will appear that says "Logged in as <User Name>"
-            Debug.Log("Success: " + result.AccessToken.UserId);
-
-            await AuthenticationService.Instance.SignInWithFacebookAsync(result.AccessToken.TokenString);
-            Login();
-        }
-    }
-
-    private void Login()
-    {
-        signInScreen.gameObject.SetActive(false);
-        mainMenuScreen.SetActive(true);
-    }
-
-    private void LogoutScreenActivate()
-    {
-        signInScreen.gameObject.SetActive(true);
-        mainMenuScreen.SetActive(false);
-    }
-
-    private void SaveLogout()
-    {
-        SaveCloudData();
-
-        if (FB.IsLoggedIn)
-        {
-            FacebookLogout();
-        }
-
-        if (AuthenticationService.Instance.IsSignedIn)
-        {
-            AuthenticationService.Instance.SignOut();
-        }
-
-        ResetPlayerData();
-    }
-
-    public async void SaveCloudData()
-    {
-        if (AuthenticationService.Instance.IsSignedIn)
-        {
-            SavePlayerData data = new SavePlayerData(player);
-            await ForceSaveObjectData(player.userID, data);
-        }
-    }
-
-    public void Logout()
-    {
-        if(currentSSO == ssoOption.Apple)
-        {
-            appleLogoutScreen.SetActive(true);
-        }
-        else
-        {
-            SaveLogout();
-
-            LogoutScreenActivate();
-        }
-        
-    }
-
+    /// <summary>
+    /// List all the cloud save keys/players.
+    /// </summary>
+    /// <returns></returns>
     private async Task ListAllKeys()
     {
         try
@@ -713,6 +734,12 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Saves a Single Item to cloud.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
     private async Task ForceSaveSingleData(string key, string value)
     {
         try
@@ -747,6 +774,12 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Save an object to cloud.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
     private async Task ForceSaveObjectData(string key, SavePlayerData value)
     {
         try
@@ -772,6 +805,12 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Get data from the cloud.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="key"></param>
+    /// <returns></returns>
     private async Task<T> RetrieveSpecificData<T>(string key)
     {
         try
@@ -799,6 +838,10 @@ public class CloudSaveLogin : MonoBehaviour
         return default;
     }
 
+    /// <summary>
+    /// Deletes everything and signs out.
+    /// </summary>
+    /// <returns></returns>
     private async Task DeleteEverythingSignOut()
     {
         try
@@ -827,6 +870,11 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Deletes a specific key.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
     private async Task ForceDeleteSpecificData(string key)
     {
         try
@@ -845,20 +893,10 @@ public class CloudSaveLogin : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit()
-    {
-        SaveCloudData();
-
-    }
-
-    private void OnApplicationPause(bool pause)
-    {
-#if (UNITY_IOS || UNITY_ANDROID)
-        if(pause)
-            SaveCloudData();
-#endif
-    }
-
+    /// <summary>
+    /// Loads data from cloud.
+    /// </summary>
+    /// <param name="incomingSample"></param>
     private void LoadPlayerData(SavePlayerData incomingSample)
     {
         player.userID = incomingSample.userID;
@@ -869,6 +907,10 @@ public class CloudSaveLogin : MonoBehaviour
         player.userXP = incomingSample.userXP;
     }
 
+    /// <summary>
+    /// Creates new anonymous player
+    /// </summary>
+    /// <param name="id"></param>
     private void LoadPlayerData(string id)
     {
         player.userID = id;
@@ -879,6 +921,12 @@ public class CloudSaveLogin : MonoBehaviour
         player.userXP = 0;
     }
 
+    /// <summary>
+    /// Creates new player with login details.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="name"></param>
+    /// <param name="email"></param>
     private void LoadPlayerData(string id, string name, string email)
     {
         player.userID = id;
@@ -889,6 +937,9 @@ public class CloudSaveLogin : MonoBehaviour
         player.userXP = 0;
     }
 
+    /// <summary>
+    /// Resets player data on logout.
+    /// </summary>
     private void ResetPlayerData()
     {
         player.userID = "";
@@ -898,6 +949,10 @@ public class CloudSaveLogin : MonoBehaviour
         player.userLevel = 0;
         player.userXP = 0;
     }
+
+    #endregion
+
+
 }
 
 
