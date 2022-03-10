@@ -272,6 +272,11 @@ public class CloudSaveLogin : MonoBehaviour
             FacebookLogout();
         }
 
+        if(currentSSO == ssoOption.Google)
+        {
+            GoogleLogout();
+        }
+
         if (AuthenticationService.Instance.IsSignedIn)
         {
             AuthenticationService.Instance.SignOut();
@@ -624,21 +629,26 @@ public class CloudSaveLogin : MonoBehaviour
 
     public void LoginGooglePlayGames()
     {
-        Social.localUser.Authenticate(OnGooglePlayGamesLogin);
+        currentSSO = ssoOption.Google;
+        AuthenticationService.Instance.SwitchProfile("google");
+        PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptAlways, success => { OnGooglePlayGamesLogin(success); });
     }
 
-    async void OnGooglePlayGamesLogin(bool success)
+    async void OnGooglePlayGamesLogin(SignInStatus status)
     {
-        if (success)
+        if (status == SignInStatus.Success)
         {
+            ((PlayGamesPlatform)Social.Active).SetGravityForPopups(Gravity.BOTTOM);
+
             // Call Unity Authentication SDK to sign in or link with Google.
             var idToken = ((PlayGamesLocalUser)Social.localUser).GetIdToken();
-            Debug.Log("Login with Google Play Games done. IdToken: " + ((PlayGamesLocalUser)Social.localUser).GetIdToken());
+            Debug.Log("Login with Google Play Games done. IdToken: " + idToken);
             userID = Social.localUser.id;
             userName = Social.localUser.userName;
             email = ((PlayGamesLocalUser)Social.localUser).Email;
 
             await AuthenticationService.Instance.SignInWithGoogleAsync(idToken);
+            Debug.Log("Sign-In With Google is successful.");
 
             SetPlayerData(AuthenticationService.Instance.PlayerId, userName, email);
 
@@ -648,6 +658,36 @@ public class CloudSaveLogin : MonoBehaviour
         {
             Debug.Log("Unsuccessful login");
         }
+    }
+
+    async Task SignInWithGoogleAsync(string idToken)
+    {
+        try
+        {
+            await AuthenticationService.Instance.SignInWithGoogleAsync(idToken);
+            Debug.Log("Sign-In With Google is successful.");
+
+            SetPlayerData(AuthenticationService.Instance.PlayerId, userName, email);
+
+            Login();
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+    }
+
+    void GoogleLogout()
+    {
+        PlayGamesPlatform.Instance.SignOut();
     }
 
     #endregion
