@@ -8,37 +8,40 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using System;
 
-public class Player : MonoBehaviour
+namespace Com.MorganHouston.Imprecision
 {
-    public string userID;
-    public string userName;
-    public string userEmail;
 
-    public int userPoints;
-    public int userLevel;
-    public int userXP;
-
-    private int maxXP;
-
-    public CloudSaveLogin cloudSaveLogin;
-
-    public void GainXP(int xpToAdd)
+    public class Player : MonoBehaviour
     {
-        userXP += xpToAdd;
-        maxXP = userLevel * 150;
-        if(userXP >= maxXP)
+        public string userID;
+        public string userName;
+
+        public int userPoints;
+        public int userLevel;
+        public int userXP;
+
+        private int maxXP;
+
+        public CloudSaveLogin cloudSaveLogin;
+
+        public void GainXP(int xpToAdd)
         {
-            userLevel++;
-            int rem = userXP % maxXP;
-            userXP = 0 + rem;
+            userXP += xpToAdd;
+            maxXP = userLevel * 150;
+            if (userXP >= maxXP)
+            {
+                userLevel++;
+                int rem = userXP % maxXP;
+                userXP = 0 + rem;
+            }
+            cloudSaveLogin.SaveCloudData();
         }
-        cloudSaveLogin.SaveCloudData();
-    }
 
-    public void GainPoints(int pointsToAdd)
-    {
-        userPoints += pointsToAdd;
-        cloudSaveLogin.SaveCloudData();
+        public void GainPoints(int pointsToAdd)
+        {
+            userPoints += pointsToAdd;
+            cloudSaveLogin.SaveCloudData();
+        }
+
     }
-    
 }

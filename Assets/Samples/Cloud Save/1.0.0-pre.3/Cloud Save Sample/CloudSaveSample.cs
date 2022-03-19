@@ -6,6 +6,7 @@ using Unity.Services.CloudSave;
 using Unity.Services.Core;
 using UnityEngine;
 using Facebook.Unity;
+using Com.MorganHouston.Imprecision;
 
 namespace CloudSaveSample
 {
