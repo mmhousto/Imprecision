@@ -2,21 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainManager : MonoBehaviour
+namespace Com.MorganHouston.Imprecision
 {
-
-    public GameObject appleLogin, googleLogin;
-
-    // Start is called before the first frame update
-    void Start()
+    public class MainManager : MonoBehaviour
     {
-#if UNITY_ANDROID
-        appleLogin.SetActive(false);
-        googleLogin.SetActive(true);
-#elif UNITY_IOS
-        appleLogin.SetActive(true);
-        googleLogin.SetActive(false);
-#endif
-    }
 
+        public GameObject appleLogoutScreen;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        
+        }
+
+        public void Logout()
+        {
+            if (CloudSaveLogin.Instance.currentSSO == CloudSaveLogin.ssoOption.Apple)
+            {
+                appleLogoutScreen.SetActive(true);
+            }
+            else
+            {
+                CloudSaveLogin.Instance.Logout();
+            }
+
+                
+        }
+    }
 }

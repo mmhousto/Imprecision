@@ -13,7 +13,7 @@ namespace Com.MorganHouston.Imprecision
         public TextMeshProUGUI userNameTxt, pointsTxt, levelTxt;
         public Slider xpSlider;
 
-        public Player player;
+        private Player player;
 
         private int xp, points, level;
         private string userName;
@@ -21,6 +21,7 @@ namespace Com.MorganHouston.Imprecision
         // Start is called before the first frame update
         void Start()
         {
+            player = Player.Instance;
             xpSlider.minValue = 0;
             xpSlider.maxValue = 150 * level;
         }

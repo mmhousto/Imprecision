@@ -13,6 +13,10 @@ namespace Com.MorganHouston.Imprecision
 
     public class Player : MonoBehaviour
     {
+        private static Player instance;
+
+        public static Player Instance { get { return instance; } }
+
         public string userID;
         public string userName;
 
@@ -23,6 +27,19 @@ namespace Com.MorganHouston.Imprecision
         private int maxXP;
 
         public CloudSaveLogin cloudSaveLogin;
+
+        private void Awake()
+        {
+            if(instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                instance = this;
+                DontDestroyOnLoad(Instance.gameObject);
+            }
+        }
 
         public void GainXP(int xpToAdd)
         {

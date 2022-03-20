@@ -24,19 +24,23 @@ namespace Com.MorganHouston.Imprecision
 
         #region Fields/Variables
 
+        private static CloudSaveLogin instance;
+
+        public static CloudSaveLogin Instance { get { return instance; } }
+
         // What SSO Option the use is using atm.
         public enum ssoOption { Anonymous, Facebook, Google, Apple }
-
-        public GameObject mainMenuScreen, signInScreen, devMenu, appleLogoutScreen;
 
         // Player Data Object
         public Player player;
 
-        private ssoOption currentSSO = ssoOption.Anonymous;
+        public ssoOption currentSSO = ssoOption.Anonymous;
 
         private IAppleAuthManager appleAuthManager;
 
         private bool triedQuickLogin = false;
+
+        public bool devModeActivated = false;
 
         // User Info.
         public string userName, userID;
@@ -51,6 +55,15 @@ namespace Com.MorganHouston.Imprecision
         // Start is called before the first frame update
         async void Awake()
         {
+            if(instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                instance = this;
+                DontDestroyOnLoad(Instance.gameObject);
+            }
 
             if (UnityServices.State == ServicesInitializationState.Initialized)
             {
@@ -73,8 +86,10 @@ namespace Com.MorganHouston.Imprecision
                 FB.ActivateApp();
             }
 
+#if UNITY_ANDROID
             // Initializes Google Play Games Login
             InitializePlayGamesLogin();
+#endif
         }
 
         private void Start()
@@ -152,8 +167,8 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         public async void SignInDeveloper()
         {
+            devModeActivated = true;
             await SignInAnonymouslyAsync();
-            devMenu.SetActive(true);
         }
 
         /// <summary>
@@ -209,16 +224,9 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         public void Logout()
         {
-            if (currentSSO == ssoOption.Apple)
-            {
-                appleLogoutScreen.SetActive(true);
-            }
-            else
-            {
                 SaveLogout();
 
                 LogoutScreenActivate();
-            }
 
         }
 
@@ -246,21 +254,19 @@ namespace Com.MorganHouston.Imprecision
         #region Private Login/Logout Methods
 
         /// <summary>
-        /// Disables sign in screen and enables the main menu on login.
+        /// Loads the Main Menu Scene.
         /// </summary>
         private void Login()
         {
-            signInScreen.gameObject.SetActive(false);
-            mainMenuScreen.SetActive(true);
+            SceneLoader.LoadThisScene(1);
         }
 
         /// <summary>
-        /// Activates the sign in screen and disables the main menu screen.
+        /// Loads the Sign-In Scene.
         /// </summary>
         private void LogoutScreenActivate()
         {
-            signInScreen.gameObject.SetActive(true);
-            mainMenuScreen.SetActive(false);
+            SceneLoader.LoadThisScene(0);
         }
 
         /// <summary>
