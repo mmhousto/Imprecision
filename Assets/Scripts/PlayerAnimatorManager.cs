@@ -27,6 +27,11 @@ namespace com.MorganHouston.Imprecision
             anim.SetBool(inAirKey, newState);
         }
 
+        public void SetShot()
+        {
+            anim.SetTrigger(shotKey);
+        }
+
         public void SetSpeed(float newSpeed)
         {
             anim.SetFloat(speedKey, newSpeed);
@@ -41,6 +46,17 @@ namespace com.MorganHouston.Imprecision
         {
             anim.SetFloat(horizontalKey, newHorz);
         }
+
+        public void SetShotStrength(float newPower)
+        {
+            anim.SetFloat(shotStrengthKey, newPower);
+        }
+
+        public void SetDraw(bool newDrawState)
+        {
+            anim.SetBool(drawKey, newDrawState);
+        }
+
 
     }
 }

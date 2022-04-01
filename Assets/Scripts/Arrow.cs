@@ -48,8 +48,9 @@ public class Arrow : MonoBehaviour
         {
             transform.SetParent(collision.gameObject.transform, true); // attach to target.
         }
-        arrowRB.isKinematic = true;
         arrowRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+        arrowRB.isKinematic = true;
+        
         
         if(collision.collider.tag == "apple")
         {

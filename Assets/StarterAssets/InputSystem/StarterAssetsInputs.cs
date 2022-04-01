@@ -13,7 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool aiming;
-		public double firePower;
+		public bool isPullingBack;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -54,7 +54,7 @@ namespace StarterAssets
 
 		public void OnAttack(InputValue value)
         {
-			AttackInput(value.Get<double>());
+			AttackInput(value.isPressed);
         }
 
 		public void MoveInput(Vector2 newMoveDirection)
@@ -79,12 +79,12 @@ namespace StarterAssets
 
 		public void AimInput(bool newAimState)
         {
-			aiming = newAimState;
+			aiming = !aiming;
         }
 
-		public void AttackInput(double newFirePower)
+		public void AttackInput(bool newAttackState)
         {
-			firePower = newFirePower;
+			isPullingBack = !isPullingBack;
         }
 
 #if (UNITY_IOS || UNITY_ANDROID)
