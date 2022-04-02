@@ -1,38 +1,85 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class TargetSpawner : MonoBehaviour
+namespace Com.MorganHouston.Imprecision
 {
-	
-	public GameObject[] objects;
 
-	private int maxSpawnCount = 10;
-	private int spawnCount = 0;
-	public Transform player;
-
-
-	void Start()
+	public class TargetSpawner : MonoBehaviour
 	{
-		
-	}
 
-	void Update()
-	{
-		if (GameObject.FindGameObjectsWithTag("target").Length <= 0 && spawnCount < maxSpawnCount)
+		public GameObject[] objects;
+
+		public TextMeshProUGUI targetsLbl;
+
+		private int maxSpawnCount = 10;
+		private int spawnCount = 0;
+		private int currentLevel = 0;
+
+		[Range(-20, 0f)]
+		public float minX;
+		[Range(3, 5)]
+		public float minY;
+		[Range(-20, 0f)]
+		public float minZ;
+
+		[Range(1, 20f)]
+		public float maxX;
+		[Range(6, 10)]
+		public float maxY;
+		[Range(1, 20f)]
+		public float maxZ;
+
+		public Transform player;
+
+        private void Awake()
+        {
+			currentLevel = GameManager.Instance.levelSelected;
+
+		}
+
+
+        void Start()
 		{
-			Spawn();
-			spawnCount++;
+            maxSpawnCount += (int)(currentLevel * 1.25f);
+		}
 
+		void Update()
+		{
+			CheckForTargets();
+			UpdateTargetsLabel();
+
+		}
+
+		private void UpdateTargetsLabel()
+		{
+			var prev = targetsLbl.text;
+			string targetsLeft = $"Targets: {maxSpawnCount - spawnCount}";
+			if (prev == targetsLeft)
+				return;
+			else
+				targetsLbl.text = targetsLeft;
+		}
+
+		private void CheckForTargets()
+		{
+			if (GameObject.FindGameObjectsWithTag("target").Length <= 0 && spawnCount < maxSpawnCount)
+			{
+				Spawn();
+				spawnCount++;
+
+			}
+		}
+
+		void Spawn()
+		{
+			var x = Random.Range(minX, maxX);
+			var y = Random.Range(minY, maxY);
+			var z = Random.Range(minZ, maxZ);
+			GameObject target = Instantiate(objects[Random.Range(0, objects.Length)], new Vector3(x, y, z), Quaternion.identity);
+			target.transform.GetChild(0).transform.LookAt(player);
 		}
 	}
 
-	void Spawn()
-	{
-		var x = Random.Range(18.00f, 28.15f);
-		var y = Random.Range(4, 7);
-		var z = Random.Range(24.00f, 35.00f);
-		GameObject target = Instantiate(objects[Random.Range(0, objects.Length)], new Vector3(x, y, z), Quaternion.identity);
-		target.transform.GetChild(0).transform.LookAt(player);
-	}
 }

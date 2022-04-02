@@ -6,7 +6,6 @@ public class Target : MonoBehaviour {
     [SerializeField]
     private int speed = 5;
 
-    public Transform root;
     private GameObject player;
 
     void Start() {
@@ -16,7 +15,7 @@ public class Target : MonoBehaviour {
     }
 
     void Update() {
-        root.transform.RotateAround(player.transform.position, Vector3.up, Time.deltaTime * speed);
+        transform.root.RotateAround(player.transform.position, Vector3.up, Time.deltaTime * speed);
         
     }
 
@@ -30,7 +29,7 @@ public class Target : MonoBehaviour {
             Vector3 relPos = gameObject.transform.InverseTransformPoint(col.transform.position);
             float linePosX = col.transform.localPosition.x;
             float linePosY = col.transform.localPosition.y;
-            //Score.AddPoints(relPos);
+            Score.AddPoints(relPos);
             Destroy(transform.root.gameObject);
 
         }

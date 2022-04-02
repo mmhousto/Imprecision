@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using StarterAssets;
 
-namespace com.MorganHouston.Imprecision
+namespace Com.MorganHouston.Imprecision
 {
 
     public class Shoot : MonoBehaviour
@@ -70,7 +70,11 @@ namespace com.MorganHouston.Imprecision
         {
             aiming = _input.aiming;
             _anim.SetDraw(aiming);
-            if (!aiming) { return; }
+            if (!aiming) {
+                shotStrength = 0f;
+                power.value = shotStrength;
+                return; 
+            }
             pullingBack = _input.isPullingBack;
 
             if (pullingBack && startedPullingBack == false)

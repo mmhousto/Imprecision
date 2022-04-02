@@ -34,5 +34,10 @@ namespace Com.MorganHouston.Imprecision
 
                 
         }
+
+        public void PlayGame()
+        {
+            SceneLoader.LoadThisScene(2);
+        }
     }
 }

@@ -23,6 +23,9 @@ namespace Com.MorganHouston.Imprecision
         public int userPoints;
         public int userLevel;
         public int userXP;
+        public int[] levels = new int[50];
+        public int[] appleShotOnLevels = new int[50];
+        public int applesShot;
 
         private int maxXP;
 
