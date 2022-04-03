@@ -35,7 +35,7 @@ namespace Com.MorganHouston.Imprecision
 
         private void Awake()
         {
-			currentLevel = GameManager.Instance.levelSelected;
+			currentLevel = GameManager.Instance.LevelSelected;
 
 		}
 

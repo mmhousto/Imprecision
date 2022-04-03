@@ -9,13 +9,13 @@ namespace Com.MorganHouston.Imprecision
 
     public class DisplayPlayerData : MonoBehaviour
     {
-
-        public TextMeshProUGUI userNameTxt, pointsTxt, levelTxt;
+        public TMP_InputField userNameField;
+        public TextMeshProUGUI pointsTxt, levelTxt, jewelsTxt;
         public Slider xpSlider;
 
         private Player player;
 
-        private int xp, points, level;
+        private int xp, points, level, jewels;
         private string userName;
 
         // Start is called before the first frame update
@@ -29,24 +29,28 @@ namespace Com.MorganHouston.Imprecision
         // Update is called once per frame
         void Update()
         {
-            if (xp != player.userXP)
-                xp = player.userXP;
+            if (xp != player.UserXP)
+                xp = player.UserXP;
 
-            if (points != player.userPoints)
-                points = player.userPoints;
+            if (points != player.UserPoints)
+                points = player.UserPoints;
 
-            if (level != player.userLevel)
+            if (level != player.UserLevel)
             {
-                level = player.userLevel;
+                level = player.UserLevel;
                 xpSlider.maxValue = 150 * level;
             }
 
-            if (userName != player.userName)
-                userName = player.userName;
+            if (userName != player.UserName)
+                userName = player.UserName;
 
-            userNameTxt.text = userName;
+            if(jewels != player.Jewels)
+                jewels = player.Jewels;
+
+            userNameField.text = userName;
             pointsTxt.text = $"Points: {points}";
             levelTxt.text = $"Level: {level}";
+            jewelsTxt.text = $"{jewels}";
             xpSlider.value = xp;
         }
     }

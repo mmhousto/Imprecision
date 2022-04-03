@@ -10,7 +10,10 @@ namespace Com.MorganHouston.Imprecision
 
         public static GameManager Instance { get { return instance; } }
 
-        public int levelSelected = 0;
+        [SerializeField]
+        private int levelSelected = 0;
+
+        public int LevelSelected { get { return levelSelected; } private set { levelSelected = value; } }
 
         private void Awake()
         {

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5553883950412073894}
   - component: {fileID: 5553883950412073895}
+  - component: {fileID: 5553883949263626679}
   m_Layer: 0
   m_Name: CloudSaveManager
   m_TagString: Untagged
@@ -43,8 +44,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985681d92c2f44eda8bcd74e434df9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   currentSSO: 0
   devModeActivated: 0
   userName: 
   userID: 
+--- !u!114 &5553883949263626679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5553883950412073892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435b0a4ae96bc45d69f6f560ac340672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applesShotOnLevels: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

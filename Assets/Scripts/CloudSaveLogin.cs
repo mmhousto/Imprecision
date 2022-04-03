@@ -32,7 +32,7 @@ namespace Com.MorganHouston.Imprecision
         public enum ssoOption { Anonymous, Facebook, Google, Apple }
 
         // Player Data Object
-        public Player player;
+        private Player player;
 
         public ssoOption currentSSO = ssoOption.Anonymous;
 
@@ -90,6 +90,8 @@ namespace Com.MorganHouston.Imprecision
             // Initializes Google Play Games Login
             InitializePlayGamesLogin();
 #endif
+
+            player = GetComponent<Player>();
         }
 
         private void Start()
@@ -215,7 +217,7 @@ namespace Com.MorganHouston.Imprecision
             if (AuthenticationService.Instance.IsSignedIn)
             {
                 SavePlayerData data = new SavePlayerData(player);
-                await ForceSaveObjectData(player.userID, data);
+                await ForceSaveObjectData(player.UserID, data);
             }
         }
 
@@ -720,7 +722,9 @@ namespace Com.MorganHouston.Imprecision
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
                 Debug.Log("Sign in anonymously succeeded!");
 
-                SetPlayerData(AuthenticationService.Instance.PlayerId);
+                userID = AuthenticationService.Instance.PlayerId;
+
+                SetPlayerData(userID);
 
                 Login();
 
@@ -780,7 +784,7 @@ namespace Com.MorganHouston.Imprecision
             // updates facebook gaming name
             if (FB.IsInitialized)
             {
-                player.userName = name;
+                player.SetPlayerName(name);
             }
         }
 
@@ -1002,11 +1006,7 @@ namespace Com.MorganHouston.Imprecision
         /// <param name="incomingSample"></param>
         private void LoadPlayerData(SavePlayerData incomingSample)
         {
-            player.userID = incomingSample.userID;
-            player.userPoints = incomingSample.userPoints;
-            player.userName = incomingSample.userName;
-            player.userLevel = incomingSample.userLevel;
-            player.userXP = incomingSample.userXP;
+            player.SetData(incomingSample);
         }
 
         /// <summary>
@@ -1015,11 +1015,7 @@ namespace Com.MorganHouston.Imprecision
         /// <param name="id"></param>
         private void LoadPlayerData(string id)
         {
-            player.userID = id;
-            player.userPoints = 0;
-            player.userName = "Guest_" + id;
-            player.userLevel = 1;
-            player.userXP = 0;
+            player.SetData(id);
         }
 
         /// <summary>
@@ -1029,11 +1025,7 @@ namespace Com.MorganHouston.Imprecision
         /// <param name="name"></param>
         private void LoadPlayerData(string id, string name)
         {
-            player.userID = id;
-            player.userPoints = 0;
-            player.userName = name;
-            player.userLevel = 1;
-            player.userXP = 0;
+            player.SetData(id, name);
         }
 
         /// <summary>
@@ -1041,11 +1033,7 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         private void ResetPlayerData()
         {
-            player.userID = "";
-            player.userPoints = 0;
-            player.userName = "";
-            player.userLevel = 0;
-            player.userXP = 0;
+            player.SetData();
         }
 
         #endregion

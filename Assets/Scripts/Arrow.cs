@@ -24,17 +24,22 @@ namespace Com.MorganHouston.Imprecision
         // Update is called once per frame
         void Update()
         {
+            DestroyArrowTTL();
+            
 
+        }
+
+        private void DestroyArrowTTL()
+        {
             //life timer
             timer -= Time.deltaTime;
             if (timer <= 0f)
             {
                 Destroy(gameObject);
             }
-
         }
 
-        // rotates arrow down to add arc
+        // Rotates arrow down to add arc
         void LateUpdate()
         {
             if (arrowRB.velocity != Vector3.zero && hit == false)
@@ -51,16 +56,21 @@ namespace Com.MorganHouston.Imprecision
             {
                 transform.SetParent(collision.gameObject.transform, true); // attach to target.
             }
+
+            // Sets arrow rb to kinematic
             arrowRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             arrowRB.isKinematic = true;
 
 
-            if (collision.collider.tag == "apple" && Player.Instance.appleShotOnLevels[GameManager.Instance.levelSelected] != 1)
+            if (collision.collider.tag == "apple")
             {
-                Player.Instance.appleShotOnLevels[GameManager.Instance.levelSelected] = 1;
-                Player.Instance.applesShot++;
-                Score.AddExtraPoints();
-                transform.SetParent(collision.gameObject.transform.parent, true); // attach to target.
+                if(Player.Instance.AppleShotOnLevels[GameManager.Instance.LevelSelected] != 1)
+                {
+                    Player.Instance.AppleShotOnLevels[GameManager.Instance.LevelSelected] = 1;
+                    Score.AddExtraPoints();
+                }
+
+                Destroy(this.gameObject); // destroy arrow
             }
 
 

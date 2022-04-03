@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -8,17 +9,15 @@ namespace Com.MorganHouston.Imprecision
     {
 
         public GameObject appleLogoutScreen;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            
-        }
+        public TextMeshProUGUI playButtonText;
 
         // Update is called once per frame
         void Update()
         {
-        
+            if (playButtonText.text != $"PLAY LEVEL {GameManager.Instance.LevelSelected + 1}")
+            {
+                playButtonText.text = $"PLAY LEVEL {GameManager.Instance.LevelSelected + 1}";
+            }
         }
 
         public void Logout()
@@ -35,9 +34,19 @@ namespace Com.MorganHouston.Imprecision
                 
         }
 
+        public void SelectLevel(int levelToPlay)
+        {
+            GameManager.Instance.SetLevel(levelToPlay);
+        }
+
         public void PlayGame()
         {
             SceneLoader.LoadThisScene(2);
+        }
+
+        public void SetPlayerName(string name)
+        {
+            Player.Instance.SetPlayerName(name);
         }
     }
 }
