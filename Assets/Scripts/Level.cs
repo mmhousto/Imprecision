@@ -29,19 +29,23 @@ namespace Com.MorganHouston.Imprecision
                 if (gameObject.name == $"Level ({i})")
                 {
                     level = i + 1;
-                    break;
+                    if(i == 0)
+                    {
+                        button.interactable = true;
+                        continue;
+                    }
+
+                    if (Player.Instance.Levels[i - 1] == 0)
+                    {
+                        button.interactable = false;
+                    }
+                    else
+                    {
+                        button.interactable = true;
+                    }
                 }
 
-                if (i == 0)
-                {
-                    button.interactable = true;
-                    continue;
-                }
-
-                if (Player.Instance.Levels[i - 1] == 0)
-                {
-                    button.interactable = false;
-                }
+                
             }
 
             levelNumberLabel.text = $"Level {level}";

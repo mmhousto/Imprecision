@@ -17,6 +17,8 @@ namespace Com.MorganHouston.Imprecision
 		private int spawnCount = 0;
 		private int currentLevel = 0;
 
+		private bool isGameOver;
+
 		[Range(-20, 0f)]
 		public float minX;
 		[Range(3, 5)]
@@ -49,7 +51,7 @@ namespace Com.MorganHouston.Imprecision
 		{
 			CheckForTargets();
 			UpdateTargetsLabel();
-
+			CheckForGameOver();
 		}
 
 		private void UpdateTargetsLabel()
@@ -80,6 +82,15 @@ namespace Com.MorganHouston.Imprecision
 			GameObject target = Instantiate(objects[Random.Range(0, objects.Length)], new Vector3(x, y, z), Quaternion.identity);
 			target.transform.GetChild(0).transform.LookAt(player);
 		}
+
+		void CheckForGameOver()
+        {
+			if(spawnCount == maxSpawnCount && isGameOver == false && GameObject.FindGameObjectsWithTag("target").Length <= 0)
+            {
+				isGameOver = true;
+				GameManager.Instance.GameOver();
+            }
+        }
 	}
 
 }
