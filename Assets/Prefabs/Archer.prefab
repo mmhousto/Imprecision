@@ -191,7 +191,7 @@ Transform:
   m_GameObject: {fileID: 2157464076340561265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.7927573, y: 0.4, z: -1.1347034}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 5257789453398777570}
   - {fileID: 8570348868117927608}
@@ -209,8 +209,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0.52
-  m_Radius: 0.15
+  m_Height: 0.69
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.25
   m_SkinWidth: 0.0001
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 1
-  SprintSpeed: 2
+  SprintSpeed: 3
   RotationSpeed: 1
   SpeedChangeRate: 10
   JumpHeight: 0.7
@@ -237,7 +237,7 @@ MonoBehaviour:
   JumpTimeout: 0.1
   FallTimeout: 0.15
   Grounded: 1
-  GroundedOffset: 0.3
+  GroundedOffset: 0.6
   GroundedRadius: 0.1
   GroundLayers:
     serializedVersion: 2

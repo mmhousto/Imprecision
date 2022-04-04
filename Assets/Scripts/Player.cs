@@ -123,20 +123,19 @@ namespace Com.MorganHouston.Imprecision
         public void GainXP(int xpToAdd)
         {
             UserXP += xpToAdd;
-            maxXP = UserLevel * 150;
+            maxXP = UserLevel * 420;
             if (UserXP >= maxXP)
             {
                 UserLevel++;
                 int rem = UserXP % maxXP;
                 UserXP = 0 + rem;
             }
-            cloudSaveLogin.SaveCloudData();
         }
 
         public void GainPoints(int pointsToAdd)
         {
             UserPoints += pointsToAdd;
-            cloudSaveLogin.SaveCloudData();
+            GainXP(pointsToAdd / 10);
         }
 
         public void SetPlayerName(string name)
@@ -148,6 +147,12 @@ namespace Com.MorganHouston.Imprecision
         {
             Jewels += jewelsToAdd;
             cloudSaveLogin.SaveCloudData();
+        }
+
+        public void SetStarForLevel(int level, int stars)
+        {
+            if(stars > Levels[level])
+                Levels[level] = stars;
         }
 
     }
