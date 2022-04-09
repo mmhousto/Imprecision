@@ -7,6 +7,9 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
+    private static Score instance;
+
+    public static Score Instance { get { return instance; } }
 
     static Vector3 center = new Vector3(0f, 2f, 0f);
     static Vector3 bullseye = new Vector3(0f, 0.1f, 0.1f);
@@ -22,8 +25,18 @@ public class Score : MonoBehaviour
     private TextMeshProUGUI scoreLbl;
     private static double absY, absZ;
 
+    public GameObject whiteParticle, blackParticle, blueParticle, redParticle, yellowParticle, greenParticle;
+
     private void Awake()
     {
+        if(instance != this && instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
         scoreLbl = GetComponent<TextMeshProUGUI>();
     }
 
@@ -40,12 +53,7 @@ public class Score : MonoBehaviour
         scoreLbl.SetText("Score: {0}", score);
     }
 
-    public static void AddExtraPoints()
-    {
-        score += 50;
-    }
-
-    public static void AddPoints(Vector3 relPos)
+    public void GetHitPosition(Vector3 relPos)
     {
         var hitPos = relPos - center;
 
@@ -87,38 +95,54 @@ public class Score : MonoBehaviour
         if (absY <= bullseye.y && absZ <= bullseye.z)
         {
             Debug.Log("Bullseye");
-            score += 100;
-
+            AddPoints(100);
+            GameObject particle = Instantiate(greenParticle, transform.root.position, greenParticle.transform.rotation, transform);
+            particle.transform.parent = null;
         }
         else if (absY <= yellow.y && absZ <= yellow.z && absY > 0 && absZ > 0)
         {
             Debug.Log("Yellow");
-            score += 90;
-
+            AddPoints(90);
+            GameObject particle = Instantiate(yellowParticle, transform.root.position, greenParticle.transform.rotation, transform);
+            particle.transform.parent = null;
         }
         else if (absY <= red.y && absZ <= red.z)
         {
             Debug.Log("Red");
-            score += 70;
-
+            AddPoints(70);
+            GameObject particle = Instantiate(redParticle, transform.root.position, greenParticle.transform.rotation, transform);
+            particle.transform.parent = null;
         }
         else if (absY <= blue.y && absZ <= blue.z)
         {
             Debug.Log("Blue");
-            score += 50;
-
+            AddPoints(50);
+            GameObject particle = Instantiate(blueParticle, transform.root.position, greenParticle.transform.rotation, transform);
+            particle.transform.parent = null;
         }
         else if (absY <= black.y && absZ <= black.z)
         {
             Debug.Log("Black");
-            score += 30;
-
+            AddPoints(30);
+            GameObject particle = Instantiate(blackParticle, transform.root.position, greenParticle.transform.rotation, transform);
+            particle.transform.parent = null;
         }
         else
         {
             Debug.Log("White");
-            score += 10;
-
+            AddPoints(10);
+            GameObject particle = Instantiate(whiteParticle, transform.root.position, greenParticle.transform.rotation, transform);
+            particle.transform.parent = null;
         }
+    }
+
+    public void AddExtraPoints()
+    {
+        score += 50;
+    }
+
+    public void AddPoints(int points)
+    {
+        score += points;
     }
 }

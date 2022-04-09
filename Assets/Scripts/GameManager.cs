@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -40,9 +41,19 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
-        private void OnLevelWasLoaded(int level)
+        private void OnEnable()
         {
-            if(level == 2)
+            SceneManager.sceneLoaded += LoadGame;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= LoadGame;
+        }
+
+        private void LoadGame(Scene level, LoadSceneMode mode)
+        {
+            if(level.buildIndex == 2)
             {
                 SetUpGame();
             }

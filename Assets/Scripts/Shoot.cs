@@ -10,7 +10,7 @@ namespace Com.MorganHouston.Imprecision
     public class Shoot : MonoBehaviour
     {
 
-        public GameObject arrow;
+        public GameObject arrow, bow1, bow2, bow3, bow4, bow5, bowFull;
         public Transform playerLookingDirection;
         public Transform arrowSpawn;
         public float shootForce = 10f;
@@ -131,10 +131,16 @@ namespace Com.MorganHouston.Imprecision
                 _anim.SetShotStrength(shotStrength);
                 power.value = shotStrength;
             }
-            else if (canFire == false)
+            else
             {
-                _anim.SetShotStrength(0);
-                power.value = 0;
+                _anim.SetShotStrength(shotStrength);
+                power.value = shotStrength;
+                bow1.SetActive(false);
+                bow2.SetActive(false);
+                bow3.SetActive(false);
+                bow4.SetActive(false);
+                bow5.SetActive(false);
+                bowFull.SetActive(false);
             }
         }
 

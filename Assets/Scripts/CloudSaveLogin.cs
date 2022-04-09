@@ -58,6 +58,7 @@ namespace Com.MorganHouston.Imprecision
             if(instance != null && instance != this)
             {
                 Destroy(this.gameObject);
+                return;
             }
             else
             {
@@ -90,8 +91,14 @@ namespace Com.MorganHouston.Imprecision
             // Initializes Google Play Games Login
             InitializePlayGamesLogin();
 #endif
+            try
+            {
+                player = GetComponent<Player>();
+            }
+            catch
+            {
 
-            player = GetComponent<Player>();
+            }
         }
 
         private void Start()

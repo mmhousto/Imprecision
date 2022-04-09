@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using Com.MorganHouston.Imprecision;
+using UnityEngine.Animations.Rigging;
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -51,7 +52,7 @@ namespace StarterAssets
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
 
-		public GameObject playerHead;
+		public MultiRotationConstraint leftArmRig, headRig;
 
 		// cinemachine
 		private float _cinemachineTargetPitch;
@@ -72,6 +73,9 @@ namespace StarterAssets
 		private GameObject _mainCamera;
 
 		private const float _threshold = 0.01f;
+
+		[SerializeField]
+		private float currentX = 0, currentY = 0;
 
 		private void Awake()
 		{
@@ -98,6 +102,11 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+
+			if (!_input.aiming)
+				leftArmRig.weight = 0;
+			else
+				leftArmRig.weight = 1;//playerLeftArm.transform.Rotate(Vector3.right, _cinemachineTargetPitch);
 		}
 
 		private void LateUpdate()
@@ -126,6 +135,13 @@ namespace StarterAssets
 
 				// Update Cinemachine camera target pitch
 				CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
+
+				//playerHead.transform.Rotate(Vector3.right, _cinemachineTargetPitch); 
+
+				if (!_input.aiming)
+					leftArmRig.weight = 0;
+				else
+					leftArmRig.weight = 1;
 
 				// rotate the player left and right
 				transform.Rotate(Vector3.up * _rotationVelocity);
@@ -165,8 +181,13 @@ namespace StarterAssets
 				_speed = targetSpeed;
 			}
 
+			currentX = 0;
+			currentX = Mathf.MoveTowards(_input.move.x, currentX, 0.0001f * Time.deltaTime);
+			currentY = 0;
+			currentY = Mathf.MoveTowards(_input.move.y, currentY, 0.0001f * Time.deltaTime);
+
 			// normalise input direction
-			Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+			Vector3 inputDirection = new Vector3(currentX, 0.0f, currentY);
 
 			_anim.SetHorz(inputDirection.x);
 			_anim.SetVert(inputDirection.z);
@@ -176,7 +197,7 @@ namespace StarterAssets
 			if (_input.move != Vector2.zero)
 			{
 				// move
-				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
+				inputDirection = transform.right * currentX + transform.forward * currentY;
 			}
 
 			// move the player

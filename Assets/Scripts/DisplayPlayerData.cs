@@ -17,13 +17,15 @@ namespace Com.MorganHouston.Imprecision
 
         private int xp, points, level, jewels;
         private string userName;
+        private float maxXP;
 
         // Start is called before the first frame update
         void Start()
         {
             player = Player.Instance;
             xpSlider.minValue = 0;
-            xpSlider.maxValue = 150 * level;
+            maxXP = 420 * level;
+            xpSlider.maxValue = maxXP;
         }
 
         // Update is called once per frame
@@ -38,8 +40,11 @@ namespace Com.MorganHouston.Imprecision
             if (level != player.UserLevel)
             {
                 level = player.UserLevel;
-                xpSlider.maxValue = 150 * level;
+                maxXP = 420 * level;
             }
+
+            if(xpSlider.maxValue != maxXP)
+                xpSlider.maxValue = maxXP;
 
             if (userName != player.UserName)
                 userName = player.UserName;

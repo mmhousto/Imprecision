@@ -27,9 +27,7 @@ public class Target : MonoBehaviour {
     void OnCollisionEnter(Collision col) {
         if (col.gameObject.tag == "arrow") {
             Vector3 relPos = gameObject.transform.InverseTransformPoint(col.transform.position);
-            float linePosX = col.transform.localPosition.x;
-            float linePosY = col.transform.localPosition.y;
-            Score.AddPoints(relPos);
+            Score.Instance.GetHitPosition(relPos);
             Destroy(transform.root.gameObject);
 
         }

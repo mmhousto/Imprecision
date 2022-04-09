@@ -74,7 +74,8 @@ namespace StarterAssets
 
 		public void SprintInput(bool newSprintState)
 		{
-			sprint = newSprintState;
+			if (!aiming)
+				sprint = newSprintState;
 		}
 
 		public void AimInput(bool newAimState)

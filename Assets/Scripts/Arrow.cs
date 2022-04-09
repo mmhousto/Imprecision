@@ -67,7 +67,7 @@ namespace Com.MorganHouston.Imprecision
                 if(Player.Instance.AppleShotOnLevels[GameManager.Instance.LevelSelected] != 1)
                 {
                     Player.Instance.AppleShotOnLevels[GameManager.Instance.LevelSelected] = 1;
-                    Score.AddExtraPoints();
+                    Score.Instance.AddExtraPoints();
                 }
 
                 Destroy(this.gameObject); // destroy arrow

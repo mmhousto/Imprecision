@@ -21,8 +21,13 @@ namespace Com.MorganHouston.Imprecision
         public string UserName { get; private set; }
 
         public int UserPoints { get; private set; }
-        public int UserLevel { get; private set; }
-        public int UserXP { get; private set; }
+
+        [SerializeField]
+        private int userLevel;
+        public int UserLevel { get { return userLevel; } private set { userLevel = value; } }
+        [SerializeField]
+        private int userXP;
+        public int UserXP { get { return userXP; } private set { userXP = value; } }
         public int Jewels { get; private set; }
         public int ArrowsFired { get; private set; }
 
@@ -37,7 +42,7 @@ namespace Com.MorganHouston.Imprecision
         public int[] AppleShotOnLevels { get { return applesShotOnLevels; } private set { applesShotOnLevels = value; } }
         
 
-        private int maxXP;
+        protected int maxXP;
 
         private CloudSaveLogin cloudSaveLogin;
 
@@ -120,16 +125,42 @@ namespace Com.MorganHouston.Imprecision
             cloudSaveLogin = GetComponent<CloudSaveLogin>();
         }
 
-        public void GainXP(int xpToAdd)
+        private void Start()
         {
-            UserXP += xpToAdd;
             maxXP = UserLevel * 420;
+        }
+
+        private void Update()
+        {
+            if(UserID != null)
+            {
+                UpdateMaxXp();
+
+                UpdateLevel();
+            }
+            
+        }
+
+        private void UpdateMaxXp()
+        {
+            if (maxXP != userLevel * 420)
+                maxXP = userLevel * 420;
+        }
+
+        private void UpdateLevel()
+        {
             if (UserXP >= maxXP)
             {
                 UserLevel++;
                 int rem = UserXP % maxXP;
                 UserXP = 0 + rem;
             }
+        }
+
+        public void GainXP(int xpToAdd)
+        {
+            UserXP += xpToAdd;
+            
         }
 
         public void GainPoints(int pointsToAdd)
