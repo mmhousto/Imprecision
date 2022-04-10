@@ -186,5 +186,10 @@ namespace Com.MorganHouston.Imprecision
                 Levels[level] = stars;
         }
 
+        public void FiredArrow()
+        {
+            ArrowsFired++;
+        }
+
     }
 }

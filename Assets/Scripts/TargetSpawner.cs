@@ -19,18 +19,18 @@ namespace Com.MorganHouston.Imprecision
 
 		private bool isGameOver;
 
-		[Range(-20, 0f)]
+		[Range(-25, -1f)]
 		public float minX;
 		[Range(3, 5)]
 		public float minY;
-		[Range(-20, 0f)]
+		[Range(-25, -1f)]
 		public float minZ;
 
-		[Range(1, 20f)]
+		[Range(1, 25f)]
 		public float maxX;
 		[Range(6, 10)]
 		public float maxY;
-		[Range(1, 20f)]
+		[Range(1, 25f)]
 		public float maxZ;
 
 		public Transform player;
@@ -38,13 +38,11 @@ namespace Com.MorganHouston.Imprecision
         private void Awake()
         {
 			currentLevel = GameManager.Instance.LevelSelected;
-
-		}
-
-
-        void Start()
-		{
-            maxSpawnCount += (int)(currentLevel * 1.25f);
+			maxSpawnCount += (int)(currentLevel * 1.25f);
+			minX = -1f * ((currentLevel * 0.5f) / 2);
+			maxX = 1f * ((currentLevel * 0.5f) / 2);
+			minZ = -1f * ((currentLevel * 0.5f) / 2);
+			maxZ = 1f * ((currentLevel * 0.5f) / 2);
 		}
 
 		void Update()

@@ -120,6 +120,7 @@ namespace Com.MorganHouston.Imprecision
 
                 _anim.SetShot();
                 startedPullingBack = false;
+                Player.Instance.FiredArrow();
             }
 
         }

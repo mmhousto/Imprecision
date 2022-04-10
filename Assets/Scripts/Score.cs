@@ -25,8 +25,6 @@ public class Score : MonoBehaviour
     private TextMeshProUGUI scoreLbl;
     private static double absY, absZ;
 
-    public GameObject whiteParticle, blackParticle, blueParticle, redParticle, yellowParticle, greenParticle;
-
     private void Awake()
     {
         if(instance != this && instance != null)
@@ -53,7 +51,7 @@ public class Score : MonoBehaviour
         scoreLbl.SetText("Score: {0}", score);
     }
 
-    public void GetHitPosition(Vector3 relPos)
+    public int GetHitPosition(Vector3 relPos)
     {
         var hitPos = relPos - center;
 
@@ -95,44 +93,38 @@ public class Score : MonoBehaviour
         if (absY <= bullseye.y && absZ <= bullseye.z)
         {
             Debug.Log("Bullseye");
-            AddPoints(100);
-            GameObject particle = Instantiate(greenParticle, transform.root.position, greenParticle.transform.rotation, transform);
-            particle.transform.parent = null;
+            AddPoints(200);
+            return 0;
         }
         else if (absY <= yellow.y && absZ <= yellow.z && absY > 0 && absZ > 0)
         {
             Debug.Log("Yellow");
             AddPoints(90);
-            GameObject particle = Instantiate(yellowParticle, transform.root.position, greenParticle.transform.rotation, transform);
-            particle.transform.parent = null;
+            return 1;
         }
         else if (absY <= red.y && absZ <= red.z)
         {
             Debug.Log("Red");
             AddPoints(70);
-            GameObject particle = Instantiate(redParticle, transform.root.position, greenParticle.transform.rotation, transform);
-            particle.transform.parent = null;
+            return 2;
         }
         else if (absY <= blue.y && absZ <= blue.z)
         {
             Debug.Log("Blue");
             AddPoints(50);
-            GameObject particle = Instantiate(blueParticle, transform.root.position, greenParticle.transform.rotation, transform);
-            particle.transform.parent = null;
+            return 3;
         }
         else if (absY <= black.y && absZ <= black.z)
         {
             Debug.Log("Black");
             AddPoints(30);
-            GameObject particle = Instantiate(blackParticle, transform.root.position, greenParticle.transform.rotation, transform);
-            particle.transform.parent = null;
+            return 4;
         }
         else
         {
             Debug.Log("White");
             AddPoints(10);
-            GameObject particle = Instantiate(whiteParticle, transform.root.position, greenParticle.transform.rotation, transform);
-            particle.transform.parent = null;
+            return 5;
         }
     }
 

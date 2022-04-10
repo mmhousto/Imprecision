@@ -18,7 +18,7 @@ namespace Com.MorganHouston.Imprecision
 
         public int LevelSelected { get { return levelSelected; } private set { levelSelected = value; } }
 
-        private GameObject gameOverScreen, player;
+        private GameObject gameOverScreen, player, restartButton;
 
         private GameObject[] stars;
 
@@ -70,7 +70,7 @@ namespace Com.MorganHouston.Imprecision
             gameOverScreen = GameObject.FindWithTag("GameOver");
             gameOverText = gameOverScreen.GetComponentInChildren<TextMeshProUGUI>();
             stars = GameObject.FindGameObjectsWithTag("Star");
-            gameOverScreen.SetActive(false);
+            gameOverScreen.transform.parent.gameObject.SetActive(false);
             player = GameObject.FindWithTag("Player");
         }
 
@@ -84,8 +84,9 @@ namespace Com.MorganHouston.Imprecision
 
         public void GameOver()
         {
-            gameOverScreen.SetActive(true);
-            EventSystem.
+            gameOverScreen.transform.parent.gameObject.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(restartButton);
             Destroy(player);
             DetermineStars();
         }
