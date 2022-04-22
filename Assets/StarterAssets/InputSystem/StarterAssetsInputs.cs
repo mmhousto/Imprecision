@@ -1,4 +1,5 @@
 using UnityEngine;
+using Com.MorganHouston.Imprecision;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -55,6 +56,11 @@ namespace StarterAssets
 		public void OnAttack(InputValue value)
         {
 			AttackInput(value.isPressed);
+        }
+
+		public void OnSkip(InputValue value)
+        {
+			IntroSceneManager.Instance.SkipScene();
         }
 
 		public void MoveInput(Vector2 newMoveDirection)
