@@ -69,7 +69,7 @@ namespace Com.MorganHouston.Imprecision
                     Player.Instance.AppleShotOnLevels[GameManager.Instance.LevelSelected] = 1;
                     Score.Instance.AddExtraPoints();
                 }
-
+                collision.gameObject.GetComponent<Rigidbody>().AddExplosionForce(500f, collision.transform.position, 5f);
                 Destroy(this.gameObject); // destroy arrow
             }
 
