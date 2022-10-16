@@ -28,30 +28,26 @@ namespace Com.MorganHouston.Imprecision
             switch (CloudSaveLogin.Instance.currentSSO)
             {
                 case CloudSaveLogin.ssoOption.Anonymous:
-                    overTime = Convert.ToDateTime(PlayerPrefs.GetString("FreeJewelOverTime", null));
+                    overTime = Convert.ToDateTime(PlayerPrefs.GetString("FreeJewelOverTime", DateTime.Now.AddHours(-24).ToString()));
                     break;
                 case CloudSaveLogin.ssoOption.Facebook:
-                    overTime = Convert.ToDateTime(PlayerPrefs.GetString("FreeJewelOverTimeFB", null));
+                    overTime = Convert.ToDateTime(PlayerPrefs.GetString("FreeJewelOverTimeFB", DateTime.Now.AddHours(-24).ToString()));
                     break;
                 case CloudSaveLogin.ssoOption.Google:
-                    overTime = Convert.ToDateTime(PlayerPrefs.GetString("FreeJewelOverTimeG", null));
+                    overTime = Convert.ToDateTime(PlayerPrefs.GetString("FreeJewelOverTimeG", DateTime.Now.AddHours(-24).ToString()));
                     break;
                 case CloudSaveLogin.ssoOption.Apple:
-                    overTime = Convert.ToDateTime(PlayerPrefs.GetString("FreeJewelOverTimeA", null));
+                    overTime = Convert.ToDateTime(PlayerPrefs.GetString("FreeJewelOverTimeA", DateTime.Now.AddHours(-24).ToString()));
                     break;
                 default:
-                    overTime = Convert.ToDateTime(PlayerPrefs.GetString("FreeJewelOverTime", null));
+                    overTime = Convert.ToDateTime(PlayerPrefs.GetString("FreeJewelOverTime", DateTime.Now.AddHours(-24).ToString()));
                     break;
             }
         }
 
         private void Update()
         {
-            if(overTime == null)
-            {
-                buttonEnabled = true;
-            }
-            else if(overTime <= DateTime.Now)
+            if(overTime <= DateTime.Now)
             {
                 buttonEnabled = true;
             }
@@ -148,37 +144,33 @@ namespace Com.MorganHouston.Imprecision
         void InitializationComplete()
         {
             SetupAd();
-            rewardedAd.Load();
+            rewardedAd.LoadAsync();
         }
 
         void InitializationFailed(Exception e)
         {
-            Debug.Log("Initialization Failed: " + e.Message);
+
         }
 
         // Implement load event callback methods:
         void AdLoaded(object sender, EventArgs args)
         {
-            Debug.Log("Ad loaded.");
             ShowAd();
         }
 
         void AdFailedToLoad(object sender, LoadErrorEventArgs args)
         {
-            Debug.Log("Ad failed to load.");
             // Execute logic for the ad failing to load.
         }
 
         // Implement show event callback methods:
         void AdShown(object sender, EventArgs args)
         {
-            Debug.Log("Ad shown successfully.");
             // Execute logic for the ad showing successfully.
         }
 
         void UserRewarded(object sender, RewardEventArgs args)
         {
-            Debug.Log("Ad has rewarded user.");
             buttonEnabled = false;
             pressedTime = DateTime.Now;
             overTime = pressedTime.AddHours(24);
@@ -208,13 +200,11 @@ namespace Com.MorganHouston.Imprecision
 
         void AdFailedToShow(object sender, ShowErrorEventArgs args)
         {
-            Debug.Log("Ad failed to show.");
             // Execute logic for the ad failing to show.
         }
 
         void AdClosed(object sender, EventArgs e)
         {
-            Debug.Log("Ad is closed.");
             // Execute logic for the user closing the ad.
         }
 
@@ -223,17 +213,16 @@ namespace Com.MorganHouston.Imprecision
             // Ensure the ad has loaded, then show it.
             if (rewardedAd.AdState == AdState.Loaded)
             {
-                rewardedAd.Show();
+                rewardedAd.ShowAsync();
             } else if (rewardedAd.AdState == AdState.Unloaded)
             {
-                rewardedAd.Load();
+                rewardedAd.LoadAsync();
             }
         }
 
         void ImpressionEvent(object sender, ImpressionEventArgs args)
         {
             var impressionData = args.ImpressionData != null ? JsonUtility.ToJson(args.ImpressionData, true) : "null";
-            Debug.Log("Impression event from ad unit id " + args.AdUnitId + " " + impressionData);
         }
     }
 }

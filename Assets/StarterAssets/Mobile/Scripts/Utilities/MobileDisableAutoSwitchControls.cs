@@ -15,21 +15,42 @@ using UnityEngine.InputSystem;
 public class MobileDisableAutoSwitchControls : MonoBehaviour
 {
     
-#if ENABLE_INPUT_SYSTEM && (UNITY_IOS || UNITY_ANDROID) && STARTER_ASSETS_PACKAGES_CHECKED
+#if (UNITY_IOS || UNITY_ANDROID)
 
     [Header("Target")]
     public PlayerInput playerInput;
 
-    void Start()
+    void Awake()
     {
-        DisableAutoSwitchControls();
+        DisableScreenControls();
     }
 
-    void DisableAutoSwitchControls()
+    private void Update()
     {
-        playerInput.neverAutoSwitchControlSchemes = true;
+        DisableScreenControls();
+    }
+
+    void DisableScreenControls()
+    {
+        if (this.gameObject.activeInHierarchy && playerInput.currentControlScheme == "KeyboardMouse" || playerInput.currentControlScheme == "Gamepad" || playerInput.currentControlScheme == "Xbox Controller" || playerInput.currentControlScheme == "PS4 Controller")
+        {
+            this.gameObject.SetActive(false);
+        }
+        else if (!this.gameObject.activeInHierarchy && playerInput.currentControlScheme == "Touch")
+        {
+            this.gameObject.SetActive(true);
+        }
+    }
+
+
+
+#else
+
+    void Start()
+    {
+        Destroy(this.gameObject);
     }
 
 #endif
-    
+
 }

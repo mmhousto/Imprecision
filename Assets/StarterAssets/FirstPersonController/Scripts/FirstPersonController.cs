@@ -92,6 +92,8 @@ namespace StarterAssets
 			_input = GetComponent<StarterAssetsInputs>();
 			_anim = GetComponent<PlayerAnimatorManager>();
 
+			RotationSpeed = PlayerPrefs.GetFloat("Sensitivity", 1);
+
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
@@ -188,6 +190,7 @@ namespace StarterAssets
 
 			// normalise input direction
 			Vector3 inputDirection = new Vector3(currentX, 0.0f, currentY);
+
 
 			_anim.SetHorz(inputDirection.x);
 			_anim.SetVert(inputDirection.z);

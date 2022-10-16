@@ -13,8 +13,10 @@ using AppleAuth.Enums;
 using AppleAuth.Extensions;
 using AppleAuth.Interfaces;
 using System.Text;
+#if UNITY_ANDROID
 using GooglePlayGames.BasicApi;
 using GooglePlayGames;
+#endif
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -627,7 +629,7 @@ namespace Com.MorganHouston.Imprecision
 
         #region Google Play Auth
 
-
+#if UNITY_ANDROID
         void InitializePlayGamesLogin()
         {
             var config = new PlayGamesClientConfiguration.Builder()
@@ -712,8 +714,9 @@ namespace Com.MorganHouston.Imprecision
         {
             PlayGamesPlatform.Instance.SignOut();
         }
+#endif
 
-        #endregion
+#endregion
 
 
         #region Private Methods
@@ -804,7 +807,7 @@ namespace Com.MorganHouston.Imprecision
         {
             try
             {
-                await AuthenticationService.Instance.SignInWithSessionTokenAsync();
+                await AuthenticationService.Instance.SignInAnonymouslyAsync();  //SignInWithSessionTokenAsync();
                 Debug.Log("SignIn is successful.");
 
                 SetPlayerData(userID, userName);
