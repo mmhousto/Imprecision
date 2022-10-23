@@ -19,13 +19,16 @@ namespace StarterAssets
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
-#if !UNITY_IOS || !UNITY_ANDROID
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
-#endif
 
-		public void OnMove(InputValue value)
+        private void Start()
+        {
+			SetCursorState(cursorLocked);
+		}
+
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -94,20 +97,10 @@ namespace StarterAssets
 			isPullingBack = !isPullingBack;
         }
 
-#if (UNITY_IOS || UNITY_ANDROID)
-#else
-
-		private void OnApplicationFocus(bool hasFocus)
-		{
-			SetCursorState(cursorLocked);
-		}
-
-		private void SetCursorState(bool newState)
+		public void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
-
-#endif
 
 	}
 	

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -87,7 +88,11 @@ namespace Com.MorganHouston.Imprecision
             gameOverScreen.transform.parent.gameObject.SetActive(true);
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(restartButton);
+
+            player.GetComponent<PlayerInput>().actions = null; // Removes odd Player Input component error
+            player.GetComponent<StarterAssets.StarterAssetsInputs>().SetCursorState(false);
             Destroy(player);
+
             DetermineStars();
         }
 
