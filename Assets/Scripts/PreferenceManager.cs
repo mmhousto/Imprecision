@@ -34,7 +34,7 @@ namespace com.MorganHouston.Imprecision
             MasterVol = PlayerPrefs.GetFloat("MasterVolume", 1);
             MusicVol = PlayerPrefs.GetFloat("MusicVolume", 1);
             SFXVol = PlayerPrefs.GetFloat("SFXVolume", 1);
-            Sensitivity = PlayerPrefs.GetFloat("Sensitivity", 1);
+            Sensitivity = PlayerPrefs.GetFloat("Sensitivity", 20);
         }
 
         public void SetMasterValue(float value)

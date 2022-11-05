@@ -1978,6 +1978,7 @@ GameObject:
   - component: {fileID: 8361164330601685619}
   - component: {fileID: 1794893291097278596}
   - component: {fileID: 5235027214947909128}
+  - component: {fileID: 3385454086369389361}
   - component: {fileID: 8361164330601685624}
   - component: {fileID: 8361164330601685623}
   - component: {fileID: 8361164330601685622}
@@ -1986,6 +1987,7 @@ GameObject:
   - component: {fileID: 7635862570295076852}
   - component: {fileID: 7635862570295076811}
   - component: {fileID: 8450887256078217532}
+  - component: {fileID: 408118529861791880}
   - component: {fileID: 1678950077}
   m_Layer: 3
   m_Name: Archer
@@ -2101,6 +2103,18 @@ MonoBehaviour:
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
+--- !u!114 &3385454086369389361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8361164330601685620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab000aa13d73984a943aa812d99dce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8361164330601685624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2377,6 +2391,21 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &408118529861791880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8361164330601685620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543d7125d618e3142bcfddd7eaba1dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterSlider: {fileID: 0}
+  pauseScreen: {fileID: 0}
+  eventSystem: {fileID: 0}
 --- !u!114 &1678950077
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,10 +39,10 @@ namespace Com.MorganHouston.Imprecision
         {
 			currentLevel = GameManager.Instance.LevelSelected;
 			maxSpawnCount += (int)(currentLevel * 1.25f);
-			minX = -1f * ((currentLevel * 0.5f) / 2);
-			maxX = 1f * ((currentLevel * 0.5f) / 2);
-			minZ = -1f * ((currentLevel * 0.5f) / 2);
-			maxZ = 1f * ((currentLevel * 0.5f) / 2);
+			minX = -1f * ((currentLevel * 1.25f) / 2);
+			maxX = 1f * ((currentLevel * 1.25f) / 2);
+			minZ = -1f * ((currentLevel * 1.25f) / 2);
+			maxZ = 1f * ((currentLevel * 1.25f) / 2);
 		}
 
 		void Update()

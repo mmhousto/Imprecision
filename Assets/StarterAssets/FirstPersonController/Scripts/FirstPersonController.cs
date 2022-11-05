@@ -92,7 +92,7 @@ namespace StarterAssets
 			_input = GetComponent<StarterAssetsInputs>();
 			_anim = GetComponent<PlayerAnimatorManager>();
 
-			RotationSpeed = PlayerPrefs.GetFloat("Sensitivity", 1);
+			RotationSpeed = PlayerPrefs.GetFloat("Sensitivity", 20) * 0.05f;
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
@@ -114,6 +114,11 @@ namespace StarterAssets
 		private void LateUpdate()
 		{
 			CameraRotation();
+		}
+
+		public void UpdateSensitivity(float value)
+        {
+			RotationSpeed = value * 0.05f;
 		}
 
 		private void GroundedCheck()
