@@ -46,7 +46,7 @@ namespace Com.MorganHouston.Imprecision
                 Vector3 relPos = gameObject.transform.InverseTransformPoint(col.transform.position);
                 SpawnParticle(Score.Instance.GetHitPosition(relPos));
                 Destroy(transform.root.gameObject);
-
+                Player.Instance.HitTarget();
             }
         }
     }

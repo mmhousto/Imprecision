@@ -27,7 +27,7 @@ namespace Com.MorganHouston.Imprecision
 
         public Material[] starMats;
 
-        private int maxPointsForLevel, threeStars, twoStars, oneStar;
+        private int maxPointsForLevel, threeStars, twoStars, oneStar, perfection;
 
         private void Awake()
         {
@@ -77,6 +77,7 @@ namespace Com.MorganHouston.Imprecision
 
         private void GetMaxPointsForLevel()
         {
+            perfection = (10 + (int)(levelSelected * 1.25f)) * 200;
             maxPointsForLevel = (10 + (int)(levelSelected * 1.25f)) * 100;
             threeStars = (int)(maxPointsForLevel * 0.9f);
             twoStars = (int)(maxPointsForLevel * 0.75f);
@@ -98,19 +99,20 @@ namespace Com.MorganHouston.Imprecision
 
         private void DetermineStars()
         {
-            if (Score.score >= threeStars)
+            var score = Score.score;
+            if (score >= threeStars)
             {
                 ActivateStars(3);
                 gameOverText.text = "Perfection";
                 Player.Instance.SetStarForLevel(levelSelected, 3);
             }
-            else if (Score.score >= twoStars)
+            else if (score >= twoStars)
             {
                 ActivateStars(2);
                 gameOverText.text = "Excellent";
                 Player.Instance.SetStarForLevel(levelSelected, 2);
             }
-            else if (Score.score >= oneStar)
+            else if (score >= oneStar)
             {
                 ActivateStars(1);
                 gameOverText.text = "Good";
@@ -121,7 +123,13 @@ namespace Com.MorganHouston.Imprecision
                 gameOverText.text = "Try Again";
                 Player.Instance.SetStarForLevel(levelSelected, 0);
             }
-            Player.Instance.GainPoints(Score.score);
+            Player.Instance.GainPoints(score);
+
+            if (score >= perfection && Player.Instance.BullseyesOnLevels[levelSelected] != 1)
+            {
+                Player.Instance.SetBullseyeForLevel(levelSelected, 1);
+            }
+
             CloudSaveLogin.Instance.SaveCloudData();
         }
 

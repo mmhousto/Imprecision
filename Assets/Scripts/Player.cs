@@ -30,6 +30,10 @@ namespace Com.MorganHouston.Imprecision
         public int UserXP { get { return userXP; } private set { userXP = value; } }
         public int Jewels { get; private set; }
         public int ArrowsFired { get; private set; }
+        public int TargetsHit { get; private set; }
+        public float Accuracy { get { return TargetsHit / ArrowsFired; } }
+        public int BullseyesHit { get; set; }
+
 
         [SerializeField]
         private int[] levels;
@@ -40,7 +44,12 @@ namespace Com.MorganHouston.Imprecision
         private int[] applesShotOnLevels;
 
         public int[] AppleShotOnLevels { get { return applesShotOnLevels; } private set { applesShotOnLevels = value; } }
-        
+
+        [SerializeField]
+        private int[] bullseyesOnLevels;
+
+        public int[] BullseyesOnLevels { get { return bullseyesOnLevels; } private set { bullseyesOnLevels = value; } }
+
 
         protected int maxXP;
 
@@ -56,8 +65,11 @@ namespace Com.MorganHouston.Imprecision
             UserXP = 0;
             Jewels = 0;
             ArrowsFired = 0;
+            TargetsHit = 0;
+            BullseyesHit = 0;
             Levels = new int[50];
             AppleShotOnLevels = new int[50];
+            BullseyesOnLevels = new int[50];
         }
 
         // Loads player from cloud save/ local save
@@ -70,11 +82,18 @@ namespace Com.MorganHouston.Imprecision
             UserXP = data.userXP;
             Jewels = data.jewels;
             ArrowsFired = data.arrowsFired;
+            TargetsHit = data.targetsHit;
+            BullseyesHit = data.bullseyesHit;
 
             if (data.levels != null)
                 Levels = data.levels;
             else
                 Levels = new int[50];
+            
+            if (data.bullseyesOnLevels != null)
+                BullseyesOnLevels = data.bullseyesOnLevels;
+            else
+                BullseyesOnLevels = new int[50];
 
             if (data.appleShotOnLevels != null)
                 AppleShotOnLevels = data.appleShotOnLevels;
@@ -92,8 +111,11 @@ namespace Com.MorganHouston.Imprecision
             UserXP = 0;
             Jewels = 0;
             ArrowsFired = 0;
+            TargetsHit = 0;
+            BullseyesHit = 0;
             Levels = new int[50];
             AppleShotOnLevels = new int[50];
+            BullseyesOnLevels = new int[50];
         }
 
         // Creates new player w/ SSO login.
@@ -106,8 +128,11 @@ namespace Com.MorganHouston.Imprecision
             UserXP = 0;
             Jewels = 0;
             ArrowsFired = 0;
+            TargetsHit = 0;
+            BullseyesHit = 0;
             Levels = new int[50];
             AppleShotOnLevels = new int[50];
+            BullseyesOnLevels = new int[50];
         }
 
 
@@ -186,9 +211,25 @@ namespace Com.MorganHouston.Imprecision
                 Levels[level] = stars;
         }
 
+        public void SetBullseyeForLevel(int level, int perfect)
+        {
+            if (perfect > BullseyesOnLevels[level])
+                BullseyesOnLevels[level] = perfect;
+        }
+
         public void FiredArrow()
         {
             ArrowsFired++;
+        }
+
+        public void HitTarget()
+        {
+            TargetsHit++;
+        }
+
+        public void HitBullseye()
+        {
+            BullseyesHit++;
         }
 
     }

@@ -16,7 +16,11 @@ namespace Com.MorganHouston.Imprecision
 
         public int[] levels = new int[50];
         public int[] appleShotOnLevels = new int[50];
+        public int[] bullseyesOnLevels = new int[50];
         public int arrowsFired;
+        public int targetsHit;
+        public float accuracy;
+        public int bullseyesHit;
 
         public SavePlayerData(Player player)
         {
@@ -29,6 +33,10 @@ namespace Com.MorganHouston.Imprecision
             levels = player.Levels;
             appleShotOnLevels = player.AppleShotOnLevels;
             arrowsFired = player.ArrowsFired;
+            targetsHit = player.TargetsHit;
+            accuracy = player.Accuracy;
+            bullseyesHit = player.BullseyesHit;
+
         }
 
     }
