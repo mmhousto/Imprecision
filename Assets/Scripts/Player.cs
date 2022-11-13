@@ -203,12 +203,14 @@ namespace Com.MorganHouston.Imprecision
         {
             Jewels += jewelsToAdd;
             cloudSaveLogin.SaveCloudData();
+            LeaderboardManager.UnlockJewel();
         }
 
         public void SetStarForLevel(int level, int stars)
         {
             if(stars > Levels[level])
                 Levels[level] = stars;
+            LeaderboardManager.CheckArcherAchievements();
         }
 
         public void SetBullseyeForLevel(int level, int perfect)
@@ -229,8 +231,14 @@ namespace Com.MorganHouston.Imprecision
 
         public void HitBullseye()
         {
+            if (BullseyesHit <= 0)
+            {
+                LeaderboardManager.UnlockBullseye();
+            }
             BullseyesHit++;
+            
         }
+
 
     }
 }

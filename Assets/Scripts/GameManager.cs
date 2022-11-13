@@ -128,6 +128,7 @@ namespace Com.MorganHouston.Imprecision
             if (score >= perfection && Player.Instance.BullseyesOnLevels[levelSelected] != 1)
             {
                 Player.Instance.SetBullseyeForLevel(levelSelected, 1);
+                LeaderboardManager.CheckBullseyeAchievements();
             }
 
             CloudSaveLogin.Instance.SaveCloudData();
