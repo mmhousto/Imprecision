@@ -14,7 +14,7 @@ namespace Com.MorganHouston.Imprecision
         // Update is called once per frame
         void Update()
         {
-            if (playButtonText.text != $"PLAY LEVEL {GameManager.Instance.LevelSelected + 1}")
+            if (playButtonText != null && playButtonText.text != $"PLAY LEVEL {GameManager.Instance.LevelSelected + 1}")
             {
                 playButtonText.text = $"PLAY LEVEL {GameManager.Instance.LevelSelected + 1}";
             }

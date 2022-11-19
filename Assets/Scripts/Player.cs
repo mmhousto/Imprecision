@@ -29,7 +29,9 @@ namespace Com.MorganHouston.Imprecision
         private int userXP;
         public int UserXP { get { return userXP; } private set { userXP = value; } }
         public int Jewels { get; private set; }
-        public int ArrowsFired { get; private set; }
+        [SerializeField]
+        private int arrowsFired;
+        public int ArrowsFired { get { return arrowsFired; } private set { arrowsFired = value; } }
         public int TargetsHit { get; private set; }
         public float Accuracy { get { return TargetsHit / ArrowsFired; } }
         public int BullseyesHit { get; set; }
@@ -203,14 +205,20 @@ namespace Com.MorganHouston.Imprecision
         {
             Jewels += jewelsToAdd;
             cloudSaveLogin.SaveCloudData();
+
+#if (UNITY_IOS || UNITY_ANDROID)
             LeaderboardManager.UnlockJewel();
+#endif
         }
 
         public void SetStarForLevel(int level, int stars)
         {
             if(stars > Levels[level])
                 Levels[level] = stars;
+
+#if (UNITY_IOS || UNITY_ANDROID)
             LeaderboardManager.CheckArcherAchievements();
+#endif
         }
 
         public void SetBullseyeForLevel(int level, int perfect)
@@ -231,10 +239,13 @@ namespace Com.MorganHouston.Imprecision
 
         public void HitBullseye()
         {
+#if (UNITY_IOS || UNITY_ANDROID)
             if (BullseyesHit <= 0)
             {
                 LeaderboardManager.UnlockBullseye();
             }
+#endif
+
             BullseyesHit++;
             
         }

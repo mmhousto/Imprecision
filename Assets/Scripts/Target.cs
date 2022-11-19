@@ -45,8 +45,9 @@ namespace Com.MorganHouston.Imprecision
             if (col.gameObject.tag == "arrow") {
                 Vector3 relPos = gameObject.transform.InverseTransformPoint(col.transform.position);
                 SpawnParticle(Score.Instance.GetHitPosition(relPos));
-                Destroy(transform.root.gameObject);
                 Player.Instance.HitTarget();
+                Destroy(transform.root.gameObject);
+                
             }
         }
     }

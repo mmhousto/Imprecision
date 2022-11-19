@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace com.MorganHouston.Imprecision
+namespace Com.MorganHouston.Imprecision
 {
     public class ShowSliderValue : MonoBehaviour
     {

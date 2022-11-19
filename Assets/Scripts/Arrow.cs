@@ -76,8 +76,13 @@ namespace Com.MorganHouston.Imprecision
                 if (Player.Instance.AppleShotOnLevels[GameManager.Instance.LevelSelected] != 1)
                 {
                     Player.Instance.AppleShotOnLevels[GameManager.Instance.LevelSelected] = 1;
-                    Score.Instance.AddExtraPoints();
+
+#if (UNITY_IOS || UNITY_ANDROID)
+                    LeaderboardManager.CheckAppleAchievements();
+#endif
+
                 }
+                Score.Instance.AddExtraPoints();
                 //other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(500f, other.transform.position, 5f);
                 GameObject particle = Instantiate(applePS, transform.root.position, applePS.transform.rotation);
                 Destroy(particle, 2f);

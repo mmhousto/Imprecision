@@ -106,6 +106,35 @@ namespace Com.MorganHouston.Imprecision
 #endif
         }
 
+        public static void CheckAppleAchievements()
+        {
+            int count = 0;
+            foreach (int shot in Player.Instance.AppleShotOnLevels)
+            {
+                if (shot == 1)
+                {
+                    count++;
+                }
+            }
+
+            if (count == 1)
+            {
+                UnlockApple1();
+            }
+            else if (count > 1 && count <= 10)
+            {
+                UnlockApple2(count);
+            }
+            else if (count > 10 && count <= 25)
+            {
+                UnlockApple3(count);
+            }
+            else if (count > 25 && count <= 50)
+            {
+                UnlockApple4(count);
+            }
+        }
+
 
         #endregion
 
@@ -166,15 +195,15 @@ namespace Com.MorganHouston.Imprecision
 
             if (count == 1)
             {
-                UnlockPrecise1();
+                UnlockPerfect1();
             }
             else if (count > 1 && count <= 25)
             {
-                UnlockPrecise2(count);
+                UnlockPerfect2(count);
             }
             else if (count > 25 && count <= 50)
             {
-                UnlockPrecise3(count);
+                UnlockPerfect3(count);
             }
         }
 

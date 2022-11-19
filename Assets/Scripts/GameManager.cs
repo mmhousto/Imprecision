@@ -105,6 +105,10 @@ namespace Com.MorganHouston.Imprecision
                 ActivateStars(3);
                 gameOverText.text = "Perfection";
                 Player.Instance.SetStarForLevel(levelSelected, 3);
+
+#if (UNITY_IOS || UNITY_ANDROID)
+                LeaderboardManager.CheckPerfectAchievements();
+#endif
             }
             else if (score >= twoStars)
             {
@@ -128,7 +132,10 @@ namespace Com.MorganHouston.Imprecision
             if (score >= perfection && Player.Instance.BullseyesOnLevels[levelSelected] != 1)
             {
                 Player.Instance.SetBullseyeForLevel(levelSelected, 1);
+
+#if (UNITY_IOS || UNITY_ANDROID)
                 LeaderboardManager.CheckBullseyeAchievements();
+#endif
             }
 
             CloudSaveLogin.Instance.SaveCloudData();
