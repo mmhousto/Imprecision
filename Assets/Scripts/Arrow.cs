@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -9,6 +10,8 @@ namespace Com.MorganHouston.Imprecision
     {
         Rigidbody arrowRB;
         public GameObject applePS;
+        public AudioClip explosionTarget;
+        public AudioMixerGroup sfx;
 
         private float lifeTimer = 6f;
         private float timer;
@@ -56,6 +59,18 @@ namespace Com.MorganHouston.Imprecision
             if (collision.collider.tag == "target")
             {
                 transform.SetParent(collision.gameObject.transform, true); // attach to target.
+                GameObject audioExplosion = new GameObject("AudioExplosion");
+                audioExplosion.transform.position = collision.transform.position;
+                AudioSource audio = audioExplosion.AddComponent<AudioSource>();
+                audio.clip = explosionTarget;
+                audio.playOnAwake = false;
+                audio.spatialBlend = 1;
+                audio.minDistance = 8;
+                audio.maxDistance = 75;
+                audio.outputAudioMixerGroup = sfx;
+                audio.Play();
+                Destroy(audioExplosion, 1f);
+
             }
 
             // Sets arrow rb to kinematic
@@ -84,9 +99,10 @@ namespace Com.MorganHouston.Imprecision
                 }
                 Score.Instance.AddExtraPoints();
                 //other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(500f, other.transform.position, 5f);
+                other.GetComponent<AudioSource>().Play();
                 GameObject particle = Instantiate(applePS, transform.root.position, applePS.transform.rotation);
                 Destroy(particle, 2f);
-                Destroy(other.gameObject);
+                Destroy(other.gameObject, 2f);
                 Destroy(this.gameObject); // destroy arrow
                 
             }

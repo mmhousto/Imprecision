@@ -15,8 +15,10 @@ namespace Com.MorganHouston.Imprecision
         public Transform arrowSpawn;
         public float shootForce = 10f;
         public Slider power;
+        public AudioSource audioSource;
         private StarterAssetsInputs _input;
         private PlayerAnimatorManager _anim;
+
 
         private float shotTimer = 1.75f;
         private float timer;
@@ -121,6 +123,8 @@ namespace Com.MorganHouston.Imprecision
                 _anim.SetShot();
                 startedPullingBack = false;
                 Player.Instance.FiredArrow();
+
+                audioSource.Play();
             }
 
         }
