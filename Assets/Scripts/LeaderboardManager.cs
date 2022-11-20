@@ -8,46 +8,14 @@ namespace Com.MorganHouston.Imprecision
 {
     public static class LeaderboardManager
     {
-        public static void UpdateMostPointsLeaderboard()
+
+        public static void UpdateLeaderboard(int value, string leaderboardID)
         {
-            Social.ReportScore(Player.Instance.UserPoints, "CgkI07-ynroOEAIQBQ", (bool success) =>
+            Social.ReportScore(value, leaderboardID, (bool success) =>
             {
                 // handle success or failure
             });
 
-        }
-
-        public static void UpdateSoloHighestWaveLeaderboard()
-        {
-            Social.ReportScore(2, "CgkI07-ynroOEAIQAQ", (bool success) =>
-            {
-                    // handle success or failure
-                });
-        }
-
-        public static void UpdatePartyHighestWaveLeaderboard()
-        {
-            Social.ReportScore(2, "CgkI07-ynroOEAIQAg", (bool success) =>
-            {
-                    // handle success or failure
-                });
-        }
-
-        public static void UpdateCubesDestroyedLeaderboard()
-        {
-            Social.ReportScore(2, "CgkI07-ynroOEAIQBA", (bool success) =>
-            {
-                    // handle success or failure
-                });
-
-        }
-
-        public static void UpdateAccuracyLeaderboard()
-        {
-            Social.ReportScore((long)(Player.Instance.Accuracy * 100), "CgkI07-ynroOEAIQAw", (bool success) =>
-            {
-                    // handle success or failure
-                });
         }
 
         #region APPLES

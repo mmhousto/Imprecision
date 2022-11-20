@@ -46,17 +46,14 @@ namespace Com.MorganHouston.Imprecision
                 jewels.text = Player.Instance.Jewels.ToString();
 
             arrowsFiredValue = Player.Instance.ArrowsFired;
-            Debug.Log(arrowsFiredValue);
             if (arrowsFired.text != arrowsFiredValue.ToString())
                 arrowsFired.text = arrowsFiredValue.ToString();
 
             targetsHitValue = Player.Instance.TargetsHit;
-            Debug.Log(targetsHitValue);
             if(targetsHit.text != targetsHitValue.ToString())
                 targetsHit.text = targetsHitValue.ToString();
 
             int accuracyValue = targetsHitValue * 100 / arrowsFiredValue;
-            Debug.Log(accuracyValue);
             if (accuracy.text != $"{accuracyValue}%")
                 accuracy.text = $"{accuracyValue}%";
 

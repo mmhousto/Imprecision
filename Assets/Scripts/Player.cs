@@ -33,7 +33,6 @@ namespace Com.MorganHouston.Imprecision
         private int arrowsFired;
         public int ArrowsFired { get { return arrowsFired; } private set { arrowsFired = value; } }
         public int TargetsHit { get; private set; }
-        public float Accuracy { get { return TargetsHit / ArrowsFired; } }
         public int BullseyesHit { get; set; }
 
 
