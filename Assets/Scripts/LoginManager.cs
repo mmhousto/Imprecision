@@ -39,7 +39,9 @@ namespace Com.MorganHouston.Imprecision
 
         public void SignInGoogle()
         {
+#if UNITY_ANDROID
             CloudSaveLogin.Instance.LoginGooglePlayGames();
+#endif
         }
 
     }

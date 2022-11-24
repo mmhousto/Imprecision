@@ -294,7 +294,7 @@ namespace Com.MorganHouston.Imprecision
 
             if (currentSSO == ssoOption.Google)
             {
-                GoogleLogout();
+               //GoogleLogout();
             }
 
             if (AuthenticationService.Instance.IsSignedIn)
