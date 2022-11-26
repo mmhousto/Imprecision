@@ -86,7 +86,7 @@ namespace Com.MorganHouston.Imprecision
 
             if (pullingBack && canFire && startedPullingBack)
             {
-                shotStrength += 0.01f;
+                shotStrength += .95f * Time.deltaTime;
 
             }
             else if (pullingBack == false && canFire && startedPullingBack)

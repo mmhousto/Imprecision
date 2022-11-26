@@ -30,7 +30,7 @@ public class MobileDisableAutoSwitchControls : MonoBehaviour
         //DisableScreenControls();
     }
 
-    void DisableScreenControls()
+    public void DisableScreenControls()
     {
         /*if (this.gameObject.activeInHierarchy && (playerInput.currentControlScheme == "KeyboardMouse" || playerInput.currentControlScheme == "Gamepad" || playerInput.currentControlScheme == "Xbox Controller" || playerInput.currentControlScheme == "PS4 Controller"))
         {

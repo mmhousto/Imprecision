@@ -12,11 +12,17 @@ namespace Com.MorganHouston.Imprecision
         public Button nextLevelBtn;
         public TextMeshProUGUI xpGainedText;
         public GameObject cursor;
+        public MobileDisableAutoSwitchControls uiControls;
 
         private void Start()
         {
             cursor.SetActive(false);
             CheckIfBeatLevel();
+
+#if (UNITY_IOS || UNITY_ANDROID)
+            uiControls.DisableScreenControls();
+#endif
+
         }
 
         private void Update()

@@ -6311,6 +6311,7 @@ GameObject:
   - component: {fileID: 525266313}
   - component: {fileID: 525266315}
   - component: {fileID: 525266314}
+  - component: {fileID: 525266316}
   m_Layer: 5
   m_Name: SkipText
   m_TagString: Untagged
@@ -6435,6 +6436,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525266312}
   m_CullTransparentMesh: 1
+--- !u!114 &525266316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525266312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d41d867a5b847b49a89643baafb62a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &526537834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22715,6 +22728,7 @@ MonoBehaviour:
   nextLevelBtn: {fileID: 1061921045}
   xpGainedText: {fileID: 1324612398}
   cursor: {fileID: 7302083119924790273}
+  uiControls: {fileID: 2101557506}
 --- !u!1001 &1842241088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24388,31 +24402,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.062205
+      value: 1.67
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.968971
+      value: 2.09
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.210033
+      value: -9.1
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.95499665
+      value: 0.99412733
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2485296
+      value: 0.08337814
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.15649883
+      value: -0.06869348
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.04150432
+      value: 0.0063412986
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -25832,6 +25846,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6483554099135143963, guid: 2f7f3dde7ae722a4aafffe20691ad702, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483554099135143963, guid: 2f7f3dde7ae722a4aafffe20691ad702, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483554099135143963, guid: 2f7f3dde7ae722a4aafffe20691ad702, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 6751388636123340836, guid: 2f7f3dde7ae722a4aafffe20691ad702, type: 3}
       propertyPath: m_Name
       value: UI_Canvas_StarterAssetsInputs_Joysticks
@@ -25860,6 +25886,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a300d010f57451488aa99000126fbd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2101557506 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8890774966862588244, guid: 2f7f3dde7ae722a4aafffe20691ad702, type: 3}
+  m_PrefabInstance: {fileID: 2101557503}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101557504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901182334643ba1438a25accc6bd0c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2119796991
