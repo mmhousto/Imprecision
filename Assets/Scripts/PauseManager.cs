@@ -11,6 +11,7 @@ namespace Com.MorganHouston.Imprecision
         public GameObject masterSlider;
         public GameObject pauseScreen;
         public EventSystem eventSystem;
+        public GameObject onScreenButtons;
 
         public void OnPause(InputValue value)
         {
@@ -20,8 +21,18 @@ namespace Com.MorganHouston.Imprecision
             eventSystem.SetSelectedGameObject(masterSlider);
         }
 
+        public void OnPause(bool value)
+        {
+            onScreenButtons.SetActive(false);
+            pauseScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.Confined;
+            Time.timeScale = 0;
+            eventSystem.SetSelectedGameObject(masterSlider);
+        }
+
         public void UnPause()
         {
+            onScreenButtons.SetActive(true);
             pauseScreen.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
