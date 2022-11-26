@@ -27,19 +27,20 @@ public class MobileDisableAutoSwitchControls : MonoBehaviour
 
     private void Update()
     {
-        DisableScreenControls();
+        //DisableScreenControls();
     }
 
     void DisableScreenControls()
     {
-        if (this.gameObject.activeInHierarchy && playerInput.currentControlScheme == "KeyboardMouse" || playerInput.currentControlScheme == "Gamepad" || playerInput.currentControlScheme == "Xbox Controller" || playerInput.currentControlScheme == "PS4 Controller")
+        /*if (this.gameObject.activeInHierarchy && (playerInput.currentControlScheme == "KeyboardMouse" || playerInput.currentControlScheme == "Gamepad" || playerInput.currentControlScheme == "Xbox Controller" || playerInput.currentControlScheme == "PS4 Controller"))
         {
             this.gameObject.SetActive(false);
         }
         else if (!this.gameObject.activeInHierarchy && playerInput.currentControlScheme == "Touch")
         {
             this.gameObject.SetActive(true);
-        }
+        }*/
+        this.gameObject.SetActive(false);
     }
 
 
