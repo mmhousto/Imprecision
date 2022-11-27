@@ -8,6 +8,12 @@ namespace Com.MorganHouston.Imprecision
 {
     public static class LeaderboardManager
     {
+        private const string ATMOSTPOINTSID = "CgkIqK61pYkHEAIQAQ";
+        private const string ATMOSTARROWSID = "CgkIqK61pYkHEAIQFQ";
+        private const string ATMOSTTARGETSID = "CgkIqK61pYkHEAIQFg";
+        private const string ATMOSTBULLSEYESID = "CgkIqK61pYkHEAIQFw";
+        private const string ATMOSTJEWELSID = "CgkIqK61pYkHEAIQGA";
+        private const string ATBESTACCURACYID = "CgkIqK61pYkHEAIQGQ";
 
         public static void UpdateLeaderboard(int value, string leaderboardID)
         {
@@ -17,6 +23,40 @@ namespace Com.MorganHouston.Imprecision
             });
 
         }
+
+        public static void UpdateAllLeaderboards()
+        {
+            Social.ReportScore(Player.Instance.UserPoints, ATMOSTPOINTSID, (bool success) =>
+            {
+                // handle success or failure
+            });
+
+            Social.ReportScore(Player.Instance.ArrowsFired, ATMOSTARROWSID, (bool success) =>
+            {
+                // handle success or failure
+            });
+
+            Social.ReportScore(Player.Instance.TargetsHit, ATMOSTTARGETSID, (bool success) =>
+            {
+                // handle success or failure
+            });
+
+            Social.ReportScore(Player.Instance.BullseyesHit, ATMOSTBULLSEYESID, (bool success) =>
+            {
+                // handle success or failure
+            });
+
+            Social.ReportScore(Player.Instance.Jewels, ATMOSTJEWELSID, (bool success) =>
+            {
+                // handle success or failure
+            });
+
+            Social.ReportScore(Player.Instance.TargetsHit * 100 / Player.Instance.ArrowsFired, ATBESTACCURACYID, (bool success) =>
+            {
+                // handle success or failure
+            });
+        }
+
 
         #region APPLES
 

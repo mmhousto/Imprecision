@@ -15,19 +15,19 @@ namespace Com.MorganHouston.Imprecision
         public static GameManager Instance { get { return instance; } }
 
         [SerializeField]
-        private int levelSelected = 0;
+        private int levelSelected = 0; 
 
-        public int LevelSelected { get { return levelSelected; } private set { levelSelected = value; } }
+        public int LevelSelected { get { return levelSelected; } private set { levelSelected = value; } } // The Level User has selected in Main Menu/From Game Using Next Level Button
 
         private GameObject gameOverScreen, player, restartButton;
 
-        private GameObject[] stars;
+        private GameObject[] stars; // Stars at end of game to show player how well they did
 
-        private TextMeshProUGUI gameOverText;
+        private TextMeshProUGUI gameOverText; // Text displayed on game over
 
-        public Material[] starMats;
+        public Material[] starMats; // Enabled and Disabled materials for stars
 
-        private int maxPointsForLevel, threeStars, twoStars, oneStar, perfection;
+        private int maxPointsForLevel, threeStars, twoStars, oneStar, perfection; // points for level
 
         private void Awake()
         {
@@ -52,6 +52,11 @@ namespace Com.MorganHouston.Imprecision
             SceneManager.sceneLoaded -= LoadGame;
         }
 
+        /// <summary>
+        /// If game scene, sets up the game
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="mode"></param>
         private void LoadGame(Scene level, LoadSceneMode mode)
         {
             if(level.buildIndex == 2)
@@ -60,12 +65,18 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
+        /// <summary>
+        /// Called when level is loaded to set star rating and get game over components
+        /// </summary>
         private void SetUpGame()
         {
             GetGameOverComponents();
             GetMaxPointsForLevel();
         }
 
+        /// <summary>
+        /// Gets all Game Over Components, self explanatory lol
+        /// </summary>
         private void GetGameOverComponents()
         {
             gameOverScreen = GameObject.FindWithTag("GameOver");
@@ -75,6 +86,9 @@ namespace Com.MorganHouston.Imprecision
             player = GameObject.FindWithTag("Player");
         }
 
+        /// <summary>
+        /// Determines max points possible for Perfection, 3 star, 2 star, and 1 star
+        /// </summary>
         private void GetMaxPointsForLevel()
         {
             perfection = (10 + (int)(levelSelected * 1.25f)) * 200;
@@ -84,6 +98,9 @@ namespace Com.MorganHouston.Imprecision
             oneStar = (int)(maxPointsForLevel * 0.5f);
         }
 
+        /// <summary>
+        /// Enables GameOver Screen and Calls Method to Determine stars and save/update player data
+        /// </summary>
         public void GameOver()
         {
             gameOverScreen.transform.parent.gameObject.SetActive(true);
@@ -97,6 +114,9 @@ namespace Com.MorganHouston.Imprecision
             DetermineStars();
         }
 
+        /// <summary>
+        /// Determines Amount of Stars recieved based on level, checks achievements, and updates player stats
+        /// </summary>
         private void DetermineStars()
         {
             var score = Score.score;
@@ -129,6 +149,7 @@ namespace Com.MorganHouston.Imprecision
             }
             Player.Instance.GainPoints(score);
 
+            // If Perfect, updates user stats and checks/updates progress on bullseye achievements
             if (score >= perfection && Player.Instance.BullseyesOnLevels[levelSelected] != 1)
             {
                 Player.Instance.SetBullseyeForLevel(levelSelected, 1);
@@ -138,9 +159,20 @@ namespace Com.MorganHouston.Imprecision
 #endif
             }
 
+            // Save data to cloud/local
             CloudSaveLogin.Instance.SaveCloudData();
+
+            // Update Leaderboards
+#if (UNITY_IOS || UNITY_ANDROID)
+            LeaderboardManager.UpdateAllLeaderboards();
+#endif
         }
 
+
+        /// <summary>
+        /// Shows how many stars the player recieved on the level
+        /// </summary>
+        /// <param name="starsToActivate"># of Stars to Activate</param>
         private void ActivateStars(int starsToActivate)
         {
             for(int i = 0; i < starsToActivate; i++)
@@ -150,6 +182,10 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
+        /// <summary>
+        /// Sets level to the level user selected
+        /// </summary>
+        /// <param name="level">The Selected Level</param>
         public void SetLevel(int level)
         {
             levelSelected = level;
