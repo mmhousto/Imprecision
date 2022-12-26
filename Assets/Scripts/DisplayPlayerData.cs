@@ -9,8 +9,7 @@ namespace Com.MorganHouston.Imprecision
 
     public class DisplayPlayerData : MonoBehaviour
     {
-        public TMP_InputField userNameField;
-        public TextMeshProUGUI pointsTxt, levelTxt, jewelsTxt;
+        public TextMeshProUGUI userNameTxt, pointsTxt, levelTxt, jewelsTxt;
         public Slider xpSlider;
 
         private Player player;
@@ -52,11 +51,20 @@ namespace Com.MorganHouston.Imprecision
             if(jewels != player.Jewels)
                 jewels = player.Jewels;
 
-            userNameField.text = userName;
-            pointsTxt.text = $"Points: {points}";
-            levelTxt.text = $"Level: {level}";
-            jewelsTxt.text = $"{jewels}";
-            xpSlider.value = xp;
+            if(userNameTxt.text != userName)
+                userNameTxt.text = userName;
+
+            if(pointsTxt.text != $"Points: {points}")
+                pointsTxt.text = $"Points: {points}";
+
+            if(levelTxt.text != $"Level: {level}")
+                levelTxt.text = $"Level: {level}";
+
+            if(jewelsTxt.text != $"{jewels}")
+                jewelsTxt.text = $"{jewels}";
+
+            if(xpSlider.value != xp)
+                xpSlider.value = xp;
         }
     }
 }

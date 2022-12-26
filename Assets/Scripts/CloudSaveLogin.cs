@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.GameCenter;
 using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
 using System.Threading.Tasks;
@@ -57,7 +58,7 @@ namespace Com.MorganHouston.Imprecision
         // Start is called before the first frame update
         async void Awake()
         {
-            if(instance != null && instance != this)
+            if (instance != null && instance != this)
             {
                 Destroy(this.gameObject);
                 return;
@@ -212,10 +213,29 @@ namespace Com.MorganHouston.Imprecision
 
             await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
 
+            GameCenterLogin();
+
             SetPlayerData(AuthenticationService.Instance.PlayerId, userName);
+
 
             Login();
 
+        }
+
+        private void GameCenterLogin()
+        {
+            Social.localUser.Authenticate(success =>
+            {
+                if (success)
+                {
+                    Debug.Log("Authentication successful");
+                    userName = Social.localUser.userName;/* +
+                        "\nUser ID: " + Social.localUser.id +*/
+                    string userInfo = "\nIsUnderage: " + Social.localUser.underage;
+                }
+                else
+                    Debug.Log("Authentication failed");
+            });
         }
 
         /// <summary>
@@ -235,9 +255,9 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         public void Logout()
         {
-                SaveLogout();
+            SaveLogout();
 
-                LogoutScreenActivate();
+            LogoutScreenActivate();
 
         }
 
@@ -294,7 +314,7 @@ namespace Com.MorganHouston.Imprecision
 
             if (currentSSO == ssoOption.Google)
             {
-               //GoogleLogout();
+                //GoogleLogout();
             }
 
             if (AuthenticationService.Instance.IsSignedIn)
@@ -329,14 +349,14 @@ namespace Com.MorganHouston.Imprecision
                 quickLoginArgs,
                 credential =>
                 {
-                // Received a valid credential!
-                // Try casting to IAppleIDCredential or IPasswordCredential
+                    // Received a valid credential!
+                    // Try casting to IAppleIDCredential or IPasswordCredential
 
-                // Previous Apple sign in credential
-                var appleIdCredential = credential as IAppleIDCredential;
+                    // Previous Apple sign in credential
+                    var appleIdCredential = credential as IAppleIDCredential;
 
-                // Saved Keychain credential (read about Keychain Items)
-                var passwordCredential = credential as IPasswordCredential;
+                    // Saved Keychain credential (read about Keychain Items)
+                    var passwordCredential = credential as IPasswordCredential;
 
                     if (appleIdCredential != null)
                     {
@@ -350,14 +370,17 @@ namespace Com.MorganHouston.Imprecision
                 {
                     Debug.Log("Quick Login Apple Failed");
                     return;
-                // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
-            });
+                    // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
+                });
 
             var idToken = PlayerPrefs.GetString("AppleTokenIdKey");
 
             await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
 
+            GameCenterLogin();
+
             SetPlayerData(AuthenticationService.Instance.PlayerId, userName);
+
             Login();
         }
 
@@ -374,14 +397,14 @@ namespace Com.MorganHouston.Imprecision
                             switch (state)
                             {
                                 case CredentialState.Authorized:
-                                // User ID is still valid. Login the user.
-                                Debug.Log("User ID is valid!");
+                                    // User ID is still valid. Login the user.
+                                    Debug.Log("User ID is valid!");
                                     QuickLoginApple();
                                     break;
 
                                 case CredentialState.Revoked:
-                                // User ID was revoked. Go to login screen.
-                                Debug.Log("User ID was revoked.");
+                                    // User ID was revoked. Go to login screen.
+                                    Debug.Log("User ID was revoked.");
                                     if (AuthenticationService.Instance.IsSignedIn)
                                     {
                                         AuthenticationService.Instance.SignOut();
@@ -389,15 +412,15 @@ namespace Com.MorganHouston.Imprecision
                                     break;
 
                                 case CredentialState.NotFound:
-                                // User ID was not found. Go to login screen.
-                                Debug.Log("User ID was not found.");
+                                    // User ID was not found. Go to login screen.
+                                    Debug.Log("User ID was not found.");
                                     break;
                             }
                         },
                         error =>
                         {
-                        // Something went wrong
-                        Debug.Log("Credential Failed");
+                            // Something went wrong
+                            Debug.Log("Credential Failed");
                             if (AuthenticationService.Instance.IsSignedIn)
                             {
                                 AuthenticationService.Instance.SignOut();
@@ -425,42 +448,42 @@ namespace Com.MorganHouston.Imprecision
                 loginArgs,
                 credential =>
                 {
-                //      Obtained credential, cast it to IAppleIDCredential
-                var appleIdCredential = credential as IAppleIDCredential;
+                    //      Obtained credential, cast it to IAppleIDCredential
+                    var appleIdCredential = credential as IAppleIDCredential;
                     if (appleIdCredential != null)
                     {
-                    // Apple User ID
-                    // You should save the user ID somewhere in the device
-                    userID = appleIdCredential.User;
+                        // Apple User ID
+                        // You should save the user ID somewhere in the device
+                        userID = appleIdCredential.User;
                         PlayerPrefs.SetString("AppleUserIdKey", userID);
 
-                    // Email (Received ONLY in the first login)
-                    /*email = appleIdCredential.Email;
-                        PlayerPrefs.SetString("AppleUserEmailKey", email);*/
+                        // Email (Received ONLY in the first login)
+                        /*email = appleIdCredential.Email;
+                            PlayerPrefs.SetString("AppleUserEmailKey", email);*/
 
-                    // Full name (Received ONLY in the first login)
-                    userName = appleIdCredential.FullName.GivenName;
+                        // Full name (Received ONLY in the first login)
+                        userName = appleIdCredential.FullName.GivenName;
                         PlayerPrefs.SetString("AppleUserNameKey", userName);
 
-                    // Identity token
-                    var idToken = Encoding.UTF8.GetString(
-                            appleIdCredential.IdentityToken,
-                            0,
-                            appleIdCredential.IdentityToken.Length);
+                        // Identity token
+                        var idToken = Encoding.UTF8.GetString(
+                                appleIdCredential.IdentityToken,
+                                0,
+                                appleIdCredential.IdentityToken.Length);
 
                         tcs.SetResult(idToken);
 
                         PlayerPrefs.SetString("AppleTokenIdKey", idToken);
 
-                    // Authorization code
-                    var AuthCode = Encoding.UTF8.GetString(
-                                    appleIdCredential.AuthorizationCode,
-                                    0,
-                                    appleIdCredential.AuthorizationCode.Length);
+                        // Authorization code
+                        var AuthCode = Encoding.UTF8.GetString(
+                                        appleIdCredential.AuthorizationCode,
+                                        0,
+                                        appleIdCredential.AuthorizationCode.Length);
 
-                    // And now you have all the information to create/login a user in your system
+                        // And now you have all the information to create/login a user in your system
 
-                }
+                    }
                     else
                     {
                         tcs.SetException(new Exception("Retrieving Apple Id Token failed."));
@@ -468,8 +491,8 @@ namespace Com.MorganHouston.Imprecision
                 },
                 error =>
                 {
-                // Something went wrong
-                tcs.SetException(new Exception("Retrieving Apple Id Token failed."));
+                    // Something went wrong
+                    tcs.SetException(new Exception("Retrieving Apple Id Token failed."));
                     var authorizationErrorCode = error.GetAuthorizationErrorCode();
                     return;
                 });
@@ -716,7 +739,7 @@ namespace Com.MorganHouston.Imprecision
         }
 #endif
 
-#endregion
+        #endregion
 
 
         #region Private Methods
@@ -791,11 +814,7 @@ namespace Com.MorganHouston.Imprecision
                 LoadPlayerData(id, name);
             }
 
-            // updates facebook gaming name
-            if (FB.IsInitialized)
-            {
-                player.SetPlayerName(name);
-            }
+            player.SetPlayerName(name);
         }
 
 

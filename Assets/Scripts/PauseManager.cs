@@ -23,7 +23,9 @@ namespace Com.MorganHouston.Imprecision
 
         public void OnPause(bool value)
         {
+#if (UNITY_IOS || UNITY_ANDROID)
             onScreenButtons.SetActive(false);
+#endif
             pauseScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
             Time.timeScale = 0;
@@ -32,7 +34,9 @@ namespace Com.MorganHouston.Imprecision
 
         public void UnPause()
         {
+#if (UNITY_IOS || UNITY_ANDROID)
             onScreenButtons.SetActive(true);
+#endif
             pauseScreen.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;

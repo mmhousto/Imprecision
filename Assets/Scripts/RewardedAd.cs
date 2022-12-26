@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
-using Unity.Services.Core;
-using Unity.Services.Mediation;
-using UnityEngine.UI;
-using TMPro;
+//using Unity.Services.Core;
+//using Unity.Services.Mediation;
+//using UnityEngine.UI;
+//using TMPro;
 
 namespace Com.MorganHouston.Imprecision
 {
-
+    /*
     public class RewardedAd : MonoBehaviour
     {
         public string androidAdUnitId;
@@ -224,5 +224,5 @@ namespace Com.MorganHouston.Imprecision
         {
             var impressionData = args.ImpressionData != null ? JsonUtility.ToJson(args.ImpressionData, true) : "null";
         }
-    }
+    }*/
 }
