@@ -51,6 +51,20 @@ namespace Com.MorganHouston.Imprecision
 
         public int[] BullseyesOnLevels { get { return bullseyesOnLevels; } private set { bullseyesOnLevels = value; } }
 
+        public int Power { get; private set; }
+        public int Dexterity { get; private set; }
+        public int Endurance { get; private set; }
+        public int Vitality { get; private set; }
+        public int Defense { get; private set; }
+        public int Luck { get; private set; }
+
+        public int HealthPoints { get; private set; }
+        public int AttackPower { get; private set; }
+        public int DefensePower { get; private set; }
+        public int AttackSpeed { get; private set; }
+        public int MovementSpeed { get; private set; }
+        public int Stamina { get; private set; }
+        public int CritChance { get; private set; }
 
         protected int maxXP;
 
@@ -71,7 +85,22 @@ namespace Com.MorganHouston.Imprecision
             Levels = new int[50];
             AppleShotOnLevels = new int[50];
             BullseyesOnLevels = new int[50];
-        }
+
+            Power = 1;
+            Dexterity = 1;
+            Endurance = 1;
+            Vitality = 1;
+            Defense = 1;
+            Luck = 1;
+
+            HealthPoints = 100;
+            AttackPower = 10;
+            DefensePower = 10;
+            AttackSpeed = 10;
+            MovementSpeed = 5;
+            Stamina = 75;
+            CritChance = 5;
+    }
 
         // Loads player from cloud save/ local save
         public void SetData(SavePlayerData data)
@@ -100,6 +129,21 @@ namespace Com.MorganHouston.Imprecision
                 AppleShotOnLevels = data.appleShotOnLevels;
             else
                 AppleShotOnLevels = new int[50];
+
+            Power = data.power;
+            Dexterity = data.dexterity;
+            Endurance = data.endurance;
+            Vitality = data.vitality;
+            Defense = data.defense;
+            Luck = data.luck;
+
+            HealthPoints = data.healthPoints;
+            AttackPower = data.attackPower;
+            DefensePower = data.defensePower;
+            AttackSpeed = data.attackSpeed;
+            MovementSpeed = data.movementSpeed;
+            Stamina = data.stamina;
+            CritChance = data.critChance;
         }
 
         // Creates an anonymous player.
@@ -117,6 +161,21 @@ namespace Com.MorganHouston.Imprecision
             Levels = new int[50];
             AppleShotOnLevels = new int[50];
             BullseyesOnLevels = new int[50];
+
+            Power = 1;
+            Dexterity = 1;
+            Endurance = 1;
+            Vitality = 1;
+            Defense = 1;
+            Luck = 1;
+
+            HealthPoints = 100;
+            AttackPower = 10;
+            DefensePower = 10;
+            AttackSpeed = 10;
+            MovementSpeed = 5;
+            Stamina = 75;
+            CritChance = 5;
         }
 
         // Creates new player w/ SSO login.
@@ -134,6 +193,21 @@ namespace Com.MorganHouston.Imprecision
             Levels = new int[50];
             AppleShotOnLevels = new int[50];
             BullseyesOnLevels = new int[50];
+
+            Power = 1;
+            Dexterity = 1;
+            Endurance = 1;
+            Vitality = 1;
+            Defense = 1;
+            Luck = 1;
+
+            HealthPoints = 100;
+            AttackPower = 10;
+            DefensePower = 10;
+            AttackSpeed = 10;
+            MovementSpeed = 5;
+            Stamina = 75;
+            CritChance = 5;
         }
 
 
@@ -247,6 +321,42 @@ namespace Com.MorganHouston.Imprecision
 
             BullseyesHit++;
             
+        }
+
+        public void IncreaseAttribute(int attributeToIncrease)
+        {
+            switch (attributeToIncrease)
+            {
+                // POWER
+                case 0:
+                    Power++;
+                    break;
+
+                // DEXTERITY
+                case 1:
+                    Dexterity++;
+                    break;
+
+                // ENDURANCE
+                case 2:
+                    Endurance++;
+                    break;
+
+                // VITALITY
+                case 3:
+                    Vitality++;
+                    break;
+
+                // DEFENSE
+                case 4:
+                    Defense++;
+                    break;
+
+                // LUCK
+                case 5:
+                    Luck++;
+                    break;
+            }
         }
 
 

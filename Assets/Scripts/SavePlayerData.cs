@@ -21,6 +21,21 @@ namespace Com.MorganHouston.Imprecision
         public int targetsHit;
         public int bullseyesHit;
 
+        public int power;
+        public int dexterity;
+        public int endurance;
+        public int vitality;
+        public int defense;
+        public int luck;
+
+        public int healthPoints;
+        public int attackPower;
+        public int defensePower;
+        public int attackSpeed;
+        public int movementSpeed;
+        public int stamina;
+        public int critChance;
+
         public SavePlayerData(Player player)
         {
             userID = player.UserID;
@@ -34,6 +49,21 @@ namespace Com.MorganHouston.Imprecision
             arrowsFired = player.ArrowsFired;
             targetsHit = player.TargetsHit;
             bullseyesHit = player.BullseyesHit;
+
+            power = player.Power;
+            dexterity = player.Dexterity;
+            endurance = player.Endurance;
+            vitality = player.Vitality;
+            defense = player.Defense;
+            luck = player.Luck;
+
+            healthPoints = player.HealthPoints;
+            attackPower = player.AttackPower;
+            defensePower = player.DefensePower;
+            attackSpeed = player.AttackSpeed;
+            movementSpeed = player.MovementSpeed;
+            stamina = player.Stamina;
+            critChance = player.CritChance;
 
         }
 
