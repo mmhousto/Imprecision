@@ -70,6 +70,52 @@ namespace Com.MorganHouston.Imprecision
 
         private CloudSaveLogin cloudSaveLogin;
 
+        private void Awake()
+        {
+            if(instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                instance = this;
+                DontDestroyOnLoad(Instance.gameObject);
+            }
+            cloudSaveLogin = GetComponent<CloudSaveLogin>();
+        }
+
+        private void Start()
+        {
+            maxXP = UserLevel * 420;
+        }
+
+        private void Update()
+        {
+            if(UserID != null)
+            {
+                UpdateMaxXp();
+
+                UpdateLevel();
+            }
+            
+        }
+
+        private void UpdateMaxXp()
+        {
+            if (maxXP != userLevel * 420)
+                maxXP = userLevel * 420;
+        }
+
+        private void UpdateLevel()
+        {
+            if (UserXP >= maxXP)
+            {
+                UserLevel++;
+                int rem = UserXP % maxXP;
+                UserXP = 0 + rem;
+            }
+        }
+
         // Resets Player data.
         public void SetData()
         {
@@ -100,7 +146,7 @@ namespace Com.MorganHouston.Imprecision
             MovementSpeed = 5;
             Stamina = 75;
             CritChance = 5;
-    }
+        }
 
         // Loads player from cloud save/ local save
         public void SetData(SavePlayerData data)
@@ -119,7 +165,7 @@ namespace Com.MorganHouston.Imprecision
                 Levels = data.levels;
             else
                 Levels = new int[50];
-            
+
             if (data.bullseyesOnLevels != null)
                 BullseyesOnLevels = data.bullseyesOnLevels;
             else
@@ -210,53 +256,6 @@ namespace Com.MorganHouston.Imprecision
             CritChance = 5;
         }
 
-
-        private void Awake()
-        {
-            if(instance != null && instance != this)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                instance = this;
-                DontDestroyOnLoad(Instance.gameObject);
-            }
-            cloudSaveLogin = GetComponent<CloudSaveLogin>();
-        }
-
-        private void Start()
-        {
-            maxXP = UserLevel * 420;
-        }
-
-        private void Update()
-        {
-            if(UserID != null)
-            {
-                UpdateMaxXp();
-
-                UpdateLevel();
-            }
-            
-        }
-
-        private void UpdateMaxXp()
-        {
-            if (maxXP != userLevel * 420)
-                maxXP = userLevel * 420;
-        }
-
-        private void UpdateLevel()
-        {
-            if (UserXP >= maxXP)
-            {
-                UserLevel++;
-                int rem = UserXP % maxXP;
-                UserXP = 0 + rem;
-            }
-        }
-
         public void GainXP(int xpToAdd)
         {
             UserXP += xpToAdd;
@@ -330,31 +329,48 @@ namespace Com.MorganHouston.Imprecision
                 // POWER
                 case 0:
                     Power++;
+                    AttackPower += (Power % 3 == 0) ? 6 : 5;
+                    DefensePower += (Power % 3 == 0) ? 3 : 2;
                     break;
 
                 // DEXTERITY
                 case 1:
                     Dexterity++;
+                    AttackPower += 2;
+                    MovementSpeed += (Dexterity % 3 == 0) ? 2 : 1;
+                    AttackSpeed += (Dexterity % 3 == 0) ? 5 : 4;
                     break;
 
                 // ENDURANCE
                 case 2:
                     Endurance++;
+                    MovementSpeed += (Endurance % 3 == 0) ? 4 : 3;
+                    Stamina += (Endurance % 3 == 0) ? 4 : 3;
+                    HealthPoints++;
                     break;
 
                 // VITALITY
                 case 3:
                     Vitality++;
+                    HealthPoints += (Vitality % 3 == 0) ? 7 : 5;
+                    AttackPower++;
+                    DefensePower++;
+
                     break;
 
                 // DEFENSE
                 case 4:
                     Defense++;
+                    AttackPower += (Defense % 3 == 0) ? 2 : 1;
+                    DefensePower += (Defense % 3 == 0) ? 6 : 5;
+                    HealthPoints++;
                     break;
 
                 // LUCK
                 case 5:
                     Luck++;
+                    CritChance += (Luck % 3 == 0) ? 8 : 6;
+                    HealthPoints++;
                     break;
             }
         }
