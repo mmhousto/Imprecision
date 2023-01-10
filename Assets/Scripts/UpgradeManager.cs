@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,6 +71,64 @@ namespace Com.MorganHouston.Imprecision
             critChanceLbl.text = $"{critChance}%";
         }
 
+        private void Update()
+        {
+            if(pointsLbl.text != player.UserPoints.ToString())
+                pointsLbl.text = player.UserPoints.ToString();
+
+            if(powerLbl.text != player.Power.ToString())
+                powerLbl.text = player.Power.ToString();
+
+            if(dexterityLbl.text != player.Dexterity.ToString())
+                dexterityLbl.text = player.Dexterity.ToString();
+
+            if(enduranceLbl.text != player.Endurance.ToString())
+                enduranceLbl.text = player.Endurance.ToString();
+
+            if(vitalityLbl.text != player.Vitality.ToString())
+                vitalityLbl.text = player.Vitality.ToString();
+
+            if(defenseLbl.text != player.Defense.ToString())
+                defenseLbl.text = player.Defense.ToString();
+
+            if(luckLbl.text != player.Luck.ToString())
+                luckLbl.text = player.Luck.ToString();
+
+            if(healthPointsLbl.text != player.HealthPoints.ToString())
+                healthPointsLbl.text = player.HealthPoints.ToString();
+
+            if(attackPowerLbl.text != player.AttackPower.ToString())
+                attackPowerLbl.text = player.AttackPower.ToString();
+
+            if(defensePowerLbl.text != player.DefensePower.ToString())
+                defensePowerLbl.text = player.DefensePower.ToString();
+
+            if(attackSpeedLbl.text != player.AttackSpeed.ToString())
+                attackSpeedLbl.text = player.AttackSpeed.ToString();
+
+            if(movementSpeedLbl.text != player.MovementSpeed.ToString())
+                movementSpeedLbl.text = player.MovementSpeed.ToString();
+
+            if(staminaLbl.text != player.Stamina.ToString())
+                staminaLbl.text = player.Stamina.ToString();
+
+            if(critChance != player.CritChance / 10)
+                critChance = (float)(Convert.ToDouble(player.CritChance) / 10);
+
+            if(critChanceLbl.text != $"{critChance}%")
+                critChanceLbl.text = $"{critChance}%";
+        }
+
+        private void OnDisable()
+        {
+            ResetStats();
+        }
+
+        private void OnDestroy()
+        {
+            ResetStats();
+        }
+
         public void IncreaseAttribute(int attributeToIncrease)
         {
             Player.Instance.IncreaseAttribute(attributeToIncrease);
@@ -112,23 +171,22 @@ namespace Com.MorganHouston.Imprecision
         public void ResetStats()
         {
             pointsNeeded = 0;
-            player.UserPoints;
+            player.SetUserPoints(currentPoints);
             pointsNeededLbl.text = pointsNeeded.ToString();
 
-            player.Power.ToString();
-            dexterityLbl.text = player.Dexterity.ToString();
-            enduranceLbl.text = player.Endurance.ToString();
-            vitalityLbl.text = player.Vitality.ToString();
-            defenseLbl.text = player.Defense.ToString();
-            luckLbl.text = player.Luck.ToString();
-            healthPointsLbl.text = player.HealthPoints.ToString();
-            attackPowerLbl.text = player.AttackPower.ToString();
-            defensePowerLbl.text = player.DefensePower.ToString();
-            attackSpeedLbl.text = player.AttackSpeed.ToString();
-            movementSpeedLbl.text = player.MovementSpeed.ToString();
-            staminaLbl.text = player.Stamina.ToString();
-            critChance = player.CritChance / 10;
-            critChanceLbl.text = $"{critChance}%";
+            player.SetAttribute(0, currentPower);
+            player.SetAttribute(1, currentPower);
+            player.SetAttribute(2, currentPower);
+            player.SetAttribute(3, currentPower);
+            player.SetAttribute(4, currentPower);
+            player.SetAttribute(5, currentPower);
+            player.SetHealthPoints(currentHP);
+            player.SetAttackPower(currentAP);
+            player.SetDefensePower(currentDP);
+            player.SetAttackSpeed(currentAS);
+            player.SetMovementSpeed(currentMS);
+            player.SetStamina(currentStamina);
+            player.SetCritChance(currentCrit);
         }
 
 

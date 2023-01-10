@@ -322,6 +322,84 @@ namespace Com.MorganHouston.Imprecision
             
         }
 
+        public void SetUserPoints(int newValue)
+        {
+            UserPoints = newValue;
+        }
+
+        public void SetAttribute(int attribute, int newValue)
+        {
+            
+            switch (attribute)
+            {
+                // POWER
+                case 0:
+                    Power = newValue;
+                    break;
+
+                // DEXTERITY
+                case 1:
+                    Dexterity = newValue;
+                    break;
+
+                // ENDURANCE
+                case 2:
+                    Endurance = newValue;
+                    break;
+
+                // VITALITY
+                case 3:
+                    Vitality = newValue;
+
+                    break;
+
+                // DEFENSE
+                case 4:
+                    Defense = newValue;
+                    break;
+
+                // LUCK
+                case 5:
+                    Luck = newValue;
+                    break;
+            }
+        }
+
+        public void SetHealthPoints(int newValue)
+        {
+            HealthPoints = newValue;
+        }
+
+        public void SetAttackPower(int newValue)
+        {
+            AttackPower = newValue;
+        }
+
+        public void SetAttackSpeed(int newValue)
+        {
+            AttackSpeed = newValue;
+        }
+
+        public void SetDefensePower(int newValue)
+        {
+            DefensePower = newValue;
+        }
+
+        public void SetMovementSpeed(int newValue)
+        {
+            MovementSpeed = newValue;
+        }
+
+        public void SetStamina(int newValue)
+        {
+            AttackPower = newValue;
+        }
+
+        public void SetCritChance(int newValue)
+        {
+            CritChance = newValue;
+        }
+
         public void IncreaseAttribute(int attributeToIncrease)
         {
             switch (attributeToIncrease)
