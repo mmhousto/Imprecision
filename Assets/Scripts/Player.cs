@@ -51,12 +51,29 @@ namespace Com.MorganHouston.Imprecision
 
         public int[] BullseyesOnLevels { get { return bullseyesOnLevels; } private set { bullseyesOnLevels = value; } }
 
-        public int Power { get; private set; }
-        public int Dexterity { get; private set; }
-        public int Endurance { get; private set; }
-        public int Vitality { get; private set; }
-        public int Defense { get; private set; }
-        public int Luck { get; private set; }
+        [SerializeField]
+        private int power;
+        public int Power { get { return power; } private set { power = value; } }
+
+        [SerializeField]
+        private int dexterity;
+        public int Dexterity { get { return dexterity; } private set { dexterity = value; } }
+
+        [SerializeField]
+        private int endurance;
+        public int Endurance { get { return endurance; } private set { endurance = value; } }
+
+        [SerializeField]
+        private int vitality;
+        public int Vitality { get { return vitality; } private set { vitality = value; } }
+
+        [SerializeField]
+        private int defense;
+        public int Defense { get { return defense; } private set { defense = value; } }
+
+        [SerializeField]
+        private int luck;
+        public int Luck { get { return luck; } private set { luck = value; } }
 
         public int HealthPoints { get; private set; }
         public int AttackPower { get; private set; }
@@ -453,6 +470,57 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
+        public void DecreaseAttribute(int attributeToIncrease)
+        {
+            switch (attributeToIncrease)
+            {
+                // POWER
+                case 0:
+                    Power--;
+                    AttackPower -= ((Power + 1) % 3 == 0) ? 6 : 5;
+                    DefensePower -= ((Power + 1) % 3 == 0) ? 3 : 2;
+                    break;
 
+                // DEXTERITY
+                case 1:
+                    Dexterity--;
+                    AttackPower -= 2;
+                    MovementSpeed -= ((Dexterity + 1) % 3 == 0) ? 2 : 1;
+                    AttackSpeed -= ((Dexterity + 1) % 3 == 0) ? 5 : 4;
+                    break;
+
+                // ENDURANCE
+                case 2:
+                    Endurance--;
+                    MovementSpeed -= ((Endurance + 1) % 3 == 0) ? 4 : 3;
+                    Stamina -= ((Endurance + 1) % 3 == 0) ? 4 : 3;
+                    HealthPoints--;
+                    break;
+
+                // VITALITY
+                case 3:
+                    Vitality--;
+                    HealthPoints -= ((Vitality + 1) % 3 == 0) ? 7 : 5;
+                    AttackPower--;
+                    DefensePower--;
+
+                    break;
+
+                // DEFENSE
+                case 4:
+                    Defense--;
+                    AttackPower -= ((Defense + 1) % 3 == 0) ? 2 : 1;
+                    DefensePower -= ((Defense + 1) % 3 == 0) ? 6 : 5;
+                    HealthPoints--;
+                    break;
+
+                // LUCK
+                case 5:
+                    Luck--;
+                    CritChance -= ((Luck + 1) % 3 == 0) ? 8 : 6;
+                    HealthPoints--;
+                    break;
+            }
+        }
     }
 }
