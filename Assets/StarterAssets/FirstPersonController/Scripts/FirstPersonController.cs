@@ -71,6 +71,7 @@ namespace StarterAssets
 		private StarterAssetsInputs _input;
 		private PlayerAnimatorManager _anim;
 		private GameObject _mainCamera;
+		private Player player;
 
 		private const float _threshold = 0.01f;
 
@@ -91,6 +92,10 @@ namespace StarterAssets
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 			_anim = GetComponent<PlayerAnimatorManager>();
+
+			player = Player.Instance;
+			MoveSpeed += (float)player.MovementSpeed / 250;
+			SprintSpeed += ((float)player.MovementSpeed / 250) * 2;
 
 			RotationSpeed = PlayerPrefs.GetFloat("Sensitivity", 20) * 0.05f;
 
@@ -158,7 +163,7 @@ namespace StarterAssets
 		private void Move()
 		{
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+			float targetSpeed = _input.sprint && !_input.aiming ? SprintSpeed : MoveSpeed;
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 

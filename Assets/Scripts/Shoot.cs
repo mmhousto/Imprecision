@@ -18,12 +18,14 @@ namespace Com.MorganHouston.Imprecision
         public AudioSource audioSource;
         private StarterAssetsInputs _input;
         private PlayerAnimatorManager _anim;
+        private Player player;
 
 
         private float shotTimer = 1.75f;
         private float timer;
         public static bool canFire = true;
         private float shotStrength = 0.0f;
+        private float shotSpeed = 5f;
         private bool aiming = false;
         private bool pullingBack = false;
         private bool hasReleased = false;
@@ -39,6 +41,10 @@ namespace Com.MorganHouston.Imprecision
             _input = GetComponent<StarterAssetsInputs>();
             source = GetComponent<Cinemachine.CinemachineImpulseSource>();
             _anim = GetComponent<PlayerAnimatorManager>();
+            player = Player.Instance;
+
+            shootForce = player.AttackPower;
+            shotSpeed = player.AttackSpeed;
         }
 
         // Update is called once per frame
@@ -86,7 +92,7 @@ namespace Com.MorganHouston.Imprecision
 
             if (pullingBack && canFire && startedPullingBack)
             {
-                shotStrength += .95f * Time.deltaTime;
+                shotStrength += (.95f + (shotSpeed/150)) * Time.deltaTime;
 
             }
             else if (pullingBack == false && canFire && startedPullingBack)
@@ -114,7 +120,7 @@ namespace Com.MorganHouston.Imprecision
                 GameObject clone = Instantiate(arrow, arrowSpawn.position, arrowSpawn.rotation) as GameObject; // spawns arrow
                 Rigidbody rb = clone.GetComponent<Rigidbody>(); // gets Rigidbody of cloned arrow
                                                                 //rb.velocity = arrowSpawn.forward * shootForce * pullBack; // applies velocity to it in direction facing
-                rb.AddForce(directionWithoutSpread.normalized * shootForce * pullBack, ForceMode.Impulse);
+                rb.AddForce(directionWithoutSpread.normalized *  (10 + shootForce/25) * pullBack, ForceMode.Impulse);
                 clone.transform.rotation = Quaternion.LookRotation(rb.velocity); // adds arc to arrow (rotates arrow down)
                 Physics.IgnoreCollision(clone.GetComponent<Collider>(), GetComponent<Collider>()); // ignore collision w/ player
 

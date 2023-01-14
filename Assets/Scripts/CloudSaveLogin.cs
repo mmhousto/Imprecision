@@ -135,16 +135,16 @@ namespace Com.MorganHouston.Imprecision
 
         }
 
-        /// <summary>
+        /*// <summary>
         /// Saves data on application exit.
         /// </summary>
         private void OnApplicationQuit()
         {
             SaveCloudData();
 
-        }
+        }*/
 
-        /// <summary>
+        /*// <summary>
         /// Saves data to cloud on application pause or swipe out.
         /// </summary>
         /// <param name="pause"></param>
@@ -154,7 +154,7 @@ namespace Com.MorganHouston.Imprecision
         if(pause)
             SaveCloudData();
 #endif
-        }
+        }*/
 
 
         #endregion

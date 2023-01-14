@@ -20,7 +20,9 @@ namespace Com.MorganHouston.Imprecision
         public string UserID { get; private set; }
         public string UserName { get; private set; }
 
-        public int UserPoints { get; private set; }
+        [SerializeField]
+        private int userPoints;
+        public int UserPoints { get { return userPoints; } private set { userPoints = value; } }
 
         [SerializeField]
         private int userLevel;
@@ -75,13 +77,33 @@ namespace Com.MorganHouston.Imprecision
         private int luck;
         public int Luck { get { return luck; } private set { luck = value; } }
 
-        public int HealthPoints { get; private set; }
-        public int AttackPower { get; private set; }
-        public int DefensePower { get; private set; }
-        public int AttackSpeed { get; private set; }
-        public int MovementSpeed { get; private set; }
-        public int Stamina { get; private set; }
-        public int CritChance { get; private set; }
+        [SerializeField]
+        private int healthPoints;
+        public int HealthPoints { get { return healthPoints; } private set { healthPoints = value; } }
+
+        [SerializeField]
+        private int attackPower;
+        public int AttackPower { get { return attackPower; } private set { attackPower = value; } }
+
+        [SerializeField]
+        private int defensePower;
+        public int DefensePower { get { return defensePower; } private set { defensePower = value; } }
+
+        [SerializeField]
+        private int attackSpeed;
+        public int AttackSpeed { get { return attackSpeed; } private set { attackSpeed = value; } }
+
+        [SerializeField]
+        private int movementSpeed;
+        public int MovementSpeed { get { return movementSpeed; } private set { movementSpeed = value; } }
+
+        [SerializeField]
+        private int stamina;
+        public int Stamina { get { return stamina; } private set { stamina = value; } }
+
+        [SerializeField]
+        private int critChance;
+        public int CritChance { get { return critChance; } private set { critChance = value; } }
 
         protected int maxXP;
 
@@ -159,8 +181,8 @@ namespace Com.MorganHouston.Imprecision
             HealthPoints = 100;
             AttackPower = 10;
             DefensePower = 10;
-            AttackSpeed = 10;
-            MovementSpeed = 5;
+            AttackSpeed = 5;
+            MovementSpeed = 1;
             Stamina = 75;
             CritChance = 5;
         }
@@ -235,8 +257,8 @@ namespace Com.MorganHouston.Imprecision
             HealthPoints = 100;
             AttackPower = 10;
             DefensePower = 10;
-            AttackSpeed = 10;
-            MovementSpeed = 5;
+            AttackSpeed = 5;
+            MovementSpeed = 1;
             Stamina = 75;
             CritChance = 5;
         }
@@ -267,8 +289,8 @@ namespace Com.MorganHouston.Imprecision
             HealthPoints = 100;
             AttackPower = 10;
             DefensePower = 10;
-            AttackSpeed = 10;
-            MovementSpeed = 5;
+            AttackSpeed = 5;
+            MovementSpeed = 1;
             Stamina = 75;
             CritChance = 5;
         }

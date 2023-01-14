@@ -36,7 +36,9 @@ namespace Com.MorganHouston.Imprecision
         private int pointsNeeded;
         private Player player;
 
-        // Start is called before the first frame update
+        /// <summary>
+        /// Gets current stats and sets lables
+        /// </summary>
         void Start()
         {
             player = Player.Instance;
@@ -74,6 +76,9 @@ namespace Com.MorganHouston.Imprecision
             critChanceLbl.text = $"{critChance}%";
         }
 
+        /// <summary>
+        /// Updates Text Lables
+        /// </summary>
         private void Update()
         {
             if(pointsLbl.text != player.UserPoints.ToString())
@@ -122,49 +127,103 @@ namespace Com.MorganHouston.Imprecision
                 critChanceLbl.text = $"{critChance}%";
         }
 
+        /// <summary>
+        /// Sets Stats back to current stats on disable
+        /// </summary>
         private void OnDisable()
         {
             ResetStats();
         }
 
+        /// <summary>
+        /// Sets Stats back to current stats on destroy
+        /// </summary>
         private void OnDestroy()
         {
             ResetStats();
         }
 
+        /// <summary>
+        /// Sets Stats back to current stats on pause
+        /// </summary>
         private void OnApplicationPause(bool pause)
         {
             ResetStats();
         }
 
+        /// <summary>
+        /// Sets Stats back to current stats on quit
+        /// </summary>
         private void OnApplicationQuit()
         {
             ResetStats();
         }
 
+        /// <summary>
+        /// Increases attributes
+        /// </summary>
+        /// <param name="attributeToIncrease">The attribute to increase</param>
         public void IncreaseAttribute(int attributeToIncrease)
         {
-            Player.Instance.IncreaseAttribute(attributeToIncrease);
+            int tmp = pointsNeeded; 
 
             switch (attributeToIncrease)
             {
                 // POWER
                 case 0:
-                    pointsNeeded += ((Player.Instance.Power-1) * 420) * 10;
+                    tmp += (player.Power) * 420 * 10;
+                    
+                    break;
+
+                // DEXTERITY
+                case 1:
+                    tmp += (player.Dexterity) * 420 * 10;
+                    break;
+
+                // ENDURANCE
+                case 2:
+                    tmp += (player.Endurance) * 420 * 10;
+                    break;
+
+                // VITALITY
+                case 3:
+                    tmp += (player.Vitality) * 420 * 10;
+                    break;
+
+                // DEFENSE
+                case 4:
+                    tmp += (player.Defense) * 420 * 10;
+                    break;
+
+                // LUCK
+                case 5:
+                    tmp += (player.Luck) * 420 * 10;
+                    break;
+            }
+
+            if (tmp > player.UserPoints) return;
+
+            player.IncreaseAttribute(attributeToIncrease);
+
+            switch (attributeToIncrease)
+            {
+                // POWER
+                case 0:
+                    pointsNeeded += ((player.Power-1) * 420) * 10;
                     if (!minusPow.IsInteractable())
                         minusPow.interactable = true;
                     break;
                     
                 // DEXTERITY
                 case 1:
-                    pointsNeeded += ((Player.Instance.Dexterity-1) * 420) * 10;
+                    pointsNeeded += ((player.Dexterity-1) * 420) * 10;
                     if (!minusDex.IsInteractable())
                         minusDex.interactable = true;
                     break;
 
                 // ENDURANCE
                 case 2:
-                    pointsNeeded += ((Player.Instance.Endurance-1) * 420) * 10;
+                    pointsNeeded += ((player.Endurance-1) * 420) * 10;
                     if (!minusEnd.IsInteractable())
                         minusEnd.interactable = true;
                     break;
@@ -172,21 +231,21 @@ namespace Com.MorganHouston.Imprecision
 
                 // VITALITY
                 case 3:
-                    pointsNeeded += ((Player.Instance.Vitality-1) * 420) * 10;
+                    pointsNeeded += ((player.Vitality-1) * 420) * 10;
                     if (!minusVit.IsInteractable())
                         minusVit.interactable = true;
                     break;
 
                 // DEFENSE
                 case 4:
-                    pointsNeeded += ((Player.Instance.Defense-1) * 420) * 10;
+                    pointsNeeded += ((player.Defense-1) * 420) * 10;
                     if (!minusDef.IsInteractable())
                         minusDef.interactable = true;
                     break;
 
                 // LUCK
                 case 5:
-                    pointsNeeded += ((Player.Instance.Luck - 1) * 420) * 10;
+                    pointsNeeded += ((player.Luck - 1) * 420) * 10;
                     if (!minusLuck.IsInteractable())
                         minusLuck.interactable = true;
                     break;
@@ -194,6 +253,10 @@ namespace Com.MorganHouston.Imprecision
             pointsNeededLbl.text = pointsNeeded.ToString();
         }
 
+        /// <summary>
+        /// Decreases attributes
+        /// </summary>
+        /// <param name="attributeToIncrease">The attribute to decrease</param>
         public void DecreaseAttribute(int attributeToIncrease)
         {
             switch (attributeToIncrease)
@@ -235,44 +298,47 @@ namespace Com.MorganHouston.Imprecision
                     break;
             }
 
-            Player.Instance.DecreaseAttribute(attributeToIncrease);
+            player.DecreaseAttribute(attributeToIncrease);
 
             switch (attributeToIncrease)
             {
                 // POWER
                 case 0:
-                    pointsNeeded -= ((Player.Instance.Power) * 420) * 10;
+                    pointsNeeded -= ((player.Power) * 420) * 10;
                     break;
 
                 // DEXTERITY
                 case 1:
-                    pointsNeeded -= ((Player.Instance.Dexterity) * 420) * 10;
+                    pointsNeeded -= ((player.Dexterity) * 420) * 10;
                     break;
 
                 // ENDURANCE
                 case 2:
-                    pointsNeeded -= ((Player.Instance.Endurance) * 420) * 10;
+                    pointsNeeded -= ((player.Endurance) * 420) * 10;
                     break;
 
 
                 // VITALITY
                 case 3:
-                    pointsNeeded -= ((Player.Instance.Vitality) * 420) * 10;
+                    pointsNeeded -= ((player.Vitality) * 420) * 10;
                     break;
 
                 // DEFENSE
                 case 4:
-                    pointsNeeded -= ((Player.Instance.Defense) * 420) * 10;
+                    pointsNeeded -= ((player.Defense) * 420) * 10;
                     break;
 
                 // LUCK
                 case 5:
-                    pointsNeeded -= ((Player.Instance.Luck) * 420) * 10;
+                    pointsNeeded -= ((player.Luck) * 420) * 10;
                     break;
             }
             pointsNeededLbl.text = pointsNeeded.ToString();
         }
 
+        /// <summary>
+        /// Sets stats back to current stats
+        /// </summary>
         public void ResetStats()
         {
             pointsNeeded = 0;
