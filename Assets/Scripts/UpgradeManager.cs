@@ -26,7 +26,9 @@ namespace Com.MorganHouston.Imprecision
         public TextMeshProUGUI staminaLbl;
         public TextMeshProUGUI critChanceLbl;
 
-        public Button minusPow, minusDex, minusEnd, minusVit, minusDef, minusLuck;
+        public TextMeshProUGUI upgradeLbl;
+
+        public Button minusPow, minusDex, minusEnd, minusVit, minusDef, minusLuck, upgrade;
 
         public float critChance;
 
@@ -35,6 +37,7 @@ namespace Com.MorganHouston.Imprecision
             currentAS, currentMS, currentStamina, currentCrit;
         private int pointsNeeded;
         private Player player;
+        private List<Button> buttons = new List<Button>();
 
         /// <summary>
         /// Gets current stats and sets lables
@@ -42,38 +45,14 @@ namespace Com.MorganHouston.Imprecision
         void Start()
         {
             player = Player.Instance;
-            currentPoints = player.UserPoints;
-            currentPower = player.Power;
-            currentDex = player.Dexterity;
-            currentEnd = player.Endurance;
-            currentVit = player.Vitality;
-            currentDef = player.Defense;
-            currentLuck = player.Luck;
-            currentHP = player.HealthPoints;
-            currentAP = player.AttackPower;
-            currentDP = player.DefensePower;
-            currentAS = player.AttackSpeed;
-            currentMS = player.MovementSpeed;
-            currentStamina = player.Stamina;
-            currentCrit = player.CritChance;
+            SetCurrentStats();
 
-            pointsNeeded = 0;
-            pointsLbl.text = currentPoints.ToString();
-            pointsNeededLbl.text = pointsNeeded.ToString();
-            powerLbl.text = currentPower.ToString();
-            dexterityLbl.text = currentDex.ToString();
-            enduranceLbl.text = currentEnd.ToString();
-            vitalityLbl.text = currentVit.ToString();
-            defenseLbl.text = currentDef.ToString();
-            luckLbl.text = currentLuck.ToString();
-            healthPointsLbl.text = currentHP.ToString();
-            attackPowerLbl.text = currentAP.ToString();
-            defensePowerLbl.text = currentDP.ToString();
-            attackSpeedLbl.text = currentAS.ToString();
-            movementSpeedLbl.text = currentMS.ToString();
-            staminaLbl.text = currentStamina.ToString();
-            critChance = currentCrit / 10;
-            critChanceLbl.text = $"{critChance}%";
+            buttons.Add(minusPow);
+            buttons.Add(minusDex);
+            buttons.Add(minusEnd);
+            buttons.Add(minusVit);
+            buttons.Add(minusDef);
+            buttons.Add(minusLuck);
         }
 
         /// <summary>
@@ -125,6 +104,11 @@ namespace Com.MorganHouston.Imprecision
 
             if(critChanceLbl.text != $"{critChance}%")
                 critChanceLbl.text = $"{critChance}%";
+
+            if(pointsNeeded > 0)
+                upgrade.interactable = true;
+            else
+                upgrade.interactable = false;
         }
 
         /// <summary>
@@ -157,6 +141,42 @@ namespace Com.MorganHouston.Imprecision
         private void OnApplicationQuit()
         {
             ResetStats();
+        }
+
+        private void SetCurrentStats()
+        {
+            currentPoints = player.UserPoints;
+            currentPower = player.Power;
+            currentDex = player.Dexterity;
+            currentEnd = player.Endurance;
+            currentVit = player.Vitality;
+            currentDef = player.Defense;
+            currentLuck = player.Luck;
+            currentHP = player.HealthPoints;
+            currentAP = player.AttackPower;
+            currentDP = player.DefensePower;
+            currentAS = player.AttackSpeed;
+            currentMS = player.MovementSpeed;
+            currentStamina = player.Stamina;
+            currentCrit = player.CritChance;
+
+            pointsNeeded = 0;
+            pointsLbl.text = currentPoints.ToString();
+            pointsNeededLbl.text = pointsNeeded.ToString();
+            powerLbl.text = currentPower.ToString();
+            dexterityLbl.text = currentDex.ToString();
+            enduranceLbl.text = currentEnd.ToString();
+            vitalityLbl.text = currentVit.ToString();
+            defenseLbl.text = currentDef.ToString();
+            luckLbl.text = currentLuck.ToString();
+            healthPointsLbl.text = currentHP.ToString();
+            attackPowerLbl.text = currentAP.ToString();
+            defensePowerLbl.text = currentDP.ToString();
+            attackSpeedLbl.text = currentAS.ToString();
+            movementSpeedLbl.text = currentMS.ToString();
+            staminaLbl.text = currentStamina.ToString();
+            critChance = currentCrit / 10;
+            critChanceLbl.text = $"{critChance}%";
         }
 
         /// <summary>
@@ -334,6 +354,25 @@ namespace Com.MorganHouston.Imprecision
                     break;
             }
             pointsNeededLbl.text = pointsNeeded.ToString();
+        }
+
+        public void SetUpgradeLabel()
+        {
+            upgradeLbl.text = $"Are you sure you want to spend {pointsNeeded} points?";
+        }
+
+        public void Upgrade()
+        {
+            player.SetUserPoints(player.UserPoints - pointsNeeded);
+
+            foreach(Button button in buttons)
+            {
+                button.interactable = false;
+            }
+
+            SetCurrentStats();
+
+            CloudSaveLogin.Instance.SaveCloudData();
         }
 
         /// <summary>
