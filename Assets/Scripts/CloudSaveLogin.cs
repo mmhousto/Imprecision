@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_IOS
 using UnityEngine.SocialPlatforms.GameCenter;
+#endif
 using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
 using System.Threading.Tasks;
@@ -25,7 +27,7 @@ namespace Com.MorganHouston.Imprecision
     public class CloudSaveLogin : MonoBehaviour
     {
 
-        #region Fields/Variables
+#region Fields/Variables
 
         private static CloudSaveLogin instance;
 
@@ -49,10 +51,10 @@ namespace Com.MorganHouston.Imprecision
         public string userName, userID;
 
 
-        #endregion
+#endregion
 
 
-        #region MonoBehaviour Methods
+#region MonoBehaviour Methods
 
 
         // Start is called before the first frame update
@@ -157,10 +159,10 @@ namespace Com.MorganHouston.Imprecision
         }*/
 
 
-        #endregion
+#endregion
 
 
-        #region Public Sign In/Out Methods
+#region Public Sign In/Out Methods
 
 
         /// <summary>
@@ -279,10 +281,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
-        #region Private Login/Logout Methods
+#region Private Login/Logout Methods
 
         /// <summary>
         /// Loads the Main Menu Scene.
@@ -326,10 +328,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
-        #region Apple Auth
+#region Apple Auth
 
         /// <summary>
         /// Performs continue with Apple login.
@@ -502,10 +504,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
-        #region Facebook Auth
+#region Facebook Auth
 
         /// <summary>
         /// Initializes Facebook SDK
@@ -647,10 +649,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
-        #region Google Play Auth
+#region Google Play Auth
 
 #if UNITY_ANDROID
         void InitializePlayGamesLogin()
@@ -739,10 +741,10 @@ namespace Com.MorganHouston.Imprecision
         }
 #endif
 
-        #endregion
+#endregion
 
 
-        #region Private Methods
+#region Private Methods
 
         /// <summary>
         /// Signs in an anonymous player.
@@ -1065,7 +1067,7 @@ namespace Com.MorganHouston.Imprecision
             player.SetData();
         }
 
-        #endregion
+#endregion
 
 
     }

@@ -44,5 +44,10 @@ namespace Com.MorganHouston.Imprecision
 #endif
         }
 
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
+
     }
 }
