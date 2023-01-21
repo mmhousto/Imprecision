@@ -20,14 +20,42 @@ public class MobileDisableAutoSwitchControls : MonoBehaviour
     [Header("Target")]
     public PlayerInput playerInput;
 
+    public GameObject touchZone, lookStick;
+
     void Awake()
     {
+        SetSwipeOrStickLook();
+
         DisableScreenControls();
     }
 
     private void Update()
     {
         //DisableScreenControls();
+    }
+
+    public void SetSwipeOrStickLook()
+    {
+        if (PlayerPrefs.GetInt("Swipe", 0) == 0)
+        {
+            EnableStickLook();
+        }
+        else
+        {
+            EnableSwipe();
+        }
+    }
+
+    public void EnableSwipe()
+    {
+        touchZone.SetActive(true);
+        lookStick.SetActive(false);
+    }
+
+    public void EnableStickLook()
+    {
+        touchZone.SetActive(false);
+        lookStick.SetActive(true);
     }
 
     public void DisableScreenControls()

@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +15,7 @@ namespace com.MorganHouston.Imprecision
         public float MusicVol { get; set; }
         public float SFXVol { get; set; }
         public float Sensitivity { get; set; }
+        public bool SwipeToLook { get; set; }
 
         private void Awake()
         {
@@ -35,6 +36,7 @@ namespace com.MorganHouston.Imprecision
             MusicVol = PlayerPrefs.GetFloat("MusicVolume", 1);
             SFXVol = PlayerPrefs.GetFloat("SFXVolume", 1);
             Sensitivity = PlayerPrefs.GetFloat("Sensitivity", 20);
+            SwipeToLook = Convert.ToBoolean(PlayerPrefs.GetInt("Swipe", 0));
         }
 
         public void SetMasterValue(float value)
@@ -62,6 +64,12 @@ namespace com.MorganHouston.Imprecision
         {
             Sensitivity = value;
             PlayerPrefs.SetFloat("Sensitivity", value);
+        }
+
+        public void SetSwipeToLook(bool value)
+        {
+            SwipeToLook = value;
+            PlayerPrefs.SetInt("Swipe", Convert.ToInt32(value));
         }
     }
 }
