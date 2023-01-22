@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace com.MorganHouston.Imprecision
+namespace Com.MorganHouston.Imprecision
 {
     public class AudioManager : MonoBehaviour
     {

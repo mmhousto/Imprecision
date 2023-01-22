@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace com.MorganHouston.Imprecision
+namespace Com.MorganHouston.Imprecision
 {
     public class CloudManager : MonoBehaviour
     {

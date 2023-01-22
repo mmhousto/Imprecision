@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace com.MorganHouston.Imprecision
+namespace Com.MorganHouston.Imprecision
 {
     public class PreferenceManager : MonoBehaviour
     {
@@ -16,6 +16,7 @@ namespace com.MorganHouston.Imprecision
         public float SFXVol { get; set; }
         public float Sensitivity { get; set; }
         public bool SwipeToLook { get; set; }
+        public bool Shadows { get; set; }
 
         private void Awake()
         {
@@ -37,6 +38,7 @@ namespace com.MorganHouston.Imprecision
             SFXVol = PlayerPrefs.GetFloat("SFXVolume", 1);
             Sensitivity = PlayerPrefs.GetFloat("Sensitivity", 20);
             SwipeToLook = Convert.ToBoolean(PlayerPrefs.GetInt("Swipe", 0));
+            Shadows = Convert.ToBoolean(PlayerPrefs.GetInt("Shadows", 1));
         }
 
         public void SetMasterValue(float value)
@@ -71,5 +73,12 @@ namespace com.MorganHouston.Imprecision
             SwipeToLook = value;
             PlayerPrefs.SetInt("Swipe", Convert.ToInt32(value));
         }
+
+        public void SetShadows(bool value)
+        {
+            Shadows = value;
+            PlayerPrefs.SetInt("Shadows", Convert.ToInt32(value));
+        }
+
     }
 }
