@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace Com.MorganHouston.Imprecision
 
         public void SetShadowsOnOff()
         {
-            if (PreferenceManager.Instance.Shadows == true)
+            if (Convert.ToBoolean(PlayerPrefs.GetInt("Shadows", 1)) == true)
             {
                 sun.shadows = LightShadows.Soft;
             }

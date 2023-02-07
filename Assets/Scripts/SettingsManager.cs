@@ -10,6 +10,8 @@ namespace Com.MorganHouston.Imprecision
         public GameObject[] audioSettings;
         public GameObject[] gameSettings;
         public GameObject[] visualSettings;
+        public GameObject swipeToLook;
+
 
         public void SetAudio()
         {
@@ -45,6 +47,12 @@ namespace Com.MorganHouston.Imprecision
             {
                 setting.SetActive(false);
             }
+
+#if (UNITY_IOS || UNITY_ANDROID)
+            swipeToLook.SetActive(true);
+#else
+            swipeToLook.SetActive(false);
+#endif
         }
 
         public void SetVisual()
