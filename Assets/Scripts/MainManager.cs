@@ -44,6 +44,11 @@ namespace Com.MorganHouston.Imprecision
             SceneLoader.LoadThisScene(2);
         }
 
+        public void PlayStory()
+        {
+            SceneLoader.LoadThisScene(3);
+        }
+
         public void SetPlayerName(string name)
         {
             Player.Instance.SetPlayerName(name);
