@@ -11,13 +11,14 @@ namespace Com.MorganHouston.Imprecision
         public Transform target;
         private Vector3 spawnLocation;
         private NavMeshAgent agent;
-        private bool following;
+        [SerializeField]private bool following;
 
         // Start is called before the first frame update
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
             spawnLocation = transform.position;
+            agent.Warp(spawnLocation);
         }
 
         // Update is called once per frame
@@ -26,9 +27,9 @@ namespace Com.MorganHouston.Imprecision
             Follow();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && following != true)
             {
                 following = true;
             }
@@ -44,9 +45,9 @@ namespace Com.MorganHouston.Imprecision
 
         private void Follow()
         {
-            if (following)
+            if (following == true)
             {
-                FollowTarget(transform.position);
+                FollowTarget(target.position);
             }
             else
             {
