@@ -390,13 +390,7 @@ namespace Com.MorganHouston.Imprecision
             player.SetAttribute(3, currentVit);
             player.SetAttribute(4, currentDef);
             player.SetAttribute(5, currentLuck);
-            player.SetHealthPoints(currentHP);
-            player.SetAttackPower(currentAP);
-            player.SetDefensePower(currentDP);
-            player.SetAttackSpeed(currentAS);
-            player.SetMovementSpeed(currentMS);
-            player.SetStamina(currentStamina);
-            player.SetCritChance(currentCrit);
+            player.SetStats();
         }
 
 

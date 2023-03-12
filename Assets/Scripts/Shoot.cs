@@ -121,7 +121,11 @@ namespace Com.MorganHouston.Imprecision
                 Rigidbody rb = clone.GetComponent<Rigidbody>(); // gets Rigidbody of cloned arrow
                                                                 //rb.velocity = arrowSpawn.forward * shootForce * pullBack; // applies velocity to it in direction facing
                 rb.AddForce(directionWithoutSpread.normalized *  (10 + shootForce/25) * pullBack, ForceMode.Impulse);
+
+#pragma warning disable CS1633 // Unrecognized #pragma directive
                 clone.transform.rotation = Quaternion.LookRotation(rb.velocity); // adds arc to arrow (rotates arrow down)
+#pragma warning restore CS1633 // Unrecognized #pragma directive
+
                 Physics.IgnoreCollision(clone.GetComponent<Collider>(), GetComponent<Collider>()); // ignore collision w/ player
 
                 source.GenerateImpulse(playerLookingDirection.forward);

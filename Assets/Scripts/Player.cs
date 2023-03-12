@@ -80,30 +80,44 @@ namespace Com.MorganHouston.Imprecision
         [SerializeField]
         private int healthPoints;
         public int HealthPoints { get { return healthPoints; } private set { healthPoints = value; } }
+        private int hpMin = 100;
+        private int hpMax = 1000;
 
         [SerializeField]
         private int attackPower;
         public int AttackPower { get { return attackPower; } private set { attackPower = value; } }
+        private int apMin = 10;
+        private int apMax = 250;
 
         [SerializeField]
         private int defensePower;
         public int DefensePower { get { return defensePower; } private set { defensePower = value; } }
+        private int dpMin = 10;
+        private int dpMax = 260;
 
         [SerializeField]
         private int attackSpeed;
         public int AttackSpeed { get { return attackSpeed; } private set { attackSpeed = value; } }
+        private int asMin = 1;
+        private int asMax = 100;
 
         [SerializeField]
         private int movementSpeed;
         public int MovementSpeed { get { return movementSpeed; } private set { movementSpeed = value; } }
+        private int msMin = 1;
+        private int msMax = 100;
 
         [SerializeField]
         private int stamina;
         public int Stamina { get { return stamina; } private set { stamina = value; } }
+        private int stamMin = 75;
+        private int stamMax = 500;
 
         [SerializeField]
         private int critChance;
         public int CritChance { get { return critChance; } private set { critChance = value; } }
+        private int critMin = 1;
+        private int critMax = 100;
 
         protected int maxXP;
 
@@ -178,13 +192,7 @@ namespace Com.MorganHouston.Imprecision
             Defense = 1;
             Luck = 1;
 
-            HealthPoints = 100;
-            AttackPower = 10;
-            DefensePower = 10;
-            AttackSpeed = 5;
-            MovementSpeed = 1;
-            Stamina = 75;
-            CritChance = 5;
+            SetStats();
         }
 
         // Loads player from cloud save/ local save
@@ -222,13 +230,7 @@ namespace Com.MorganHouston.Imprecision
             Defense = data.defense;
             Luck = data.luck;
 
-            HealthPoints = data.healthPoints;
-            AttackPower = data.attackPower;
-            DefensePower = data.defensePower;
-            AttackSpeed = data.attackSpeed;
-            MovementSpeed = data.movementSpeed;
-            Stamina = data.stamina;
-            CritChance = data.critChance;
+            SetStats();
         }
 
         // Creates an anonymous player.
@@ -254,13 +256,7 @@ namespace Com.MorganHouston.Imprecision
             Defense = 1;
             Luck = 1;
 
-            HealthPoints = 100;
-            AttackPower = 10;
-            DefensePower = 10;
-            AttackSpeed = 5;
-            MovementSpeed = 1;
-            Stamina = 75;
-            CritChance = 5;
+            SetStats();
         }
 
         // Creates new player w/ SSO login.
@@ -286,14 +282,10 @@ namespace Com.MorganHouston.Imprecision
             Defense = 1;
             Luck = 1;
 
-            HealthPoints = 100;
-            AttackPower = 10;
-            DefensePower = 10;
-            AttackSpeed = 5;
-            MovementSpeed = 1;
-            Stamina = 75;
-            CritChance = 5;
+            SetStats();
         }
+
+
 
         public void GainXP(int xpToAdd)
         {
@@ -404,40 +396,80 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
-        public void SetHealthPoints(int newValue)
+        public void SetStats()
         {
-            HealthPoints = newValue;
+            SetHealthPoints();
+            SetAttackPower();
+            SetDefensePower();
+            SetAttackSpeed();
+            SetMovementSpeed();
+            SetStamina();
+            SetCritChance();
         }
 
-        public void SetAttackPower(int newValue)
+        public int SetStatValue(int attributeLevel, int statMin, int statMax)
         {
-            AttackPower = newValue;
+            int statValue = Mathf.RoundToInt(statMin + (statMax - statMin) * (attributeLevel / 100f));
+            return statValue;
         }
 
-        public void SetAttackSpeed(int newValue)
+        public int SetStatValue(int attributeLevel1, int statMin, int statMax, int attributeLevel2, int attributeWeight1, int attributeWeight2)
         {
-            AttackSpeed = newValue;
+            int statValue = Mathf.RoundToInt(statMin + (statMax - statMin) * ((attributeLevel1 * attributeWeight1 + attributeLevel2 * attributeWeight2)
+                / (100f * (attributeWeight1 + attributeWeight2))));
+            return statValue;
         }
 
-        public void SetDefensePower(int newValue)
+        public int SetStatValue(int attributeLevel1, int statMin, int statMax, int attributeLevel2, int attributeWeight1, int attributeWeight2, int attributeLevel3, int attributeWeight3)
         {
-            DefensePower = newValue;
+            int statValue = Mathf.RoundToInt(statMin + (statMax - statMin) * ((attributeLevel1 * attributeWeight1 + attributeLevel2 * attributeWeight2 +
+                attributeLevel3 * attributeWeight3) / (100f * (attributeWeight1 + attributeWeight2 + attributeWeight3))));
+            return statValue;
         }
 
-        public void SetMovementSpeed(int newValue)
+        public int SetStatValue(int attributeLevel1, int statMin, int statMax, int attributeLevel2, int attributeWeight1, int attributeWeight2, int attributeLevel3, int attributeWeight3, int attributeLevel4, int attributeWeight4)
         {
-            MovementSpeed = newValue;
+            int statValue = Mathf.RoundToInt(statMin + (statMax - statMin) * ((attributeLevel1 * attributeWeight1 + attributeLevel2 * attributeWeight2 +
+                attributeLevel3 * attributeWeight3 + attributeLevel4 * attributeWeight4) / (100f * (attributeWeight1 + attributeWeight2 + attributeWeight3 + attributeWeight4))));
+            return statValue;
         }
 
-        public void SetStamina(int newValue)
+        public void SetHealthPoints()
         {
-            AttackPower = newValue;
+            HealthPoints = SetStatValue(Vitality, hpMin, hpMax, Power, 5, 1, Endurance, 1);
         }
 
-        public void SetCritChance(int newValue)
+        public void SetAttackPower()
         {
-            CritChance = newValue;
+            AttackPower = SetStatValue(Power, apMin, apMax, Defense, 5, 1, Dexterity, 1, Vitality, 1);
         }
+
+        public void SetAttackSpeed()
+        {
+            AttackSpeed = SetStatValue(Dexterity, asMin, asMax);
+        }
+
+        public void SetDefensePower()
+        {
+            DefensePower = SetStatValue(Defense, dpMin, dpMax, Power, 5, 1, Vitality, 1, Luck, 1);
+        }
+
+        public void SetMovementSpeed()
+        {
+            MovementSpeed = SetStatValue(Dexterity, msMin, msMax, Endurance, 1, 3);
+        }
+
+        public void SetStamina()
+        {
+            Stamina = SetStatValue(Endurance, stamMin, stamMax);
+        }
+
+        public void SetCritChance()
+        {
+            CritChance = SetStatValue(Luck, critMin, critMax, Dexterity, 3, 1);
+        }
+
+
 
         public void IncreaseAttribute(int attributeToIncrease)
         {
@@ -446,48 +478,48 @@ namespace Com.MorganHouston.Imprecision
                 // POWER
                 case 0:
                     Power++;
-                    AttackPower += (Power % 3 == 0) ? 6 : 5;
-                    DefensePower += (Power % 3 == 0) ? 3 : 2;
+                    SetAttackPower();
+                    SetDefensePower();
+                    SetHealthPoints();
                     break;
 
                 // DEXTERITY
                 case 1:
                     Dexterity++;
-                    AttackPower += 2;
-                    MovementSpeed += (Dexterity % 3 == 0) ? 2 : 1;
-                    AttackSpeed += (Dexterity % 3 == 0) ? 5 : 4;
+                    SetAttackPower();
+                    SetAttackSpeed();
+                    SetMovementSpeed();
+                    SetCritChance();
                     break;
 
                 // ENDURANCE
                 case 2:
                     Endurance++;
-                    MovementSpeed += (Endurance % 3 == 0) ? 4 : 3;
-                    Stamina += (Endurance % 3 == 0) ? 4 : 3;
-                    HealthPoints++;
+                    SetMovementSpeed();
+                    SetStamina();
+                    SetHealthPoints();
                     break;
 
                 // VITALITY
                 case 3:
                     Vitality++;
-                    HealthPoints += (Vitality % 3 == 0) ? 7 : 5;
-                    AttackPower++;
-                    DefensePower++;
-
+                    SetHealthPoints();
+                    SetAttackPower();
+                    SetDefensePower();
                     break;
 
                 // DEFENSE
                 case 4:
                     Defense++;
-                    AttackPower += (Defense % 3 == 0) ? 2 : 1;
-                    DefensePower += (Defense % 3 == 0) ? 6 : 5;
-                    HealthPoints++;
+                    SetDefensePower();
+                    SetAttackPower();
                     break;
 
                 // LUCK
                 case 5:
                     Luck++;
-                    CritChance += (Luck % 3 == 0) ? 8 : 6;
-                    HealthPoints++;
+                    SetCritChance();
+                    SetDefensePower();
                     break;
             }
         }
@@ -499,48 +531,49 @@ namespace Com.MorganHouston.Imprecision
                 // POWER
                 case 0:
                     Power--;
-                    AttackPower -= ((Power + 1) % 3 == 0) ? 6 : 5;
-                    DefensePower -= ((Power + 1) % 3 == 0) ? 3 : 2;
+                    SetAttackPower();
+                    SetDefensePower();
+                    SetHealthPoints();
                     break;
 
                 // DEXTERITY
                 case 1:
                     Dexterity--;
-                    AttackPower -= 2;
-                    MovementSpeed -= ((Dexterity + 1) % 3 == 0) ? 2 : 1;
-                    AttackSpeed -= ((Dexterity + 1) % 3 == 0) ? 5 : 4;
+                    SetAttackPower();
+                    SetAttackSpeed();
+                    SetMovementSpeed();
+                    SetCritChance();
                     break;
 
                 // ENDURANCE
                 case 2:
                     Endurance--;
-                    MovementSpeed -= ((Endurance + 1) % 3 == 0) ? 4 : 3;
-                    Stamina -= ((Endurance + 1) % 3 == 0) ? 4 : 3;
-                    HealthPoints--;
+                    SetMovementSpeed();
+                    SetStamina();
+                    SetHealthPoints();
                     break;
 
                 // VITALITY
                 case 3:
                     Vitality--;
-                    HealthPoints -= ((Vitality + 1) % 3 == 0) ? 7 : 5;
-                    AttackPower--;
-                    DefensePower--;
+                    SetHealthPoints();
+                    SetAttackPower();
+                    SetDefensePower();
 
                     break;
 
                 // DEFENSE
                 case 4:
                     Defense--;
-                    AttackPower -= ((Defense + 1) % 3 == 0) ? 2 : 1;
-                    DefensePower -= ((Defense + 1) % 3 == 0) ? 6 : 5;
-                    HealthPoints--;
+                    SetDefensePower();
+                    SetAttackPower();
                     break;
 
                 // LUCK
                 case 5:
                     Luck--;
-                    CritChance -= ((Luck + 1) % 3 == 0) ? 8 : 6;
-                    HealthPoints--;
+                    SetCritChance();
+                    SetDefensePower();
                     break;
             }
         }
