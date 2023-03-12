@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -10,6 +11,7 @@ namespace Com.MorganHouston.Imprecision
     {
 
         public Transform target;
+        public Slider healthBar;
         private Vector3 spawnLocation;
         private NavMeshAgent agent;
         [SerializeField] private bool following;
@@ -50,6 +52,8 @@ namespace Com.MorganHouston.Imprecision
             spawnLocation = transform.position;
             agent.Warp(spawnLocation);
             agent.speed = movementSpeed;
+            healthBar.maxValue = HealthPoints;
+            healthBar.value = HealthPoints;
         }
 
         // Update is called once per frame
@@ -112,6 +116,7 @@ namespace Com.MorganHouston.Imprecision
         {
             HealthPoints -= damageToTake;
             Debug.Log(HealthPoints);
+            healthBar.value = HealthPoints;
             if(HealthPoints <= 0)
             {
                 Destroy(this.gameObject);
