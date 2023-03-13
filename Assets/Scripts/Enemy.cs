@@ -8,18 +8,19 @@ using UnityEngine.UI;
 namespace Com.MorganHouston.Imprecision
 {
     public class Enemy : MonoBehaviour
-    {
+    {        public Transform target;
+        public float followDistance = 5f; // the distance at which the spider will start following the player
+        public float attackDistance = 2f; // the distance at which the spider will start attacking the player
+        public float attackTime = 0;
 
-        public Transform target;
-        public Slider healthBar;
+        private Health health;
+        private enum AIState { Idle, Follow, Attack }; // enum for the spider's states
+        private AIState currentState = AIState.Idle; // current state of the spider
         private Vector3 spawnLocation;
         private NavMeshAgent agent;
-        [SerializeField] private bool following;
+        private bool canAttack;
         [SerializeField]
         private int scalingfactor = 10;
-        [SerializeField]
-        private int healthPoints = 100;
-        public int HealthPoints { get { return healthPoints; } private set { healthPoints = value; } }
 
         [SerializeField]
         private int attackPower;
@@ -52,14 +53,15 @@ namespace Com.MorganHouston.Imprecision
             spawnLocation = transform.position;
             agent.Warp(spawnLocation);
             agent.speed = movementSpeed;
-            healthBar.maxValue = HealthPoints;
-            healthBar.value = HealthPoints;
+            health = GetComponent<Health>();
+            attackTime = 0;
         }
 
         // Update is called once per frame
         void Update()
         {
-            Follow();
+            CheckCanAttack();
+            DetermineState();
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -69,41 +71,60 @@ namespace Com.MorganHouston.Imprecision
                 Collider myCollider = collision.GetContact(0).thisCollider;
                 if(myCollider.name == "Head")
                 {
-                    TakeDamage(HealthPoints);
+                    health.TakeDamage(health.HealthPoints);
                 }
                 else if (myCollider.name == "Body")
                 {
-                    TakeDamage(DetermineDamage());
+                    health.TakeDamage(DetermineDamageToTake());
                 }
                 Destroy(collision.gameObject);
             }
         }
 
-        private void OnTriggerStay(Collider other)
+        private void DetermineState()
         {
-            if (other.CompareTag("Player") && following != true)
+            float distanceToPlayer = Vector3.Distance(transform.position, target.position);
+
+            switch (currentState)
             {
-                following = true;
+                case AIState.Idle:
+                    // do idle behavior (e.g. stay in place and wait for player to get close)
+                    if (distanceToPlayer < followDistance)
+                    {
+                        currentState = AIState.Follow;
+                    }
+                    break;
+                case AIState.Follow:
+                    // do follow behavior (e.g. move towards player)
+                    FollowTarget(target.position);
+                    if (distanceToPlayer < attackDistance)
+                    {
+                        currentState = AIState.Attack;
+                    }
+                    break;
+                case AIState.Attack:
+                    if(canAttack)
+                        StartCoroutine(JumpAndAttack());
+                    else
+                        FollowTarget(target.position);
+                    break;
+                default:
+                    currentState = AIState.Idle;
+                    break;
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        private void CheckCanAttack()
         {
-            if (other.CompareTag("Player"))
+            if(attackTime <= 0)
             {
-                following = false;
-            }
-        }
-
-        private void Follow()
-        {
-            if (following == true)
-            {
-                FollowTarget(target.position);
+                attackTime = 0;
+                canAttack = true;
             }
             else
             {
-                FollowTarget(spawnLocation);
+                attackTime -= Time.deltaTime;
+                canAttack = false;
             }
         }
 
@@ -112,18 +133,58 @@ namespace Com.MorganHouston.Imprecision
             agent.SetDestination(targetPos);
         }
 
-        private void TakeDamage(int damageToTake)
+        private IEnumerator JumpAndAttack()
         {
-            HealthPoints -= damageToTake;
-            Debug.Log(HealthPoints);
-            healthBar.value = HealthPoints;
-            if(HealthPoints <= 0)
+            canAttack = false;
+            // make the spider jump towards the player
+            Vector3 directionToPlayer = (target.position - transform.position).normalized;
+            GetComponent<Rigidbody>().AddForce(directionToPlayer * 5 + Vector3.up * 3, ForceMode.Impulse);
+
+            // wait for the jump animation to finish
+            float jumpTime = 1f; // adjust this to match the length of your jump animation
+            yield return new WaitForSeconds(jumpTime);
+
+            // check if the player is within attack range
+            float distanceToPlayer = Vector3.Distance(transform.position, target.position);
+            if (distanceToPlayer <= attackDistance)
             {
-                Destroy(this.gameObject);
+                // perform the attack
+                target.GetComponent<Health>().TakeDamage(DetermineDamageToDeal());
             }
+            attackTime = attackSpeed;
         }
 
-        private int DetermineDamage()
+        private int DetermineDamageToDeal()
+        {
+            Player player = Player.Instance;
+
+            int damage = 0;
+            float critValue = UnityEngine.Random.value;
+            float randValue = UnityEngine.Random.Range(1, 12);
+            float crit = CritChance / 100f;
+
+            Debug.Log($"CritChance: {crit}, Crit Rand Value: {critValue}");
+            if (critValue < (1f - crit))
+            {
+                damage = (int)(randValue + AttackPower) - (player.DefensePower * (player.UserLevel / scalingfactor));
+            }
+            else
+            {
+                damage = ((int)(randValue + AttackPower) - (player.DefensePower * (player.UserLevel / scalingfactor))) * 2;
+                Debug.Log("CRITICAL HIT!");
+            }
+
+            if (damage < 0)
+            {
+                damage = 0;
+            }
+
+            Debug.Log("Damage: " + damage);
+
+            return damage;
+        }
+
+        private int DetermineDamageToTake()
         {
             Player player = Player.Instance;
 
