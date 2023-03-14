@@ -15,7 +15,7 @@ namespace Com.MorganHouston.Imprecision
 
         private float lifeTimer = 6f;
         private float timer;
-        private bool hit;
+        public bool hit;
 
         // Start is called before the first frame update
         void Start()
@@ -77,10 +77,7 @@ namespace Com.MorganHouston.Imprecision
             arrowRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             arrowRB.isKinematic = true;
 
-
-            
-
-
+            gameObject.GetComponent<Collider>().enabled = false;
 
         }
 
