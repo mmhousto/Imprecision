@@ -599,7 +599,6 @@ GameObject:
   - component: {fileID: 6354235337705008775}
   - component: {fileID: 6009235610266793020}
   - component: {fileID: 1755972183}
-  - component: {fileID: 1755972184}
   - component: {fileID: 1755972185}
   - component: {fileID: 4779912656936854887}
   - component: {fileID: 5319309143022272684}
@@ -672,19 +671,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!135 &1755972184
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6009235610266793021}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 80
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &1755972185
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -736,7 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  followDistance: 15
+  followDistance: 25
   attackDistance: 2
   attackTime: 0
   scalingfactor: 10
