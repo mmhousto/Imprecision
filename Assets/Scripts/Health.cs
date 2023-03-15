@@ -12,8 +12,6 @@ namespace Com.MorganHouston.Imprecision
         public TextMeshProUGUI label;
 
         [SerializeField]
-        private int scalingfactor = 10;
-        [SerializeField]
         private int healthPoints = 100;
         public int HealthPoints { get { return healthPoints; } private set { healthPoints = value; } }
 

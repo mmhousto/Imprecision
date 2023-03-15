@@ -2,6 +2,7 @@
 using UnityEngine.InputSystem;
 using Com.MorganHouston.Imprecision;
 using UnityEngine.Animations.Rigging;
+using System;
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -54,6 +55,8 @@ namespace StarterAssets
 
 		public MultiRotationConstraint leftArmRig, headRig;
 
+		public GameObject fpCam, tpCam, tpAimCam;
+
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
@@ -66,6 +69,9 @@ namespace StarterAssets
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
+
+		[SerializeField]
+		private bool isFP;
 
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
@@ -99,6 +105,8 @@ namespace StarterAssets
 
 			RotationSpeed = PlayerPrefs.GetFloat("Sensitivity", 20) * 0.05f;
 
+			isFP = Convert.ToBoolean(PlayerPrefs.GetInt("IsFP", 1));
+
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
@@ -106,6 +114,7 @@ namespace StarterAssets
 
 		private void Update()
 		{
+			UpdateCamera();
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
@@ -125,6 +134,30 @@ namespace StarterAssets
         {
 			RotationSpeed = value * 0.05f;
 		}
+
+		private void UpdateCamera()
+        {
+            if (isFP && !fpCam.activeInHierarchy)
+            {
+				fpCam.SetActive(true);
+				tpCam.SetActive(false);
+				tpAimCam.SetActive(false);
+            }
+            else if(isFP == false)
+            {
+				if(fpCam.activeInHierarchy)
+					fpCam.SetActive(false);
+                if (_input.aiming && !tpAimCam.activeInHierarchy)
+                {
+					tpAimCam.SetActive(true);
+					tpCam.SetActive(false);
+                }else if (!_input.aiming && !tpCam.activeInHierarchy)
+                {
+					tpAimCam.SetActive(false);
+					tpCam.SetActive(true);
+				}
+            }
+        }
 
 		private void GroundedCheck()
 		{
