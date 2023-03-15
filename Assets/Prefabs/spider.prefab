@@ -600,9 +600,9 @@ GameObject:
   - component: {fileID: 6009235610266793020}
   - component: {fileID: 1755972183}
   - component: {fileID: 1755972184}
-  - component: {fileID: 1755972186}
   - component: {fileID: 1755972185}
   - component: {fileID: 4779912656936854887}
+  - component: {fileID: 5319309143022272684}
   m_Layer: 0
   m_Name: spider
   m_TagString: Untagged
@@ -685,29 +685,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 80
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1755972186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6009235610266793021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0ba2e9be4858f24391e1a7339e2c969, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  followDistance: 15
-  attackDistance: 2.2
-  attackTime: 0
-  scalingfactor: 10
-  attackPower: 10
-  defensePower: 10
-  attackSpeed: 5
-  movementSpeed: 1
-  stamina: 75
-  critChance: 5
 --- !u!195 &1755972185
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -717,7 +694,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6009235610266793021}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.75
   m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -746,6 +723,29 @@ MonoBehaviour:
   label: {fileID: 1226969907}
   scalingfactor: 10
   healthPoints: 100
+--- !u!114 &5319309143022272684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6009235610266793021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e2cbac0e9ad8142a3ce8b5c64f6e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  followDistance: 15
+  attackDistance: 2
+  attackTime: 0
+  scalingfactor: 10
+  attackPower: 10
+  defensePower: 10
+  attackSpeed: 5
+  movementSpeed: 1
+  stamina: 50
+  critChance: 5
 --- !u!1 &6302107184969952516
 GameObject:
   m_ObjectHideFlags: 0

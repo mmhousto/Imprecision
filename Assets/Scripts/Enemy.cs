@@ -14,41 +14,41 @@ namespace Com.MorganHouston.Imprecision
         public float attackDistance = 2f; // the distance at which the spider will start attacking the player
         public float attackTime = 0;
 
-        private Health health;
-        private enum AIState { Idle, Follow, Attack }; // enum for the spider's states
-        private AIState currentState = AIState.Idle; // current state of the spider
-        private Vector3 spawnLocation;
-        private NavMeshAgent agent;
-        private bool canAttack;
+        protected Health health;
+        protected enum AIState { Idle, Follow, Attack, Patrol }; // enum for the spider's states
+        protected AIState currentState = AIState.Idle; // current state of the spider
+        protected Vector3 spawnLocation;
+        protected NavMeshAgent agent;
+        protected bool canAttack;
 
         [SerializeField]
-        private int scalingfactor = 10;
+        protected int scalingfactor = 10;
 
         [SerializeField]
-        private int attackPower;
-        public int AttackPower { get { return attackPower; } private set { attackPower = value; } }
+        protected int attackPower;
+        public int AttackPower { get { return attackPower; } protected set { attackPower = value; } }
 
         [SerializeField]
-        private int defensePower;
-        public int DefensePower { get { return defensePower; } private set { defensePower = value; } }
+        protected int defensePower;
+        public int DefensePower { get { return defensePower; } protected set { defensePower = value; } }
 
         [SerializeField]
-        private float attackSpeed;
-        public float AttackSpeed { get { return attackSpeed; } private set { attackSpeed = value; } }
+        protected float attackSpeed;
+        public float AttackSpeed { get { return attackSpeed; } protected set { attackSpeed = value; } }
 
         [SerializeField]
-        private int movementSpeed;
-        public int MovementSpeed { get { return movementSpeed; } private set { movementSpeed = value; } }
+        protected int movementSpeed;
+        public int MovementSpeed { get { return movementSpeed; } protected set { movementSpeed = value; } }
 
         [SerializeField]
-        private int stamina;
-        public int Stamina { get { return stamina; } private set { stamina = value; } }
+        protected int stamina;
+        public int Stamina { get { return stamina; } protected set { stamina = value; } }
 
         [SerializeField]
-        private int critChance;
-        public int CritChance { get { return critChance; } private set { critChance = value; } }
+        protected int critChance;
+        public int CritChance { get { return critChance; } protected set { critChance = value; } }
 
-        enum HitArea
+        protected enum HitArea
         {
             Head,
             Body,
@@ -58,13 +58,7 @@ namespace Com.MorganHouston.Imprecision
         // Start is called before the first frame update
         void Start()
         {
-            agent = GetComponent<NavMeshAgent>();
-            spawnLocation = transform.position;
-            agent.Warp(spawnLocation);
-            agent.speed = movementSpeed;
-            health = GetComponent<Health>();
-            attackSpeed = 5 - (attackSpeed / 100)*4;
-            attackTime = 0;
+            AgentSetup();
         }
 
         // Update is called once per frame
@@ -81,7 +75,7 @@ namespace Com.MorganHouston.Imprecision
                 Collider myCollider = collision.GetContact(0).thisCollider;
                 if(myCollider.name == "Head")
                 {
-                    health.TakeDamage(health.HealthPoints);
+                    health.TakeDamage(DetermineDamageToTake((int)HitArea.Head));
                 }
                 else if (myCollider.name == "Body")
                 {
@@ -95,7 +89,18 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
-        private void DetermineState()
+        protected void AgentSetup()
+        {
+            agent = GetComponent<NavMeshAgent>();
+            spawnLocation = transform.position;
+            agent.Warp(spawnLocation);
+            agent.speed = movementSpeed;
+            health = GetComponent<Health>();
+            attackSpeed = 5 - (attackSpeed / 100) * 4;
+            attackTime = 0;
+        }
+
+        protected virtual void DetermineState()
         {
             if(target == null)
             {
@@ -125,7 +130,11 @@ namespace Com.MorganHouston.Imprecision
                         break;
                     case AIState.Attack:
                         if (canAttack)
-                            JumpAndAttack();
+                        {
+                            target.GetComponent<Health>().TakeDamage(DetermineDamageToDeal());
+                            attackTime = attackSpeed;
+                            canAttack = false;
+                        }
                         else
                         {
                             agent.updatePosition = true;
@@ -142,7 +151,7 @@ namespace Com.MorganHouston.Imprecision
             
         }
 
-        private void CheckCanAttack()
+        protected void CheckCanAttack()
         {
             if(attackTime <= 0)
             {
@@ -156,45 +165,13 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
-        private void FollowTarget(Vector3 targetPos)
+        protected void FollowTarget(Vector3 targetPos)
         {
             if(targetPos != null)
                 agent.SetDestination(targetPos);
         }
 
-        private void JumpAndAttack()
-        {
-            if (agent.enabled)
-            {
-                // set the agents target to where you are before the jump
-                // this stops her before she jumps. Alternatively, you could
-                // cache this value, and set it again once the jump is complete
-                // to continue the original move
-                agent.SetDestination(transform.position);
-                // disable the agent
-                agent.updatePosition = false;
-                agent.updateRotation = false;
-                agent.isStopped = true;
-            }
-
-            // make the spider jump towards the player
-            Vector3 directionToPlayer = (target.position - transform.position).normalized;
-            GetComponent<Rigidbody>().AddForce(directionToPlayer * 5 + Vector3.up * 5, ForceMode.Impulse);
-
-            // check if the player is within attack range
-            float distanceToPlayer = Vector3.Distance(transform.position, target.position);
-            if (distanceToPlayer <= 1.5f)
-            {
-                // perform the attack
-                target.GetComponent<Health>().TakeDamage(DetermineDamageToDeal());
-            }
-
-            attackTime = attackSpeed;
-            canAttack = false;
-
-        }
-
-        private int DetermineDamageToDeal()
+        protected int DetermineDamageToDeal()
         {
             Player player = Player.Instance;
 
@@ -220,15 +197,17 @@ namespace Com.MorganHouston.Imprecision
             return damage;
         }
 
-        private int DetermineDamageToTake(int hitZone)
+        protected int DetermineDamageToTake(int hitZone)
         {
             Player player = Player.Instance;
             float randValue = 10;
+            float crit = player.CritChance / 100f;
 
             switch (hitZone)
             {
                 case 0:
                     randValue = 22;
+                    crit = 1;
                     break;
                 case 1:
                     randValue = UnityEngine.Random.Range(12, 22);
@@ -244,7 +223,7 @@ namespace Com.MorganHouston.Imprecision
             int damage = 0;
             float critValue = UnityEngine.Random.value;
             
-            float crit = player.CritChance/100f;
+            
 
             if (critValue < (1f - crit))
             {
