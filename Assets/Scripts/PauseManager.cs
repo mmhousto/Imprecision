@@ -51,7 +51,7 @@ namespace Com.MorganHouston.Imprecision
         public void RestartLevel()
         {
             Time.timeScale = 1;
-            SceneLoader.LoadThisScene(2);
+            SceneLoader.LoadThisScene(SceneLoader.GetCurrentScene().buildIndex);
         }
 
     }

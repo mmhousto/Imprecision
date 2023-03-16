@@ -17,6 +17,7 @@ namespace Com.MorganHouston.Imprecision
         public float Sensitivity { get; set; }
         public bool SwipeToLook { get; set; }
         public bool Shadows { get; set; }
+        public bool FirstPerson { get; set; }
 
         private void Awake()
         {
@@ -39,6 +40,7 @@ namespace Com.MorganHouston.Imprecision
             Sensitivity = PlayerPrefs.GetFloat("Sensitivity", 20);
             SwipeToLook = Convert.ToBoolean(PlayerPrefs.GetInt("Swipe", 0));
             Shadows = Convert.ToBoolean(PlayerPrefs.GetInt("Shadows", 1));
+            FirstPerson = Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1));
         }
 
         public void SetMasterValue(float value)
@@ -78,6 +80,12 @@ namespace Com.MorganHouston.Imprecision
         {
             Shadows = value;
             PlayerPrefs.SetInt("Shadows", Convert.ToInt32(value));
+        }
+
+        public void SetFirstPerson(bool value)
+        {
+            FirstPerson = value;
+            PlayerPrefs.SetInt("FP", Convert.ToInt32(value));
         }
 
     }

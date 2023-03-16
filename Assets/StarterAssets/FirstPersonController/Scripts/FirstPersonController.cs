@@ -114,7 +114,7 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			UpdateCamera();
+			
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
@@ -127,6 +127,7 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
+			UpdateCamera();
 			CameraRotation();
 		}
 
@@ -137,7 +138,10 @@ namespace StarterAssets
 
 		private void UpdateCamera()
         {
-            if (isFP && !fpCam.activeInHierarchy)
+			if(isFP != Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1)))
+				isFP = Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1));
+
+			if (isFP && !fpCam.activeInHierarchy)
             {
 				fpCam.SetActive(true);
 				tpCam.SetActive(false);

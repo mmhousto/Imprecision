@@ -2387,10 +2387,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 577
   CinemachineCameraTarget: {fileID: 5995078981929565653}
-  TopClamp: 45
-  BottomClamp: -45
+  TopClamp: 33
+  BottomClamp: -33
   leftArmRig: {fileID: 7635862570561253706}
   headRig: {fileID: 7635862571273776729}
+  fpCam: {fileID: 0}
+  tpCam: {fileID: 0}
+  tpAimCam: {fileID: 0}
+  isFP: 1
   currentX: 0
   currentY: 0
 --- !u!114 &1794893291097278596
@@ -2792,7 +2796,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   label: {fileID: 0}
-  scalingfactor: 10
   healthPoints: 100
 --- !u!1 &8665200414389258613
 GameObject:
