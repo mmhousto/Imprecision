@@ -241,5 +241,13 @@ namespace Com.MorganHouston.Imprecision
 
             return damage;
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(transform.position, followDistance);
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(transform.position, attackDistance);
+        }
     }
 }
