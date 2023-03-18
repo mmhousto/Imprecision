@@ -17,7 +17,7 @@ namespace Com.MorganHouston.Imprecision
         [SerializeField]
         private int levelSelected = 0; 
 
-        public int LevelSelected { get { return levelSelected; } private set { levelSelected = value; } } // The Level User has selected in Main Menu/From Game Using Next Level Button
+        public int LevelSelected { get { return levelSelected; } private set { levelSelected = value; } } // The Precision Level User has selected in Main Menu/From Game Using Next Level Button
 
         private GameObject gameOverScreen, player, restartButton;
 
@@ -183,7 +183,7 @@ namespace Com.MorganHouston.Imprecision
         }
 
         /// <summary>
-        /// Sets level to the level user selected
+        /// Sets precision level to the level user selected
         /// </summary>
         /// <param name="level">The Selected Level</param>
         public void SetLevel(int level)
