@@ -30438,7 +30438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1392472114
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31637,7 +31637,15 @@ PrefabInstance:
     - target: {fileID: 442146685300803114, guid: f7de5e10f1adaf2449008a18bf156bdc, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 1445831624}
+      objectReference: {fileID: 8450887256078217529}
+    - target: {fileID: 442146685300803115, guid: f7de5e10f1adaf2449008a18bf156bdc, type: 3}
+      propertyPath: IgnoreTag
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 442146685300803115, guid: f7de5e10f1adaf2449008a18bf156bdc, type: 3}
+      propertyPath: AimTargetReticle
+      value: 
+      objectReference: {fileID: 875703128}
     - target: {fileID: 442146685300803116, guid: f7de5e10f1adaf2449008a18bf156bdc, type: 3}
       propertyPath: m_Name
       value: ThirdPersonFollowCamera
@@ -31688,11 +31696,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7de5e10f1adaf2449008a18bf156bdc, type: 3}
---- !u!4 &1445831624 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 442146685300803117, guid: f7de5e10f1adaf2449008a18bf156bdc, type: 3}
-  m_PrefabInstance: {fileID: 1445831623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1445831625 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 442146685300803116, guid: f7de5e10f1adaf2449008a18bf156bdc, type: 3}
@@ -37928,6 +37931,24 @@ MonoBehaviour:
     m_FrequencyGain: 0
     m_Duration: 0
     m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &1733507514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733507512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2588cc5dedbb75e49a44aada63f7b939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimCollisionFilter:
+    serializedVersion: 2
+    m_Bits: 1
+  IgnoreTag: Player
+  AimDistance: 200
+  AimTargetReticle: {fileID: 875703128}
 --- !u!1001 &1734875852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44969,6 +44990,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4132902171839946093, guid: f9ec74b1e7ef06d47aa729894ba8e5f1, type: 3}
+      propertyPath: IgnoreTag
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132902171839946093, guid: f9ec74b1e7ef06d47aa729894ba8e5f1, type: 3}
+      propertyPath: AimTargetReticle
+      value: 
+      objectReference: {fileID: 875703128}
     - target: {fileID: 4132902171839946094, guid: f9ec74b1e7ef06d47aa729894ba8e5f1, type: 3}
       propertyPath: m_Name
       value: ThirdPersonAimCamera
@@ -44984,6 +45013,29 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4132902171839946094, guid: f9ec74b1e7ef06d47aa729894ba8e5f1, type: 3}
   m_PrefabInstance: {fileID: 2130608136}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2130608138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130608137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 1
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 0
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 0
+    m_FrequencyGain: 0
+    m_Duration: 0
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &2139370681
 GameObject:
   m_ObjectHideFlags: 0
@@ -45990,6 +46042,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer
       objectReference: {fileID: 0}
+    - target: {fileID: 8361164330601685624, guid: 075eb6270bc3788479d10cef76b808e5, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: 12d45f43-7ef7-4ae2-9dd6-10d1998c28f8
+      objectReference: {fileID: 0}
     - target: {fileID: 8450887256078217535, guid: 075eb6270bc3788479d10cef76b808e5, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -46046,7 +46102,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8450887256078217536, guid: 075eb6270bc3788479d10cef76b808e5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 075eb6270bc3788479d10cef76b808e5, type: 3}
 --- !u!4 &8450887256078217529 stripped
 Transform:
