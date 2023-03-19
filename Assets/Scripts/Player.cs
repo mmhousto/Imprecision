@@ -44,6 +44,11 @@ namespace Com.MorganHouston.Imprecision
         public int[] Levels { get { return levels; } private set { levels = value; } }
 
         [SerializeField]
+        private int[] storyLevels;
+
+        public int[] StoryLevels { get { return storyLevels; } private set { storyLevels = value; } }
+
+        [SerializeField]
         private int[] applesShotOnLevels;
 
         public int[] AppleShotOnLevels { get { return applesShotOnLevels; } private set { applesShotOnLevels = value; } }
@@ -182,6 +187,7 @@ namespace Com.MorganHouston.Imprecision
             TargetsHit = 0;
             BullseyesHit = 0;
             Levels = new int[50];
+            StoryLevels = new int[4];
             AppleShotOnLevels = new int[50];
             BullseyesOnLevels = new int[50];
 
@@ -212,6 +218,11 @@ namespace Com.MorganHouston.Imprecision
                 Levels = data.levels;
             else
                 Levels = new int[50];
+
+            if (data.storyLevels != null)
+                StoryLevels = data.storyLevels;
+            else
+                StoryLevels = new int[4];
 
             if (data.bullseyesOnLevels != null)
                 BullseyesOnLevels = data.bullseyesOnLevels;
@@ -246,6 +257,7 @@ namespace Com.MorganHouston.Imprecision
             TargetsHit = 0;
             BullseyesHit = 0;
             Levels = new int[50];
+            StoryLevels = new int[4];
             AppleShotOnLevels = new int[50];
             BullseyesOnLevels = new int[50];
 
@@ -272,6 +284,7 @@ namespace Com.MorganHouston.Imprecision
             TargetsHit = 0;
             BullseyesHit = 0;
             Levels = new int[50];
+            StoryLevels = new int[4];
             AppleShotOnLevels = new int[50];
             BullseyesOnLevels = new int[50];
 
@@ -322,6 +335,13 @@ namespace Com.MorganHouston.Imprecision
 #if (UNITY_IOS || UNITY_ANDROID)
             LeaderboardManager.CheckArcherAchievements();
 #endif
+        }
+
+        public void SetStarForStoryLevel(int level, int stars)
+        {
+            if (stars > StoryLevels[level])
+                StoryLevels[level] = stars;
+
         }
 
         public void SetBullseyeForLevel(int level, int perfect)

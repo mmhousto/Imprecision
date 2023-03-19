@@ -42,7 +42,11 @@ namespace Com.MorganHouston.Imprecision
             healthBar.value = HealthPoints;
             label.text = $"{HealthPoints}/{healthBar.maxValue}";
 
-            if (HealthPoints <= 0)
+            if (HealthPoints <= 0 && CompareTag("Player"))
+            {
+                GameManager.Instance.GameOver();
+            }
+            else if (HealthPoints <= 0)
             {
                 Destroy(this.gameObject);
             }

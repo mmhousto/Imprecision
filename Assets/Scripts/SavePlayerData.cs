@@ -15,6 +15,7 @@ namespace Com.MorganHouston.Imprecision
         public int jewels;
 
         public int[] levels = new int[50];
+        public int[] storyLevels = new int[4];
         public int[] appleShotOnLevels = new int[50];
         public int[] bullseyesOnLevels = new int[50];
         public int arrowsFired;
@@ -45,6 +46,7 @@ namespace Com.MorganHouston.Imprecision
             userXP = player.UserXP;
             jewels = player.Jewels;
             levels = player.Levels;
+            storyLevels = player.StoryLevels;
             appleShotOnLevels = player.AppleShotOnLevels;
             arrowsFired = player.ArrowsFired;
             targetsHit = player.TargetsHit;

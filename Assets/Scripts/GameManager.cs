@@ -29,6 +29,10 @@ namespace Com.MorganHouston.Imprecision
 
         private int maxPointsForLevel, threeStars, twoStars, oneStar, perfection; // points for level
 
+        public bool playingStoryMode;
+
+        public bool isGameOver;
+
         private void Awake()
         {
             if (instance != null && instance != this)
@@ -61,6 +65,11 @@ namespace Com.MorganHouston.Imprecision
         {
             if(level.buildIndex == 2)
             {
+                playingStoryMode = false;
+                SetUpGame();
+            }else if (level.buildIndex == 3)
+            {
+                playingStoryMode = true;
                 SetUpGame();
             }
         }
@@ -72,6 +81,7 @@ namespace Com.MorganHouston.Imprecision
         {
             GetGameOverComponents();
             GetMaxPointsForLevel();
+            isGameOver = false;
         }
 
         /// <summary>
@@ -91,11 +101,21 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         private void GetMaxPointsForLevel()
         {
-            perfection = (10 + (int)(levelSelected * 1.25f)) * 200;
-            maxPointsForLevel = (10 + (int)(levelSelected * 1.25f)) * 100;
-            threeStars = (int)(maxPointsForLevel * 0.9f);
-            twoStars = (int)(maxPointsForLevel * 0.75f);
-            oneStar = (int)(maxPointsForLevel * 0.5f);
+            if (playingStoryMode)
+            {
+                threeStars = 3;
+                twoStars = 2;
+                oneStar = 1;
+            }
+            else
+            {
+                perfection = (10 + (int)(levelSelected * 1.25f)) * 200;
+                maxPointsForLevel = (10 + (int)(levelSelected * 1.25f)) * 100;
+                threeStars = (int)(maxPointsForLevel * 0.9f);
+                twoStars = (int)(maxPointsForLevel * 0.75f);
+                oneStar = (int)(maxPointsForLevel * 0.5f);
+            }
+            
         }
 
         /// <summary>
@@ -103,6 +123,7 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         public void GameOver()
         {
+            isGameOver = true;
             gameOverScreen.transform.parent.gameObject.SetActive(true);
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(restartButton);
@@ -111,11 +132,14 @@ namespace Com.MorganHouston.Imprecision
             player.GetComponent<StarterAssets.StarterAssetsInputs>().SetCursorState(false);
             Destroy(player);
 
-            DetermineStars();
+            if (playingStoryMode)
+                DetermineStars(StoryManager.Instance.GetStarRating());
+            else
+                DetermineStars();
         }
 
         /// <summary>
-        /// Determines Amount of Stars recieved based on level, checks achievements, and updates player stats
+        /// Determines Amount of Stars recieved based on Precision level, checks achievements, and updates player stats
         /// </summary>
         private void DetermineStars()
         {
@@ -158,6 +182,49 @@ namespace Com.MorganHouston.Imprecision
                 LeaderboardManager.CheckBullseyeAchievements();
 #endif
             }
+
+            // Save data to cloud/local
+            CloudSaveLogin.Instance.SaveCloudData();
+
+            // Update Leaderboards
+#if (UNITY_IOS || UNITY_ANDROID)
+            LeaderboardManager.UpdateAllLeaderboards();
+#endif
+        }
+
+        /// <summary>
+        /// Determines Amount of Stars recieved based on Story level, checks achievements, and updates player stats
+        /// </summary>
+        private void DetermineStars(int starsToShow)
+        {
+            var score = Score.score;
+
+            switch (starsToShow)
+            {
+                case 3:
+                    ActivateStars(3);
+                    gameOverText.text = "Perfection";
+                    Player.Instance.SetStarForStoryLevel(levelSelected, 3);
+                    break;
+                case 2:
+                    ActivateStars(2);
+                    gameOverText.text = "Excellent";
+                    Player.Instance.SetStarForStoryLevel(levelSelected, 2);
+                    break;
+                case 1:
+                    ActivateStars(1);
+                    gameOverText.text = "Good";
+                    Player.Instance.SetStarForStoryLevel(levelSelected, 1);
+                    break;
+                case 0:
+                    gameOverText.text = "Try Again";
+                    Player.Instance.SetStarForStoryLevel(levelSelected, 0);
+                    break;
+                default:
+                    break;
+            }
+            
+            Player.Instance.GainPoints(score);
 
             // Save data to cloud/local
             CloudSaveLogin.Instance.SaveCloudData();

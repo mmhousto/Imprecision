@@ -11,12 +11,10 @@ namespace Com.MorganHouston.Imprecision
     {
         public Button nextLevelBtn;
         public TextMeshProUGUI xpGainedText;
-        public GameObject cursor;
         public MobileDisableAutoSwitchControls uiControls;
 
         private void Start()
         {
-            cursor.SetActive(false);
             CheckIfBeatLevel();
 
 #if (UNITY_IOS || UNITY_ANDROID)
@@ -39,14 +37,29 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         private void CheckIfBeatLevel()
         {
-            if (Player.Instance.Levels[GameManager.Instance.LevelSelected] != 0 && nextLevelBtn.enabled == false)
+            if (GameManager.Instance.playingStoryMode)
             {
-                nextLevelBtn.enabled = true;
+                if (Player.Instance.StoryLevels[GameManager.Instance.LevelSelected] != 0 && nextLevelBtn.enabled == false)
+                {
+                    nextLevelBtn.enabled = true;
+                }
+                else if (Player.Instance.StoryLevels[GameManager.Instance.LevelSelected] == 0 && nextLevelBtn.enabled == true)
+                {
+                    nextLevelBtn.enabled = false;
+                }
             }
-            else if(Player.Instance.Levels[GameManager.Instance.LevelSelected] == 0 && nextLevelBtn.enabled == true)
+            else
             {
-                nextLevelBtn.enabled = false;
+                if (Player.Instance.Levels[GameManager.Instance.LevelSelected] != 0 && nextLevelBtn.enabled == false)
+                {
+                    nextLevelBtn.enabled = true;
+                }
+                else if (Player.Instance.Levels[GameManager.Instance.LevelSelected] == 0 && nextLevelBtn.enabled == true)
+                {
+                    nextLevelBtn.enabled = false;
+                }
             }
+            
 
         }
 
@@ -62,9 +75,14 @@ namespace Com.MorganHouston.Imprecision
 
         public void LoadNextLevel()
         {
-                GameManager.Instance.SetLevel(GameManager.Instance.LevelSelected + 1);
-                RestartGame();
-            
+            GameManager.Instance.SetLevel(GameManager.Instance.LevelSelected + 1);
+            RestartGame();
+        }
+
+        public void LoadStoryLevel2()
+        {
+            GameManager.Instance.SetLevel(GameManager.Instance.LevelSelected + 1);
+            SceneManager.LoadScene(4);
         }
 
     }
