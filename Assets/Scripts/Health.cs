@@ -22,6 +22,11 @@ namespace Com.MorganHouston.Imprecision
             {
                 HealthPoints = Player.Instance.HealthPoints;
             }
+            else if (CompareTag("Enemy"))
+            {
+                healthBar = GetComponentInChildren<Slider>();
+                label = GetComponentInChildren<TextMeshProUGUI>();
+            }
             healthBar.maxValue = HealthPoints;
             healthBar.value = HealthPoints;
             label.text = $"{HealthPoints}/{healthBar.maxValue}";
