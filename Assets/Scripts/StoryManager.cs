@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 namespace Com.MorganHouston.Imprecision
@@ -11,6 +12,8 @@ namespace Com.MorganHouston.Imprecision
 
         public static StoryManager Instance { get { return instance; } }
 
+        public UnityEvent miniBossDefeatedEvent;
+        public OpenDoorCinematic doorCinematic;
         public GameObject miniBoss;
         public TextMeshProUGUI currentTimeLabel;
         public float timeToBeat;
@@ -39,6 +42,12 @@ namespace Com.MorganHouston.Imprecision
         // Start is called before the first frame update
         void Start()
         {
+            if (miniBossDefeatedEvent == null)
+                miniBossDefeatedEvent = new UnityEvent();
+
+            miniBossDefeatedEvent.AddListener(DefeatedMiniBoss);
+            miniBossDefeatedEvent.AddListener(doorCinematic.OpenDoor);
+
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
             beatInTime = true;
             allEnemiesDefeated = false;
@@ -53,6 +62,11 @@ namespace Com.MorganHouston.Imprecision
             CheckObjectivesStatus();
         }
 
+        private void OnDisable()
+        {
+            miniBossDefeatedEvent.RemoveAllListeners();
+        }
+
         public void LevelComplete()
         {
             finishedLevel = true;
@@ -63,7 +77,7 @@ namespace Com.MorganHouston.Imprecision
         {
             if(miniBoss == null && miniBossDefeated == false)
             {
-                miniBossDefeated = true;
+                miniBossDefeatedEvent.Invoke();
             }
 
             if(enemies.Length <= 0 && allEnemiesDefeated == false)
@@ -79,6 +93,11 @@ namespace Com.MorganHouston.Imprecision
             {
                 beatInTime = true;
             }
+        }
+
+        void DefeatedMiniBoss()
+        {
+            miniBossDefeated = true;
         }
 
         void HandleTime()

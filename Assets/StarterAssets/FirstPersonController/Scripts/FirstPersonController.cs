@@ -101,7 +101,7 @@ namespace StarterAssets
 
 			player = Player.Instance;
             MoveSpeed += (float)player.MovementSpeed / 250;
-			SprintSpeed += ((float)player.MovementSpeed / 250) * 2;
+			SprintSpeed += ((float)player.MovementSpeed / 250) * 3;
 
 			RotationSpeed = PlayerPrefs.GetFloat("Sensitivity", 20) * 0.05f;
 
