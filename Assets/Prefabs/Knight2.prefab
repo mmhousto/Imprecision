@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4100885075340940781}
   - component: {fileID: 5769599569969967999}
+  - component: {fileID: 5605638347492624213}
   m_Layer: 0
   m_Name: unamed
   m_TagString: Untagged
@@ -142,6 +143,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000005669426, y: 0.0024952164, z: 0.00024802866}
     m_Extent: {x: 0.004554021, y: 0.0070449067, z: 0.0018772348}
   m_DirtyAABB: 0
+--- !u!64 &5605638347492624213
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357077164351970263}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &910781584611782796
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +457,9 @@ GameObject:
   - component: {fileID: 3895991789516385725}
   - component: {fileID: 8698311389622895758}
   - component: {fileID: -2645532249937728875}
+  - component: {fileID: 923498326}
+  - component: {fileID: 923498325}
+  - component: {fileID: 923498324}
   m_Layer: 0
   m_Name: Knight2
   m_TagString: Untagged
@@ -458,8 +476,8 @@ Transform:
   m_GameObject: {fileID: 3210676992533932023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 150, y: 150, z: 150}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8962841037811725599}
   - {fileID: 4100885075340940781}
@@ -502,6 +520,67 @@ MonoBehaviour:
   healthBar: {fileID: 1855734136049240975}
   label: {fileID: 1779914323013040179}
   healthPoints: 250
+--- !u!195 &923498326
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3210676992533932023}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.0025
+  m_Speed: 1
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.01
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!54 &923498325
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3210676992533932023}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &923498324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3210676992533932023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ba2e9be4858f24391e1a7339e2c969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  followDistance: 30
+  attackDistance: 4
+  attackTime: 0
+  scalingfactor: 10
+  attackPower: 30
+  defensePower: 30
+  attackSpeed: 10
+  movementSpeed: 1
+  stamina: 35
+  critChance: 25
 --- !u!1 &3677490729196988824
 GameObject:
   m_ObjectHideFlags: 0

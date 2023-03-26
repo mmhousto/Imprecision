@@ -13,7 +13,6 @@ namespace Com.MorganHouston.Imprecision
         public static StoryManager Instance { get { return instance; } }
 
         public UnityEvent miniBossDefeatedEvent;
-        public OpenDoorCinematic doorCinematic;
         public GameObject miniBoss;
         public TextMeshProUGUI currentTimeLabel;
         public float timeToBeat;
@@ -46,7 +45,6 @@ namespace Com.MorganHouston.Imprecision
                 miniBossDefeatedEvent = new UnityEvent();
 
             miniBossDefeatedEvent.AddListener(DefeatedMiniBoss);
-            miniBossDefeatedEvent.AddListener(doorCinematic.OpenDoor);
 
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
             beatInTime = true;
