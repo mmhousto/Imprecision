@@ -12,7 +12,7 @@ namespace Com.MorganHouston.Imprecision
         void Start()
         {
             AgentSetup();
-            anim = GetComponent<Animator>();
+            anim = GetComponentInChildren<Animator>();
         }
 
         // Update is called once per frame
