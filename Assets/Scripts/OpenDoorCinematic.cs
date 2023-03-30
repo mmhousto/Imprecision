@@ -18,7 +18,7 @@ namespace Com.MorganHouston.Imprecision
         // Update is called once per frame
         void Update()
         {
-            if(doorOpen == false && door.rotation.y == 270 && doorUnlocked == true)
+            if(doorOpen == false && door.rotation.y >= 269 && doorUnlocked == true)
             {
                 doorOpen = true;
                 doorHinge.useMotor = false;
