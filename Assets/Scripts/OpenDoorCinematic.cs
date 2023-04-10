@@ -31,6 +31,7 @@ namespace Com.MorganHouston.Imprecision
             doorUnlocked = true;
             doorCam.enabled = true;
             doorHinge.useMotor = true;
+            doorOpen = false;
         }
     }
 }

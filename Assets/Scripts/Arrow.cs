@@ -56,9 +56,11 @@ namespace Com.MorganHouston.Imprecision
         private void OnCollisionEnter(Collision collision)
         {
             hit = true;
+            transform.SetParent(collision.gameObject.transform, true); // attach to target.
+
             if (collision.collider.tag == "target")
             {
-                transform.SetParent(collision.gameObject.transform, true); // attach to target.
+                
                 GameObject audioExplosion = new GameObject("AudioExplosion");
                 audioExplosion.transform.position = collision.transform.position;
                 AudioSource audio = audioExplosion.AddComponent<AudioSource>();
