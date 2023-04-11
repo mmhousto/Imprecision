@@ -7,12 +7,14 @@ namespace Com.MorganHouston.Imprecision
     public class KnightEnemy : Enemy
     {
         private Animator anim;
+        private bool attacking = false;
 
         // Start is called before the first frame update
         void Start()
         {
             AgentSetup();
             anim = GetComponentInChildren<Animator>();
+            anim.SetInteger("State", 0); // IDLE ANIM
         }
 
         // Update is called once per frame
@@ -57,29 +59,58 @@ namespace Com.MorganHouston.Imprecision
                 switch (currentState)
                 {
                     case AIState.Idle:
-                        anim.SetInteger("State", 0);
-                        FollowTarget(spawnLocation);
-                        // do idle behavior (e.g. stay in place and wait for player to get close)
-                        if (distanceToPlayer < followDistance)
+                         // do idle behavior (e.g. stay in place and wait for player to get close)
+                        if (distanceToPlayer <= followDistance)
                         {
                             currentState = AIState.Follow;
+                            break;
                         }
+                        
+                        
+                        if(Vector3.Distance(transform.position, spawnLocation) > 5)
+                        {
+                            FollowTarget(spawnLocation);
+                            anim.SetInteger("State", 1); // WALK ANIM to spawn
+                        }
+                        else if (anim.GetInteger("State") != 0)
+                        {
+                            anim.SetInteger("State", 0); // IDLE ANIM in place
+                        }
+                        
                         break;
                     case AIState.Follow:
-                        // do follow behavior (e.g. move towards player)
-                        anim.SetInteger("State", 1);
-                        FollowTarget(target.position);
-                        if (distanceToPlayer < attackDistance)
+                        // Check to see if close enough to player to attack
+                        if (distanceToPlayer <= attackDistance)
                         {
                             currentState = AIState.Attack;
+                            break;
                         }
+                        // Else if animation state is not set to walk, transition to walking state
+                        else if(anim.GetInteger("State") == 1)
+                        {
+                            anim.SetInteger("State", 1); // WALK ANIM
+                        }
+                        
+                        // do follow behavior (e.g. move towards player)
+                        FollowTarget(target.position);
+                        
                         break;
                     case AIState.Attack:
-                        if (canAttack)
-                            JumpAndAttack();
-                        else
+                        // If not in attack zone but in follow distance, switch to follow state
+                        if (distanceToPlayer > attackDistance && distanceToPlayer <= followDistance)
                         {
-                            FollowTarget(target.position);
+                            anim.SetInteger("State", 1);
+                            currentState = AIState.Follow;
+                            break;
+                        }
+
+                        // Checks can attack and if we are not currently attacking, then attacks
+                        if (canAttack == true && attacking == false)
+                            StartCoroutine(JumpAndAttack());
+                        // Checks if we cant attack and aren't attacking, then follow player
+                        else if (canAttack == false && attacking == false)
+                        {
+                            agent.isStopped = false;
                             anim.SetInteger("State", 1);
                         }
                         break;
@@ -91,10 +122,13 @@ namespace Com.MorganHouston.Imprecision
 
         }
 
-        private void JumpAndAttack()
+        IEnumerator JumpAndAttack()
         {
-            
+            agent.isStopped =  true;
+            attacking = true;
+            anim.SetFloat("Attack", Random.Range(0, 5));
             anim.SetInteger("State", 2);
+            
 
             // make the spider jump towards the player
             //Vector3 directionToPlayer = (target.position - transform.position).normalized;
@@ -107,6 +141,8 @@ namespace Com.MorganHouston.Imprecision
                 target.GetComponent<Health>().TakeDamage(DetermineDamageToDeal());
             }
 
+            yield return new WaitForSeconds(2f);
+            attacking = false;
             attackTime = attackSpeed;
             canAttack = false;
 
