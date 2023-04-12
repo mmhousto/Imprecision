@@ -79,14 +79,15 @@ namespace Com.MorganHouston.Imprecision
                         
                         break;
                     case AIState.Follow:
-                        // Check to see if close enough to player to attack
+                        // Check to see if close enough to player to attack, changes states and breaks case
                         if (distanceToPlayer <= attackDistance)
                         {
                             currentState = AIState.Attack;
                             break;
                         }
-                        // Else if animation state is not set to walk, transition to walking state
-                        else if(anim.GetInteger("State") == 1)
+
+                        //if animation state is not set to walk, transition to walking state
+                        if(anim.GetInteger("State") != 1)
                         {
                             anim.SetInteger("State", 1); // WALK ANIM
                         }
@@ -110,6 +111,8 @@ namespace Com.MorganHouston.Imprecision
                         // Checks if we cant attack and aren't attacking, then follow player
                         else if (canAttack == false && attacking == false)
                         {
+                            agent.updatePosition = true;
+                            agent.updateRotation = true;
                             agent.isStopped = false;
                             anim.SetInteger("State", 1);
                         }
@@ -124,7 +127,9 @@ namespace Com.MorganHouston.Imprecision
 
         IEnumerator JumpAndAttack()
         {
-            agent.isStopped =  true;
+            agent.updatePosition = false;
+            agent.updateRotation = false;
+            agent.isStopped = true;
             attacking = true;
             anim.SetFloat("Attack", Random.Range(0, 5));
             anim.SetInteger("State", 2);
@@ -141,7 +146,7 @@ namespace Com.MorganHouston.Imprecision
                 target.GetComponent<Health>().TakeDamage(DetermineDamageToDeal());
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(3.5f);
             attacking = false;
             attackTime = attackSpeed;
             canAttack = false;
