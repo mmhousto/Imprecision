@@ -67,7 +67,7 @@ namespace Com.MorganHouston.Imprecision
                         }
                         
                         
-                        if(Vector3.Distance(transform.position, spawnLocation) > 5)
+                        if(Vector3.Distance(transform.position, spawnLocation) > 1)
                         {
                             FollowTarget(spawnLocation);
                             anim.SetInteger("State", 1); // WALK ANIM to spawn
@@ -102,6 +102,8 @@ namespace Com.MorganHouston.Imprecision
                         {
                             anim.SetInteger("State", 1);
                             currentState = AIState.Follow;
+                            // do follow behavior (e.g. move towards player)
+                            FollowTarget(target.position);
                             break;
                         }
 
@@ -111,10 +113,9 @@ namespace Com.MorganHouston.Imprecision
                         // Checks if we cant attack and aren't attacking, then follow player
                         else if (canAttack == false && attacking == false)
                         {
-                            agent.updatePosition = true;
-                            agent.updateRotation = true;
-                            agent.isStopped = false;
                             anim.SetInteger("State", 1);
+                            // do follow behavior (e.g. move towards player)
+                            FollowTarget(target.position);
                         }
                         break;
                     default:
@@ -127,9 +128,6 @@ namespace Com.MorganHouston.Imprecision
 
         IEnumerator JumpAndAttack()
         {
-            agent.updatePosition = false;
-            agent.updateRotation = false;
-            agent.isStopped = true;
             attacking = true;
             anim.SetFloat("Attack", Random.Range(0, 5));
             anim.SetInteger("State", 2);

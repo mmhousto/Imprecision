@@ -91,7 +91,7 @@ namespace Com.MorganHouston.Imprecision
 
         protected void AgentSetup()
         {
-            agent = GetComponent<NavMeshAgent>();
+            agent = transform.root.GetComponentInChildren<NavMeshAgent>();
             spawnLocation = transform.position;
             agent.Warp(spawnLocation);
             agent.speed = movementSpeed;
