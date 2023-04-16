@@ -14,24 +14,21 @@ namespace Com.MorganHouston.Imprecision
         bool doorUnlocked = false;
         bool doorOpen = false;
 
-
-        // Update is called once per frame
-        void Update()
-        {
-            if(doorOpen == false && door.rotation.y >= 269 && doorUnlocked == true)
-            {
-                doorOpen = true;
-                doorHinge.useMotor = false;
-                doorCam.enabled = false;
-            }
-        }
-
         public void OpenDoor()
         {
             doorUnlocked = true;
             doorCam.enabled = true;
             doorHinge.useMotor = true;
             doorOpen = false;
+            StartCoroutine(DisableCam());
+        }
+
+        IEnumerator DisableCam()
+        {
+            yield return new WaitForSeconds(4f);
+            doorOpen = true;
+            doorHinge.useMotor = false;
+            doorCam.enabled = false;
         }
     }
 }
