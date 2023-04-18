@@ -67,7 +67,7 @@ namespace Com.MorganHouston.Imprecision
             {
                 playingStoryMode = false;
                 SetUpGame();
-            }else if (level.buildIndex == 3)
+            }else if (level.buildIndex >= 3)
             {
                 playingStoryMode = true;
                 SetUpGame();

@@ -39,13 +39,17 @@ namespace Com.MorganHouston.Imprecision
         {
             if (GameManager.Instance.playingStoryMode)
             {
-                if (Player.Instance.StoryLevels[GameManager.Instance.LevelSelected] != 0 && nextLevelBtn.enabled == false)
+                if (GameManager.Instance.LevelSelected == 3)
+                {
+                    nextLevelBtn.gameObject.SetActive(false);
+                }
+                else if (Player.Instance.StoryLevels[GameManager.Instance.LevelSelected] != 0 && nextLevelBtn.enabled == false)
                 {
                     nextLevelBtn.enabled = true;
                 }
                 else if (Player.Instance.StoryLevels[GameManager.Instance.LevelSelected] == 0 && nextLevelBtn.enabled == true)
                 {
-                    nextLevelBtn.enabled = false;
+                    nextLevelBtn.gameObject.SetActive(false);
                 }
             }
             else
@@ -56,7 +60,7 @@ namespace Com.MorganHouston.Imprecision
                 }
                 else if (Player.Instance.Levels[GameManager.Instance.LevelSelected] == 0 && nextLevelBtn.enabled == true)
                 {
-                    nextLevelBtn.enabled = false;
+                    nextLevelBtn.gameObject.SetActive(false);
                 }
             }
             
