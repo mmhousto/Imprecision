@@ -69,12 +69,12 @@ namespace Com.MorganHouston.Imprecision
 
         public void RestartGame()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneLoader.LoadThisScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void ToMainMenu()
         {
-            SceneManager.LoadScene(1);
+            SceneLoader.LoadThisScene(0);
         }
 
         public void LoadNextLevel()
@@ -86,7 +86,7 @@ namespace Com.MorganHouston.Imprecision
         public void LoadStoryLevel2()
         {
             GameManager.Instance.SetLevel(GameManager.Instance.LevelSelected + 1);
-            SceneManager.LoadScene(4);
+            SceneLoader.LoadThisScene(3);
         }
 
     }

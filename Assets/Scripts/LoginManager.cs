@@ -8,7 +8,24 @@ namespace Com.MorganHouston.Imprecision
     public class LoginManager : MonoBehaviour
     {
 
-        public GameObject appleLogin, googleLogin;
+        private static LoginManager instance;
+
+        public static LoginManager Instance { get { return instance; } }
+
+        public GameObject appleLogin, googleLogin, signInPanel, mainMenuPanel;
+
+        private void Awake()
+        {
+            if (instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+            else
+            {
+                instance = this;
+            }
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -20,6 +37,14 @@ namespace Com.MorganHouston.Imprecision
         appleLogin.SetActive(true);
         googleLogin.SetActive(false);
 #endif
+        }
+
+        private void Update()
+        {
+            if(signInPanel.activeInHierarchy && CloudSaveLogin.Instance.loggedIn)
+            {
+                Login();
+            }
         }
 
         public void SignInAnonymously()
@@ -47,6 +72,12 @@ namespace Com.MorganHouston.Imprecision
         public void QuitGame()
         {
             Application.Quit();
+        }
+
+        public void Login()
+        {
+            signInPanel.SetActive(false);
+            mainMenuPanel.SetActive(true);
         }
 
     }

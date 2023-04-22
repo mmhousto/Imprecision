@@ -46,6 +46,7 @@ namespace Com.MorganHouston.Imprecision
         private bool triedQuickLogin = false;
 
         public bool devModeActivated = false;
+        public bool loggedIn;
 
         // User Info.
         public string userName, userID;
@@ -70,6 +71,8 @@ namespace Com.MorganHouston.Imprecision
                 instance = this;
                 DontDestroyOnLoad(Instance.gameObject);
             }
+
+            loggedIn = false;
 
             if (UnityServices.State == ServicesInitializationState.Initialized)
             {
@@ -120,6 +123,7 @@ namespace Com.MorganHouston.Imprecision
 
         void Update()
         {
+#if (UNITY_IOS || UNITY_STANDALONE_OSX)
             // Updates the AppleAuthManager instance to execute
             // pending callbacks inside Unity's execution loop
             if (appleAuthManager != null)
@@ -133,7 +137,7 @@ namespace Com.MorganHouston.Imprecision
                 GetCredentialState();
                 triedQuickLogin = true;
             }
-
+#endif
 
         }
 
@@ -291,7 +295,8 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         private void Login()
         {
-            SceneLoader.LoadThisScene(1);
+            loggedIn = true;
+            LoginManager.Instance.Login();
         }
 
         /// <summary>
@@ -299,6 +304,7 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         private void LogoutScreenActivate()
         {
+            loggedIn = false;
             SceneLoader.LoadThisScene(0);
         }
 
