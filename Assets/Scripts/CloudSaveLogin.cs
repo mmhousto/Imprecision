@@ -456,16 +456,32 @@ namespace Com.MorganHouston.Imprecision
                     {
                         // Apple User ID
                         // You should save the user ID somewhere in the device
-                        userID = appleIdCredential.User;
-                        PlayerPrefs.SetString("AppleUserIdKey", userID);
+                        if(appleIdCredential.User != null)
+                        {
+                            userID = appleIdCredential.User;
+                            PlayerPrefs.SetString("AppleUserIdKey", userID);
+                        }
+                        else
+                        {
+                            userID = PlayerPrefs.GetString("AppleUserIdKey", "123456");
+                        }
+                        
 
                         // Email (Received ONLY in the first login)
                         /*email = appleIdCredential.Email;
                             PlayerPrefs.SetString("AppleUserEmailKey", email);*/
 
                         // Full name (Received ONLY in the first login)
-                        userName = appleIdCredential.FullName.GivenName;
-                        PlayerPrefs.SetString("AppleUserNameKey", userName);
+                        if(appleIdCredential.FullName != null)
+                        {
+                            userName = appleIdCredential.FullName.GivenName;
+                            PlayerPrefs.SetString("AppleUserNameKey", userName);
+                        }
+                        else
+                        {
+                            userName = PlayerPrefs.GetString("AppleUserNameKey", "Player 1");
+                        }
+                            
 
                         // Identity token
                         var idToken = Encoding.UTF8.GetString(
