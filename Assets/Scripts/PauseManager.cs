@@ -45,7 +45,7 @@ namespace Com.MorganHouston.Imprecision
         public void ReturnHome()
         {
             Time.timeScale = 1;
-            SceneLoader.LoadThisScene(0);
+            SceneLoader.LoadThisScene(1);
         }
 
         public void RestartLevel()

@@ -291,7 +291,7 @@ namespace Com.MorganHouston.Imprecision
 #region Private Login/Logout Methods
 
         /// <summary>
-        /// Loads the Main Menu Scene.
+        /// Loads the Main Menu Panel.
         /// </summary>
         private void Login()
         {
@@ -300,12 +300,12 @@ namespace Com.MorganHouston.Imprecision
         }
 
         /// <summary>
-        /// Loads the Sign-In Scene.
+        /// Loads the Sign-In/MainMenu Scene.
         /// </summary>
         private void LogoutScreenActivate()
         {
             loggedIn = false;
-            SceneLoader.LoadThisScene(0);
+            SceneLoader.LoadThisScene(1);
         }
 
         /// <summary>

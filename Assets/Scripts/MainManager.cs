@@ -41,12 +41,12 @@ namespace Com.MorganHouston.Imprecision
 
         public void PlayGame()
         {
-            SceneLoader.LoadThisScene(1);
+            SceneLoader.LoadThisScene(2);
         }
 
         public void PlayStory()
         {
-            SceneLoader.LoadThisScene(2);
+            SceneLoader.LoadThisScene(3);
         }
 
         public void SetPlayerName(string name)

@@ -63,11 +63,11 @@ namespace Com.MorganHouston.Imprecision
         /// <param name="mode"></param>
         private void LoadGame(Scene level, LoadSceneMode mode)
         {
-            if(level.buildIndex == 1)
+            if(level.buildIndex == 2)
             {
                 playingStoryMode = false;
                 SetUpGame();
-            }else if (level.buildIndex >= 2)
+            }else if (level.buildIndex >= 3)
             {
                 playingStoryMode = true;
                 SetUpGame();

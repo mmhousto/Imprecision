@@ -74,7 +74,7 @@ namespace Com.MorganHouston.Imprecision
 
         public void ToMainMenu()
         {
-            SceneLoader.LoadThisScene(0);
+            SceneLoader.LoadThisScene(1);
         }
 
         public void LoadNextLevel()
@@ -86,7 +86,7 @@ namespace Com.MorganHouston.Imprecision
         public void LoadStoryLevel2()
         {
             GameManager.Instance.SetLevel(GameManager.Instance.LevelSelected + 1);
-            SceneLoader.LoadThisScene(3);
+            SceneLoader.LoadThisScene(4);
         }
 
     }

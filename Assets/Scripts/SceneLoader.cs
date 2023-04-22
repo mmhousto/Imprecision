@@ -7,7 +7,7 @@ namespace Com.MorganHouston.Imprecision
     public static class SceneLoader
     {
 
-        public static int levelToLoad = 0;
+        public static int levelToLoad = 1;
 
         public static void LoadThisScene(int sceneToLoad)
         {
@@ -15,7 +15,7 @@ namespace Com.MorganHouston.Imprecision
             ResetLightingData();
 #endif
             levelToLoad = sceneToLoad;
-            SceneManager.LoadScene(levelToLoad);
+            SceneManager.LoadScene(0);
         }
 
         public static Scene GetCurrentScene()
