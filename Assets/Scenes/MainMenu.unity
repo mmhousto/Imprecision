@@ -20670,6 +20670,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4430980222870521549, guid: fd7545699ad9852439e7a981240b12f7, type: 3}
   m_PrefabInstance: {fileID: 610702409}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &610702413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4430980222508708866, guid: fd7545699ad9852439e7a981240b12f7, type: 3}
+  m_PrefabInstance: {fileID: 610702409}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &611278322
 GameObject:
   m_ObjectHideFlags: 0
@@ -22025,7 +22030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 1942321067}
+  m_FirstSelected: {fileID: 610702413}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &652584284
@@ -26007,11 +26012,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776370753}
   m_CullTransparentMesh: 1
---- !u!1 &785847133 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2011849204806102279, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
-  m_PrefabInstance: {fileID: 2011849205253520986}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &792408086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31529,7 +31529,7 @@ PrefabInstance:
     - target: {fileID: 8674616330773050334, guid: 68ff536fa366b417d9879069c81a304c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 785847133}
+      objectReference: {fileID: 8674616331285020954}
     - target: {fileID: 8674616330773050334, guid: 68ff536fa366b417d9879069c81a304c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
       value: 
@@ -37992,6 +37992,10 @@ PrefabInstance:
       propertyPath: mainMenuPanel
       value: 
       objectReference: {fileID: 909243408}
+    - target: {fileID: 192045691149699616, guid: 9664c28e04b7e184db8d44866e34bc4f, type: 3}
+      propertyPath: levelSelectButton
+      value: 
+      objectReference: {fileID: 1942321067}
     - target: {fileID: 192045691149699617, guid: 9664c28e04b7e184db8d44866e34bc4f, type: 3}
       propertyPath: m_RootOrder
       value: 9

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -12,7 +13,7 @@ namespace Com.MorganHouston.Imprecision
 
         public static LoginManager Instance { get { return instance; } }
 
-        public GameObject appleLogin, googleLogin, signInPanel, mainMenuPanel;
+        public GameObject appleLogin, googleLogin, signInPanel, mainMenuPanel, levelSelectButton;
 
         private void Awake()
         {
@@ -78,6 +79,7 @@ namespace Com.MorganHouston.Imprecision
         {
             signInPanel.SetActive(false);
             mainMenuPanel.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(levelSelectButton);
         }
 
     }

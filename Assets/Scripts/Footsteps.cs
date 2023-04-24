@@ -12,9 +12,13 @@ namespace Com.MorganHouston.Imprecision
 
         private void OnTriggerEnter(Collider other)
         {
-            int rand = Random.Range(0, audioClips.Length);
-            audioSource.clip = audioClips[rand];
-            audioSource.Play();
+            if(other.gameObject.layer == 6)
+            {
+                int rand = Random.Range(0, audioClips.Length);
+                audioSource.clip = audioClips[rand];
+                audioSource.PlayOneShot(audioSource.clip);
+            }
+            
         }
     }
 }
