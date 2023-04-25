@@ -53,11 +53,17 @@ namespace Com.MorganHouston.Imprecision
                 switch (currentState)
                 {
                     case AIState.Idle:
-                        FollowTarget(spawnLocation);
                         // do idle behavior (e.g. stay in place and wait for player to get close)
-                        if (distanceToPlayer < followDistance)
+                        if (distanceToPlayer <= followDistance)
                         {
                             currentState = AIState.Follow;
+                            break;
+                        }
+
+
+                        if (Vector3.Distance(transform.position, spawnLocation) > 1)
+                        {
+                            FollowTarget(spawnLocation);
                         }
                         break;
                     case AIState.Follow:

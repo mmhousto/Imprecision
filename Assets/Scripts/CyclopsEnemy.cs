@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Com.MorganHouston.Imprecision
 {
-    public class KnightEnemy : Enemy
+    public class CyclopsEnemy : Enemy
     {
         private Animator anim;
         private bool attacking = false;
@@ -29,12 +29,11 @@ namespace Com.MorganHouston.Imprecision
             if (collision.gameObject.CompareTag("arrow"))
             {
                 Collider myCollider = collision.GetContact(0).thisCollider;
-                Debug.Log(myCollider.name);
-                if (myCollider.name.Contains("Head"))
+                if (myCollider.name == "Head")
                 {
-                    health.TakeDamage(DetermineDamageToTake((int)HitArea.Body));
+                    health.TakeDamage(DetermineDamageToTake((int)HitArea.Head));
                 }
-                else if (myCollider.name.Contains("Body"))
+                else if (myCollider.name == "Body")
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Body));
                 }
@@ -60,15 +59,16 @@ namespace Com.MorganHouston.Imprecision
                 switch (currentState)
                 {
                     case AIState.Idle:
-                         // do idle behavior (e.g. stay in place and wait for player to get close)
+                        // do idle behavior (e.g. stay in place and wait for player to get close)
                         if (distanceToPlayer <= followDistance)
                         {
+                            anim.SetTrigger("Battlecry");
                             currentState = AIState.Follow;
                             break;
                         }
-                        
-                        
-                        if(Vector3.Distance(transform.position, spawnLocation) > 1)
+
+
+                        if (Vector3.Distance(transform.position, spawnLocation) > 1)
                         {
                             FollowTarget(spawnLocation);
                             anim.SetInteger("State", 1); // WALK ANIM to spawn
@@ -77,34 +77,30 @@ namespace Com.MorganHouston.Imprecision
                         {
                             anim.SetInteger("State", 0); // IDLE ANIM in place
                         }
-                        
                         break;
                     case AIState.Follow:
-                        // Check to see if close enough to player to attack, changes states and breaks case
-                        if (distanceToPlayer <= attackDistance)
+                        // do follow behavior (e.g. move towards player)
+
+                        // transitions to walking state if not there
+                        if (anim.GetInteger("State") != 1)
                         {
-                            currentState = AIState.Attack;
-                            break;
+                            anim.SetInteger("State", 1); // Walking ANIM
                         }
 
-                        //if animation state is not set to walk, transition to walking state
-                        if(anim.GetInteger("State") != 1)
-                        {
-                            anim.SetInteger("State", 1); // WALK ANIM
-                        }
-                        
-                        // do follow behavior (e.g. move towards player)
+                        // follows player
                         FollowTarget(target.position);
-                        
+
+                        // switches to attack state if close enogh
+                        if (distanceToPlayer < attackDistance)
+                        {
+                            currentState = AIState.Attack;
+                        }
                         break;
                     case AIState.Attack:
                         // If not in attack zone but in follow distance, switch to follow state
                         if (distanceToPlayer > attackDistance && distanceToPlayer <= followDistance)
                         {
-                            anim.SetInteger("State", 1);
                             currentState = AIState.Follow;
-                            // do follow behavior (e.g. move towards player)
-                            FollowTarget(target.position);
                             break;
                         }
 
@@ -114,7 +110,11 @@ namespace Com.MorganHouston.Imprecision
                         // Checks if we cant attack and aren't attacking, then follow player
                         else if (canAttack == false && attacking == false)
                         {
-                            anim.SetInteger("State", 1);
+                            // transitions to walking state if not there
+                            if (anim.GetInteger("State") != 1)
+                            {
+                                anim.SetInteger("State", 1); // Walking ANIM
+                            }
                             // do follow behavior (e.g. move towards player)
                             FollowTarget(target.position);
                         }
@@ -132,7 +132,7 @@ namespace Com.MorganHouston.Imprecision
             attacking = true;
             anim.SetFloat("Attack", Random.Range(0, 5));
             anim.SetInteger("State", 2);
-            
+
 
             // make the spider jump towards the player
             //Vector3 directionToPlayer = (target.position - transform.position).normalized;
@@ -151,7 +151,5 @@ namespace Com.MorganHouston.Imprecision
             canAttack = false;
 
         }
-
-
     }
 }

@@ -179,14 +179,16 @@ namespace Com.MorganHouston.Imprecision
             float critValue = UnityEngine.Random.value;
             float randValue = UnityEngine.Random.Range(1, 12);
             float crit = CritChance / 100f;
+            int dp = player != null ? player.DefensePower : 10;
+            int ul = player != null ? player.UserLevel : 1;
 
             if (critValue < (1f - crit))
             {
-                damage = (int)(randValue + AttackPower) - (player.DefensePower * (player.UserLevel / scalingfactor));
+                damage = (int)(randValue + AttackPower) - (dp * (ul / scalingfactor));
             }
             else
             {
-                damage = ((int)(randValue + AttackPower) - (player.DefensePower * (player.UserLevel / scalingfactor))) * 2;
+                damage = ((int)(randValue + AttackPower) - (dp * (ul / scalingfactor))) * 2;
             }
 
             if (damage < 0)
@@ -201,7 +203,9 @@ namespace Com.MorganHouston.Imprecision
         {
             Player player = Player.Instance;
             float randValue = 10;
-            float crit = player.CritChance / 100f;
+            float crit = player != null ? player.CritChance/100f : 5 / 100f;
+            int ap = player != null ? player.AttackPower : 10;
+            int ul = player != null ? player.UserLevel : 1;
 
             switch (hitZone)
             {
@@ -227,11 +231,11 @@ namespace Com.MorganHouston.Imprecision
 
             if (critValue < (1f - crit))
             {
-                damage = (int)(randValue + player.AttackPower) - (DefensePower * (player.UserLevel / scalingfactor));
+                damage = (int)((randValue + ap) - (DefensePower * (ul / scalingfactor)));
             }
             else
             {
-                damage = (int)((randValue + player.AttackPower) - (DefensePower * (player.UserLevel / scalingfactor)))*2;
+                damage = (int)((randValue + ap) - (DefensePower * (ul / scalingfactor)))*2;
             }
 
             if(damage < 0)

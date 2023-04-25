@@ -20,7 +20,7 @@ namespace Com.MorganHouston.Imprecision
         {
             if (CompareTag("Player"))
             {
-                HealthPoints = Player.Instance.HealthPoints;
+                HealthPoints = Player.Instance != null ? Player.Instance.HealthPoints : 100;
             }
             else if (CompareTag("Enemy"))
             {
