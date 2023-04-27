@@ -12,10 +12,16 @@ namespace Com.MorganHouston.Imprecision
         public Button nextLevelBtn;
         public TextMeshProUGUI xpGainedText;
         public MobileDisableAutoSwitchControls uiControls;
+        private GameManager gameManager;
+        private Player player;
 
         private void Start()
         {
-            CheckIfBeatLevel();
+            gameManager = GameManager.Instance;
+            player = Player.Instance;
+
+            if(gameManager != null && player != null)
+                CheckIfBeatLevel();
 
 #if (UNITY_IOS || UNITY_ANDROID)
             uiControls.DisableScreenControls();
@@ -28,7 +34,8 @@ namespace Com.MorganHouston.Imprecision
             if (xpGainedText.text != $"XP GAINED: {(Score.score / 10)}")
                 xpGainedText.text = $"XP GAINED: {(Score.score / 10)}";
 
-            CheckIfBeatLevel();
+            if (gameManager != null && player != null)
+                CheckIfBeatLevel();
         }
 
         /// <summary>
@@ -37,28 +44,28 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         private void CheckIfBeatLevel()
         {
-            if (GameManager.Instance.playingStoryMode)
+            if (gameManager.playingStoryMode)
             {
-                if (GameManager.Instance.LevelSelected == 3)
+                if (gameManager.LevelSelected == 3)
                 {
                     nextLevelBtn.gameObject.SetActive(false);
                 }
-                else if (Player.Instance.StoryLevels[GameManager.Instance.LevelSelected] != 0 && nextLevelBtn.enabled == false)
+                else if (player.StoryLevels[gameManager.LevelSelected] != 0 && nextLevelBtn.enabled == false)
                 {
                     nextLevelBtn.enabled = true;
                 }
-                else if (Player.Instance.StoryLevels[GameManager.Instance.LevelSelected] == 0 && nextLevelBtn.enabled == true)
+                else if (player.StoryLevels[gameManager.LevelSelected] == 0 && nextLevelBtn.enabled == true)
                 {
                     nextLevelBtn.gameObject.SetActive(false);
                 }
             }
             else
             {
-                if (Player.Instance.Levels[GameManager.Instance.LevelSelected] != 0 && nextLevelBtn.enabled == false)
+                if (player.Levels[gameManager.LevelSelected] != 0 && nextLevelBtn.enabled == false)
                 {
                     nextLevelBtn.enabled = true;
                 }
-                else if (Player.Instance.Levels[GameManager.Instance.LevelSelected] == 0 && nextLevelBtn.enabled == true)
+                else if (player.Levels[gameManager.LevelSelected] == 0 && nextLevelBtn.enabled == true)
                 {
                     nextLevelBtn.gameObject.SetActive(false);
                 }
@@ -79,13 +86,13 @@ namespace Com.MorganHouston.Imprecision
 
         public void LoadNextLevel()
         {
-            GameManager.Instance.SetLevel(GameManager.Instance.LevelSelected + 1);
+            gameManager.SetLevel(gameManager.LevelSelected + 1);
             RestartGame();
         }
 
         public void LoadStoryLevel2()
         {
-            GameManager.Instance.SetLevel(GameManager.Instance.LevelSelected + 1);
+            gameManager.SetLevel(gameManager.LevelSelected + 1);
             SceneLoader.LoadThisScene(4);
         }
 

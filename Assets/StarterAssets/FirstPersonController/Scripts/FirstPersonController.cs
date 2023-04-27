@@ -100,8 +100,9 @@ namespace StarterAssets
 			_anim = GetComponent<PlayerAnimatorManager>();
 
 			player = Player.Instance;
-            MoveSpeed += (float)player.MovementSpeed / 250;
-			SprintSpeed += ((float)player.MovementSpeed / 250) * 3;
+			float movementSpeed = player != null ? player.MovementSpeed : 5;
+            MoveSpeed += movementSpeed / 250;
+			SprintSpeed += (movementSpeed / 250) * 3;
 
 			RotationSpeed = PlayerPrefs.GetFloat("Sensitivity", 20) * 0.05f;
 

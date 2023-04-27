@@ -43,8 +43,8 @@ namespace Com.MorganHouston.Imprecision
             _anim = GetComponent<PlayerAnimatorManager>();
             player = Player.Instance;
 
-            shootForce = player.AttackPower;
-            shotSpeed = player.AttackSpeed;
+            shootForce = player != null ? player.AttackPower : 10;
+            shotSpeed = player != null ? player.AttackSpeed : 5;
         }
 
         // Update is called once per frame
@@ -132,7 +132,9 @@ namespace Com.MorganHouston.Imprecision
 
                 _anim.SetShot();
                 startedPullingBack = false;
-                Player.Instance.FiredArrow();
+
+                if(player!= null)
+                    player.FiredArrow();
 
                 audioSource.Play();
             }

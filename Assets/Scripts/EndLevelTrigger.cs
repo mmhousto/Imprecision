@@ -8,7 +8,7 @@ namespace Com.MorganHouston.Imprecision
     {
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && StoryManager.Instance != null)
             {
                 StoryManager.Instance.LevelComplete();
             }

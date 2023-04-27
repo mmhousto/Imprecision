@@ -23,7 +23,7 @@ namespace Com.MorganHouston.Imprecision
 
         private void UpdateCursor()
         {
-            if (GameManager.Instance.isGameOver == true || playerInputs.aiming == false)
+            if (GameManager.Instance?.isGameOver == true || playerInputs.aiming == false)
             {
                 cursor.SetActive(false);
             }

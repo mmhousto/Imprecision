@@ -68,7 +68,7 @@ namespace Com.MorganHouston.Imprecision
         public void LevelComplete()
         {
             finishedLevel = true;
-            GameManager.Instance.GameOver();
+            GameManager.Instance?.GameOver();
         }
 
         void CheckObjectivesStatus()
@@ -100,7 +100,7 @@ namespace Com.MorganHouston.Imprecision
 
         void HandleTime()
         {
-            if(GameManager.Instance.isGameOver == false)
+            if(GameManager.Instance?.isGameOver == false)
             {
                 currentTime += Time.deltaTime;
                 

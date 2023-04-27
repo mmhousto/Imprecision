@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 1626536801}
   - component: {fileID: 1626536802}
   - component: {fileID: 1626536804}
-  - component: {fileID: 1626536803}
+  - component: {fileID: 1626536800}
   m_Layer: 0
   m_Name: Cyclops
   m_TagString: Untagged
@@ -510,7 +510,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1626536803
+--- !u!114 &1626536800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -519,20 +519,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 3365186013365012829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e2cbac0e9ad8142a3ce8b5c64f6e9e, type: 3}
+  m_Script: {fileID: 11500000, guid: de4d6f38ca1fbb84baf4f8fd3b520fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  followDistance: 30
-  attackDistance: 5
+  followDistance: 35
+  attackDistance: 6
   attackTime: 0
   scalingfactor: 10
   attackPower: 35
   defensePower: 45
-  attackSpeed: 5
+  attackSpeed: 1
   movementSpeed: 1
   stamina: 75
-  critChance: 15
+  critChance: 5
 --- !u!1 &3523946104016225249
 GameObject:
   m_ObjectHideFlags: 0
