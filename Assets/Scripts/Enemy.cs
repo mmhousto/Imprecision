@@ -89,13 +89,9 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
-        public void Die()
+        public virtual void Die()
         {
             currentState = AIState.Dead;
-        }
-
-        public virtual void Death()
-        {
             Destroy(gameObject);
         }
 
@@ -156,7 +152,7 @@ namespace Com.MorganHouston.Imprecision
                     case AIState.Patrol:
                         break;
                     case AIState.Dead:
-                        Death();
+                        FollowTarget(transform.position);
                         break;
                     default:
                         currentState = AIState.Idle;

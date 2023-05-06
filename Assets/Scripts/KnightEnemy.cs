@@ -47,9 +47,11 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
-        public void KnightDeath()
+        public override void Die()
         {
-            Destroy(gameObject);
+            currentState = AIState.Dead;
+            anim.SetTrigger("Death");
+            Destroy(transform.root.gameObject, 2.3f);
         }
 
         protected override void DetermineState()
@@ -127,10 +129,7 @@ namespace Com.MorganHouston.Imprecision
                     case AIState.Patrol:
                         break;
                     case AIState.Dead:
-                        if (anim.GetInteger("State") != 4)
-                        {
-                            anim.SetInteger("State", 4);
-                        }
+                        FollowTarget(transform.position);
                         break;
                     default:
                         currentState = AIState.Idle;

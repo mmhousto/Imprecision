@@ -122,7 +122,7 @@ namespace Com.MorganHouston.Imprecision
                     case AIState.Patrol:
                         break;
                     case AIState.Dead:
-                        anim.SetInteger("State", 4);
+                        FollowTarget(transform.position);
                         break;
                     default:
                         currentState = AIState.Idle;
