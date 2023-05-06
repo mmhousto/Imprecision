@@ -26,6 +26,8 @@ namespace Com.MorganHouston.Imprecision
         public static bool canFire = true;
         private float shotStrength = 0.0f;
         private float shotSpeed = 5f;
+        private float shotStamina = 75f;
+        private float pullbackTimeLeft;
         private bool aiming = false;
         private bool pullingBack = false;
         private bool hasReleased = false;
@@ -45,6 +47,8 @@ namespace Com.MorganHouston.Imprecision
 
             shootForce = player != null ? player.AttackPower : 10;
             shotSpeed = player != null ? player.AttackSpeed : 5;
+            shotStamina = player != null ? player.Stamina : 75;
+            pullbackTimeLeft = shotStrength / 5f;
         }
 
         // Update is called once per frame
@@ -88,11 +92,22 @@ namespace Com.MorganHouston.Imprecision
             if (pullingBack && startedPullingBack == false)
             {
                 startedPullingBack = true;
+                
             }
 
             if (pullingBack && canFire && startedPullingBack)
             {
+                pullbackTimeLeft -= Time.deltaTime;
+                if(pullbackTimeLeft <= 0)
+                {
+                    pullingBack = false;
+                    pullbackTimeLeft = shotStamina / 5f;
+                    RumbleManager.instance.StopRumbleNow();
+                }
+
                 shotStrength += (.95f + (shotSpeed/150)) * Time.deltaTime;
+                var pullBack = Mathf.Clamp(shotStrength, 0f, 5f); // clamps shotStrength if greater than 5
+                RumbleManager.instance.RumblePulse(pullBack / 6f, pullBack / 6f, shotStamina / 5f);
 
             }
             else if (pullingBack == false && canFire && startedPullingBack)
@@ -137,6 +152,7 @@ namespace Com.MorganHouston.Imprecision
                     player.FiredArrow();
 
                 audioSource.Play();
+                RumbleManager.instance.StopRumbleNow();
             }
 
         }
