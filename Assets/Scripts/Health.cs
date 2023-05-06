@@ -53,7 +53,7 @@ namespace Com.MorganHouston.Imprecision
             }
             else if (HealthPoints <= 0)
             {
-                Destroy(this.gameObject);
+                GetComponent<Enemy>().Die();
             }
         }
 

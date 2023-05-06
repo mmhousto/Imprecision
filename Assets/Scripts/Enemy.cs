@@ -15,8 +15,8 @@ namespace Com.MorganHouston.Imprecision
         public float attackTime = 0;
 
         protected Health health;
-        protected enum AIState { Idle, Follow, Attack, Patrol }; // enum for the spider's states
-        protected AIState currentState = AIState.Idle; // current state of the spider
+        protected enum AIState { Idle, Follow, Attack, Patrol, Dead }; // enum for the enemy states
+        protected AIState currentState = AIState.Idle; // current state of the enemy
         protected Vector3 spawnLocation;
         protected NavMeshAgent agent;
         protected bool canAttack;
@@ -89,6 +89,16 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
+        public void Die()
+        {
+            currentState = AIState.Dead;
+        }
+
+        public virtual void Death()
+        {
+            Destroy(gameObject);
+        }
+
         protected void AgentSetup()
         {
             agent = transform.root.GetComponentInChildren<NavMeshAgent>();
@@ -142,6 +152,11 @@ namespace Com.MorganHouston.Imprecision
                             agent.isStopped = false;
                             FollowTarget(target.position);
                         }
+                        break;
+                    case AIState.Patrol:
+                        break;
+                    case AIState.Dead:
+                        Death();
                         break;
                     default:
                         currentState = AIState.Idle;

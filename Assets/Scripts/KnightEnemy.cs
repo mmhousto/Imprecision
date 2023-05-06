@@ -47,6 +47,11 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
+        public void KnightDeath()
+        {
+            Destroy(gameObject);
+        }
+
         protected override void DetermineState()
         {
             if (target == null)
@@ -117,6 +122,14 @@ namespace Com.MorganHouston.Imprecision
                             anim.SetInteger("State", 1);
                             // do follow behavior (e.g. move towards player)
                             FollowTarget(target.position);
+                        }
+                        break;
+                    case AIState.Patrol:
+                        break;
+                    case AIState.Dead:
+                        if (anim.GetInteger("State") != 4)
+                        {
+                            anim.SetInteger("State", 4);
                         }
                         break;
                     default:

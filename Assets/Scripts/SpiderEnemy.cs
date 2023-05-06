@@ -85,6 +85,11 @@ namespace Com.MorganHouston.Imprecision
                             FollowTarget(target.position);
                         }
                         break;
+                    case AIState.Patrol:
+                        break;
+                    case AIState.Dead:
+                        Death();
+                        break;
                     default:
                         currentState = AIState.Idle;
                         break;
