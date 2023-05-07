@@ -102,7 +102,7 @@ namespace Com.MorganHouston.Imprecision
                 {
                     pullingBack = false;
                     pullbackTimeLeft = shotStamina / 5f;
-                    RumbleManager.instance.StopRumbleNow();
+                    RumbleManager.instance?.StopRumbleNow();
                 }
 
                 shotStrength += (.95f + (shotSpeed/150)) * Time.deltaTime;

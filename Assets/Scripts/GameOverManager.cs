@@ -90,10 +90,10 @@ namespace Com.MorganHouston.Imprecision
             RestartGame();
         }
 
-        public void LoadStoryLevel2()
+        public void LoadStoryLevel(int sceneIndex)
         {
             gameManager.SetLevel(gameManager.LevelSelected + 1);
-            SceneLoader.LoadThisScene(4);
+            SceneLoader.LoadThisScene(sceneIndex);
         }
 
     }

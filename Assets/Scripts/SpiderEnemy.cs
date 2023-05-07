@@ -75,6 +75,13 @@ namespace Com.MorganHouston.Imprecision
                         }
                         break;
                     case AIState.Attack:
+                        // If not in attack zone but in follow distance, switch to follow state
+                        if (distanceToPlayer > attackDistance && distanceToPlayer <= followDistance)
+                        {
+                            currentState = AIState.Follow;
+                            break;
+                        }
+
                         if (canAttack)
                             JumpAndAttack();
                         else

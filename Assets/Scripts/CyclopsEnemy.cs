@@ -86,7 +86,11 @@ namespace Com.MorganHouston.Imprecision
                         }
                         break;
                     case AIState.Follow:
-                        // do follow behavior (e.g. move towards player)
+                        // switches to attack state if close enogh
+                        if (distanceToPlayer < attackDistance)
+                        {
+                            currentState = AIState.Attack;
+                        }
 
                         // transitions to walking state if not there
                         if (anim.GetInteger("State") != 1)
@@ -96,12 +100,7 @@ namespace Com.MorganHouston.Imprecision
 
                         // follows player
                         FollowTarget(target.position);
-
-                        // switches to attack state if close enogh
-                        if (distanceToPlayer < attackDistance)
-                        {
-                            currentState = AIState.Attack;
-                        }
+                        
                         break;
                     case AIState.Attack:
                         // If not in attack zone but in follow distance, switch to follow state

@@ -121,7 +121,11 @@ namespace Com.MorganHouston.Imprecision
                         // Checks if we cant attack and aren't attacking, then follow player
                         else if (canAttack == false && attacking == false)
                         {
-                            anim.SetInteger("State", 1);
+                            // transitions to walking state if not there
+                            if (anim.GetInteger("State") != 1)
+                            {
+                                anim.SetInteger("State", 1); // Walking ANIM
+                            }
                             // do follow behavior (e.g. move towards player)
                             FollowTarget(target.position);
                         }
