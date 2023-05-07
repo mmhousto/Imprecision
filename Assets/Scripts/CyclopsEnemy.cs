@@ -46,6 +46,13 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
+        public override void Die()
+        {
+            currentState = AIState.Dead;
+            anim.SetTrigger("Death");
+            Destroy(gameObject, 2.3f);
+        }
+
         protected override void DetermineState()
         {
             if (target == null)

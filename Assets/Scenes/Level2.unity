@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: f41b631c2281c514cbbe6b4e30971fa3, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 30722872dd1ea2744972ae45b66e8b8a, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: ca4ae0f5918cda4409e1bf2ce47cb197, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -3597,6 +3597,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4512730985726067024, guid: 87e5e52bfaa4736499de8260127808ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4512730985726067027, guid: 87e5e52bfaa4736499de8260127808ee, type: 3}
       propertyPath: m_Camera
       value: 
@@ -4276,8 +4280,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.4669811, g: 0.6116577, b: 1, a: 1}
-  m_Intensity: 0.01
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -15965,6 +15969,10 @@ PrefabInstance:
     - target: {fileID: 3117447993796767576, guid: 646efe3212fed2e44a7d5360693c613d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0099999895
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193937198033452131, guid: 646efe3212fed2e44a7d5360693c613d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 127
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 646efe3212fed2e44a7d5360693c613d, type: 3}
