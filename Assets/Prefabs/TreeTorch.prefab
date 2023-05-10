@@ -108,12 +108,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4086208835745380680}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.086, y: 2.51, z: 0.11}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.37403196, y: 2.3963835, z: 1.1962248}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8211060572710166795}
+  m_Father: {fileID: 5970372209408851362}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &640584418412960812
@@ -128,8 +128,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.60143006, b: 0.08597365, a: 1}
-  m_Intensity: 1.1
-  m_Range: 20
+  m_Intensity: 8
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -170,7 +170,7 @@ Light:
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1.61, y: 1.55}
-  m_BounceIntensity: 0
+  m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -223,17 +223,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8842919825013128113}
-  m_LocalRotation: {x: 0.28008178, y: 0.6295535, z: -0.26076955, w: 0.6761774}
+  m_LocalRotation: {x: 0.28008184, y: 0.62955344, z: -0.26076958, w: 0.6761774}
   m_LocalPosition: {x: 0.18985987, y: 0.45049953, z: -0.15314236}
-  m_LocalScale: {x: 0.050000004, y: 0.049999997, z: 0.049999997}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8756044567697412179}
-  - {fileID: 2681163691653404247}
   - {fileID: 5970372209408851362}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: -32.05, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 85.91, z: 0}
 --- !u!198 &8536913303384289427
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5042,7 +5041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012166036088, guid: 28fbc97a4e7e92144af43a4bd05be737, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000012166036088, guid: 28fbc97a4e7e92144af43a4bd05be737, type: 3}
       propertyPath: m_LocalPosition.x
