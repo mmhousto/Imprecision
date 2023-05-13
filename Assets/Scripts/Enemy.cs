@@ -8,18 +8,24 @@ using UnityEngine.UI;
 namespace Com.MorganHouston.Imprecision
 {
     public class Enemy : MonoBehaviour
-    {        
+    {
+        [Tooltip("The player")]
         public Transform target;
-        public float followDistance = 5f; // the distance at which the spider will start following the player
-        public float attackDistance = 2f; // the distance at which the spider will start attacking the player
-        public float attackTime = 0;
-
+        [Tooltip("The distance at which the enemy will start following the player.")]
+        public float followDistance = 5f; // the distance at which the enemy will start following the player
+        [Tooltip("The distance at which the enemy will start attacking the player.")]
+        public float attackDistance = 2f; // the distance at which the enemy will start attacking the player
+        [Tooltip("Tells wether the enemy is attacking or not.")]
+        public bool attacking = false;
+        
         protected Health health;
         protected enum AIState { Idle, Follow, Attack, Patrol, Dead }; // enum for the enemy states
         protected AIState currentState = AIState.Idle; // current state of the enemy
         protected Vector3 spawnLocation;
         protected NavMeshAgent agent;
+        protected float attackTime = 0;
         protected bool canAttack;
+        public bool CanAttack { get { return canAttack; } set { canAttack = value; } }
 
         [SerializeField]
         protected int scalingfactor = 10;
@@ -97,6 +103,7 @@ namespace Com.MorganHouston.Imprecision
 
         protected void AgentSetup()
         {
+            target = GameObject.FindWithTag("Player").transform;
             agent = transform.root.GetComponentInChildren<NavMeshAgent>();
             spawnLocation = transform.position;
             agent.Warp(spawnLocation);
@@ -182,7 +189,7 @@ namespace Com.MorganHouston.Imprecision
                 agent.SetDestination(targetPos);
         }
 
-        protected int DetermineDamageToDeal()
+        public int DetermineDamageToDeal()
         {
             Player player = Player.Instance;
 

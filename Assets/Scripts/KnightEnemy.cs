@@ -7,7 +7,6 @@ namespace Com.MorganHouston.Imprecision
     public class KnightEnemy : Enemy
     {
         private Animator anim;
-        private bool attacking = false;
 
         // Start is called before the first frame update
         void Start()
@@ -33,17 +32,28 @@ namespace Com.MorganHouston.Imprecision
                 if (myCollider.name.Contains("Head"))
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Body));
+                    anim.SetTrigger("Hurt");
+                    Destroy(collision.gameObject);
                 }
                 else if (myCollider.name.Contains("Body"))
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Body));
+                    anim.SetTrigger("Hurt");
+                    Destroy(collision.gameObject);
+                }
+                else if (myCollider.CompareTag("Shield"))
+                {
+                    Debug.Log("Blocked");
+                    collision.transform.SetParent(myCollider.transform, true); // attach to shield
                 }
                 else
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Legs));
+                    anim.SetTrigger("Hurt");
+                    Destroy(collision.gameObject);
                 }
-                anim.SetTrigger("Hurt");
-                Destroy(collision.gameObject);
+                
+                
             }
         }
 
@@ -148,20 +158,20 @@ namespace Com.MorganHouston.Imprecision
             attacking = true;
             anim.SetFloat("Attack", Random.Range(0, 5));
             anim.SetInteger("State", 2);
-            
+
 
             // make the spider jump towards the player
             //Vector3 directionToPlayer = (target.position - transform.position).normalized;
 
             // check if the player is within attack range
-            float distanceToPlayer = Vector3.Distance(transform.position, target.position);
+            /*float distanceToPlayer = Vector3.Distance(transform.position, target.position);
             if (distanceToPlayer <= 1.5f)
             {
                 // perform the attack
                 target.GetComponent<Health>().TakeDamage(DetermineDamageToDeal());
-            }
-
-            yield return new WaitForSeconds(3.5f);
+            }*/
+            Debug.Log(anim.GetCurrentAnimatorStateInfo(0).length);
+            yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0).Length);
             attacking = false;
             attackTime = attackSpeed;
             canAttack = false;

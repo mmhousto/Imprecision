@@ -7,7 +7,6 @@ namespace Com.MorganHouston.Imprecision
     public class CyclopsEnemy : Enemy
     {
         private Animator anim;
-        private bool attacking = false;
 
         // Start is called before the first frame update
         void Start()
