@@ -148,14 +148,14 @@ namespace Com.MorganHouston.Imprecision
             //Vector3 directionToPlayer = (target.position - transform.position).normalized;
 
             // check if the player is within attack range
-            float distanceToPlayer = Vector3.Distance(transform.position, target.position);
+            /*float distanceToPlayer = Vector3.Distance(transform.position, target.position);
             if (distanceToPlayer <= 1.5f)
             {
                 // perform the attack
                 target.GetComponent<Health>().TakeDamage(DetermineDamageToDeal());
-            }
-
-            yield return new WaitForSeconds(3.5f);
+            }*/
+            Debug.Log(anim.GetCurrentAnimatorStateInfo(0).length);
+            yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0).Length);
             attacking = false;
             attackTime = attackSpeed;
             canAttack = false;
