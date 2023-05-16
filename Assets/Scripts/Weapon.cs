@@ -28,6 +28,7 @@ namespace Com.MorganHouston.Imprecision
             if (other.CompareTag("Player") && enemy.attacking && playerHit == false)
             {
                 playerHit = true;
+                Invoke(nameof(ResetPlayerHitThen), 0.1f);
                 playerHealth.TakeDamage(enemy.DetermineDamageToDeal());
             }
         }
@@ -39,6 +40,11 @@ namespace Com.MorganHouston.Imprecision
             {
                 playerHit = false;
             }
+        }
+
+        private void ResetPlayerHitThen()
+        {
+             playerHit = false;
         }
 
     }

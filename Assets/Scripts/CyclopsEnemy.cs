@@ -7,6 +7,15 @@ namespace Com.MorganHouston.Imprecision
     public class CyclopsEnemy : Enemy
     {
         private Animator anim;
+        private float[] animTimes =
+        {
+            3.167f,
+            2.267f,
+            2.4f,
+            1.867f,
+            4.667f,
+            4.2f
+        };
 
         // Start is called before the first frame update
         void Start()
@@ -140,7 +149,8 @@ namespace Com.MorganHouston.Imprecision
         IEnumerator JumpAndAttack()
         {
             attacking = true;
-            anim.SetFloat("Attack", Random.Range(0, 5));
+            int randomAtt = Random.Range(0, 6);
+            anim.SetFloat("Attack", randomAtt);
             anim.SetInteger("State", 2);
 
 
@@ -154,8 +164,9 @@ namespace Com.MorganHouston.Imprecision
                 // perform the attack
                 target.GetComponent<Health>().TakeDamage(DetermineDamageToDeal());
             }*/
-            Debug.Log(anim.GetCurrentAnimatorStateInfo(0).length);
-            yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0).Length);
+            //Debug.Log(anim.GetCurrentAnimatorStateInfo(0).length);
+            Debug.Log(animTimes[randomAtt]);
+            yield return new WaitForSeconds(animTimes[randomAtt]);
             attacking = false;
             attackTime = attackSpeed;
             canAttack = false;
