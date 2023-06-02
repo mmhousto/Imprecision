@@ -85,6 +85,7 @@ namespace Com.MorganHouston.Imprecision
             if (!aiming) {
                 shotStrength = 0f;
                 power.value = shotStrength;
+                startedPullingBack = false;
                 _input.isPullingBack = false;
                 RumbleManager.instance?.StopRumbleNow();
                 return; 

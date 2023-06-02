@@ -85,6 +85,12 @@ namespace StarterAssets
 		{
 			if (!aiming)
 				sprint = !sprint;
+			else if (aiming)
+			{
+				aiming = false;
+				sprint = true;
+			}
+				
 		}
 
 		public void AimInput(bool newAimState)
