@@ -40,6 +40,16 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
+        public override void Die()
+        {
+            if(name.Contains("MiniBoss"))
+                Score.Instance.AddPoints(300);
+            else
+                Score.Instance.AddPoints(50);
+            currentState = AIState.Dead;
+            Destroy(gameObject);
+        }
+
         protected override void DetermineState()
         {
             if (target == null)

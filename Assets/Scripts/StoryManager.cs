@@ -17,6 +17,8 @@ namespace Com.MorganHouston.Imprecision
         public TextMeshProUGUI currentTimeLabel;
         public float timeToBeat;
 
+        public static List<float> currentRunTimes = new List<float>();
+
         [SerializeField] GameObject[] enemies;
         [SerializeField] bool miniBossDefeated;
         [SerializeField] bool allEnemiesDefeated;
@@ -68,6 +70,7 @@ namespace Com.MorganHouston.Imprecision
         public void LevelComplete()
         {
             finishedLevel = true;
+            currentRunTimes.Add(currentTime);
             GameManager.Instance?.GameOver();
         }
 

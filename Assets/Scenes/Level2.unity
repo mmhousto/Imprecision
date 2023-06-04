@@ -16,7 +16,7 @@ RenderSettings:
   serializedVersion: 9
   m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
+  m_FogMode: 2
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
@@ -3599,7 +3599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4512730985726067024, guid: 87e5e52bfaa4736499de8260127808ee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4512730985726067027, guid: 87e5e52bfaa4736499de8260127808ee, type: 3}
       propertyPath: m_Camera
@@ -3689,6 +3689,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4512730986984273504, guid: 87e5e52bfaa4736499de8260127808ee, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 4512730986984273507, guid: 87e5e52bfaa4736499de8260127808ee, type: 3}
       propertyPath: uiControls
       value: 
@@ -3726,11 +3730,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1335519146}
     - target: {fileID: 5845224678409473396, guid: 87e5e52bfaa4736499de8260127808ee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartStoryGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845224678409473396, guid: 87e5e52bfaa4736499de8260127808ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Play
       objectReference: {fileID: 0}
+    - target: {fileID: 5845224678409473396, guid: 87e5e52bfaa4736499de8260127808ee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Com.MorganHouston.Imprecision.GameOverManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87e5e52bfaa4736499de8260127808ee, type: 3}
+--- !u!114 &567578247 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4512730986984273507, guid: 87e5e52bfaa4736499de8260127808ee, type: 3}
+  m_PrefabInstance: {fileID: 567578246}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e571b1f7ce704894e83c662295bde534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &576749424
 GameObject:
   m_ObjectHideFlags: 0
@@ -19208,11 +19231,15 @@ PrefabInstance:
     - target: {fileID: 1247356447372446758, guid: 6376a67a767d70642a1199027c2674a8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8450887256078217532}
+      objectReference: {fileID: 567578247}
     - target: {fileID: 1247356447372446758, guid: 6376a67a767d70642a1199027c2674a8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1335519146}
+    - target: {fileID: 1247356447372446758, guid: 6376a67a767d70642a1199027c2674a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartStoryGame
+      objectReference: {fileID: 0}
     - target: {fileID: 1247356447763949656, guid: 6376a67a767d70642a1199027c2674a8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -19551,6 +19578,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 121815596, guid: 075eb6270bc3788479d10cef76b808e5, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 119
+      objectReference: {fileID: 0}
     - target: {fileID: 408118529861791880, guid: 075eb6270bc3788479d10cef76b808e5, type: 3}
       propertyPath: eventSystem
       value: 

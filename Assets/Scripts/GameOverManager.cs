@@ -50,7 +50,7 @@ namespace Com.MorganHouston.Imprecision
         {
             if (gameManager.playingStoryMode)
             {
-                if (gameManager.LevelSelected == 3)
+                if (gameManager.LevelSelected == 2)
                 {
                     nextLevelBtn.gameObject.SetActive(false);
                 }
@@ -81,6 +81,14 @@ namespace Com.MorganHouston.Imprecision
         public void RestartGame()
         {
             SceneLoader.LoadThisScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public void RestartStoryGame()
+        {
+            Time.timeScale = 1;
+            StoryManager.currentRunTimes.Clear();
+            GameManager.Instance.SetLevel(0);
+            SceneLoader.LoadThisScene(3);
         }
 
         public void ToMainMenu()

@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 1247356447901634869}
   - component: {fileID: 1247356447901634865}
   - component: {fileID: 1247356447901634862}
+  - component: {fileID: 1247356447554253154}
   m_Layer: 5
   m_Name: StoryHUD
   m_TagString: Untagged
@@ -322,6 +323,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612245da93a6041739b41138eb9204ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1247356447554253154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247356447901634868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8bf752d9b43214ba72acbbe57762c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInputs: {fileID: 0}
+  cursor: {fileID: 1247356448295459337}
 --- !u!1 &1247356448599359707
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +690,14 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6755663403379302648, guid: 5ef7c23403b25c746a0df0f98952dc27, type: 3}
+      propertyPath: gameSettings.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6755663403379302648, guid: 5ef7c23403b25c746a0df0f98952dc27, type: 3}
+      propertyPath: gameSettings.Array.data[3]
+      value: 
+      objectReference: {fileID: 3791308852225820147}
     - target: {fileID: 6755663403793827728, guid: 5ef7c23403b25c746a0df0f98952dc27, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -779,11 +802,24 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6755663405085826743, guid: 5ef7c23403b25c746a0df0f98952dc27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartStoryGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6755663405085826743, guid: 5ef7c23403b25c746a0df0f98952dc27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Com.MorganHouston.Imprecision.GameOverManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ef7c23403b25c746a0df0f98952dc27, type: 3}
 --- !u!224 &1247356449335432449 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6755663403793827728, guid: 5ef7c23403b25c746a0df0f98952dc27, type: 3}
+  m_PrefabInstance: {fileID: 5516751241433223825}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3791308852225820147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652012289188452194, guid: 5ef7c23403b25c746a0df0f98952dc27, type: 3}
   m_PrefabInstance: {fileID: 5516751241433223825}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6833824807407974616
@@ -977,7 +1013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7302083120257068888, guid: 57ef1ee114efca54aab84d6cb8cf45b7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 200
+      value: 6.039842
       objectReference: {fileID: 0}
     - target: {fileID: 7302083120257068888, guid: 57ef1ee114efca54aab84d6cb8cf45b7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1020,5 +1056,10 @@ PrefabInstance:
 --- !u!224 &1247356448295459334 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7302083120257068888, guid: 57ef1ee114efca54aab84d6cb8cf45b7, type: 3}
+  m_PrefabInstance: {fileID: 8365917878360077662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1247356448295459337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7302083120257068887, guid: 57ef1ee114efca54aab84d6cb8cf45b7, type: 3}
   m_PrefabInstance: {fileID: 8365917878360077662}
   m_PrefabAsset: {fileID: 0}
