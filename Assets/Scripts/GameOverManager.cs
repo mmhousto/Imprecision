@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -12,6 +13,7 @@ namespace Com.MorganHouston.Imprecision
         public Button nextLevelBtn;
         public TextMeshProUGUI xpGainedText;
         public MobileDisableAutoSwitchControls uiControls;
+        public GameObject restartButton;
         private GameManager gameManager;
         private Player player;
 
@@ -19,6 +21,8 @@ namespace Com.MorganHouston.Imprecision
         {
             gameManager = GameManager.Instance;
             player = Player.Instance;
+
+            EventSystem.current.SetSelectedGameObject(restartButton);
 
             if(gameManager != null && player != null)
                 CheckIfBeatLevel();

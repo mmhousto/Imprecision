@@ -110,7 +110,7 @@ namespace Com.MorganHouston.Imprecision
 
                 shotStrength += (.95f + (shotSpeed/150)) * Time.deltaTime;
                 var pullBack = Mathf.Clamp(shotStrength, 0f, 5f); // clamps shotStrength if greater than 5
-                RumbleManager.instance?.RumblePulse(pullBack / 6f, pullBack / 6f, shotStamina / 5f);
+                RumbleManager.instance?.RumblePulse(pullBack / 8f, pullBack / 8f, shotStamina / 5f);
 
             }
             else if (pullingBack == false && canFire && startedPullingBack)
