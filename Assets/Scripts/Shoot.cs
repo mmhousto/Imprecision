@@ -16,6 +16,7 @@ namespace Com.MorganHouston.Imprecision
         public float shootForce = 10f;
         public Slider power;
         public AudioSource audioSource;
+        private PauseManager pauseManager;
         private StarterAssetsInputs _input;
         private PlayerAnimatorManager _anim;
         private Player player;
@@ -44,6 +45,7 @@ namespace Com.MorganHouston.Imprecision
             source = GetComponent<Cinemachine.CinemachineImpulseSource>();
             _anim = GetComponent<PlayerAnimatorManager>();
             player = Player.Instance;
+            pauseManager = GetComponent<PauseManager>();
 
             shootForce = player != null ? player.AttackPower : 10;
             shotSpeed = player != null ? player.AttackSpeed : 5;
@@ -54,9 +56,13 @@ namespace Com.MorganHouston.Imprecision
         // Update is called once per frame
         void Update()
         {
-            CheckIfCanFire();
+            if (!pauseManager.isPaused)
+            {
+                CheckIfCanFire();
 
-            Fire();
+                Fire();
+            }
+                
 
         }
 

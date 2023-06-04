@@ -36,6 +36,16 @@ namespace Com.MorganHouston.Imprecision
             
         }
 
+        public void PauseRumble()
+        {
+            InputSystem.PauseHaptics();
+        }
+
+        public void ResumeRumble()
+        {
+            InputSystem.ResumeHaptics();
+        }
+
         public void StopRumbleNow()
         {
             if (pad != null)
