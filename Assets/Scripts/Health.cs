@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 
@@ -10,6 +11,7 @@ namespace Com.MorganHouston.Imprecision
     {
         public Slider healthBar;
         public TextMeshProUGUI label;
+        private Animator anim;
 
         [SerializeField]
         private int healthPoints = 100;
@@ -21,6 +23,7 @@ namespace Com.MorganHouston.Imprecision
             if (CompareTag("Player"))
             {
                 HealthPoints = Player.Instance != null ? Player.Instance.HealthPoints : 100;
+                anim = GetComponent<Animator>();
             }
             else if (CompareTag("Enemy"))
             {
@@ -49,7 +52,17 @@ namespace Com.MorganHouston.Imprecision
 
             if (HealthPoints <= 0 && CompareTag("Player"))
             {
-                GameManager.Instance.GameOver();
+                GetComponent<PlayerInput>().DeactivateInput();
+
+                var rand = Random.Range(0.0f, 2.0f);
+                anim.SetFloat("Death", rand);
+                anim.SetTrigger("Die");
+
+                GameManager.Instance.Invoke("GameOver", 4.2f);
+            }
+            else if (CompareTag("Player"))
+            {
+                anim.SetTrigger("Hurt");
             }
             else if (HealthPoints <= 0)
             {
