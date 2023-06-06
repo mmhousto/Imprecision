@@ -53,7 +53,7 @@ namespace Com.MorganHouston.Imprecision
             if(targetsHit.text != targetsHitValue.ToString())
                 targetsHit.text = targetsHitValue.ToString();
 
-            int accuracyValue = targetsHitValue * 100 / arrowsFiredValue;
+            int accuracyValue = arrowsFiredValue == 0 ? 0 : targetsHitValue * 100 / arrowsFiredValue;
             if (accuracy.text != $"{accuracyValue}%")
                 accuracy.text = $"{accuracyValue}%";
 
