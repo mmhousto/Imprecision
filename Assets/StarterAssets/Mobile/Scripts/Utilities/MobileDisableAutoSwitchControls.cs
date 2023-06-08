@@ -8,9 +8,7 @@ For the time-being; this script will disable a PlayerInput's auto switch control
 */
 
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
-#endif
 
 public class MobileDisableAutoSwitchControls : MonoBehaviour
 {
@@ -26,7 +24,7 @@ public class MobileDisableAutoSwitchControls : MonoBehaviour
     {
         SetSwipeOrStickLook();
 
-        DisableScreenControls();
+        //DisableScreenControls();
     }
 
     private void Update()

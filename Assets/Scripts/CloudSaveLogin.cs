@@ -84,6 +84,8 @@ namespace Com.MorganHouston.Imprecision
             }
 
 
+#if UNITY_WSA
+#else
             if (!FB.IsInitialized)
             {
                 // Initialize the Facebook SDK
@@ -94,6 +96,8 @@ namespace Com.MorganHouston.Imprecision
                 // Already initialized, signal an app activation App Event
                 FB.ActivateApp();
             }
+#endif
+
 
 #if UNITY_ANDROID
             // Initializes Google Play Games Login

@@ -13,7 +13,7 @@ namespace Com.MorganHouston.Imprecision
 
         public static LoginManager Instance { get { return instance; } }
 
-        public GameObject appleLogin, googleLogin, signInPanel, mainMenuPanel, levelSelectButton;
+        public GameObject appleLogin, googleLogin, facebookLogin, signInPanel, mainMenuPanel, levelSelectButton;
 
         private void Awake()
         {
@@ -35,9 +35,19 @@ namespace Com.MorganHouston.Imprecision
             appleLogin.SetActive(false);
             googleLogin.SetActive(true);
 #elif UNITY_IOS
-        appleLogin.SetActive(true);
-        googleLogin.SetActive(false);
+            appleLogin.SetActive(true);
+            googleLogin.SetActive(false);
+#else
+            appleLogin.SetActive(false);
+            googleLogin.SetActive(false);
 #endif
+
+#if UNITY_WSA
+            facebookLogin.SetActive(false);
+#else
+            facebookLogin.SetActive(true);
+#endif
+
         }
 
         private void Update()
