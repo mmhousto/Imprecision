@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.ComponentModel;
 using Steamworks;
+using Unity.Services.Authentication;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -33,18 +34,18 @@ namespace Com.MorganHouston.Imprecision
 		new Achievement_t(Achievement.CgkIqK61pYkHEAIQBg, "Golden Delicious \"The West Virginia Has-Been\"", "Shoot the apple, on 10 different levels."),
 		new Achievement_t(Achievement.CgkIqK61pYkHEAIQBw, "Granny Smith \"The Original Sour Apple\"", "Shoot the apple, on 25 different levels."),
 		new Achievement_t(Achievement.CgkIqK61pYkHEAIQCA, "Honey Crisp \"The Worldwide Favorite\"", "Shoot the apple, on all 50 levels."),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", ""),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", ""),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", ""),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", ""),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", ""),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", ""),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", ""),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", ""),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", ""),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", ""),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", ""),
-		new Achievement_t(Achievement.ACH_TRAVEL_FAR_SINGLE, "Orbiter", "")
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQCQ, "Perfect!", "Three Star a Level."),
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQCg, "Perfection!", "Three Star 25 Levels."),
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQCw, "Perfectionist!", "Three Star Every Level."),
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQFA, "Bullseye!", "Hit a Bullseye on a Target."),
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQDA, "Precise!", "Hit a Bullseye on Every Target, on a Level."),
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQDQ, "Precision!", "Hit a Bullseye on Every Target, on 25 Levels."),
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQDg, "Precisionist!", "Hit a Bullseye on Every Target, on 50 Levels."),
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQDw, "That's a Start", "Beat the first Precision level."),
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQEA, "Keep It Up", "Beat 10 Precision levels."),
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQEQ, "Now You Are Getting Somewhere", "Beat 25 Precision levels."),
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQEg, "Robin Hood", "Beat Every Precision level."),
+		new Achievement_t(Achievement.CgkIqK61pYkHEAIQEw, "What is this for?", "Obtain a Jewel.")
 	};
 
 		// Our GameID
@@ -63,12 +64,22 @@ namespace Com.MorganHouston.Imprecision
 		private double m_flGameDurationSeconds;
 
 		// Persisted Stat details
+		private int m_nUserPoints;
+		private int m_nUserLevel;
+		private int m_nUserXP;
+		private int m_nJewels;
+		private int m_nArrowsFired;
+		private int m_nTargetsHit;
+		private int m_nBullseyes;
+		private int m_nStars;
+		private int m_nThreeStars;
+		private int m_nPerfects;
 		private int m_nApplesShot;
-		private int m_nTotalNumWins;
-		private int m_nTotalNumLosses;
-		private float m_flTotalFeetTraveled;
-		private float m_flMaxFeetTraveled;
-		private float m_flAverageSpeed;
+		private int m_nLevelsBeat;
+
+		private float m_flAccuracy;
+
+		private Player player;
 
 		protected Callback<UserStatsReceived_t> m_UserStatsReceived;
 		protected Callback<UserStatsStored_t> m_UserStatsStored;
@@ -76,9 +87,10 @@ namespace Com.MorganHouston.Imprecision
 
 		void OnEnable()
 		{
-			if (!SteamManager.Initialized)
+			if (!SteamManager.Initialized || !AuthenticationService.Instance.IsSignedIn)
 				return;
 
+			player = Player.Instance;
 			// Cache the GameID for use in the Callbacks
 			m_GameID = new CGameID(SteamUtils.GetAppID());
 
@@ -93,8 +105,11 @@ namespace Com.MorganHouston.Imprecision
 
 		private void Update()
 		{
-			if (!SteamManager.Initialized)
+			if (!SteamManager.Initialized || !AuthenticationService.Instance.IsSignedIn)
 				return;
+
+			if(player == null)
+				player = Player.Instance;
 
 			if (!m_bRequestedStats)
 			{
@@ -117,6 +132,19 @@ namespace Com.MorganHouston.Imprecision
 				return;
 
 			// Get info from sources
+			m_nUserPoints = player.UserPoints;
+			m_nUserLevel = player.UserLevel;
+			m_nUserXP = player.UserXP;
+			m_nJewels = player.Jewels;
+			m_nArrowsFired = player.ArrowsFired;
+			m_nTargetsHit = player.TargetsHit;
+			m_flAccuracy = (m_nTargetsHit * 100) / m_nArrowsFired;
+			m_nBullseyes = player.BullseyesHit;
+			m_nStars = player.GetTotalStars();
+			m_nThreeStars = player.GetThreeStars();
+			m_nPerfects = player.GetPerfects();
+			m_nApplesShot = player.GetApplesShotOnLevels();
+			m_nLevelsBeat = player.GetTotalLevelsBeat();
 
 			// Evaluate achievements
 			foreach (Achievement_t achievement in m_Achievements)
@@ -126,6 +154,7 @@ namespace Com.MorganHouston.Imprecision
 
 				switch (achievement.m_eAchievementID)
 				{
+					// APPLES
 					case Achievement.CgkIqK61pYkHEAIQBQ:
 						if (m_nApplesShot != 0)
 						{
@@ -150,6 +179,86 @@ namespace Com.MorganHouston.Imprecision
 							UnlockAchievement(achievement);
 						}
 						break;
+
+					// THREE STARS
+					case Achievement.CgkIqK61pYkHEAIQCQ:
+						if (m_nThreeStars != 0)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
+					case Achievement.CgkIqK61pYkHEAIQCg:
+						if (m_nThreeStars >= 25)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
+					case Achievement.CgkIqK61pYkHEAIQCw:
+						if (m_nThreeStars >= 50)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
+
+					// BULLSEYES/PERFECTS
+					case Achievement.CgkIqK61pYkHEAIQFA:
+						if (m_nBullseyes != 0)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
+					case Achievement.CgkIqK61pYkHEAIQDA:
+						if (m_nPerfects != 0)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
+					case Achievement.CgkIqK61pYkHEAIQDQ:
+						if (m_nPerfects >= 25)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
+					case Achievement.CgkIqK61pYkHEAIQDg:
+						if (m_nPerfects >= 50)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
+
+					// PRECISION LEVELS BEAT
+					case Achievement.CgkIqK61pYkHEAIQDw:
+						if (m_nLevelsBeat != 0)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
+					case Achievement.CgkIqK61pYkHEAIQEA:
+						if (m_nLevelsBeat >= 10)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
+					case Achievement.CgkIqK61pYkHEAIQEQ:
+						if (m_nLevelsBeat >= 25)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
+					case Achievement.CgkIqK61pYkHEAIQEg:
+						if (m_nLevelsBeat >= 50)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
+
+					// JEWELS
+					case Achievement.CgkIqK61pYkHEAIQEw:
+						if (m_nJewels != 0)
+						{
+							UnlockAchievement(achievement);
+						}
+						break;
 				}
 			}
 
@@ -159,15 +268,25 @@ namespace Com.MorganHouston.Imprecision
 				// already set any achievements in UnlockAchievement
 
 				// set stats
-				SteamUserStats.SetStat("ApplesShot", m_nApplesShot);
-				SteamUserStats.SetStat("NumWins", m_nTotalNumWins);
-				SteamUserStats.SetStat("NumLosses", m_nTotalNumLosses);
-				SteamUserStats.SetStat("FeetTraveled", m_flTotalFeetTraveled);
-				SteamUserStats.SetStat("MaxFeetTraveled", m_flMaxFeetTraveled);
-				// Update average feet / second stat
+				SteamUserStats.SetStat("stat_points", m_nUserPoints);
+				SteamUserStats.SetStat("stat_level", m_nUserLevel);
+				SteamUserStats.SetStat("stat_xp", m_nUserXP);
+				SteamUserStats.SetStat("stat_jewels", m_nJewels);
+				SteamUserStats.SetStat("stat_arrows_fired", m_nArrowsFired);
+				SteamUserStats.SetStat("stat_targets_hit", m_nTargetsHit);
+				SteamUserStats.SetStat("stat_accuracy", m_flAccuracy);
+				SteamUserStats.SetStat("stat_bullseyes", m_nBullseyes);
+				SteamUserStats.SetStat("stat_stars", m_nStars);
+				SteamUserStats.SetStat("stat_three_stars", m_nThreeStars);
+				SteamUserStats.SetStat("stat_perfects", m_nPerfects);
+				SteamUserStats.SetStat("stat_apples", m_nApplesShot);
+				SteamUserStats.SetStat("stat_precision_levels_beat", m_nLevelsBeat);
+				
+				
+				/*// Update average feet / second stat
 				SteamUserStats.UpdateAvgRateStat("AverageSpeed", m_flGameFeetTraveled, m_flGameDurationSeconds);
 				// The averaged result is calculated for us
-				SteamUserStats.GetStat("AverageSpeed", out m_flAverageSpeed);
+				SteamUserStats.GetStat("AverageSpeed", out m_flAverageSpeed);*/
 
 				bool bSuccess = SteamUserStats.StoreStats();
 				// If this failed, we never sent anything to the server, try
@@ -183,6 +302,8 @@ namespace Com.MorganHouston.Imprecision
 		{
 			m_flGameFeetTraveled += flDistance;
 		}
+
+
 
 		//-----------------------------------------------------------------------------
 		// Purpose: Unlock this achievement
@@ -235,12 +356,19 @@ namespace Com.MorganHouston.Imprecision
 					}
 
 					// load stats
-					SteamUserStats.GetStat("ApplesShot", out m_nApplesShot);
-					SteamUserStats.GetStat("NumWins", out m_nTotalNumWins);
-					SteamUserStats.GetStat("NumLosses", out m_nTotalNumLosses);
-					SteamUserStats.GetStat("FeetTraveled", out m_flTotalFeetTraveled);
-					SteamUserStats.GetStat("MaxFeetTraveled", out m_flMaxFeetTraveled);
-					SteamUserStats.GetStat("AverageSpeed", out m_flAverageSpeed);
+					SteamUserStats.GetStat("stat_points", out m_nUserPoints);
+					SteamUserStats.GetStat("stat_level", out m_nUserLevel);
+					SteamUserStats.GetStat("stat_xp", out m_nUserXP);
+					SteamUserStats.GetStat("stat_jewels", out m_nJewels);
+					SteamUserStats.GetStat("stat_arrows_fired", out m_nArrowsFired);
+					SteamUserStats.GetStat("stat_targets_hit", out m_nTargetsHit);
+					SteamUserStats.GetStat("stat_accuracy", out m_flAccuracy);
+					SteamUserStats.GetStat("stat_bullseyes", out m_nBullseyes);
+					SteamUserStats.GetStat("stat_stars", out m_nStars);
+					SteamUserStats.GetStat("stat_three_stars", out m_nThreeStars);
+					SteamUserStats.GetStat("stat_perfects", out m_nPerfects);
+					SteamUserStats.GetStat("stat_apples", out m_nApplesShot);
+					SteamUserStats.GetStat("stat_precision_levels_beat", out m_nLevelsBeat);
 				}
 				else
 				{
@@ -314,11 +442,6 @@ namespace Com.MorganHouston.Imprecision
 			GUILayout.Label("m_flGameFeetTraveled: " + m_flGameFeetTraveled);
 			GUILayout.Space(10);
 			GUILayout.Label("ApplesShot: " + m_nApplesShot);
-			GUILayout.Label("NumWins: " + m_nTotalNumWins);
-			GUILayout.Label("NumLosses: " + m_nTotalNumLosses);
-			GUILayout.Label("FeetTraveled: " + m_flTotalFeetTraveled);
-			GUILayout.Label("MaxFeetTraveled: " + m_flMaxFeetTraveled);
-			GUILayout.Label("AverageSpeed: " + m_flAverageSpeed);
 
 			GUILayout.BeginArea(new Rect(Screen.width - 300, 0, 300, 800));
 			foreach (Achievement_t ach in m_Achievements)

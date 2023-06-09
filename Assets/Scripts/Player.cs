@@ -298,7 +298,59 @@ namespace Com.MorganHouston.Imprecision
             SetStats();
         }
 
+        public int GetTotalLevelsBeat()
+        {
+            int levelsBeat = 0;
+            foreach (int stars in Levels)
+            {
+                if (stars > 0)
+                    levelsBeat++;
+            }
+            return levelsBeat;
+        }
 
+        public int GetTotalStars()
+        {
+            int starsCounted = 0;
+            foreach (int stars in Levels)
+            {
+                starsCounted += stars;
+            }
+            return starsCounted;
+        }
+
+        public int GetApplesShotOnLevels()
+        {
+            int applesShotOnLevelsCounted = 0;
+            foreach (int apple in AppleShotOnLevels)
+            {
+                applesShotOnLevelsCounted += apple;
+            }
+            return applesShotOnLevelsCounted;
+        }
+
+        public int GetPerfects()
+        {
+            int perfectsCounted = 0;
+            foreach (int perfect in BullseyesOnLevels)
+            {
+                perfectsCounted += perfect;
+            }
+            return perfectsCounted;
+        }
+
+        public int GetThreeStars()
+        {
+            int threeStarsCounted = 0;
+            foreach (int stars in Levels)
+            {
+                if (stars == 3)
+                {
+                    threeStarsCounted++;
+                }
+            }
+            return threeStarsCounted;
+        }
 
         public void GainXP(int xpToAdd)
         {
