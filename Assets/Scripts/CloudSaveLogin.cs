@@ -16,6 +16,7 @@ using AppleAuth.Enums;
 using AppleAuth.Extensions;
 using AppleAuth.Interfaces;
 using System.Text;
+using Steamworks;
 #if UNITY_ANDROID
 using GooglePlayGames.BasicApi;
 using GooglePlayGames;
@@ -34,7 +35,7 @@ namespace Com.MorganHouston.Imprecision
         public static CloudSaveLogin Instance { get { return instance; } }
 
         // What SSO Option the use is using atm.
-        public enum ssoOption { Anonymous, Facebook, Google, Apple }
+        public enum ssoOption { Anonymous, Facebook, Google, Apple, Steam }
 
         // Player Data Object
         private Player player;
@@ -45,17 +46,22 @@ namespace Com.MorganHouston.Imprecision
 
         private bool triedQuickLogin = false;
 
+        public bool isSteam;
         public bool devModeActivated = false;
         public bool loggedIn;
 
         // User Info.
         public string userName, userID;
 
+        Callback<GetAuthSessionTicketResponse_t> m_AuthTicketResponseCallback;
+        HAuthTicket m_AuthTicket;
+        string m_SessionTicket;
 
-#endregion
+
+        #endregion
 
 
-#region MonoBehaviour Methods
+        #region MonoBehaviour Methods
 
 
         // Start is called before the first frame update
@@ -86,16 +92,24 @@ namespace Com.MorganHouston.Imprecision
 
 #if UNITY_WSA
 #else
-            if (!FB.IsInitialized)
+            if (isSteam && SteamManager.Initialized)
             {
-                // Initialize the Facebook SDK
-                FB.Init(InitCallback, OnHideUnity);
+                SignInWithSteam();
             }
             else
             {
-                // Already initialized, signal an app activation App Event
-                FB.ActivateApp();
+                if (!FB.IsInitialized)
+                {
+                    // Initialize the Facebook SDK
+                    FB.Init(InitCallback, OnHideUnity);
+                }
+                else
+                {
+                    // Already initialized, signal an app activation App Event
+                    FB.ActivateApp();
+                }
             }
+            
 #endif
 
 
@@ -230,6 +244,53 @@ namespace Com.MorganHouston.Imprecision
 
             Login();
 
+        }
+
+        public void SignInWithSteam()
+        {
+            currentSSO = ssoOption.Steam;
+            AuthenticationService.Instance.SwitchProfile("steam");
+
+            // It's not necessary to add event handlers if they are 
+            // already hooked up.
+            // Callback.Create return value must be assigned to a 
+            // member variable to prevent the GC from cleaning it up.
+            // Create the callback to receive events when the session ticket
+            // is ready to use in the web API.
+            // See GetAuthSessionTicket document for details.
+            m_AuthTicketResponseCallback = Callback<GetAuthSessionTicketResponse_t>.Create(OnAuthCallback);
+
+            var buffer = new byte[1024];
+
+            CSteamID cSteamID = SteamUser.GetSteamID();
+
+            userID = cSteamID.m_SteamID.ToString();
+            userName = SteamFriends.GetPersonaName();
+
+            // Create a SteamNetworkingIdentity object
+            SteamNetworkingIdentity identity = new SteamNetworkingIdentity();
+
+            // Set the Steam ID in the identity object
+            identity.SetSteamID(cSteamID);
+
+            m_AuthTicket = SteamUser.GetAuthSessionTicket(buffer, buffer.Length, out var ticketSize, ref identity);
+
+            //Array.Resize(ref buffer, (int)ticketSize);
+
+            // The ticket is not ready yet, wait for OnAuthCallback.
+            m_SessionTicket = BitConverter.ToString(buffer).Replace("-", string.Empty);
+        }
+
+        void OnAuthCallback(GetAuthSessionTicketResponse_t callback)
+        {
+            // Call Unity Authentication SDK to sign in or link with Steam.
+            //Debug.Log("Steam Login success. Session Ticket: " + m_SessionTicket);
+            CallSignInSteam(m_SessionTicket);
+        }
+
+        private async void CallSignInSteam(string sessionTicket)
+        {
+            await SignInWithSteamAsync(m_SessionTicket);
         }
 
         private void GameCenterLogin()
@@ -675,10 +736,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-#endregion
+        #endregion
 
 
-#region Google Play Auth
+        #region Google Play Auth
 
 #if UNITY_ANDROID
         void InitializePlayGamesLogin()
@@ -767,10 +828,41 @@ namespace Com.MorganHouston.Imprecision
         }
 #endif
 
-#endregion
+        #endregion
 
 
-#region Private Methods
+        #region Steam Auth
+
+        async Task SignInWithSteamAsync(string ticket)
+        {
+            try
+            {
+                await AuthenticationService.Instance.SignInWithSteamAsync(ticket);
+
+                SetPlayerData(userID, userName);
+
+                Login();
+
+            }
+            catch (AuthenticationException ex)
+            {
+                // Compare error code to AuthenticationErrorCodes
+                // Notify the player with the proper error message
+                Debug.LogException(ex);
+            }
+            catch (RequestFailedException ex)
+            {
+                // Compare error code to CommonErrorCodes
+                // Notify the player with the proper error message
+                Debug.LogException(ex);
+            }
+        }
+
+        #endregion
+
+
+
+        #region Private Methods
 
         /// <summary>
         /// Signs in an anonymous player.
