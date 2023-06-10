@@ -49,6 +49,7 @@ namespace Com.MorganHouston.Imprecision
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Legs));
                 }
+                Player.Instance.HitTarget();
                 anim.SetTrigger("Hurt");
                 Destroy(collision.gameObject);
             }

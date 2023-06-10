@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -13,7 +14,9 @@ namespace Com.MorganHouston.Imprecision
 
         public static LoginManager Instance { get { return instance; } }
 
-        public GameObject appleLogin, googleLogin, facebookLogin, signInPanel, mainMenuPanel, levelSelectButton;
+        public GameObject appleLogin, googleLogin, facebookLogin, signInPanel, mainMenuPanel, levelSelectButton, steamStatsAchieveLeader;
+
+        public TextMeshProUGUI leaderboardsAchievementsLabel;
 
         private void Awake()
         {
@@ -56,11 +59,21 @@ namespace Com.MorganHouston.Imprecision
             {
                 Login();
             }
+
+            if (CloudSaveLogin.Instance.loggedIn && leaderboardsAchievementsLabel.text != "You Must be signed in to view leaderboards or achievements!" && CloudSaveLogin.Instance.currentSSO != CloudSaveLogin.ssoOption.Steam)
+                leaderboardsAchievementsLabel.text = "You Must be signed in to view leaderboards or achievements!";
+            else if (CloudSaveLogin.Instance.loggedIn && leaderboardsAchievementsLabel.text != "View Leaderboards & Achievements on the Steam Community Hub Page!" && CloudSaveLogin.Instance.currentSSO == CloudSaveLogin.ssoOption.Steam)
+                leaderboardsAchievementsLabel.text = "View Leaderboards & Achievements on the Steam Community Hub Page!";
         }
 
         public void SignInAnonymously()
         {
             CloudSaveLogin.Instance.SignInAnonymously();
+        }
+
+        public void SignInSteam()
+        {
+            CloudSaveLogin.Instance.SignInWithSteam();
         }
 
         public void SignInFacebook()
@@ -87,6 +100,9 @@ namespace Com.MorganHouston.Imprecision
 
         public void Login()
         {
+            if (steamStatsAchieveLeader)
+                steamStatsAchieveLeader.SetActive(true);
+
             signInPanel.SetActive(false);
             mainMenuPanel.SetActive(true);
             EventSystem.current.SetSelectedGameObject(levelSelectButton);

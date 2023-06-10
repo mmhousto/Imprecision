@@ -12,6 +12,7 @@ namespace Com.MorganHouston.Imprecision
             userXP, jewels, arrowsFired, targetsHit, accuracy,
             bullseyesHit, totalStarsLabel, threeStarLevels, perfectLevels, applesShot;
         private int totalStars, threeStars, perfects, applesShotInt, targetsHitValue, arrowsFiredValue;
+        private Player player;
 
         // Start is called before the first frame update
         void Start()
@@ -27,29 +28,31 @@ namespace Com.MorganHouston.Imprecision
 
         private void UpdateStats()
         {
-            if(userID != null && userID.text != Player.Instance.UserID)
-                userID.text = Player.Instance.UserID;
+            player = Player.Instance;
 
-            if(userName.text != Player.Instance.UserName)
-                userName.text = Player.Instance.UserName;
+            if(userID != null && userID.text != player.UserID)
+                userID.text = player.UserID;
 
-            if(userPoints.text != Player.Instance.UserPoints.ToString())
-                userPoints.text = Player.Instance.UserPoints.ToString();
+            if(userName.text != player.UserName)
+                userName.text = player.UserName;
+
+            if(userPoints.text != player.UserPoints.ToString())
+                userPoints.text = player.UserPoints.ToString();
             
-            if(userLevel.text != Player.Instance.UserLevel.ToString())
-                userLevel.text = Player.Instance.UserLevel.ToString();
+            if(userLevel.text != player.UserLevel.ToString())
+                userLevel.text = player.UserLevel.ToString();
 
-            if(userXP.text != Player.Instance.UserXP.ToString())
-                userXP.text = Player.Instance.UserXP.ToString();
+            if(userXP.text != player.UserXP.ToString())
+                userXP.text = player.UserXP.ToString();
 
-            if(jewels.text != Player.Instance.Jewels.ToString())
-                jewels.text = Player.Instance.Jewels.ToString();
+            if(jewels.text != player.Jewels.ToString())
+                jewels.text = player.Jewels.ToString();
 
-            arrowsFiredValue = Player.Instance.ArrowsFired;
+            arrowsFiredValue = player.ArrowsFired;
             if (arrowsFired.text != arrowsFiredValue.ToString())
                 arrowsFired.text = arrowsFiredValue.ToString();
 
-            targetsHitValue = Player.Instance.TargetsHit;
+            targetsHitValue = player.TargetsHit;
             if(targetsHit.text != targetsHitValue.ToString())
                 targetsHit.text = targetsHitValue.ToString();
 
@@ -57,70 +60,26 @@ namespace Com.MorganHouston.Imprecision
             if (accuracy.text != $"{accuracyValue}%")
                 accuracy.text = $"{accuracyValue}%";
 
-            if(bullseyesHit.text != Player.Instance.BullseyesHit.ToString())
-                bullseyesHit.text = Player.Instance.BullseyesHit.ToString();
+            if(bullseyesHit.text != player.BullseyesHit.ToString())
+                bullseyesHit.text = player.BullseyesHit.ToString();
 
-            totalStars = GetTotalStars();
+            totalStars = player.GetTotalStars();
             if (totalStarsLabel.text != totalStars.ToString())
                 totalStarsLabel.text = totalStars.ToString();
 
-            threeStars = GetThreeStars();
+            threeStars = player.GetThreeStars();
             if(threeStarLevels.text != threeStars.ToString())
                 threeStarLevels.text = threeStars.ToString();
 
-            perfects = GetPerfects();
+            perfects = player.GetPerfects();
             if(perfectLevels.text != perfects.ToString())
                 perfectLevels.text = perfects.ToString();
 
-            applesShotInt = GetApplesShotOnLevels();
+            applesShotInt = player.GetApplesShotOnLevels();
             if(applesShot.text != applesShotInt.ToString())
                 applesShot.text = applesShotInt.ToString();
 
         }
-
-        private int GetApplesShotOnLevels()
-        {
-            int applesShotOnLevelsCounted = 0;
-            foreach (int apple in Player.Instance.AppleShotOnLevels)
-            {
-               applesShotOnLevelsCounted += apple;
-            }
-            return applesShotOnLevelsCounted;
-        }
-
-        private int GetPerfects()
-        {
-            int perfectsCounted = 0;
-            foreach (int perfect in Player.Instance.BullseyesOnLevels)
-            {
-                perfectsCounted += perfect;
-            }
-            return perfectsCounted;
-        }
-
-        private int GetTotalStars()
-        {
-            int starsCounted = 0;
-            foreach (int stars in Player.Instance.Levels)
-            {
-                starsCounted += stars;
-            }
-            return starsCounted;
-        }
-
-        private int GetThreeStars()
-        {
-            int threeStarsCounted = 0;
-            foreach (int stars in Player.Instance.Levels)
-            {
-                if (stars == 3)
-                {
-                    threeStarsCounted++;
-                }
-            }
-            return threeStarsCounted;
-        }
-
 
 
     }

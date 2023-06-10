@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
+using Steamworks;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -26,6 +27,7 @@ namespace Com.MorganHouston.Imprecision
 
         public static void UpdateAllLeaderboards()
         {
+#if (UNITY_IOS || UNITY_ANDROID)
             Social.ReportScore(Player.Instance.UserPoints, ATMOSTPOINTSID, (bool success) =>
             {
                 // handle success or failure
@@ -55,10 +57,21 @@ namespace Com.MorganHouston.Imprecision
             {
                 // handle success or failure
             });
+#endif
+
+            if (CloudSaveLogin.Instance.isSteam && SteamManager.Initialized && CloudSaveLogin.Instance.currentSSO == CloudSaveLogin.ssoOption.Steam)
+            {
+                SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.UserPoints, SteamLeaderboardManager.LeaderboardName.AllTimeMostPoints);
+                SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.ArrowsFired, SteamLeaderboardManager.LeaderboardName.AllTimeMostArrowsFired);
+                SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.TargetsHit, SteamLeaderboardManager.LeaderboardName.AllTimeMostTargetsHit);
+                SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.BullseyesHit, SteamLeaderboardManager.LeaderboardName.AllTimeMostBullseyesHit);
+                SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Jewels, SteamLeaderboardManager.LeaderboardName.AllTimeMostJewelsCollected);
+                SteamLeaderboardManager.Instance.UpdateScore((Player.Instance.TargetsHit * 100 / Player.Instance.ArrowsFired), SteamLeaderboardManager.LeaderboardName.AllTimeBestAccuracy);
+            }
         }
 
 
-        #region APPLES
+#region APPLES
 
 
         public static void UnlockApple1()
@@ -144,10 +157,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
-        #region PERFECTS
+#region PERFECTS
 
 
 
@@ -216,10 +229,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
-        #region PRECISE
+#region PRECISE
 
 
         public static void UnlockBullseye()
@@ -294,10 +307,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
-        #region ARCHER
+#region ARCHER
 
 
         public static void UnlockArcher1()
@@ -383,7 +396,7 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
         public static void UnlockJewel()

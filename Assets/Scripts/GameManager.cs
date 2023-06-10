@@ -187,9 +187,7 @@ namespace Com.MorganHouston.Imprecision
             CloudSaveLogin.Instance.SaveCloudData();
 
             // Update Leaderboards
-#if (UNITY_IOS || UNITY_ANDROID)
             LeaderboardManager.UpdateAllLeaderboards();
-#endif
         }
 
         /// <summary>
@@ -230,9 +228,7 @@ namespace Com.MorganHouston.Imprecision
             CloudSaveLogin.Instance.SaveCloudData();
 
             // Update Leaderboards
-#if (UNITY_IOS || UNITY_ANDROID)
             LeaderboardManager.UpdateAllLeaderboards();
-#endif
         }
 
 
