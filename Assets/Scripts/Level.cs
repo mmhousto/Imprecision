@@ -13,14 +13,23 @@ namespace Com.MorganHouston.Imprecision
         public Image stars;
         public Button button;
         public Sprite[] starImages;
-
+        private bool levelSet = false;
         private int level;
 
         // Start is called before the first frame update
         void Start()
         {
-            SetLevelNumberAndStars();
+            if (Player.Instance != null && CloudSaveLogin.Instance.loggedIn && Player.Instance.dataLoaded)
+                SetLevelNumberAndStars();
             
+        }
+
+        private void Update()
+        {
+            if(levelSet == false && Player.Instance != null && CloudSaveLogin.Instance.loggedIn && Player.Instance.dataLoaded)
+            {
+                SetLevelNumberAndStars();
+            }
         }
 
         private void SetLevelNumberAndStars()
@@ -57,6 +66,8 @@ namespace Com.MorganHouston.Imprecision
 
             // Sets level number
             levelNumberLabel.text = $"Level {level}";
+
+            levelSet = true;
         }
     }
 }

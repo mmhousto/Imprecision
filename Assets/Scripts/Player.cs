@@ -127,6 +127,7 @@ namespace Com.MorganHouston.Imprecision
         protected int maxXP;
 
         private CloudSaveLogin cloudSaveLogin;
+        public bool dataLoaded;
 
         private void Awake()
         {
@@ -199,6 +200,8 @@ namespace Com.MorganHouston.Imprecision
             Luck = 1;
 
             SetStats();
+
+            dataLoaded = false;
         }
 
         // Loads player from cloud save/ local save
@@ -242,6 +245,8 @@ namespace Com.MorganHouston.Imprecision
             Luck = data.luck;
 
             SetStats();
+
+            dataLoaded = true;
         }
 
         // Creates an anonymous player.
@@ -269,6 +274,8 @@ namespace Com.MorganHouston.Imprecision
             Luck = 1;
 
             SetStats();
+
+            dataLoaded = true;
         }
 
         // Creates new player w/ SSO login.
@@ -296,6 +303,8 @@ namespace Com.MorganHouston.Imprecision
             Luck = 1;
 
             SetStats();
+
+            dataLoaded = true;
         }
 
         public int GetTotalLevelsBeat()

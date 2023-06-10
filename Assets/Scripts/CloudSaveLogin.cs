@@ -28,7 +28,7 @@ namespace Com.MorganHouston.Imprecision
     public class CloudSaveLogin : MonoBehaviour
     {
 
-#region Fields/Variables
+        #region Fields/Variables
 
         private static CloudSaveLogin instance;
 
@@ -49,6 +49,7 @@ namespace Com.MorganHouston.Imprecision
         public bool isSteam;
         public bool devModeActivated = false;
         public bool loggedIn;
+        private bool isSigningIn = false;
 
         // User Info.
         public string userName, userID;
@@ -95,21 +96,20 @@ namespace Com.MorganHouston.Imprecision
             if (isSteam && SteamManager.Initialized)
             {
                 SignInWithSteam();
+                isSigningIn = true;
+            }
+
+            if (!FB.IsInitialized)
+            {
+                // Initialize the Facebook SDK
+                FB.Init(InitCallback, OnHideUnity);
             }
             else
             {
-                if (!FB.IsInitialized)
-                {
-                    // Initialize the Facebook SDK
-                    FB.Init(InitCallback, OnHideUnity);
-                }
-                else
-                {
-                    // Already initialized, signal an app activation App Event
-                    FB.ActivateApp();
-                }
+                // Already initialized, signal an app activation App Event
+                FB.ActivateApp();
             }
-            
+
 #endif
 
 
@@ -153,6 +153,7 @@ namespace Com.MorganHouston.Imprecision
             if (triedQuickLogin == false && appleAuthManager != null)
             {
                 GetCredentialState();
+                isSigningIn = true;
                 triedQuickLogin = true;
             }
 #endif
@@ -181,10 +182,10 @@ namespace Com.MorganHouston.Imprecision
         }*/
 
 
-#endregion
+        #endregion
 
 
-#region Public Sign In/Out Methods
+        #region Public Sign In/Out Methods
 
 
         /// <summary>
@@ -192,6 +193,9 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         public async void SignInAnonymously()
         {
+            if (isSigningIn || AuthenticationService.Instance.IsSignedIn) return;
+            isSigningIn = true;
+
             currentSSO = ssoOption.Anonymous;
             AuthenticationService.Instance.SwitchProfile("default");
             await SignInAnonymouslyAsync();
@@ -203,6 +207,9 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         public async void SignInDeveloper()
         {
+            if (isSigningIn || AuthenticationService.Instance.IsSignedIn) return;
+            isSigningIn = true;
+
             devModeActivated = true;
             await SignInAnonymouslyAsync();
         }
@@ -212,6 +219,9 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         public void SignInFacebook()
         {
+            if (isSigningIn || AuthenticationService.Instance.IsSignedIn) return;
+            isSigningIn = true;
+
             currentSSO = ssoOption.Facebook;
             AuthenticationService.Instance.SwitchProfile("facebook");
 
@@ -229,25 +239,35 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         public async void SignInApple()
         {
+            if (isSigningIn || AuthenticationService.Instance.IsSignedIn) return;
+            isSigningIn = true;
+
             currentSSO = ssoOption.Apple;
             if (!AuthenticationService.Instance.IsSignedIn)
                 AuthenticationService.Instance.SwitchProfile("apple");
 
             var idToken = await GetAppleIdTokenAsync();
 
-            await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
+            if(idToken != null)
+            {
+                await AuthenticationService.Instance.SignInWithAppleAsync(idToken);
 
-            GameCenterLogin();
+                GameCenterLogin();
 
-            SetPlayerData(AuthenticationService.Instance.PlayerId, userName);
+                SetPlayerData(AuthenticationService.Instance.PlayerId, userName);
 
 
-            Login();
+                Login();
+            }
+            isSigningIn = false;
 
         }
 
         public void SignInWithSteam()
         {
+            if (isSigningIn || AuthenticationService.Instance.IsSignedIn) return;
+            isSigningIn = true;
+
             currentSSO = ssoOption.Steam;
             AuthenticationService.Instance.SwitchProfile("steam");
 
@@ -299,13 +319,13 @@ namespace Com.MorganHouston.Imprecision
             {
                 if (success)
                 {
-                    Debug.Log("Authentication successful");
+                    //Debug.Log("Authentication successful");
                     userName = Social.localUser.userName;/* +
                         "\nUser ID: " + Social.localUser.id +*/
                     string userInfo = "\nIsUnderage: " + Social.localUser.underage;
                 }
-                else
-                    Debug.Log("Authentication failed");
+                else { }
+                    //Debug.Log("Authentication failed");
             });
         }
 
@@ -350,10 +370,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-#endregion
+        #endregion
 
 
-#region Private Login/Logout Methods
+        #region Private Login/Logout Methods
 
         /// <summary>
         /// Loads the Main Menu Panel.
@@ -399,10 +419,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-#endregion
+        #endregion
 
 
-#region Apple Auth
+        #region Apple Auth
 
         /// <summary>
         /// Performs continue with Apple login.
@@ -441,7 +461,8 @@ namespace Com.MorganHouston.Imprecision
                 },
                 error =>
                 {
-                    Debug.Log("Quick Login Apple Failed");
+                    //Debug.Log("Quick Login Apple Failed");
+                    isSigningIn = false;
                     return;
                     // Quick login failed. The user has never used Sign in With Apple on your app. Go to login screen
                 });
@@ -455,6 +476,8 @@ namespace Com.MorganHouston.Imprecision
             SetPlayerData(AuthenticationService.Instance.PlayerId, userName);
 
             Login();
+
+            isSigningIn = false;
         }
 
         /// <summary>
@@ -471,33 +494,36 @@ namespace Com.MorganHouston.Imprecision
                             {
                                 case CredentialState.Authorized:
                                     // User ID is still valid. Login the user.
-                                    Debug.Log("User ID is valid!");
+                                    //Debug.Log("User ID is valid!");
                                     QuickLoginApple();
                                     break;
 
                                 case CredentialState.Revoked:
                                     // User ID was revoked. Go to login screen.
-                                    Debug.Log("User ID was revoked.");
+                                    //Debug.Log("User ID was revoked.");
                                     if (AuthenticationService.Instance.IsSignedIn)
                                     {
                                         AuthenticationService.Instance.SignOut();
                                     }
+                                    isSigningIn = false;
                                     break;
 
                                 case CredentialState.NotFound:
                                     // User ID was not found. Go to login screen.
-                                    Debug.Log("User ID was not found.");
+                                    //Debug.Log("User ID was not found.");
+                                    isSigningIn = false;
                                     break;
                             }
                         },
                         error =>
                         {
                             // Something went wrong
-                            Debug.Log("Credential Failed");
+                            //Debug.Log("Credential Failed");
                             if (AuthenticationService.Instance.IsSignedIn)
                             {
                                 AuthenticationService.Instance.SignOut();
                             }
+                            isSigningIn = false;
                             return;
                         });
         }
@@ -527,7 +553,7 @@ namespace Com.MorganHouston.Imprecision
                     {
                         // Apple User ID
                         // You should save the user ID somewhere in the device
-                        if(appleIdCredential.User != null)
+                        if (appleIdCredential.User != null)
                         {
                             userID = appleIdCredential.User;
                             PlayerPrefs.SetString("AppleUserIdKey", userID);
@@ -536,14 +562,14 @@ namespace Com.MorganHouston.Imprecision
                         {
                             userID = PlayerPrefs.GetString("AppleUserIdKey", "123456");
                         }
-                        
+
 
                         // Email (Received ONLY in the first login)
                         /*email = appleIdCredential.Email;
                             PlayerPrefs.SetString("AppleUserEmailKey", email);*/
 
                         // Full name (Received ONLY in the first login)
-                        if(appleIdCredential.FullName != null)
+                        if (appleIdCredential.FullName != null)
                         {
                             userName = appleIdCredential.FullName.GivenName;
                             PlayerPrefs.SetString("AppleUserNameKey", userName);
@@ -552,7 +578,7 @@ namespace Com.MorganHouston.Imprecision
                         {
                             userName = PlayerPrefs.GetString("AppleUserNameKey", "Player 1");
                         }
-                            
+
 
                         // Identity token
                         var idToken = Encoding.UTF8.GetString(
@@ -591,10 +617,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-#endregion
+        #endregion
 
 
-#region Facebook Auth
+        #region Facebook Auth
 
         /// <summary>
         /// Initializes Facebook SDK
@@ -610,7 +636,7 @@ namespace Com.MorganHouston.Imprecision
             }
             else
             {
-                Debug.Log("Failed to Initialize the Facebook SDK");
+                //Debug.Log("Failed to Initialize the Facebook SDK");
             }
         }
 
@@ -639,7 +665,7 @@ namespace Com.MorganHouston.Imprecision
                 // AccessToken class will have session details
                 var aToken = AccessToken.CurrentAccessToken;
                 // Print current access token's User ID
-                Debug.Log(aToken.UserId);
+                //Debug.Log(aToken.UserId);
                 userID = aToken.UserId;
 
                 FB.API("me?fields=id,name", HttpMethod.GET, AssignInfo);
@@ -651,7 +677,8 @@ namespace Com.MorganHouston.Imprecision
             }
             else
             {
-                Debug.Log("User cancelled login");
+                //Debug.Log("User cancelled login");
+                isSigningIn = false;
             }
         }
 
@@ -663,10 +690,11 @@ namespace Com.MorganHouston.Imprecision
         {
             if (result.Error != null)
             {
-                Debug.Log("Error: " + result.Error);
+                //Debug.Log("Error: " + result.Error);
+                isSigningIn = false;
             }
-            else if (!FB.IsLoggedIn)
-                Debug.Log("Login Canceled By Player");
+            else if (!FB.IsLoggedIn) { }
+                //Debug.Log("Login Canceled By Player");
             else
             {
                 userID = result.ResultDictionary["id"].ToString();
@@ -684,7 +712,7 @@ namespace Com.MorganHouston.Imprecision
             try
             {
                 await AuthenticationService.Instance.SignInWithFacebookAsync(accessToken);
-                Debug.Log("Sign-In With Facebook is successful.");
+                //Debug.Log("Sign-In With Facebook is successful.");
 
                 SetPlayerData(AuthenticationService.Instance.PlayerId, userName);
 
@@ -694,14 +722,15 @@ namespace Com.MorganHouston.Imprecision
             {
                 // Compare error code to AuthenticationErrorCodes
                 // Notify the player with the proper error message
-                Debug.LogException(ex);
+                //Debug.LogException(ex);
             }
             catch (RequestFailedException ex)
             {
                 // Compare error code to CommonErrorCodes
                 // Notify the player with the proper error message
-                Debug.LogException(ex);
+                //Debug.LogException(ex);
             }
+            isSigningIn = false;
         }
 
         /// <summary>
@@ -712,14 +741,14 @@ namespace Com.MorganHouston.Imprecision
         {
             if (!string.IsNullOrEmpty(result.Error))
             {
-                Debug.Log("Error: " + result.Error);
+                //Debug.Log("Error: " + result.Error);
 
                 var perms = new List<string>() { "public_profile" };
                 FB.LogInWithReadPermissions(perms, AuthCallback);
             }
             else if (result.Failed)
             {
-                Debug.Log("Failure: Access Token could not be retrieved");
+                //Debug.Log("Failure: Access Token could not be retrieved");
 
                 var perms = new List<string>() { "public_profile" };
                 FB.LogInWithReadPermissions(perms, AuthCallback);
@@ -728,7 +757,7 @@ namespace Com.MorganHouston.Imprecision
             {
                 // Successfully logged user in
                 // A popup notification will appear that says "Logged in as <User Name>"
-                Debug.Log("Success: " + result.AccessToken.UserId);
+                //Debug.Log("Success: " + result.AccessToken.UserId);
 
                 await SignInWithFacebookAsync(result.AccessToken.TokenString);
 
@@ -757,6 +786,9 @@ namespace Com.MorganHouston.Imprecision
 
         public void LoginGooglePlayGames()
         {
+            if (isSigningIn || AuthenticationService.Instance.IsSignedIn) return;
+            isSigningIn = true;
+
             currentSSO = ssoOption.Google;
             AuthenticationService.Instance.SwitchProfile("google");
             try
@@ -765,7 +797,8 @@ namespace Com.MorganHouston.Imprecision
             }
             catch (Exception e)
             {
-                Debug.Log("ERROR: " + e);
+                //Debug.Log("ERROR: " + e);
+                isSigningIn = false;
             }
             
         }
@@ -778,12 +811,12 @@ namespace Com.MorganHouston.Imprecision
 
                 // Call Unity Authentication SDK to sign in or link with Google.
                 var idToken = ((PlayGamesLocalUser)Social.localUser).GetIdToken();
-                Debug.Log("Login with Google Play Games done. IdToken: " + idToken);
+                //Debug.Log("Login with Google Play Games done. IdToken: " + idToken);
                 userID = Social.localUser.id;
                 userName = Social.localUser.userName;
 
                 await SignInWithGoogleAsync(idToken);
-                Debug.Log("Sign-In With Google is successful.");
+                //Debug.Log("Sign-In With Google is successful.");
 
             }
             else if (status == SignInStatus.UiSignInRequired)
@@ -792,17 +825,18 @@ namespace Com.MorganHouston.Imprecision
             }
             else
             {
-                Debug.Log("Unsuccessful login");
+                //Debug.Log("Unsuccessful login");
             }
+            isSigningIn = false;
         }
 
         async Task SignInWithGoogleAsync(string idToken)
         {
             try
             {
-                Debug.Log("Authenticating with id Token: " + idToken);
+                //Debug.Log("Authenticating with id Token: " + idToken);
                 await AuthenticationService.Instance.SignInWithGoogleAsync(idToken);
-                Debug.Log("Sign-In With Unity Authentication is successful.");
+                //Debug.Log("Sign-In With Unity Authentication is successful.");
 
                 SetPlayerData(AuthenticationService.Instance.PlayerId, userName);
 
@@ -812,14 +846,15 @@ namespace Com.MorganHouston.Imprecision
             {
                 // Compare error code to AuthenticationErrorCodes
                 // Notify the player with the proper error message
-                Debug.LogException(ex);
+                //Debug.LogException(ex);
             }
             catch (RequestFailedException ex)
             {
                 // Compare error code to CommonErrorCodes
                 // Notify the player with the proper error message
-                Debug.LogException(ex);
+                //Debug.LogException(ex);
             }
+            isSigningIn = false;
         }
 
         void GoogleLogout()
@@ -848,14 +883,15 @@ namespace Com.MorganHouston.Imprecision
             {
                 // Compare error code to AuthenticationErrorCodes
                 // Notify the player with the proper error message
-                Debug.LogException(ex);
+                //Debug.Log(ex);
             }
             catch (RequestFailedException ex)
             {
                 // Compare error code to CommonErrorCodes
                 // Notify the player with the proper error message
-                Debug.LogException(ex);
+                //Debug.Log(ex);
             }
+            isSigningIn = false;
         }
 
         #endregion
@@ -882,21 +918,23 @@ namespace Com.MorganHouston.Imprecision
                 Login();
 
                 // Shows how to get the playerID
-                Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
+                //Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
 
             }
             catch (AuthenticationException ex)
             {
                 // Compare error code to AuthenticationErrorCodes
                 // Notify the player with the proper error message
-                Debug.LogException(ex);
+                //Debug.Log(ex);
             }
             catch (RequestFailedException exception)
             {
                 // Compare error code to CommonErrorCodes
                 // Notify the player with the proper error message
-                Debug.LogException(exception);
+                //Debug.Log(exception);
             }
+
+            isSigningIn = false;
         }
 
         /// <summary>
@@ -957,14 +995,16 @@ namespace Com.MorganHouston.Imprecision
             {
                 // Compare error code to AuthenticationErrorCodes
                 // Notify the player with the proper error message
-                Debug.LogException(ex);
+                //Debug.Log(ex);
             }
             catch (RequestFailedException ex)
             {
                 // Compare error code to CommonErrorCodes
                 // Notify the player with the proper error message
-                Debug.LogException(ex);
+                //Debug.Log(ex);
             }
+
+            isSigningIn = false;
         }
 
         /// <summary>
@@ -982,11 +1022,11 @@ namespace Com.MorganHouston.Imprecision
             }
             catch (CloudSaveValidationException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
             catch (CloudSaveException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
         }
 
@@ -1018,15 +1058,15 @@ namespace Com.MorganHouston.Imprecision
 
                 await SaveData.ForceSaveAsync(oneElement);
 
-                Debug.Log($"Successfully saved {key}:{value}");
+                //Debug.Log($"Successfully saved {key}:{value}");
             }
             catch (CloudSaveValidationException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
             catch (CloudSaveException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
         }
 
@@ -1049,15 +1089,15 @@ namespace Com.MorganHouston.Imprecision
 
                 await SaveData.ForceSaveAsync(oneElement);
 
-                Debug.Log($"Successfully saved {key}:{value}");
+                //Debug.Log($"Successfully saved {key}:{value}");
             }
             catch (CloudSaveValidationException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
             catch (CloudSaveException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
         }
 
@@ -1079,16 +1119,16 @@ namespace Com.MorganHouston.Imprecision
                 }
                 else
                 {
-                    Debug.Log($"There is no such key as {key}!");
+                    //Debug.Log($"There is no such key as {key}!");
                 }
             }
             catch (CloudSaveValidationException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
             catch (CloudSaveException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
 
             return default;
@@ -1106,11 +1146,11 @@ namespace Com.MorganHouston.Imprecision
                 // can call a method LoadAsync and pass a HashSet of keys into it.
                 var results = await SaveData.LoadAllAsync();
 
-                Debug.Log($"Elements loaded!");
+                //Debug.Log($"Elements loaded!");
 
                 foreach (var element in results)
                 {
-                    Debug.Log($"Key: {element.Key}, Value: {element.Value}");
+                    //Debug.Log($"Key: {element.Key}, Value: {element.Value}");
                     await ForceDeleteSpecificData(element.Key);
                 }
 
@@ -1118,11 +1158,11 @@ namespace Com.MorganHouston.Imprecision
             }
             catch (CloudSaveValidationException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
             catch (CloudSaveException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
         }
 
@@ -1137,15 +1177,15 @@ namespace Com.MorganHouston.Imprecision
             {
                 await SaveData.ForceDeleteAsync(key);
 
-                Debug.Log($"Successfully deleted {key}");
+                //Debug.Log($"Successfully deleted {key}");
             }
             catch (CloudSaveValidationException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
             catch (CloudSaveException e)
             {
-                Debug.LogError(e);
+                //Debug.LogError(e);
             }
         }
 
@@ -1185,7 +1225,7 @@ namespace Com.MorganHouston.Imprecision
             player.SetData();
         }
 
-#endregion
+        #endregion
 
 
     }

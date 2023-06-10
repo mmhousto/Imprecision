@@ -91,6 +91,7 @@ namespace Com.MorganHouston.Imprecision
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Legs));
                 }
+                Player.Instance.HitTarget();
                 Destroy(collision.gameObject);
             }
         }

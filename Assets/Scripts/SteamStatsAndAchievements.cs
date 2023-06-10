@@ -9,6 +9,10 @@ namespace Com.MorganHouston.Imprecision
 	// This is a port of StatsAndAchievements.cpp from SpaceWar, the official Steamworks Example.
 	class SteamStatsAndAchievements : MonoBehaviour
 	{
+		private static SteamStatsAndAchievements instance;
+
+		public static SteamStatsAndAchievements Instance { get { return instance; } }
+
 		private enum Achievement : int
 		{
 			CgkIqK61pYkHEAIQBQ,
@@ -85,9 +89,23 @@ namespace Com.MorganHouston.Imprecision
 		protected Callback<UserStatsStored_t> m_UserStatsStored;
 		protected Callback<UserAchievementStored_t> m_UserAchievementStored;
 
-		void OnEnable()
+        private void Awake()
+        {
+			if (instance != null && instance != this)
+			{
+				Destroy(this.gameObject);
+				return;
+			}
+			else
+			{
+				instance = this;
+				DontDestroyOnLoad(Instance.gameObject);
+			}
+        }
+
+        void OnEnable()
 		{
-			if (!SteamManager.Initialized || !AuthenticationService.Instance.IsSignedIn)
+			if (!SteamManager.Initialized || !AuthenticationService.Instance.IsSignedIn || CloudSaveLogin.Instance.currentSSO != CloudSaveLogin.ssoOption.Steam)
 				return;
 
 			player = Player.Instance;
@@ -105,7 +123,7 @@ namespace Com.MorganHouston.Imprecision
 
 		private void Update()
 		{
-			if (!SteamManager.Initialized || !AuthenticationService.Instance.IsSignedIn)
+			if (!SteamManager.Initialized || !AuthenticationService.Instance.IsSignedIn || CloudSaveLogin.Instance.currentSSO != CloudSaveLogin.ssoOption.Steam)
 				return;
 
 			if(player == null)
@@ -138,7 +156,7 @@ namespace Com.MorganHouston.Imprecision
 			m_nJewels = player.Jewels;
 			m_nArrowsFired = player.ArrowsFired;
 			m_nTargetsHit = player.TargetsHit;
-			m_flAccuracy = (m_nTargetsHit * 100) / m_nArrowsFired;
+			m_flAccuracy = (m_nArrowsFired == 0) ? 0 : (m_nTargetsHit * 100) / m_nArrowsFired;
 			m_nBullseyes = player.BullseyesHit;
 			m_nStars = player.GetTotalStars();
 			m_nThreeStars = player.GetThreeStars();
