@@ -124,9 +124,6 @@ namespace Com.MorganHouston.Imprecision
         public void GameOver()
         {
             isGameOver = true;
-            gameOverScreen.transform.parent.gameObject.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(restartButton);
 
             player.GetComponent<PlayerInput>().actions = null; // Removes odd Player Input component error
             player.GetComponent<StarterAssets.StarterAssetsInputs>().SetCursorState(false);
@@ -136,6 +133,10 @@ namespace Com.MorganHouston.Imprecision
                 DetermineStars(StoryManager.Instance.GetStarRating());
             else
                 DetermineStars();
+
+            gameOverScreen.transform.parent.gameObject.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(restartButton);
         }
 
         /// <summary>
