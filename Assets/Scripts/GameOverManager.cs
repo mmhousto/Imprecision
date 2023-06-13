@@ -50,7 +50,7 @@ namespace Com.MorganHouston.Imprecision
         {
             if (gameManager.playingStoryMode)
             {
-                if (gameManager.LevelSelected == 0)
+                if (gameManager.LevelSelected == 1)
                 {
                     nextLevelBtn.gameObject.SetActive(false);
                 }
