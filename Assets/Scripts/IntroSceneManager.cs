@@ -13,7 +13,7 @@ namespace Com.MorganHouston.Imprecision
 
         public GameObject[] cams;
 
-        public GameObject cutsceneCanvas, skipButton, skipText;
+        public GameObject cutsceneCanvas;
 
         private PlayableDirector _currentDirector;
         private bool _sceneSkipped = false;
@@ -29,12 +29,6 @@ namespace Com.MorganHouston.Imprecision
             {
                 instance = this;
             }
-
-#if (UNITY_ANDROID || UNITY_IOS)
-            skipText.SetActive(false);
-#else
-            skipButton.SetActive(false);
-#endif
         }
 
         public void DeleteCams()

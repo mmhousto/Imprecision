@@ -1,35 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
 
 namespace Com.MorganHouston.Imprecision
 {
     public class SkipTextManager : MonoBehaviour
     {
-
-        private TextMeshProUGUI skipLabel;
+        public GameObject mobileSkip, pcConsoleSkip;
+        public PlayerInput playerInput;
+        public Sprite[] sprites;
+        private Image pcConsoleImage;
 
         // Start is called before the first frame update
         void Start()
         {
-            skipLabel = GetComponent<TextMeshProUGUI>();
+            pcConsoleImage = pcConsoleSkip.GetComponent<Image>();
+
+#if UNITY_IOS || UNITY_ANDROID
+            pcConsoleSkip.SetActive(false);
+            mobileSkip.SetActive(true);
+#else
+            pcConsoleSkip.SetActive(true);
+            mobileSkip.SetActive(false);
+#endif
+
             SetLabel();
         }
 
         // Update is called once per frame
         void Update()
         {
-        
+            SetLabel();
         }
 
         private void SetLabel()
         {
-#if UNITY_STANDALONE
-            skipLabel.text = "Press 'Enter' to Skip";
-#elif UNITY_WSA
-            skipLabel.text = "Press 'B' to Skip";
-#endif
+            if (playerInput.currentControlScheme == "KeyboardMouse" && pcConsoleImage.sprite != sprites[0])
+            {
+                pcConsoleSkip.SetActive(true);
+                pcConsoleImage.sprite = sprites[0];
+                mobileSkip.SetActive(false);
+            }
+            else if (playerInput.currentControlScheme == "Gamepad" && pcConsoleImage.sprite != sprites[1])
+            {
+                pcConsoleSkip.SetActive(true);
+                pcConsoleImage.sprite = sprites[1];
+                mobileSkip.SetActive(false);
+            }
+            else if (playerInput.currentControlScheme == "Touch" && !mobileSkip.activeInHierarchy)
+            {
+                pcConsoleSkip.SetActive(false);
+                mobileSkip.SetActive(true);
+            }
+                
         }
     }
 }
