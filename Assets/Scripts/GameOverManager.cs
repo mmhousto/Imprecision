@@ -54,13 +54,9 @@ namespace Com.MorganHouston.Imprecision
                 {
                     nextLevelBtn.gameObject.SetActive(false);
                 }
-                else if (player.StoryLevels[gameManager.LevelSelected] != 0 && nextLevelBtn.enabled == false)
+                else if (nextLevelBtn.enabled == false)
                 {
                     nextLevelBtn.enabled = true;
-                }
-                else if (player.StoryLevels[gameManager.LevelSelected] == 0 && nextLevelBtn.enabled == true)
-                {
-                    nextLevelBtn.gameObject.SetActive(false);
                 }
             }
             else
