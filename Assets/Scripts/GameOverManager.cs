@@ -14,6 +14,7 @@ namespace Com.MorganHouston.Imprecision
         public TextMeshProUGUI xpGainedText;
         public MobileDisableAutoSwitchControls uiControls;
         public GameObject restartButton;
+        public StoryManager storyManager;
         private GameManager gameManager;
         private Player player;
 
@@ -54,10 +55,12 @@ namespace Com.MorganHouston.Imprecision
                 {
                     nextLevelBtn.gameObject.SetActive(false);
                 }
-                else if (nextLevelBtn.enabled == false)
+                else if (storyManager.finishedLevel == false)
                 {
-                    nextLevelBtn.enabled = true;
+                    nextLevelBtn.gameObject.SetActive(false);
                 }
+                else
+                    nextLevelBtn.gameObject.SetActive(true);
             }
             else
             {

@@ -23,7 +23,7 @@ namespace Com.MorganHouston.Imprecision
         [SerializeField] bool miniBossDefeated;
         [SerializeField] bool allEnemiesDefeated;
         [SerializeField] bool beatInTime;
-        [SerializeField] bool finishedLevel;
+        [SerializeField]public bool finishedLevel;
         [SerializeField] float currentTime;
         int hours, minutes, seconds, milliseconds;
 
