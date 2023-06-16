@@ -11,11 +11,13 @@ namespace Com.MorganHouston.Imprecision
         public CinemachineVirtualCamera doorCam;
         public Transform door;
         public HingeJoint doorHinge;
+        public Rigidbody doorRb;
         bool doorUnlocked = false;
         bool doorOpen = false;
 
         public void OpenDoor()
         {
+            doorRb.isKinematic = false;
             doorUnlocked = true;
             doorCam.enabled = true;
             doorHinge.useMotor = true;

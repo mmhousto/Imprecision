@@ -103,6 +103,7 @@ namespace Com.MorganHouston.Imprecision
             SceneLoader.LoadThisScene(SceneLoader.GetCurrentScene().buildIndex);
         }
 
+#if !DISABLESTEAMWORKS
         void PauseGameIfSteamOverlayOn(GameOverlayActivated_t callback)
         {
             if (!isPaused && !GameManager.Instance.isGameOver)
@@ -110,6 +111,7 @@ namespace Com.MorganHouston.Imprecision
                 OnPause(true);
             }
         }
+#endif
 
     }
 }

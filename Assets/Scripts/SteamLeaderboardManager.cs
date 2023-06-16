@@ -45,6 +45,7 @@ public class SteamLeaderboardManager : MonoBehaviour
     List<SteamLeaderboard_t> steamLeaderboards = new List<SteamLeaderboard_t>();
     public List<bool> steamLeaderboardsInit = new List<bool>();
     int leaderboardToBeInit = 0;
+    int leaderboardsInit = 0;
 
     private void Awake()
     {
@@ -99,7 +100,7 @@ public class SteamLeaderboardManager : MonoBehaviour
     {
         if (!steamLeaderboardsInit[(int)leaderboardName])
         {
-            SteamAPICall_t hSteamAPICall = SteamUserStats.FindLeaderboard(name);
+            SteamAPICall_t hSteamAPICall = SteamUserStats.FindLeaderboard(leaderboardNames[(int)leaderboardName]);
             m_findResult.Set(hSteamAPICall, OnLeaderboardFindResult);
             SteamAPI.RunCallbacks();
             UpdateScore(score, leaderboardName);
@@ -118,7 +119,8 @@ public class SteamLeaderboardManager : MonoBehaviour
         Debug.Log($"Steam Leaderboard Find: Did it fail? {failure}, Found: {pCallback.m_bLeaderboardFound}, leaderboardID: {pCallback.m_hSteamLeaderboard.m_SteamLeaderboard}");
         //leaderboardToBeInit++;
         steamLeaderboards.Add(pCallback.m_hSteamLeaderboard);
-        steamLeaderboardsInit.Add(true);
+        steamLeaderboardsInit[leaderboardsInit] = true;
+        leaderboardsInit++;
 
         //InitializeNextLeaderboard();
     }

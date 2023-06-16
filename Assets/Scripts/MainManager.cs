@@ -46,6 +46,7 @@ namespace Com.MorganHouston.Imprecision
 
         public void PlayStory()
         {
+            GameManager.Instance.SetLevel(0);
             SceneLoader.LoadThisScene(3);
         }
 
