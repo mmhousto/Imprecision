@@ -58,6 +58,7 @@ namespace Com.MorganHouston.Imprecision
 #if DISABLESTEAMWORKS
             steamLogin.SetActive(false);
 #else
+            facebookLogin.SetActive(false);
             steamLogin.SetActive(true);
 #endif
 

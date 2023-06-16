@@ -23,9 +23,16 @@ namespace Com.MorganHouston.Imprecision
         private bool isControllerConnected = false;
         private bool isSteamOverlayActive = false;
 
+#if !DISABLESTEAMWORKS
+        protected Callback<GameOverlayActivated_t> overlayIsOn;
+#endif
 
         private void Start()
         {
+#if !DISABLESTEAMWORKS
+            overlayIsOn = Callback<GameOverlayActivated_t>.Create(PauseGameIfSteamOverlayOn);
+#endif
+
             // Check if a controller is initially connected
             if (Gamepad.current != null)
             {
@@ -36,19 +43,17 @@ namespace Com.MorganHouston.Imprecision
         private void Update()
         {
             // Check if a controller was connected and gets disconnected
-            if (isControllerConnected && Gamepad.current == null)
+            if (isControllerConnected && Gamepad.all.Count <= 0)
             {
                 // Controller was just unplugged
                 isControllerConnected = false;
                 OnPause(true);
             }
-            else if (!isControllerConnected && Gamepad.current != null)
+            else if (!isControllerConnected && Gamepad.all.Count > 0)
             {
                 // Controller was just plugged in
                 isControllerConnected = true;
             }
-
-            CheckSteamOverlay();
         }
 
         public void OnPause(InputValue value)
@@ -98,20 +103,12 @@ namespace Com.MorganHouston.Imprecision
             SceneLoader.LoadThisScene(SceneLoader.GetCurrentScene().buildIndex);
         }
 
-        private void CheckSteamOverlay()
+        void PauseGameIfSteamOverlayOn(GameOverlayActivated_t callback)
         {
-#if !DISABLESTEAMWORKS
-            // Check if the Steam Overlay is active
-            if (SteamManager.Initialized)
+            if (!isPaused && !GameManager.Instance.isGameOver)
             {
-                isSteamOverlayActive = SteamUtils.IsOverlayEnabled();
-
-                if (isSteamOverlayActive && isPaused == false)
-                {
-                    OnPause(true);
-                }
+                OnPause(true);
             }
-#endif
         }
 
     }
