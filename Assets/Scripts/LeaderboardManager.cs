@@ -84,10 +84,12 @@ namespace Com.MorganHouston.Imprecision
 
         public static void UnlockApple1()
         {
+#if UNITY_IOS || UNITY_ANDORID
             Social.ReportProgress("CgkIqK61pYkHEAIQBQ", 100.0, (bool success) =>
             {
                     // handle success or failure
             });
+#endif
         }
 
         public static void UnlockApple2(double step)
@@ -175,10 +177,12 @@ namespace Com.MorganHouston.Imprecision
 
         public static void UnlockPerfect1()
         {
+#if UNITY_IOS || UNITY_ANDORID
             Social.ReportProgress("CgkIqK61pYkHEAIQCQ", 100.0, (bool success) =>
             {
                     // handle success or failure
-                });
+            });
+#endif
         }
 
         public static void UnlockPerfect2(double step)
@@ -245,18 +249,22 @@ namespace Com.MorganHouston.Imprecision
 
         public static void UnlockBullseye()
         {
+#if UNITY_IOS || UNITY_ANDORID
             Social.ReportProgress("CgkIqK61pYkHEAIQFA", 100.0, (bool success) =>
             {
                 // handle success or failure
             });
+#endif
         }
 
         public static void UnlockPrecise1()
         {
+#if UNITY_IOS || UNITY_ANDORID
             Social.ReportProgress("CgkIqK61pYkHEAIQDA", 100.0, (bool success) =>
             {
                 // handle success or failure
             });
+#endif
         }
 
         public static void UnlockPrecise2(double step)
@@ -323,10 +331,12 @@ namespace Com.MorganHouston.Imprecision
 
         public static void UnlockArcher1()
         {
+#if UNITY_IOS || UNITY_ANDORID
             Social.ReportProgress("CgkIqK61pYkHEAIQDw", 100.0, (bool success) =>
             {
                 // handle success or failure
             });
+#endif
         }
 
         public static void UnlockArcher2(double step)
@@ -409,10 +419,12 @@ namespace Com.MorganHouston.Imprecision
 
         public static void UnlockJewel()
         {
+#if UNITY_IOS || UNITY_ANDORID
             Social.ReportProgress("CgkIqK61pYkHEAIQEw", 100.0, (bool success) =>
             {
                 // handle success or failure
             });
+#endif
         }
 
         

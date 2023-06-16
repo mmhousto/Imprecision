@@ -15,7 +15,7 @@ C:/Users/Morga/Documents/GitHub/Imprecision
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-50995
+50057
 Successfully changed project path to: C:/Users/Morga/Documents/GitHub/Imprecision
 C:/Users/Morga/Documents/GitHub/Imprecision
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,11 +47,11 @@ C:/Users/Morga/Documents/GitHub/Imprecision
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [17780] Host "[IP] 192.168.0.155 [Port] 0 [Flags] 2 [Guid] 1477358379 [EditorId] 1477358379 [Version] 1048832 [Id] WindowsEditor(7,MMPC6) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [480] Host "[IP] 192.168.0.155 [Port] 0 [Flags] 2 [Guid] 2159821619 [EditorId] 2159821619 [Version] 1048832 [Id] WindowsEditor(7,MMPC6) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [17780] Host "[IP] 192.168.0.155 [Port] 0 [Flags] 2 [Guid] 1477358379 [EditorId] 1477358379 [Version] 1048832 [Id] WindowsEditor(7,MMPC6) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [480] Host "[IP] 192.168.0.155 [Port] 0 [Flags] 2 [Guid] 2159821619 [EditorId] 2159821619 [Version] 1048832 [Id] WindowsEditor(7,MMPC6) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 137.10 ms, found 16 plugins.
+Refreshing native plugins compatible for Editor in 137.28 ms, found 16 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.24f1 (cf10dcf7010d)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.24f1/Editor/Data/Resources/UnitySubsystems
@@ -67,119 +67,84 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.24f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.24f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.24f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56316
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56852
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.24f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.24f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.24f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.24f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
-Registered in 0.007291 seconds.
+Registered in 0.008563 seconds.
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 305 ms
+Android Extension - Scanning For ADB Devices 1338 ms
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 100.22 ms, found 16 plugins.
+Refreshing native plugins compatible for Editor in 103.27 ms, found 16 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.016 seconds
+- Completed reload, in  2.110 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1016ms)
-		BeginReloadAssembly (87ms)
+	ReloadAssembly (2110ms)
+		BeginReloadAssembly (101ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (825ms)
-			LoadAssemblies (86ms)
+		EndReloadAssembly (1889ms)
+			LoadAssemblies (100ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (109ms)
+			SetupTypeCache (122ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (27ms)
-			SetupLoadedEditorAssemblies (629ms)
+			RebuildScriptCaches (30ms)
+			SetupLoadedEditorAssemblies (1674ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (396ms)
+				InitializePlatformSupportModulesInManaged (1435ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (100ms)
+				RefreshPlugins (103ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (89ms)
-				ProcessInitializeOnLoadMethodAttributes (42ms)
+				ProcessInitializeOnLoadAttributes (90ms)
+				ProcessInitializeOnLoadMethodAttributes (44ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.013933 seconds.
+Registered in 0.013892 seconds.
 Begin MonoManager ReloadAssembly
-Could not resolve field token 0x04000184, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000185, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000186, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000187, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000188, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000189, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x0400018a, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x0400018b, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x0400018c, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x0400018d, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x0400018e, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x0400018f, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000190, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000191, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000192, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000193, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000194, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000195, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000196, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x04000197, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x0400019a, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x0400019d, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x040001a0, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x040001a3, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x040001a6, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not resolve field token 0x040001a9, due to: Invalid type Com.MorganHouston.Imprecision.CloudSaveLogin for instance field Com.MorganHouston.Imprecision.Player:cloudSaveLogin assembly:C:\Users\Morga\Documents\GitHub\Imprecision\Library\ScriptAssemblies\Assembly-CSharp.dll type:Player member:(null)
-Could not load signature of SteamLeaderboardManager:OnLeaderboardFindResult due to: Could not resolve type with token 0100007f from typeref (expected class 'Steamworks.LeaderboardFindResult_t' in assembly 'com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null') assembly:com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null type:Steamworks.LeaderboardFindResult_t member:(null)
-Could not load signature of SteamLeaderboardManager:OnLeaderboardUploadResult due to: Could not resolve type with token 01000080 from typeref (expected class 'Steamworks.LeaderboardScoreUploaded_t' in assembly 'com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null') assembly:com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null type:Steamworks.LeaderboardScoreUploaded_t member:(null)
-Could not load signature of SteamLeaderboardManager:GetLeaderBoardData due to: Could not resolve type with token 01000083 from typeref (expected class 'Steamworks.ELeaderboardDataRequest' in assembly 'com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null') assembly:com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null type:Steamworks.ELeaderboardDataRequest member:(null)
-Could not load signature of SteamLeaderboardManager:OnLeaderboardDownloadResult due to: Could not resolve type with token 01000081 from typeref (expected class 'Steamworks.LeaderboardScoresDownloaded_t' in assembly 'com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null') assembly:com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null type:Steamworks.LeaderboardScoresDownloaded_t member:(null)
-Could not load signature of Com.MorganHouston.Imprecision.CloudSaveLogin:OnAuthCallback due to: Could not resolve type with token 010000a6 from typeref (expected class 'Steamworks.GetAuthSessionTicketResponse_t' in assembly 'com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null') assembly:com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null type:Steamworks.GetAuthSessionTicketResponse_t member:(null)
-Could not load signature of Com.MorganHouston.Imprecision.SteamStatsAndAchievements:OnUserStatsReceived due to: Could not resolve type with token 010000cb from typeref (expected class 'Steamworks.UserStatsReceived_t' in assembly 'com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null') assembly:com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null type:Steamworks.UserStatsReceived_t member:(null)
-Could not load signature of Com.MorganHouston.Imprecision.SteamStatsAndAchievements:OnUserStatsStored due to: Could not resolve type with token 010000cc from typeref (expected class 'Steamworks.UserStatsStored_t' in assembly 'com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null') assembly:com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null type:Steamworks.UserStatsStored_t member:(null)
-Could not load signature of Com.MorganHouston.Imprecision.SteamStatsAndAchievements:OnAchievementStored due to: Could not resolve type with token 010000cd from typeref (expected class 'Steamworks.UserAchievementStored_t' in assembly 'com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null') assembly:com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null type:Steamworks.UserAchievementStored_t member:(null)
 Unloading broken assembly Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll, this assembly can cause crashes in the runtime
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 104.31 ms, found 16 plugins.
+Refreshing native plugins compatible for Editor in 105.93 ms, found 16 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-[ScriptCompilation] NOT recompiling all scripts because this is an import worker process. Reason to compile was: Define symbols changed
 Mono: successfully reloaded assembly
-- Completed reload, in  1.510 seconds
+- Completed reload, in  1.740 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1511ms)
-		BeginReloadAssembly (118ms)
+	ReloadAssembly (1741ms)
+		BeginReloadAssembly (125ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (6ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (18ms)
-		EndReloadAssembly (1275ms)
-			LoadAssemblies (107ms)
+			CreateAndSetChildDomain (19ms)
+		EndReloadAssembly (1493ms)
+			LoadAssemblies (113ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (281ms)
-			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (74ms)
-			SetupLoadedEditorAssemblies (749ms)
+			SetupTypeCache (320ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (73ms)
+			SetupLoadedEditorAssemblies (924ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (20ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (104ms)
-				BeforeProcessingInitializeOnLoad (127ms)
-				ProcessInitializeOnLoadAttributes (405ms)
-				ProcessInitializeOnLoadMethodAttributes (85ms)
+				RefreshPlugins (106ms)
+				BeforeProcessingInitializeOnLoad (128ms)
+				ProcessInitializeOnLoadAttributes (571ms)
+				ProcessInitializeOnLoadMethodAttributes (90ms)
 				AfterProcessingInitializeOnLoad (7ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
@@ -187,13 +152,13 @@ Domain Reload Profiling:
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 1.69 ms, found 16 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 1.70 ms, found 16 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 6039 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 202 unused Assets / (0.8 MB). Loaded Objects now: 6381.
-Memory consumption went from 247.7 MB to 246.8 MB.
-Total: 4.327100 ms (FindLiveObjects: 0.348900 ms CreateObjectMapping: 0.149500 ms MarkObjects: 3.461200 ms  DeleteObjects: 0.366400 ms)
+Unloading 6040 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 202 unused Assets / (0.9 MB). Loaded Objects now: 6382.
+Memory consumption went from 248.7 MB to 247.9 MB.
+Total: 4.637800 ms (FindLiveObjects: 0.382000 ms CreateObjectMapping: 0.135800 ms MarkObjects: 3.729800 ms  DeleteObjects: 0.389100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -208,375 +173,60 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 440193.407337 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt.png
-  artifactKey: Guid(9bc947dca2b8ae54ab522972936825ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt.png using Guid(9bc947dca2b8ae54ab522972936825ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd87eface49e6391d883b89f4e5dd80aa') in 0.090339 seconds 
+  Time since last request: 11408.197693 seconds.
+  path: Assets/Animations/Archer/Archer@Standing Jump (1)@Standing Death Forward 02.fbx
+  artifactKey: Guid(e49ab15fbfe253840a1dc43f5b801bf1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Archer/Archer@Standing Jump (1)@Standing Death Forward 02.fbx using Guid(e49ab15fbfe253840a1dc43f5b801bf1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59ea5c67855374fd8f526b8f9ced8c14') in 1.330498 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 294.426873 seconds.
-  path: Assets/Sprites/LogoTmp-231x87.png
-  artifactKey: Guid(6d98cfa448e9ebd41b76524a26c71406) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/LogoTmp-231x87.png using Guid(6d98cfa448e9ebd41b76524a26c71406) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72dc7c01d06ec2f290575175133058de') in 0.013985 seconds 
+  Time since last request: 0.000031 seconds.
+  path: Assets/Animations/Archer/Archer@Standing Jump (1)@Standing React Small From Headshot.fbx
+  artifactKey: Guid(985543d1661b88a469985355a0503bfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Archer/Archer@Standing Jump (1)@Standing React Small From Headshot.fbx using Guid(985543d1661b88a469985355a0503bfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a70242795196d0aa069071301c21c56') in 0.028660 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 6.316440 seconds.
-  path: Assets/Sprites/LogoTmp-374x448.png
-  artifactKey: Guid(1394e76277e54fe4a9b35862adb43200) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/LogoTmp-374x448.png using Guid(1394e76277e54fe4a9b35862adb43200) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cda291a3207ef713631f2395d11a5365') in 0.010461 seconds 
+  Time since last request: 0.000032 seconds.
+  path: Assets/Animations/Archer/Archer@Standing Jump (1)@Standing Death Forward 01.fbx
+  artifactKey: Guid(6139ad710009fe64391932a0c39ea6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Archer/Archer@Standing Jump (1)@Standing Death Forward 01.fbx using Guid(6139ad710009fe64391932a0c39ea6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ad4d9c79e4b2df038712cfe85e22975') in 0.026278 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 156.686252 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt-620.png
-  artifactKey: Guid(97575f1e2653ad64789b57cc095d11e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt-620.png using Guid(97575f1e2653ad64789b57cc095d11e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a7e7ab2a2887850e72f4238aa0eb530') in 0.012209 seconds 
+  Time since last request: 0.000021 seconds.
+  path: Assets/Animations/Archer/Archer.fbx
+  artifactKey: Guid(9509eaa113ad4104994a4b65bf9daf65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Archer/Archer.fbx using Guid(9509eaa113ad4104994a4b65bf9daf65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9402be1c1f1004cca6a71ef7ca538f24') in 0.027844 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 4.681635 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt-310x150.png
-  artifactKey: Guid(d7788bc020c61b44c8398b9166c07839) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt-310x150.png using Guid(d7788bc020c61b44c8398b9166c07839) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8a849e3a565607865d3eaf137978a1d') in 0.009707 seconds 
+  Time since last request: 0.000023 seconds.
+  path: Assets/Animations/Archer/Archer@Standing Jump (1)@Standing React Small From Front.fbx
+  artifactKey: Guid(b2b363ceabddd02499ecc26587b1e4ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Archer/Archer@Standing Jump (1)@Standing React Small From Front.fbx using Guid(b2b363ceabddd02499ecc26587b1e4ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95befd0d795d48e5b59fdf882f9e2927') in 0.027489 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 1.934649 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt-620x300.png
-  artifactKey: Guid(a1bdfaa64a5df944792cc785a1e433e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt-620x300.png using Guid(a1bdfaa64a5df944792cc785a1e433e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'beda0dc18576d91c5be72112a4347b2a') in 0.010091 seconds 
+  Time since last request: 0.000023 seconds.
+  path: Assets/Prefabs/Archer.prefab
+  artifactKey: Guid(075eb6270bc3788479d10cef76b808e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Archer.prefab using Guid(075eb6270bc3788479d10cef76b808e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71a2057562dc66be500f17f2c13d61da') in 0.291109 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 7.152848 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt-310.png
-  artifactKey: Guid(e280533a7039b2f42a41d33ff2d1be29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt-310.png using Guid(e280533a7039b2f42a41d33ff2d1be29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02c0753625cbf5f734d496784d0edc8b') in 0.008407 seconds 
+  Time since last request: 0.000034 seconds.
+  path: Assets/Animations/Archer/Archer@Standing Jump (1)@Standing Death Right 02.fbx
+  artifactKey: Guid(e5f51d2c7601eea4e89ab7cc48c184c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Archer/Archer@Standing Jump (1)@Standing Death Right 02.fbx using Guid(e5f51d2c7601eea4e89ab7cc48c184c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63fe4c1edcae75f268a9b6e17b290713') in 0.027284 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 14.111864 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt-150.png
-  artifactKey: Guid(77dbbdc5b24ae2c4b8feeb498882941a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt-150.png using Guid(77dbbdc5b24ae2c4b8feeb498882941a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b85dcb0f1574e1bb0d5cf7cb8d99dc1') in 0.010156 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 3.327097 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt-300.png
-  artifactKey: Guid(d10d6de3b5fec364a83acb4893ebc656) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt-300.png using Guid(d10d6de3b5fec364a83acb4893ebc656) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f1ca17bd89ac291d9333af47d760459') in 0.008893 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 7.304532 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt-71.png
-  artifactKey: Guid(b9e13c38ed2ed614d928fc47c1cda166) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt-71.png using Guid(b9e13c38ed2ed614d928fc47c1cda166) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d5fab915ade6e3c7e332b5b68759778') in 0.008019 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 3.867722 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt-142.png
-  artifactKey: Guid(84822faa53935904093a68331c648f28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt-142.png using Guid(84822faa53935904093a68331c648f28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6dba34f503538b4c878694dbdc4a406e') in 0.010408 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 6.745019 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt-44.png
-  artifactKey: Guid(3e72c6a236a347b4ba2a0128c5485e8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt-44.png using Guid(3e72c6a236a347b4ba2a0128c5485e8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09b3075cc09c88c7cfad7cca52aeb05a') in 0.008900 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 3.424904 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt-88.png
-  artifactKey: Guid(6b67437a670f7c64e9f627ea4ba81c15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt-88.png using Guid(6b67437a670f7c64e9f627ea4ba81c15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3588a53e22830aa6337377e5f633145') in 0.009563 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 2.586323 seconds.
-  path: Assets/Sprites/ImprecisionLogoTilt-24.png
-  artifactKey: Guid(d7ae20ccf460e244588fb34f7d5310c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/ImprecisionLogoTilt-24.png using Guid(d7ae20ccf460e244588fb34f7d5310c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c83cc5a4e5c9c9a7b8ce1f0090a16fbf') in 0.008305 seconds 
+  Time since last request: 0.000039 seconds.
+  path: Assets/Animations/Archer/Archer@Standing Jump (1)@Standing React Large From Left.fbx
+  artifactKey: Guid(cb460ea7865dc3e46b802907ff864789) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Archer/Archer@Standing Jump (1)@Standing React Large From Left.fbx using Guid(cb460ea7865dc3e46b802907ff864789) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81673eae7b081bad9cf3f2e6b92c77a7') in 0.025856 seconds 
 ========================================================================
 Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.016152 seconds.
-Begin MonoManager ReloadAssembly
-Unloading broken assembly Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll, this assembly can cause crashes in the runtime
-Native extension for UWP target not found
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 1.83 ms, found 16 plugins.
+Refreshing native plugins compatible for Editor in 31.65 ms, found 16 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-[ScriptCompilation] NOT recompiling all scripts because this is an import worker process. Reason to compile was: Define symbols changed
-Mono: successfully reloaded assembly
-- Completed reload, in  1.399 seconds
-Domain Reload Profiling:
-	ReloadAssembly (1399ms)
-		BeginReloadAssembly (169ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (5ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (52ms)
-		EndReloadAssembly (1124ms)
-			LoadAssemblies (121ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (288ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (52ms)
-			SetupLoadedEditorAssemblies (586ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (21ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (96ms)
-				ProcessInitializeOnLoadAttributes (376ms)
-				ProcessInitializeOnLoadMethodAttributes (83ms)
-				AfterProcessingInitializeOnLoad (7ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (9ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 16.61 ms, found 16 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5872 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 181 unused Assets / (0.8 MB). Loaded Objects now: 6405.
-Memory consumption went from 234.4 MB to 233.6 MB.
-Total: 5.420500 ms (FindLiveObjects: 0.357400 ms CreateObjectMapping: 0.143900 ms MarkObjects: 4.531200 ms  DeleteObjects: 0.386600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.014116 seconds.
-Begin MonoManager ReloadAssembly
-Unloading broken assembly Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll, this assembly can cause crashes in the runtime
-Native extension for UWP target not found
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 1.85 ms, found 16 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-[ScriptCompilation] NOT recompiling all scripts because this is an import worker process. Reason to compile was: Define symbols changed
-Mono: successfully reloaded assembly
-- Completed reload, in  1.355 seconds
-Domain Reload Profiling:
-	ReloadAssembly (1356ms)
-		BeginReloadAssembly (150ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (38ms)
-		EndReloadAssembly (1100ms)
-			LoadAssemblies (112ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (267ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (63ms)
-			SetupLoadedEditorAssemblies (578ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (21ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (96ms)
-				ProcessInitializeOnLoadAttributes (369ms)
-				ProcessInitializeOnLoadMethodAttributes (82ms)
-				AfterProcessingInitializeOnLoad (7ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (11ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 16.28 ms, found 16 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5872 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 181 unused Assets / (0.8 MB). Loaded Objects now: 6421.
-Memory consumption went from 234.4 MB to 233.6 MB.
-Total: 4.441700 ms (FindLiveObjects: 0.332300 ms CreateObjectMapping: 0.143300 ms MarkObjects: 3.585200 ms  DeleteObjects: 0.379200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.013391 seconds.
-Begin MonoManager ReloadAssembly
-Unloading broken assembly Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll, this assembly can cause crashes in the runtime
-Native extension for UWP target not found
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 1.86 ms, found 16 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-[ScriptCompilation] NOT recompiling all scripts because this is an import worker process. Reason to compile was: Define symbols changed
-Mono: successfully reloaded assembly
-- Completed reload, in  1.336 seconds
-Domain Reload Profiling:
-	ReloadAssembly (1337ms)
-		BeginReloadAssembly (146ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (36ms)
-		EndReloadAssembly (1088ms)
-			LoadAssemblies (109ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (263ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (50ms)
-			SetupLoadedEditorAssemblies (588ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (21ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (96ms)
-				ProcessInitializeOnLoadAttributes (379ms)
-				ProcessInitializeOnLoadMethodAttributes (82ms)
-				AfterProcessingInitializeOnLoad (7ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (12ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 16.55 ms, found 16 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5872 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 181 unused Assets / (0.8 MB). Loaded Objects now: 6437.
-Memory consumption went from 234.5 MB to 233.6 MB.
-Total: 4.649500 ms (FindLiveObjects: 0.367800 ms CreateObjectMapping: 0.160100 ms MarkObjects: 3.750600 ms  DeleteObjects: 0.369800 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.013491 seconds.
-Begin MonoManager ReloadAssembly
-Unloading broken assembly Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll, this assembly can cause crashes in the runtime
-Native extension for UWP target not found
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 1.84 ms, found 16 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-[ScriptCompilation] NOT recompiling all scripts because this is an import worker process. Reason to compile was: Define symbols changed
-Mono: successfully reloaded assembly
-- Completed reload, in  1.327 seconds
-Domain Reload Profiling:
-	ReloadAssembly (1328ms)
-		BeginReloadAssembly (152ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (42ms)
-		EndReloadAssembly (1070ms)
-			LoadAssemblies (111ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (256ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (53ms)
-			SetupLoadedEditorAssemblies (572ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (20ms)
-				SetLoadedEditorAssemblies (1ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (97ms)
-				ProcessInitializeOnLoadAttributes (363ms)
-				ProcessInitializeOnLoadMethodAttributes (81ms)
-				AfterProcessingInitializeOnLoad (7ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (14ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 16.38 ms, found 16 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5872 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 181 unused Assets / (0.8 MB). Loaded Objects now: 6453.
-Memory consumption went from 234.5 MB to 233.7 MB.
-Total: 4.903100 ms (FindLiveObjects: 0.348600 ms CreateObjectMapping: 0.133700 ms MarkObjects: 4.049800 ms  DeleteObjects: 0.369700 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.013612 seconds.
-Begin MonoManager ReloadAssembly
-Unloading broken assembly Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll, this assembly can cause crashes in the runtime
-Native extension for UWP target not found
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 2.00 ms, found 16 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.328 seconds
-Domain Reload Profiling:
-	ReloadAssembly (1329ms)
-		BeginReloadAssembly (143ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (5ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (40ms)
-		EndReloadAssembly (1082ms)
-			LoadAssemblies (107ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (259ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (53ms)
-			SetupLoadedEditorAssemblies (582ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (21ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (98ms)
-				ProcessInitializeOnLoadAttributes (372ms)
-				ProcessInitializeOnLoadMethodAttributes (81ms)
-				AfterProcessingInitializeOnLoad (7ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (13ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 16.51 ms, found 16 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5872 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 181 unused Assets / (0.8 MB). Loaded Objects now: 6469.
-Memory consumption went from 234.5 MB to 233.7 MB.
-Total: 4.423300 ms (FindLiveObjects: 0.359200 ms CreateObjectMapping: 0.179800 ms MarkObjects: 3.479600 ms  DeleteObjects: 0.403500 ms)
+Unloading 180 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 181 unused Assets / (0.8 MB). Loaded Objects now: 6513.
+Memory consumption went from 144.6 MB to 143.8 MB.
+Total: 5.435800 ms (FindLiveObjects: 0.403100 ms CreateObjectMapping: 0.201600 ms MarkObjects: 4.425300 ms  DeleteObjects: 0.404600 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 

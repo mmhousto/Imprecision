@@ -59,6 +59,8 @@ public class SteamLeaderboardManager : MonoBehaviour
             //DontDestroyOnLoad(Instance.gameObject);
         }
 
+        int leaderboardToBeInit = 0;
+
         if (SteamManager.Initialized && CloudSaveLogin.Instance.currentSSO == CloudSaveLogin.ssoOption.Steam)
         {
             SteamAPICall_t hSteamAPICall = SteamUserStats.FindLeaderboard(leaderboardNames[leaderboardToBeInit]);
