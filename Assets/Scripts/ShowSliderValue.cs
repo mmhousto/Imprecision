@@ -11,13 +11,14 @@ namespace Com.MorganHouston.Imprecision
         private float sliderValue;
         private Slider slider;
         public string sliderName;
+        public int defaultValue;
         public TextMeshProUGUI sliderValueLabel;
 
 
         // Start is called before the first frame update
         void Start()
         {
-            sliderValue = PlayerPrefs.GetFloat(sliderName, 1);
+            sliderValue = PlayerPrefs.GetFloat(sliderName, defaultValue);
             slider = GetComponent<Slider>();
             slider.value = sliderValue;
             sliderValueLabel.text = slider.value.ToString();

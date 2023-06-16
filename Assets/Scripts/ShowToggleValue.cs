@@ -10,12 +10,13 @@ namespace Com.MorganHouston.Imprecision
 
         private bool toggleValue;
         private Toggle toggle;
+        public int defaultValue;
         public string toggleName;
 
         // Start is called before the first frame update
         void Start()
         {
-            toggleValue = Convert.ToBoolean(PlayerPrefs.GetInt(toggleName, 0));
+            toggleValue = Convert.ToBoolean(PlayerPrefs.GetInt(toggleName, defaultValue));
             toggle = GetComponent<Toggle>();
             toggle.isOn = toggleValue;
         }
