@@ -139,7 +139,8 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1.2.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: e4c0bdd69e8722140ac8a40f57136b9f, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -807,7 +808,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     Android: STARTER_ASSETS_PACKAGES_CHECKED
     Standalone: STARTER_ASSETS_PACKAGES_CHECKED;ENABLE_INPUT_SYSTEM;STEAMWORKS_NET
-    Windows Store Apps: STARTER_ASSETS_PACKAGES_CHECKED
+    Windows Store Apps: STARTER_ASSETS_PACKAGES_CHECKED;STEAMWORKS_NET
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -834,7 +835,7 @@ PlayerSettings:
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
   enableRoslynAnalyzers: 1
-  selectedPlatform: 0
+  selectedPlatform: 4
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 1
@@ -845,30 +846,30 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: com.MorganHouston.Imprecision
-  metroPackageVersion: 0.1.1.0
+  metroPackageVersion: 0.1.2.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: MorganHouston
   metroCertificateIssuer: MorganHouston
   metroCertificateNotAfter: 00809ab137b6da01
-  metroApplicationDescription: A first person, action-adventure, medieval game set
-    in Scandinavia.
+  metroApplicationDescription: A first/third person, action-adventure game set in
+    medieval times.
   wsaImages:
     65636: Assets/Sprites/LogoTmp-50.png
     65736: Assets/Sprites/LogoTmp-100.png
     131272: Assets/Sprites/Twitter Banner PNG-1240.png
     131472: Assets/Sprites/Twitter_Banner_PNG-2480-removebg.png
-    2031640: Assets/Sprites/LogoTmp-24.png
-    2031716: Assets/Sprites/LogoTmp-44.png
-    2031816: Assets/Sprites/LogoTmp-88.png
-    2097252: Assets/Sprites/LogoTmp-71.png
-    2097352: Assets/Sprites/LogoTmp-142.png
-    2162788: Assets/Sprites/LogoTmp-150.png
-    2162888: Assets/Sprites/LogoTmp-300.png
-    2228324: Assets/Sprites/LogoTmp-310.png
-    2228424: Assets/Sprites/LogoTmp-620.png
-    2293860: Assets/Sprites/LogoTmp-Wide.png
-    2293960: Assets/Sprites/LogoTmp-Widex2.png
+    2031640: Assets/Sprites/ImprecisionLogoTilt-24.png
+    2031716: Assets/Sprites/ImprecisionLogoTilt-44.png
+    2031816: Assets/Sprites/ImprecisionLogoTilt-88.png
+    2097252: Assets/Sprites/ImprecisionLogoTilt-71.png
+    2097352: Assets/Sprites/ImprecisionLogoTilt-142.png
+    2162788: Assets/Sprites/ImprecisionLogoTilt-150.png
+    2162888: Assets/Sprites/ImprecisionLogoTilt-300.png
+    2228324: Assets/Sprites/ImprecisionLogoTilt-310.png
+    2228424: Assets/Sprites/ImprecisionLogoTilt-620.png
+    2293860: Assets/Sprites/ImprecisionLogoTilt-310x150.png
+    2293960: Assets/Sprites/ImprecisionLogoTilt-620x300.png
   metroTileShortName: Imprecision
   metroTileShowName: 0
   metroMediumTileShowName: 0

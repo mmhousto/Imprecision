@@ -2809,14 +2809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d552bf0565aebc4f87ac7b8c9ee0263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboardNames:
-  - All Time Most Points
-  - All Time Most Arrows Fired
-  - All Time Most Targets Hit
-  - All Time Most Bullseyes Hit
-  - All Time Most Jewels Collected
-  - All Time Best Accuracy
-  steamLeaderboardsInit: 
 --- !u!114 &131554954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22386,7 +22378,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
 --- !u!114 &652584283
@@ -38358,6 +38350,10 @@ PrefabInstance:
       propertyPath: appleLogin
       value: 
       objectReference: {fileID: 610702412}
+    - target: {fileID: 192045691149699616, guid: 9664c28e04b7e184db8d44866e34bc4f, type: 3}
+      propertyPath: steamLogin
+      value: 
+      objectReference: {fileID: 2030920178}
     - target: {fileID: 192045691149699616, guid: 9664c28e04b7e184db8d44866e34bc4f, type: 3}
       propertyPath: googleLogin
       value: 

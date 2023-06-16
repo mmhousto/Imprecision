@@ -1,18 +1,55 @@
+#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+#define DISABLESTEAMWORKS
+#endif
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+#if !DISABLESTEAMWORKS
+using Steamworks;
+#endif
 
 namespace Com.MorganHouston.Imprecision
 {
     public class PauseManager : MonoBehaviour
     {
-        public GameObject masterSlider;
+        public GameObject audioButton;
         public GameObject pauseScreen;
         public EventSystem eventSystem;
         public GameObject onScreenButtons;
         public bool isPaused;
+        private bool isControllerConnected = false;
+        private bool isSteamOverlayActive = false;
+
+
+        private void Start()
+        {
+            // Check if a controller is initially connected
+            if (Gamepad.current != null)
+            {
+                isControllerConnected = true;
+            }
+        }
+
+        private void Update()
+        {
+            // Check if a controller was connected and gets disconnected
+            if (isControllerConnected && Gamepad.current == null)
+            {
+                // Controller was just unplugged
+                isControllerConnected = false;
+                OnPause(true);
+            }
+            else if (!isControllerConnected && Gamepad.current != null)
+            {
+                // Controller was just plugged in
+                isControllerConnected = true;
+            }
+
+            CheckSteamOverlay();
+        }
 
         public void OnPause(InputValue value)
         {
@@ -20,7 +57,7 @@ namespace Com.MorganHouston.Imprecision
             pauseScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
             Time.timeScale = 0;
-            eventSystem.SetSelectedGameObject(masterSlider);
+            eventSystem.SetSelectedGameObject(audioButton);
             RumbleManager.instance?.PauseRumble();
         }
 
@@ -33,7 +70,7 @@ namespace Com.MorganHouston.Imprecision
             pauseScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
             Time.timeScale = 0;
-            eventSystem.SetSelectedGameObject(masterSlider);
+            eventSystem.SetSelectedGameObject(audioButton);
             RumbleManager.instance?.PauseRumble();
         }
 
@@ -59,6 +96,22 @@ namespace Com.MorganHouston.Imprecision
         {
             Time.timeScale = 1;
             SceneLoader.LoadThisScene(SceneLoader.GetCurrentScene().buildIndex);
+        }
+
+        private void CheckSteamOverlay()
+        {
+#if !DISABLESTEAMWORKS
+            // Check if the Steam Overlay is active
+            if (SteamManager.Initialized)
+            {
+                isSteamOverlayActive = SteamUtils.IsOverlayEnabled();
+
+                if (isSteamOverlayActive && isPaused == false)
+                {
+                    OnPause(true);
+                }
+            }
+#endif
         }
 
     }

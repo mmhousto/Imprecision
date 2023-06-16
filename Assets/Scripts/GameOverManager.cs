@@ -23,6 +23,7 @@ namespace Com.MorganHouston.Imprecision
             gameManager = GameManager.Instance;
             player = Player.Instance;
 
+            EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(restartButton);
 
             if(gameManager != null && player != null)
@@ -41,6 +42,13 @@ namespace Com.MorganHouston.Imprecision
 
             if (gameManager != null && player != null)
                 CheckIfBeatLevel();
+
+            if(EventSystem.current.currentSelectedGameObject == null)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(restartButton);
+            }
+
         }
 
         /// <summary>

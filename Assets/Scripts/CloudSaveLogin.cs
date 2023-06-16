@@ -1,3 +1,7 @@
+#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+#define DISABLESTEAMWORKS
+#endif
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +20,9 @@ using AppleAuth.Enums;
 using AppleAuth.Extensions;
 using AppleAuth.Interfaces;
 using System.Text;
+#if !DISABLESTEAMWORKS
 using Steamworks;
+#endif
 #if UNITY_ANDROID
 using GooglePlayGames.BasicApi;
 using GooglePlayGames;
@@ -54,15 +60,17 @@ namespace Com.MorganHouston.Imprecision
         // User Info.
         public string userName, userID;
 
+#if !DISABLESTEAMWORKS
         Callback<GetAuthSessionTicketResponse_t> m_AuthTicketResponseCallback;
         HAuthTicket m_AuthTicket;
         string m_SessionTicket;
+#endif
 
 
-        #endregion
+#endregion
 
 
-        #region MonoBehaviour Methods
+#region MonoBehaviour Methods
 
 
         // Start is called before the first frame update
@@ -182,10 +190,10 @@ namespace Com.MorganHouston.Imprecision
         }*/
 
 
-        #endregion
+#endregion
 
 
-        #region Public Sign In/Out Methods
+#region Public Sign In/Out Methods
 
 
         /// <summary>
@@ -263,8 +271,10 @@ namespace Com.MorganHouston.Imprecision
 
         }
 
+        
         public void SignInWithSteam()
         {
+#if !DISABLESTEAMWORKS
             if (isSigningIn || AuthenticationService.Instance.IsSignedIn) return;
             isSigningIn = true;
 
@@ -299,8 +309,10 @@ namespace Com.MorganHouston.Imprecision
 
             // The ticket is not ready yet, wait for OnAuthCallback.
             m_SessionTicket = BitConverter.ToString(buffer).Replace("-", string.Empty);
+#endif
         }
 
+#if !DISABLESTEAMWORKS
         void OnAuthCallback(GetAuthSessionTicketResponse_t callback)
         {
             // Call Unity Authentication SDK to sign in or link with Steam.
@@ -312,6 +324,8 @@ namespace Com.MorganHouston.Imprecision
         {
             await SignInWithSteamAsync(m_SessionTicket);
         }
+
+#endif
 
         private void GameCenterLogin()
         {
@@ -370,10 +384,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
-        #region Private Login/Logout Methods
+#region Private Login/Logout Methods
 
         /// <summary>
         /// Loads the Main Menu Panel.
@@ -419,10 +433,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
-        #region Apple Auth
+#region Apple Auth
 
         /// <summary>
         /// Performs continue with Apple login.
@@ -617,10 +631,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
-        #region Facebook Auth
+#region Facebook Auth
 
         /// <summary>
         /// Initializes Facebook SDK
@@ -765,10 +779,10 @@ namespace Com.MorganHouston.Imprecision
         }
 
 
-        #endregion
+#endregion
 
 
-        #region Google Play Auth
+#region Google Play Auth
 
 #if UNITY_ANDROID
         void InitializePlayGamesLogin()
@@ -863,10 +877,10 @@ namespace Com.MorganHouston.Imprecision
         }
 #endif
 
-        #endregion
+#endregion
 
 
-        #region Steam Auth
+#region Steam Auth
 
         async Task SignInWithSteamAsync(string ticket)
         {
@@ -894,11 +908,11 @@ namespace Com.MorganHouston.Imprecision
             isSigningIn = false;
         }
 
-        #endregion
+#endregion
 
 
 
-        #region Private Methods
+#region Private Methods
 
         /// <summary>
         /// Signs in an anonymous player.
@@ -1225,7 +1239,7 @@ namespace Com.MorganHouston.Imprecision
             player.SetData();
         }
 
-        #endregion
+#endregion
 
 
     }

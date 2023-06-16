@@ -1,11 +1,18 @@
+#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+#define DISABLESTEAMWORKS
+#endif
+
 using Com.MorganHouston.Imprecision;
+#if !DISABLESTEAMWORKS
 using Steamworks;
+#endif
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SteamLeaderboardManager : MonoBehaviour
 {
+#if !DISABLESTEAMWORKS
     private static SteamLeaderboardManager instance;
 
     public static SteamLeaderboardManager Instance { get { return instance; } }
@@ -170,4 +177,5 @@ public class SteamLeaderboardManager : MonoBehaviour
         //This is the callback for my own project - function is asynchronous so it must return from here rather than from GetLeaderBoardData
         //FindObjectOfType<HighscoreUIMan>().FillLeaderboard(LeaderboardDataset);
     }
+#endif
 }

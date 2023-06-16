@@ -1,3 +1,7 @@
+#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+#define DISABLESTEAMWORKS
+#endif
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +18,7 @@ namespace Com.MorganHouston.Imprecision
 
         public static LoginManager Instance { get { return instance; } }
 
-        public GameObject appleLogin, googleLogin, facebookLogin, signInPanel, mainMenuPanel, levelSelectButton, steamStatsAchieveLeader;
+        public GameObject appleLogin, googleLogin, facebookLogin, steamLogin, signInPanel, mainMenuPanel, levelSelectButton, steamStatsAchieveLeader;
 
         public TextMeshProUGUI leaderboardsAchievementsLabel;
 
@@ -49,6 +53,12 @@ namespace Com.MorganHouston.Imprecision
             facebookLogin.SetActive(false);
 #else
             facebookLogin.SetActive(true);
+#endif
+
+#if DISABLESTEAMWORKS
+            steamLogin.SetActive(false);
+#else
+            steamLogin.SetActive(true);
 #endif
 
         }

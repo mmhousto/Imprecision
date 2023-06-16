@@ -1,7 +1,13 @@
+#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+#define DISABLESTEAMWORKS
+#endif
+
 using UnityEngine;
 using System.Collections;
 using System.ComponentModel;
+#if !DISABLESTEAMWORKS
 using Steamworks;
+#endif
 using Unity.Services.Authentication;
 
 namespace Com.MorganHouston.Imprecision
@@ -9,6 +15,7 @@ namespace Com.MorganHouston.Imprecision
 	// This is a port of StatsAndAchievements.cpp from SpaceWar, the official Steamworks Example.
 	class SteamStatsAndAchievements : MonoBehaviour
 	{
+#if !DISABLESTEAMWORKS
 		private static SteamStatsAndAchievements instance;
 
 		public static SteamStatsAndAchievements Instance { get { return instance; } }
@@ -500,5 +507,6 @@ namespace Com.MorganHouston.Imprecision
 				m_bAchieved = false;
 			}
 		}
+#endif
 	}
 }

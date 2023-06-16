@@ -1,9 +1,15 @@
+#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+#define DISABLESTEAMWORKS
+#endif
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
+#if !DISABLESTEAMWORKS
 using Steamworks;
+#endif
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -59,6 +65,7 @@ namespace Com.MorganHouston.Imprecision
             });
 #endif
 
+#if !DISABLESTEAMWORKS
             if (CloudSaveLogin.Instance.isSteam && SteamManager.Initialized && CloudSaveLogin.Instance.currentSSO == CloudSaveLogin.ssoOption.Steam)
             {
                 SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.UserPoints, SteamLeaderboardManager.LeaderboardName.AllTimeMostPoints);
@@ -68,6 +75,7 @@ namespace Com.MorganHouston.Imprecision
                 SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Jewels, SteamLeaderboardManager.LeaderboardName.AllTimeMostJewelsCollected);
                 SteamLeaderboardManager.Instance.UpdateScore((Player.Instance.TargetsHit * 100 / Player.Instance.ArrowsFired), SteamLeaderboardManager.LeaderboardName.AllTimeBestAccuracy);
             }
+#endif
         }
 
 
