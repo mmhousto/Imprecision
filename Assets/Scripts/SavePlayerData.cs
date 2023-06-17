@@ -8,6 +8,7 @@ namespace Com.MorganHouston.Imprecision
     {
         public string userID;
         public string userName;
+        public string freeJewelOvertime;
 
         public int userPoints;
         public int userLevel;
@@ -41,6 +42,7 @@ namespace Com.MorganHouston.Imprecision
         {
             userID = player.UserID;
             userName = player.UserName;
+            freeJewelOvertime = player.FreeJewelOvertime;
             userPoints = player.UserPoints;
             userLevel = player.UserLevel;
             userXP = player.UserXP;

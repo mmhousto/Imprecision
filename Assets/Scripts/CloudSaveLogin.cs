@@ -239,6 +239,7 @@ namespace Com.MorganHouston.Imprecision
             var perms = new List<string>() { "public_profile" };
             FB.LogInWithReadPermissions(perms, AuthCallback);
 #endif
+            isSigningIn = false;
 
         }
 
@@ -753,17 +754,16 @@ namespace Com.MorganHouston.Imprecision
         /// <param name="result"></param>
         private async void LoginStatusCallback(ILoginStatusResult result)
         {
+            isSigningIn = false;
             if (!string.IsNullOrEmpty(result.Error))
             {
                 //Debug.Log("Error: " + result.Error);
-
                 var perms = new List<string>() { "public_profile" };
                 FB.LogInWithReadPermissions(perms, AuthCallback);
             }
             else if (result.Failed)
             {
                 //Debug.Log("Failure: Access Token could not be retrieved");
-
                 var perms = new List<string>() { "public_profile" };
                 FB.LogInWithReadPermissions(perms, AuthCallback);
             }

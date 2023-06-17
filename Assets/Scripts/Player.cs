@@ -20,6 +20,8 @@ namespace Com.MorganHouston.Imprecision
         public string UserID { get; private set; }
         public string UserName { get; private set; }
 
+        public string FreeJewelOvertime { get; private set; }
+
         [SerializeField]
         private int userPoints;
         public int UserPoints { get { return userPoints; } private set { userPoints = value; } }
@@ -180,6 +182,7 @@ namespace Com.MorganHouston.Imprecision
         {
             UserID = "";
             UserName = "";
+            FreeJewelOvertime = DateTime.Now.AddHours(-24).ToString();
             UserPoints = 0;
             UserLevel = 1;
             UserXP = 0;
@@ -209,6 +212,7 @@ namespace Com.MorganHouston.Imprecision
         {
             UserID = data.userID;
             UserName = data.userName;
+            FreeJewelOvertime = String.IsNullOrEmpty(data.freeJewelOvertime) ? DateTime.Now.AddHours(-24).ToString() : data.freeJewelOvertime;
             UserPoints = data.userPoints;
             UserLevel = data.userLevel;
             UserXP = data.userXP;
@@ -254,6 +258,7 @@ namespace Com.MorganHouston.Imprecision
         {
             UserID = id;
             UserName = $"Guest_{id}";
+            FreeJewelOvertime = DateTime.Now.AddHours(-24).ToString();
             UserPoints = 0;
             UserLevel = 1;
             UserXP = 0;
@@ -283,6 +288,7 @@ namespace Com.MorganHouston.Imprecision
         {
             UserID = id;
             UserName = name;
+            FreeJewelOvertime = DateTime.Now.AddHours(-24).ToString();
             UserPoints = 0;
             UserLevel = 1;
             UserXP = 0;
@@ -376,6 +382,11 @@ namespace Com.MorganHouston.Imprecision
         public void SetPlayerName(string name)
         {
             UserName = name;
+        }
+
+        public void SetFreeJewelOvertime(string time)
+        {
+            FreeJewelOvertime = time;
         }
 
         public void GainJewels(int jewelsToAdd)
