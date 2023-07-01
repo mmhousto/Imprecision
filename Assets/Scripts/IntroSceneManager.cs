@@ -29,6 +29,7 @@ namespace Com.MorganHouston.Imprecision
             {
                 instance = this;
             }
+            GetDirector(GetComponent<PlayableDirector>());
         }
 
         public void DeleteCams()
@@ -55,7 +56,7 @@ namespace Com.MorganHouston.Imprecision
             {
                 _currentDirector.time = _timeToSkipTo;
                 _sceneSkipped = true;
-                cutsceneCanvas.SetActive(false);
+                //cutsceneCanvas.SetActive(false);
             }
             
         }
