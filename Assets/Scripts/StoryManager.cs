@@ -24,7 +24,7 @@ namespace Com.MorganHouston.Imprecision
         [SerializeField] bool allEnemiesDefeated;
         [SerializeField] bool beatInTime;
         [SerializeField]public bool finishedLevel;
-        [SerializeField] float currentTime;
+        public float currentTime;
         int hours, minutes, seconds, milliseconds;
 
         private void Awake()
@@ -60,6 +60,17 @@ namespace Com.MorganHouston.Imprecision
         {
             HandleTime();
             CheckObjectivesStatus();
+        }
+
+        public void CutsceneStart()
+        {
+            AudioManager.Instance.GetComponent<AudioSource>().Pause();
+        }
+
+        public void LevelStarted()
+        {
+            currentTime = 0;
+            AudioManager.Instance.GetComponent<AudioSource>().Play();
         }
 
         private void OnDisable()
