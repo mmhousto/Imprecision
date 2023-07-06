@@ -33,6 +33,8 @@ namespace Com.MorganHouston.Imprecision
 
         public bool isGameOver;
 
+        public bool gameStarted;
+
         private void Awake()
         {
             if (instance != null && instance != this)
@@ -63,6 +65,7 @@ namespace Com.MorganHouston.Imprecision
         /// <param name="mode"></param>
         private void LoadGame(Scene level, LoadSceneMode mode)
         {
+            gameStarted = false; 
             if(level.buildIndex == 2)
             {
                 playingStoryMode = false;

@@ -47,7 +47,8 @@ namespace Com.MorganHouston.Imprecision
             {
                 // Controller was just unplugged
                 isControllerConnected = false;
-                OnPause(true);
+                if(GameManager.Instance.gameStarted)
+                    OnPause(true);
             }
             else if (!isControllerConnected && Gamepad.all.Count > 0)
             {

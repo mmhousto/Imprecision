@@ -38,16 +38,16 @@ namespace Com.MorganHouston.Imprecision
 
         private void SetLabel()
         {
-            if (playerInput.currentControlScheme == "KeyboardMouse" && pcConsoleImage.sprite != sprites[0])
-            {
-                pcConsoleSkip.SetActive(true);
-                pcConsoleImage.sprite = sprites[0];
-                mobileSkip.SetActive(false);
-            }
-            else if (playerInput.currentControlScheme == "Gamepad" && pcConsoleImage.sprite != sprites[1])
+            if (Gamepad.current != null && pcConsoleImage.sprite != sprites[1])
             {
                 pcConsoleSkip.SetActive(true);
                 pcConsoleImage.sprite = sprites[1];
+                mobileSkip.SetActive(false);
+            }
+            else if (Gamepad.current == null && playerInput.currentControlScheme == "KeyboardMouse" && pcConsoleImage.sprite != sprites[0])
+            {
+                pcConsoleSkip.SetActive(true);
+                pcConsoleImage.sprite = sprites[0];
                 mobileSkip.SetActive(false);
             }
             else if (playerInput.currentControlScheme == "Touch" && !mobileSkip.activeInHierarchy)

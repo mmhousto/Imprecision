@@ -40,6 +40,11 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
+        public void StartGame()
+        {
+            GameManager.Instance.gameStarted = true;
+        }
+
         public void GetDirector(PlayableDirector director)
         {
             _sceneSkipped = false;

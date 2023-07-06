@@ -3,6 +3,7 @@ using UnityEngine;
 using Unity.Services.Core;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 namespace Com.MorganHouston.Imprecision
@@ -11,6 +12,7 @@ namespace Com.MorganHouston.Imprecision
     public class RewardedAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
     {
         public Button button;
+        public GameObject nextButton;
         public TextMeshProUGUI buttonText;
 
         private bool adLoaded = false;
@@ -26,14 +28,16 @@ namespace Com.MorganHouston.Imprecision
             // Get the Ad Unit ID for the current platform:
 #if UNITY_IOS
         _adUnitId = _adUnitIdIos;
-#elif UNITY_ANDROID
+#else
             _adUnitId = _adUnitIdAndroid;
 #endif
 
+#if (UNITY_IOS || UNITY_ANDROID)
             // Disable the button until the ad is ready to show:
             button.interactable = false;
 
             LoadAd();
+#endif
         }
 
         private void Start()
@@ -44,7 +48,11 @@ namespace Com.MorganHouston.Imprecision
 
         private void Update()
         {
-            if(overTime <= DateTime.Now && adLoaded)
+            if(overTime <= DateTime.Now
+#if UNITY_IOS || UNITY_ANDROID
+                && adLoaded 
+#endif
+)
             {
                 buttonEnabled = true;
             }
@@ -218,6 +226,7 @@ namespace Com.MorganHouston.Imprecision
         public void ShowAd()
         {
             // Ensure the ad has loaded, then show it.
+#if UNITY_IOS || UNITY_ANDROID
             if (adLoaded == true)
             {
                 button.interactable = false;
@@ -226,6 +235,9 @@ namespace Com.MorganHouston.Imprecision
             {
                 LoadAd();
             }
+#else
+            CollectJewel();
+#endif
         }
 
         /*
@@ -253,34 +265,42 @@ namespace Com.MorganHouston.Imprecision
         {
             if (placementId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
             {
-                buttonEnabled = false;
-                pressedTime = DateTime.Now;
-                overTime = pressedTime.AddHours(24);
-
-                switch (CloudSaveLogin.Instance.currentSSO)
-                {
-                    case CloudSaveLogin.ssoOption.Anonymous:
-                        PlayerPrefs.SetString("FreeJewelOverTime", overTime.ToString());
-                        break;
-                    case CloudSaveLogin.ssoOption.Facebook:
-                        PlayerPrefs.SetString("FreeJewelOverTimeFB", overTime.ToString());
-                        break;
-                    case CloudSaveLogin.ssoOption.Google:
-                        PlayerPrefs.SetString("FreeJewelOverTimeG", overTime.ToString());
-                        break;
-                    case CloudSaveLogin.ssoOption.Apple:
-                        PlayerPrefs.SetString("FreeJewelOverTimeA", overTime.ToString());
-                        break;
-                    default:
-                        PlayerPrefs.SetString("FreeJewelOverTime", overTime.ToString());
-                        break;
-                }
-
-                Player.Instance.SetFreeJewelOvertime(overTime.ToString());
-
-                // Execute logic for rewarding the user.
-                Player.Instance.GainJewels(1);
+                CollectJewel();
             }
+        }
+
+        public void CollectJewel()
+        {
+            buttonEnabled = false;
+            pressedTime = DateTime.Now;
+            overTime = pressedTime.AddHours(24);
+
+            switch (CloudSaveLogin.Instance.currentSSO)
+            {
+                case CloudSaveLogin.ssoOption.Anonymous:
+                    PlayerPrefs.SetString("FreeJewelOverTime", overTime.ToString());
+                    break;
+                case CloudSaveLogin.ssoOption.Facebook:
+                    PlayerPrefs.SetString("FreeJewelOverTimeFB", overTime.ToString());
+                    break;
+                case CloudSaveLogin.ssoOption.Google:
+                    PlayerPrefs.SetString("FreeJewelOverTimeG", overTime.ToString());
+                    break;
+                case CloudSaveLogin.ssoOption.Apple:
+                    PlayerPrefs.SetString("FreeJewelOverTimeA", overTime.ToString());
+                    break;
+                default:
+                    PlayerPrefs.SetString("FreeJewelOverTime", overTime.ToString());
+                    break;
+            }
+
+            Player.Instance.SetFreeJewelOvertime(overTime.ToString());
+
+            // Execute logic for rewarding the user.
+            Player.Instance.GainJewels(1);
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(nextButton);
         }
 
         public void OnUnityAdsAdLoaded(string placementId)
