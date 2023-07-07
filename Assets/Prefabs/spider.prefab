@@ -650,7 +650,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!95 &1755972183
 Animator:
   serializedVersion: 5
@@ -671,6 +671,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!195 &1755972185
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -681,7 +682,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -723,11 +724,11 @@ MonoBehaviour:
   target: {fileID: 0}
   followDistance: 25
   attackDistance: 2
-  attackTime: 0
+  attacking: 0
   scalingfactor: 10
-  attackPower: 10
-  defensePower: 10
-  attackSpeed: 5
+  attackPower: 20
+  defensePower: 20
+  attackSpeed: 50
   movementSpeed: 1
   stamina: 50
   critChance: 5

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1782238256204914080}
   - component: {fileID: 1782238256204914081}
   - component: {fileID: 6639976958209178020}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Arrow
   m_TagString: arrow
   m_Icon: {fileID: 0}
@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1675696469736475412}
   m_Father: {fileID: 0}
@@ -50,6 +51,7 @@ MonoBehaviour:
   applePS: {fileID: 1000011957609782, guid: dbb43018d5aa7a94c8b6e3de5401eabc, type: 3}
   explosionTarget: {fileID: 8300000, guid: e385e7af481ef1d4289e62b674ad7c58, type: 3}
   sfx: {fileID: 186063328066140042, guid: 622e46faadf75374ea843050e248fc39, type: 2}
+  hit: 0
 --- !u!65 &1782238256204914080
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81,7 +83,7 @@ Rigidbody:
   m_CollisionDetection: 1
 --- !u!95 &6639976958209178020
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,10 +96,12 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7635688731019237423
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +113,7 @@ GameObject:
   - component: {fileID: 1675696469736475412}
   - component: {fileID: 4581966578918552158}
   - component: {fileID: 1059419528955811530}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,6 +130,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2247702196521663052}
   m_RootOrder: 0
@@ -149,6 +154,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

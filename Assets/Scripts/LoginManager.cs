@@ -62,6 +62,9 @@ namespace Com.MorganHouston.Imprecision
             steamLogin.SetActive(true);
 #endif
 
+            if(!CloudSaveLogin.Instance.isSteam)
+                steamLogin.SetActive(false);
+
         }
 
         private void Update()

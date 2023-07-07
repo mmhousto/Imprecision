@@ -128,9 +128,12 @@ namespace Com.MorganHouston.Imprecision
         {
             isGameOver = true;
 
-            player.GetComponent<PlayerInput>().actions = null; // Removes odd Player Input component error
-            player.GetComponent<StarterAssets.StarterAssetsInputs>().SetCursorState(false);
-            Destroy(player);
+            if(player != null)
+            {
+                player.GetComponent<PlayerInput>().actions = null; // Removes odd Player Input component error
+                player.GetComponent<StarterAssets.StarterAssetsInputs>().SetCursorState(false);
+                Destroy(player);
+            }
 
             if (playingStoryMode)
                 DetermineStars(StoryManager.Instance.GetStarRating());
