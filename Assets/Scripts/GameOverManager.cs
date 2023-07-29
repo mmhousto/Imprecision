@@ -59,7 +59,7 @@ namespace Com.MorganHouston.Imprecision
         {
             if (gameManager.playingStoryMode)
             {
-                if (gameManager.LevelSelected == 1)
+                if (gameManager.LevelSelected == 2)
                 {
                     nextLevelBtn.gameObject.SetActive(false);
                 }

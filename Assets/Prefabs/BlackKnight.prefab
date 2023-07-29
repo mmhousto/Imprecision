@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 3600024268764944463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 30.35, y: 0.27, z: 14.37}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 568734602464912636}
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 49
   m_AngularSpeed: 120
@@ -649,7 +649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d4818421f787a498ee986cd190bb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
 --- !u!1 &1486664360601312282 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2689893231500285275, guid: ae460cae0c5b1fd47981362207142b2a, type: 3}
@@ -799,7 +798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 2897290804317553358}
   label: {fileID: 2974166149622722930}
-  healthPoints: 10
+  healthPoints: 250
 --- !u!114 &923498326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,12 +816,12 @@ MonoBehaviour:
   attackDistance: 3
   attacking: 0
   scalingfactor: 10
-  attackPower: 25
-  defensePower: 30
-  attackSpeed: 5
+  attackPower: 50
+  defensePower: 50
+  attackSpeed: 20
   movementSpeed: 1
   stamina: 5
-  critChance: 10
+  critChance: 20
 --- !u!1 &2630022013119076567 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1552173871929037206, guid: ae460cae0c5b1fd47981362207142b2a, type: 3}
