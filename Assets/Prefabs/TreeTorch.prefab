@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 2681163691653404247}
   - component: {fileID: 640584418412960812}
   - component: {fileID: 8210373343640453302}
+  - component: {fileID: 1884519851905607959}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -167,7 +168,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1.61, y: 1.55}
   m_BounceIntensity: 1
@@ -198,6 +199,21 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &1884519851905607959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4086208835745380680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a370239e5dcc3449501a5e7ab0419d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 2.5
+  maxIntensity: 4
+  flickerSpeed: 2.5
 --- !u!1 &8842919825013128113
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +241,7 @@ Transform:
   m_GameObject: {fileID: 8842919825013128113}
   m_LocalRotation: {x: 0.28008184, y: 0.62955344, z: -0.26076958, w: 0.6761774}
   m_LocalPosition: {x: 0.18985987, y: 0.45049953, z: -0.15314236}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25000006}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8756044567697412179}
