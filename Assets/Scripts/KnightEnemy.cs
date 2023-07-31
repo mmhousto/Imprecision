@@ -27,7 +27,7 @@ namespace Com.MorganHouston.Imprecision
         {
             if (collision.gameObject.CompareTag("arrow"))
             {
-                Player.Instance.HitTarget();
+                Player.Instance?.HitTarget();
 
                 Collider myCollider = collision.GetContact(0).thisCollider;
                 Debug.Log(myCollider.name);
