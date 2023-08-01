@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4710762330475717585}
   - component: {fileID: 4006024975411623037}
   - component: {fileID: 7639094439108755139}
+  - component: {fileID: 9194492249187662577}
   m_Layer: 6
   m_Name: GrassBlock
   m_TagString: Untagged
@@ -316,3 +317,30 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!205 &9194492249187662577
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511924761812288004}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.74661356
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4710762330475717585}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 0}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 0}
+  m_Enabled: 1

@@ -370,6 +370,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.00009999999
       objectReference: {fileID: 0}
+    - target: {fileID: 7061146023131873952, guid: ae460cae0c5b1fd47981362207142b2a, type: 3}
+      propertyPath: m_BlockingObjects
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7417877525164603105, guid: ae460cae0c5b1fd47981362207142b2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -57.232708
@@ -917,6 +921,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.001, y: 0.001, z: 0.001}
   m_Center: {x: 0, y: 0.00055, z: 0}
+--- !u!1 &3819418851297776278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 357077164351970263, guid: ae460cae0c5b1fd47981362207142b2a, type: 3}
+  m_PrefabInstance: {fileID: 3600024268228954433}
+  m_PrefabAsset: {fileID: 0}
+--- !u!205 &9171515925947348618
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3819418851297776278}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 0.5
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.9
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7053875899960982078}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 0}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 0}
+  m_Enabled: 1
 --- !u!1 &5034321381027470277 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8370039276030218884, guid: ae460cae0c5b1fd47981362207142b2a, type: 3}
@@ -971,6 +1007,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.001, y: 0.001, z: 0.001}
   m_Center: {x: 0, y: 0.00055, z: 0}
+--- !u!137 &7053875899960982078 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5769599569969967999, guid: ae460cae0c5b1fd47981362207142b2a, type: 3}
+  m_PrefabInstance: {fileID: 3600024268228954433}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7549192825864121805 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6427133781665932428, guid: ae460cae0c5b1fd47981362207142b2a, type: 3}
