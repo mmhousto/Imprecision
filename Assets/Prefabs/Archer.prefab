@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 121815596}
   - component: {fileID: 8856068354724469953}
   - component: {fileID: 8450887256078217534}
+  - component: {fileID: 6712312631951031672}
   m_Layer: 0
   m_Name: PlayerViewLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &121815597
 Transform:
   m_ObjectHideFlags: 0
@@ -117,6 +118,26 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
 --- !u!114 &8450887256078217534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121815595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &6712312631951031672
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1563,7 +1584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3524608001387047771}
-  - component: {fileID: 8450887256078217535}
+  - component: {fileID: 3451989023346001408}
   m_Layer: 3
   m_Name: mixamorig:LeftHand
   m_TagString: Untagged
@@ -1593,7 +1614,7 @@ Transform:
   m_Father: {fileID: 865475013999591521}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &8450887256078217535
+--- !u!82 &3451989023346001408
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2314,7 +2335,7 @@ GameObject:
   - component: {fileID: 8450887256078217532}
   - component: {fileID: 408118529861791880}
   - component: {fileID: 1678950077}
-  - component: {fileID: 8450887256078217536}
+  - component: {fileID: 8450887256078217535}
   m_Layer: 3
   m_Name: Archer
   m_TagString: Player
@@ -2542,7 +2563,7 @@ MonoBehaviour:
     m_ActionName: UI/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Scene
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!95 &8361164330601685623
@@ -2601,7 +2622,7 @@ MonoBehaviour:
   arrowSpawn: {fileID: 5995078981929565654}
   shootForce: 10
   power: {fileID: 0}
-  audioSource: {fileID: 8450887256078217535}
+  audioSource: {fileID: 3451989023346001408}
 --- !u!114 &8361164330601685616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2749,7 +2770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 543d7125d618e3142bcfddd7eaba1dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterSlider: {fileID: 0}
+  audioButton: {fileID: 0}
   pauseScreen: {fileID: 0}
   eventSystem: {fileID: 0}
   onScreenButtons: {fileID: 0}
@@ -2784,7 +2805,7 @@ MonoBehaviour:
             m_StringArgument: Player
             m_BoolArgument: 1
           m_CallState: 2
---- !u!114 &8450887256078217536
+--- !u!114 &8450887256078217535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
