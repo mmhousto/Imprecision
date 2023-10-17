@@ -30,9 +30,14 @@ namespace Com.MorganHouston.Imprecision
                 healthBar = GetComponentInChildren<Slider>();
                 label = GetComponentInChildren<TextMeshProUGUI>();
             }
-            healthBar.maxValue = HealthPoints;
-            healthBar.value = HealthPoints;
-            label.text = $"{HealthPoints}/{healthBar.maxValue}";
+
+            if(healthBar != null)
+            {
+                healthBar.maxValue = HealthPoints;
+                healthBar.value = HealthPoints;
+                label.text = $"{HealthPoints}/{healthBar.maxValue}";
+            }
+            
         }
 
         // Update is called once per frame
