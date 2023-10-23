@@ -19,37 +19,61 @@ namespace Com.MorganHouston.Imprecision
 
 		private bool isGameOver;
 
-		[Range(-25, -1f)]
+		[Range(-30, -6f)]
 		public float minX;
-		[Range(3, 5)]
+		[Range(3, 6)]
 		public float minY;
-		[Range(-25, -1f)]
+		[Range(-30, -6f)]
 		public float minZ;
 
-		[Range(1, 25f)]
+		[Range(6, 30f)]
 		public float maxX;
 		[Range(6, 10)]
 		public float maxY;
-		[Range(1, 25f)]
+		[Range(6, 30f)]
 		public float maxZ;
 
 		public Transform player;
 
         private void Awake()
         {
-			currentLevel = GameManager.Instance.LevelSelected;
-			maxSpawnCount += (int)(currentLevel * 1.25f);
-			minX = -1f * ((currentLevel * 1.25f) / 2);
-			maxX = 1f * ((currentLevel * 1.25f) / 2);
-			minZ = -1f * ((currentLevel * 1.25f) / 2);
-			maxZ = 1f * ((currentLevel * 1.25f) / 2);
+			if (GameManager.tutorialFinished)
+			{
+				currentLevel = GameManager.Instance.LevelSelected;
+				maxSpawnCount += (int)(currentLevel * 1.25f);
+				minX = -1f * ((currentLevel * 1.25f) / 2) + 8;
+				maxX = 1f * ((currentLevel * 1.25f) / 2) + 8;
+				minZ = -1f * ((currentLevel * 1.25f) / 2) + 8;
+				maxZ = 1f * ((currentLevel * 1.25f) / 2) + 8;
+				minY = currentLevel >= 15 ? 6 : Random.Range(3, 6);
+				maxY = currentLevel >= 15 ? 10 : Random.Range(6, 10);
+			}
+			else
+			{
+                currentLevel = 1;
+                maxSpawnCount = 999;
+                minX = -1f * ((currentLevel * 1.25f) / 2) + 6;
+                maxX = 1f * ((currentLevel * 1.25f) / 2) + 6;
+                minZ = -1f * ((currentLevel * 1.25f) / 2) + 6;
+                maxZ = 1f * ((currentLevel * 1.25f) / 2) + 6;
+                minY = 3;
+				maxY = 6;
+            }
 		}
 
 		void Update()
 		{
-			CheckForTargets();
-			UpdateTargetsLabel();
-			CheckForGameOver();
+			if (GameManager.tutorialFinished)
+			{
+				CheckForTargets();
+				UpdateTargetsLabel();
+				CheckForGameOver();
+			}
+			else
+			{
+                CheckForTargets();
+                UpdateTargetsLabel();
+            }
 		}
 
 		private void UpdateTargetsLabel()

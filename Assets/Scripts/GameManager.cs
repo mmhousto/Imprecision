@@ -35,6 +35,8 @@ namespace Com.MorganHouston.Imprecision
 
         public bool gameStarted;
 
+        public static bool tutorialFinished = true;
+
         private void Awake()
         {
             if (instance != null && instance != this)
