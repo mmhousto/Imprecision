@@ -19,12 +19,20 @@ namespace Com.MorganHouston.Imprecision
             toggleValue = Convert.ToBoolean(PlayerPrefs.GetInt(toggleName, defaultValue));
             toggle = GetComponent<Toggle>();
             toggle.isOn = toggleValue;
+
+            if (toggleName == "TutorialPlayed" && toggleValue == true)
+                toggle.interactable = true;
+            else if (toggleName == "TutorialPlayed" && toggleValue == false)
+                toggle.interactable = false;
         }
 
         // Update is called once per frame
         void Update()
         {
-        
+            if(toggleName == "TutorialPlayed" && toggle.isOn == false)
+            {
+                toggle.interactable = false;
+            }
         }
     }
 }

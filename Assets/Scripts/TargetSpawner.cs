@@ -18,6 +18,7 @@ namespace Com.MorganHouston.Imprecision
 		private int currentLevel = 0;
 
 		private bool isGameOver;
+		private bool playedTut;
 
 		[Range(-30, -6f)]
 		public float minX;
@@ -37,7 +38,9 @@ namespace Com.MorganHouston.Imprecision
 
         private void Awake()
         {
-			if (GameManager.tutorialFinished)
+			playedTut = PreferenceManager.Instance.PlayedTutorial;
+
+            if (playedTut)
 			{
 				currentLevel = GameManager.Instance.LevelSelected;
 				maxSpawnCount += (int)(currentLevel * 1.25f);
@@ -63,7 +66,7 @@ namespace Com.MorganHouston.Imprecision
 
 		void Update()
 		{
-			if (GameManager.tutorialFinished)
+			if (playedTut)
 			{
 				CheckForTargets();
 				UpdateTargetsLabel();
@@ -74,6 +77,11 @@ namespace Com.MorganHouston.Imprecision
                 CheckForTargets();
                 UpdateTargetsLabel();
             }
+		}
+
+		public void PlayTut()
+		{
+			playedTut = !playedTut;
 		}
 
 		private void UpdateTargetsLabel()

@@ -87,6 +87,7 @@ namespace Com.MorganHouston.Imprecision
 
         public void RestartGame()
         {
+            Time.timeScale = 1;
             SceneLoader.LoadThisScene(SceneManager.GetActiveScene().buildIndex);
         }
 
@@ -100,17 +101,21 @@ namespace Com.MorganHouston.Imprecision
 
         public void ToMainMenu()
         {
+            Cursor.lockState = CursorLockMode.Confined;
+            Time.timeScale = 1;
             SceneLoader.LoadThisScene(1);
         }
 
         public void LoadNextLevel()
         {
+            Time.timeScale = 1;
             gameManager.SetLevel(gameManager.LevelSelected + 1);
             RestartGame();
         }
 
         public void LoadStoryLevel(int sceneIndex)
         {
+            Time.timeScale = 1;
             gameManager.SetLevel(gameManager.LevelSelected + 1);
             SceneLoader.LoadThisScene(sceneIndex);
         }

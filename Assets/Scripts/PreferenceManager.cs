@@ -19,6 +19,7 @@ namespace Com.MorganHouston.Imprecision
         public bool SwipeToLook { get; set; }
         public bool Shadows { get; set; }
         public bool FirstPerson { get; set; }
+        public bool PlayedTutorial { get; set; }
 
         private void Awake()
         {
@@ -30,10 +31,17 @@ namespace Com.MorganHouston.Imprecision
             {
                 instance = this;
             }
+
+            GetPrefs();
         }
 
         // Start is called before the first frame update
         void Start()
+        {
+            
+        }
+
+        private void GetPrefs()
         {
             MasterVol = PlayerPrefs.GetFloat("MasterVolume", 1);
             MusicVol = PlayerPrefs.GetFloat("MusicVolume", 1);
@@ -43,6 +51,7 @@ namespace Com.MorganHouston.Imprecision
             SwipeToLook = Convert.ToBoolean(PlayerPrefs.GetInt("Swipe", 0));
             Shadows = Convert.ToBoolean(PlayerPrefs.GetInt("Shadows", 1));
             FirstPerson = Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1));
+            PlayedTutorial = Convert.ToBoolean(PlayerPrefs.GetInt("TutorialPlayed", 0));
         }
 
         public void SetMasterValue(float value)
@@ -94,6 +103,12 @@ namespace Com.MorganHouston.Imprecision
         {
             FirstPerson = value;
             PlayerPrefs.SetInt("FP", Convert.ToInt32(value));
+        }
+
+        public void SetTutorial(bool value)
+        {
+            PlayedTutorial = value;
+            PlayerPrefs.SetInt("TutorialPlayed", Convert.ToInt32(value));
         }
 
     }

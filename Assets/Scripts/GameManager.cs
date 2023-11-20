@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -35,7 +35,7 @@ namespace Com.MorganHouston.Imprecision
 
         public bool gameStarted;
 
-        public static bool tutorialFinished = true;
+        public static bool tutorialFinished = false;
 
         private void Awake()
         {
@@ -48,6 +48,7 @@ namespace Com.MorganHouston.Imprecision
                 instance = this;
                 DontDestroyOnLoad(Instance.gameObject);
             }
+            tutorialFinished = Convert.ToBoolean(PlayerPrefs.GetInt("TutorialPlayed", 0));
         }
 
         private void OnEnable()

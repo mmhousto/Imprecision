@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,14 +15,17 @@ namespace Com.MorganHouston.Imprecision
         public StarterAssetsInputs starterAssetsInputs;
         public TextMeshProUGUI tutorialText;
         public GameObject tutorialPanel;
+        public GameOverManager gameOverManager;
         public string[] tutorialPCInstructions;
         public string[] tutorialConsoleInstructions;
         public string[] tutorialMobileInstructions;
         private int currentInstruction;
+        private bool pauseStarted;
 
         // Start is called before the first frame update
         void Start()
         {
+            playedTutorial = PreferenceManager.Instance.PlayedTutorial;
             if (playedTutorial)
             {
                 tutorialPanel.SetActive(false);
@@ -35,8 +39,16 @@ namespace Com.MorganHouston.Imprecision
         // Update is called once per frame
         void Update()
         {
-            UpdateInstructions();
-            HandleInstructions();
+            //UpdateInstructions()'
+            if (playedTutorial != PreferenceManager.Instance.PlayedTutorial) playedTutorial = PreferenceManager.Instance.PlayedTutorial;
+
+            if (playedTutorial == false)
+                HandleInstructions();
+
+            if (playedTutorial == false && !tutorialPanel.activeInHierarchy)
+            {
+                tutorialPanel.SetActive(true);
+            }
         }
 
         void HandleInstructions()
@@ -44,27 +56,63 @@ namespace Com.MorganHouston.Imprecision
             switch (currentInstruction)
             {
                 case 0:
-                    if (starterAssetsInputs.move != Vector2.zero) GoToNextInstruction();
+                    if (starterAssetsInputs.move != Vector2.zero && pauseStarted == false)
+                    {
+                        pauseStarted = true;
+                        UpdateInstructions(currentInstruction+1);
+                        StartCoroutine(GoToNextInstruction());
+                    }
                     break;
                 case 1:
-                    if (starterAssetsInputs.look != Vector2.zero) GoToNextInstruction();
+                    if (starterAssetsInputs.look != Vector2.zero && pauseStarted == false)
+                    {
+                        pauseStarted = true;
+                        UpdateInstructions(currentInstruction + 1);
+                        StartCoroutine(GoToNextInstruction());
+                    }
                     break;
                 case 2:
-                    if (starterAssetsInputs.sprint == true) GoToNextInstruction();
+                    if (starterAssetsInputs.sprint == true && pauseStarted == false)
+                    {
+                        pauseStarted = true;
+                        UpdateInstructions(currentInstruction + 1);
+                        StartCoroutine(GoToNextInstruction());
+                    }
                     break;
                 case 3:
-                    if (starterAssetsInputs.jump == true) GoToNextInstruction();
+                    if (starterAssetsInputs.jump == true && pauseStarted == false) {
+                        pauseStarted = true;
+                        UpdateInstructions(currentInstruction + 1);
+                        StartCoroutine(GoToNextInstruction());
+                    }
                     break;
                 case 4:
-                    if (starterAssetsInputs.sprint == true && starterAssetsInputs.jump == true) GoToNextInstruction();
+                    if (starterAssetsInputs.sprint == true && starterAssetsInputs.jump == true && pauseStarted == false) {
+                        pauseStarted = true;
+                        UpdateInstructions(currentInstruction + 1);
+                        StartCoroutine(GoToNextInstruction());
+                    }
                     break;
                 case 5:
-                    if (starterAssetsInputs.aiming == true) GoToNextInstruction();
+                    if (starterAssetsInputs.aiming == true && pauseStarted == false) {
+                        pauseStarted = true;
+                        UpdateInstructions(currentInstruction + 1);
+                        StartCoroutine(GoToNextInstruction());
+                    }
                     break;
                 case 6:
-                    if (starterAssetsInputs.isPullingBack == true) GoToNextInstruction();
+                    if (starterAssetsInputs.isPullingBack == true && pauseStarted == false) {
+                        pauseStarted = true;
+                        UpdateInstructions(currentInstruction + 1);
+                        StartCoroutine(GoToNextInstruction());
+                    }
                     break;
                 case 7:
+                    if (pauseStarted == false)
+                    {
+                        pauseStarted = true;
+                        StartCoroutine(CloseTutorial());
+                    }
                     break;
                 default: 
                     break;
@@ -72,26 +120,36 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
-        void UpdateInstructions()
+        void UpdateInstructions(int _currentInstruction)
         {
-            if (Gamepad.current != null && tutorialText.text != tutorialConsoleInstructions[currentInstruction])
+            if (Gamepad.current != null && tutorialText.text != tutorialConsoleInstructions[_currentInstruction])
             {
-                tutorialText.text = tutorialConsoleInstructions[currentInstruction];
+                tutorialText.text = tutorialConsoleInstructions[_currentInstruction];
             }
-            else if (Gamepad.current == null && playerInput.currentControlScheme == "KeyboardMouse" && tutorialText.text != tutorialPCInstructions[currentInstruction])
+            else if (Gamepad.current == null && playerInput.currentControlScheme == "KeyboardMouse" && tutorialText.text != tutorialPCInstructions[_currentInstruction])
             {
-                tutorialText.text = tutorialPCInstructions[currentInstruction];
+                tutorialText.text = tutorialPCInstructions[_currentInstruction];
             }
-            else if (playerInput.currentControlScheme == "Touch" && tutorialText.text != tutorialMobileInstructions[currentInstruction])
+            else if (playerInput.currentControlScheme == "Touch" && tutorialText.text != tutorialMobileInstructions[_currentInstruction])
             {
-                tutorialText.text = tutorialMobileInstructions[currentInstruction];
+                tutorialText.text = tutorialMobileInstructions[_currentInstruction];
             }
         }
 
-        public void GoToNextInstruction()
+        IEnumerator GoToNextInstruction()
         {
+            yield return new WaitForSeconds(1f);
             currentInstruction++;
+            pauseStarted = false;
+        }
 
+        IEnumerator CloseTutorial()
+        {
+            yield return new WaitForSeconds(1f);
+            tutorialPanel.SetActive(false);
+            playedTutorial = true;
+            PreferenceManager.Instance.SetTutorial(true);
+            gameOverManager.RestartGame();
         }
     }
 }

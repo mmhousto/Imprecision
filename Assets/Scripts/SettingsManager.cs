@@ -12,7 +12,6 @@ namespace Com.MorganHouston.Imprecision
         public GameObject[] visualSettings;
         public GameObject swipeToLook;
 
-
         public void SetAudio()
         {
             foreach(GameObject setting in audioSettings)
@@ -49,9 +48,9 @@ namespace Com.MorganHouston.Imprecision
             }
 
 #if (UNITY_IOS || UNITY_ANDROID)
-            swipeToLook.SetActive(true);
+            swipeToLook.transform.parent.gameObject.SetActive(true);
 #else
-            swipeToLook.SetActive(false);
+            swipeToLook.transform.parent.gameObject.SetActive(false);
 #endif
         }
 
