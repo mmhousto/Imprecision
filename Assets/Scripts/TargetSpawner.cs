@@ -44,10 +44,10 @@ namespace Com.MorganHouston.Imprecision
 			{
 				currentLevel = GameManager.Instance.LevelSelected;
 				maxSpawnCount += (int)(currentLevel * 1.25f);
-				minX = -1f * ((currentLevel * 1.25f) / 2) + 8;
-				maxX = 1f * ((currentLevel * 1.25f) / 2) + 8;
-				minZ = -1f * ((currentLevel * 1.25f) / 2) + 8;
-				maxZ = 1f * ((currentLevel * 1.25f) / 2) + 8;
+				minX = -1f * (((currentLevel * 1.25f) / 2) + 8);
+				maxX = 1f * (((currentLevel * 1.25f) / 2) + 8);
+				minZ = -1f * (((currentLevel * 1.25f) / 2) + 8);
+				maxZ = 1f * (((currentLevel * 1.25f) / 2) + 8);
 				minY = currentLevel >= 15 ? 6 : Random.Range(3, 6);
 				maxY = currentLevel >= 15 ? 10 : Random.Range(6, 10);
 			}
@@ -55,10 +55,10 @@ namespace Com.MorganHouston.Imprecision
 			{
                 currentLevel = 1;
                 maxSpawnCount = 999;
-                minX = -1f * ((currentLevel * 1.25f) / 2) + 6;
-                maxX = 1f * ((currentLevel * 1.25f) / 2) + 6;
-                minZ = -1f * ((currentLevel * 1.25f) / 2) + 6;
-                maxZ = 1f * ((currentLevel * 1.25f) / 2) + 6;
+                minX = -1f * (((currentLevel * 1.25f) / 2) + 6);
+                maxX = 1f * (((currentLevel * 1.25f) / 2) + 6);
+                minZ = -1f * (((currentLevel * 1.25f) / 2) + 6);
+                maxZ = 1f * (((currentLevel * 1.25f) / 2) + 6);
                 minY = 3;
 				maxY = 6;
             }
