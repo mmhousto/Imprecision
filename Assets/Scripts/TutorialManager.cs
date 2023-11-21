@@ -21,6 +21,7 @@ namespace Com.MorganHouston.Imprecision
         public string[] tutorialMobileInstructions;
         private int currentInstruction;
         private bool pauseStarted;
+        private GameObject target;
 
         // Start is called before the first frame update
         void Start()
@@ -56,6 +57,20 @@ namespace Com.MorganHouston.Imprecision
             switch (currentInstruction)
             {
                 case 0:
+                    if (pauseStarted == false)
+                    {
+                        pauseStarted = true;
+                        StartCoroutine(WaitThenGoToNextInstruction());
+                    }
+                    break;
+                case 1:
+                    if (pauseStarted == false)
+                    {
+                        pauseStarted = true;
+                        StartCoroutine(WaitThenGoToNextInstruction());
+                    }
+                    break;
+                case 2:
                     if (starterAssetsInputs.move != Vector2.zero && pauseStarted == false)
                     {
                         pauseStarted = true;
@@ -63,7 +78,7 @@ namespace Com.MorganHouston.Imprecision
                         StartCoroutine(GoToNextInstruction());
                     }
                     break;
-                case 1:
+                case 3:
                     if (starterAssetsInputs.look != Vector2.zero && pauseStarted == false)
                     {
                         pauseStarted = true;
@@ -71,7 +86,7 @@ namespace Com.MorganHouston.Imprecision
                         StartCoroutine(GoToNextInstruction());
                     }
                     break;
-                case 2:
+                case 4:
                     if (starterAssetsInputs.sprint == true && pauseStarted == false)
                     {
                         pauseStarted = true;
@@ -79,35 +94,45 @@ namespace Com.MorganHouston.Imprecision
                         StartCoroutine(GoToNextInstruction());
                     }
                     break;
-                case 3:
+                case 5:
                     if (starterAssetsInputs.jump == true && pauseStarted == false) {
                         pauseStarted = true;
                         UpdateInstructions(currentInstruction + 1);
                         StartCoroutine(GoToNextInstruction());
                     }
                     break;
-                case 4:
+                case 6:
                     if (starterAssetsInputs.sprint == true && starterAssetsInputs.jump == true && pauseStarted == false) {
                         pauseStarted = true;
                         UpdateInstructions(currentInstruction + 1);
                         StartCoroutine(GoToNextInstruction());
                     }
                     break;
-                case 5:
+                case 7:
                     if (starterAssetsInputs.aiming == true && pauseStarted == false) {
                         pauseStarted = true;
                         UpdateInstructions(currentInstruction + 1);
                         StartCoroutine(GoToNextInstruction());
                     }
                     break;
-                case 6:
+                case 8:
                     if (starterAssetsInputs.isPullingBack == true && pauseStarted == false) {
                         pauseStarted = true;
                         UpdateInstructions(currentInstruction + 1);
                         StartCoroutine(GoToNextInstruction());
                     }
                     break;
-                case 7:
+                case 9:
+                    if(target == null) target = GameObject.FindWithTag("target");
+
+                    if (target == null && pauseStarted == false)
+                    {
+                        pauseStarted = true;
+                        UpdateInstructions(currentInstruction + 1);
+                        StartCoroutine(GoToNextInstruction());
+                    }
+                    break;
+                case 10:
                     if (pauseStarted == false)
                     {
                         pauseStarted = true;
@@ -138,14 +163,22 @@ namespace Com.MorganHouston.Imprecision
 
         IEnumerator GoToNextInstruction()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
             currentInstruction++;
+            pauseStarted = false;
+        }
+
+        IEnumerator WaitThenGoToNextInstruction()
+        {
+            yield return new WaitForSeconds(6f);
+            currentInstruction++;
+            UpdateInstructions(currentInstruction);
             pauseStarted = false;
         }
 
         IEnumerator CloseTutorial()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
             tutorialPanel.SetActive(false);
             playedTutorial = true;
             PreferenceManager.Instance.SetTutorial(true);
