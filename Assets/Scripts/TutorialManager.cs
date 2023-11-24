@@ -19,9 +19,11 @@ namespace Com.MorganHouston.Imprecision
         public string[] tutorialPCInstructions;
         public string[] tutorialConsoleInstructions;
         public string[] tutorialMobileInstructions;
+        public AudioClip[] pcAudio;
         private int currentInstruction;
         private bool pauseStarted;
         private GameObject target;
+        private AudioSource audioSource;
 
         // Start is called before the first frame update
         void Start()
@@ -35,6 +37,8 @@ namespace Com.MorganHouston.Imprecision
             {
                 tutorialPanel.SetActive(true);
             }
+
+            audioSource = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -60,66 +64,83 @@ namespace Com.MorganHouston.Imprecision
                     if (pauseStarted == false)
                     {
                         pauseStarted = true;
-                        StartCoroutine(WaitThenGoToNextInstruction());
+                        audioSource.PlayOneShot(pcAudio[currentInstruction]);
+                        StartCoroutine(WaitThenGoToNextInstruction(pcAudio[currentInstruction].length + 1f));
                     }
                     break;
                 case 1:
                     if (pauseStarted == false)
                     {
                         pauseStarted = true;
-                        StartCoroutine(WaitThenGoToNextInstruction());
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(pcAudio[currentInstruction]);
+                        StartCoroutine(WaitThenGoToNextInstruction(pcAudio[currentInstruction].length + 1f));
                     }
                     break;
                 case 2:
                     if (starterAssetsInputs.move != Vector2.zero && pauseStarted == false)
                     {
                         pauseStarted = true;
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(pcAudio[currentInstruction]);
                         UpdateInstructions(currentInstruction+1);
-                        StartCoroutine(GoToNextInstruction());
+                        StartCoroutine(GoToNextInstruction(pcAudio[currentInstruction].length + 1f));
                     }
                     break;
                 case 3:
                     if (starterAssetsInputs.look != Vector2.zero && pauseStarted == false)
                     {
                         pauseStarted = true;
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(pcAudio[currentInstruction]);
                         UpdateInstructions(currentInstruction + 1);
-                        StartCoroutine(GoToNextInstruction());
+                        StartCoroutine(GoToNextInstruction(pcAudio[currentInstruction].length + 1f));
                     }
                     break;
                 case 4:
                     if (starterAssetsInputs.sprint == true && pauseStarted == false)
                     {
                         pauseStarted = true;
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(pcAudio[currentInstruction]);
                         UpdateInstructions(currentInstruction + 1);
-                        StartCoroutine(GoToNextInstruction());
+                        StartCoroutine(GoToNextInstruction(pcAudio[currentInstruction].length + 1f));
                     }
                     break;
                 case 5:
                     if (starterAssetsInputs.jump == true && pauseStarted == false) {
                         pauseStarted = true;
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(pcAudio[currentInstruction]);
                         UpdateInstructions(currentInstruction + 1);
-                        StartCoroutine(GoToNextInstruction());
+                        StartCoroutine(GoToNextInstruction(pcAudio[currentInstruction].length + 1f));
                     }
                     break;
                 case 6:
                     if (starterAssetsInputs.sprint == true && starterAssetsInputs.jump == true && pauseStarted == false) {
                         pauseStarted = true;
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(pcAudio[currentInstruction]);
                         UpdateInstructions(currentInstruction + 1);
-                        StartCoroutine(GoToNextInstruction());
+                        StartCoroutine(GoToNextInstruction(pcAudio[currentInstruction].length + 1f));
                     }
                     break;
                 case 7:
                     if (starterAssetsInputs.aiming == true && pauseStarted == false) {
                         pauseStarted = true;
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(pcAudio[currentInstruction]);
                         UpdateInstructions(currentInstruction + 1);
-                        StartCoroutine(GoToNextInstruction());
+                        StartCoroutine(GoToNextInstruction(pcAudio[currentInstruction].length + 1f));
                     }
                     break;
                 case 8:
                     if (starterAssetsInputs.isPullingBack == true && pauseStarted == false) {
                         pauseStarted = true;
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(pcAudio[currentInstruction]);
                         UpdateInstructions(currentInstruction + 1);
-                        StartCoroutine(GoToNextInstruction());
+                        StartCoroutine(GoToNextInstruction(pcAudio[currentInstruction].length + 1f));
                     }
                     break;
                 case 9:
@@ -128,15 +149,19 @@ namespace Com.MorganHouston.Imprecision
                     if (target == null && pauseStarted == false)
                     {
                         pauseStarted = true;
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(pcAudio[currentInstruction]);
                         UpdateInstructions(currentInstruction + 1);
-                        StartCoroutine(GoToNextInstruction());
+                        StartCoroutine(GoToNextInstruction(pcAudio[currentInstruction].length + 1f));
                     }
                     break;
                 case 10:
                     if (pauseStarted == false)
                     {
                         pauseStarted = true;
-                        StartCoroutine(CloseTutorial());
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(pcAudio[currentInstruction]);
+                        StartCoroutine(CloseTutorial(pcAudio[currentInstruction].length + 1f));
                     }
                     break;
                 default: 
@@ -161,24 +186,24 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
-        IEnumerator GoToNextInstruction()
+        IEnumerator GoToNextInstruction(float waitTime)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(waitTime);
             currentInstruction++;
             pauseStarted = false;
         }
 
-        IEnumerator WaitThenGoToNextInstruction()
+        IEnumerator WaitThenGoToNextInstruction(float waitTime)
         {
-            yield return new WaitForSeconds(6f);
+            yield return new WaitForSeconds(waitTime);
             currentInstruction++;
             UpdateInstructions(currentInstruction);
             pauseStarted = false;
         }
 
-        IEnumerator CloseTutorial()
+        IEnumerator CloseTutorial(float waitTime)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(waitTime);
             tutorialPanel.SetActive(false);
             playedTutorial = true;
             PreferenceManager.Instance.SetTutorial(true);
