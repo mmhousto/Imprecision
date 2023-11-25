@@ -11,6 +11,7 @@ namespace Com.MorganHouston.Imprecision
     public class TutorialManager : MonoBehaviour
     {
         public static bool playedTutorial;
+        public PauseManager pauseManager;
         public PlayerInput playerInput;
         public StarterAssetsInputs starterAssetsInputs;
         public TextMeshProUGUI tutorialText;
@@ -22,6 +23,7 @@ namespace Com.MorganHouston.Imprecision
         public AudioClip[] pcAudio;
         private int currentInstruction;
         private bool pauseStarted;
+        private bool targetSet;
         private GameObject target;
         private AudioSource audioSource;
 
@@ -47,10 +49,10 @@ namespace Com.MorganHouston.Imprecision
             //UpdateInstructions()'
             if (playedTutorial != PreferenceManager.Instance.PlayedTutorial) playedTutorial = PreferenceManager.Instance.PlayedTutorial;
 
-            if (playedTutorial == false)
+            if (playedTutorial == false && pauseManager.isPaused == false)
                 HandleInstructions();
 
-            if (playedTutorial == false && !tutorialPanel.activeInHierarchy)
+            if (playedTutorial == false && !tutorialPanel.activeInHierarchy && pauseManager.isPaused == false)
             {
                 tutorialPanel.SetActive(true);
             }
@@ -144,7 +146,11 @@ namespace Com.MorganHouston.Imprecision
                     }
                     break;
                 case 9:
-                    if(target == null) target = GameObject.FindWithTag("target");
+                    if (target == null && GameObject.FindWithTag("target") && targetSet == false)
+                    {
+                        targetSet = true;
+                        target = GameObject.FindWithTag("target");
+                    }
 
                     if (target == null && pauseStarted == false)
                     {

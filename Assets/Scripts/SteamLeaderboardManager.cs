@@ -41,7 +41,14 @@ public class SteamLeaderboardManager : MonoBehaviour
     }
     List<LeaderboardData> LeaderboardDataset;
 
-    public List<string> leaderboardNames;
+    private List<string> leaderboardNames = new List<string>{
+        "All Time Most Points",
+        "All Time Most Arrows Fired",
+        "All Time Most Targets Hit",
+        "All Time Most Bullseyes Hit",
+        "All Time Most Jewels Collected",
+        "All Time Best Accuracy",
+    };
     List<SteamLeaderboard_t> steamLeaderboards = new List<SteamLeaderboard_t>();
     public List<bool> steamLeaderboardsInit = new List<bool>();
     int leaderboardToBeInit = 0;

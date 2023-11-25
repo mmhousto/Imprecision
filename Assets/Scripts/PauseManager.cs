@@ -19,6 +19,7 @@ namespace Com.MorganHouston.Imprecision
         public GameObject pauseScreen;
         public EventSystem eventSystem;
         public GameObject onScreenButtons;
+        public GameObject tutorialScreen;
         public bool isPaused;
         private bool isControllerConnected = false;
         private bool isSteamOverlayActive = false;
@@ -62,6 +63,10 @@ namespace Com.MorganHouston.Imprecision
             isPaused = true;
             pauseScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
+
+            if(tutorialScreen != null)
+                tutorialScreen.SetActive(false);
+
             Time.timeScale = 0;
             eventSystem.SetSelectedGameObject(audioButton);
             RumbleManager.instance?.PauseRumble();
@@ -75,6 +80,10 @@ namespace Com.MorganHouston.Imprecision
 #endif
             pauseScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
+
+            if (tutorialScreen != null)
+                tutorialScreen.SetActive(false);
+
             Time.timeScale = 0;
             eventSystem.SetSelectedGameObject(audioButton);
             RumbleManager.instance?.PauseRumble();
@@ -87,6 +96,8 @@ namespace Com.MorganHouston.Imprecision
             onScreenButtons.SetActive(true);
 #endif
             pauseScreen.SetActive(false);
+            if(TutorialManager.playedTutorial == false && tutorialScreen != null)
+                tutorialScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
             RumbleManager.instance?.ResumeRumble();
