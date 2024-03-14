@@ -29,7 +29,7 @@ namespace Com.MorganHouston.Imprecision
 
         public void SetCamFoVs()
         {
-             cam.m_Lens.FieldOfView = PreferenceManager.Instance.FoV;
+             cam.m_Lens.FieldOfView = (PreferenceManager.Instance != null) ? PreferenceManager.Instance.FoV : 80;
         }
     }
 }
