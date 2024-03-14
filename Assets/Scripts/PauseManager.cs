@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 #if !DISABLESTEAMWORKS
@@ -15,6 +16,7 @@ namespace Com.MorganHouston.Imprecision
 {
     public class PauseManager : MonoBehaviour
     {
+        public Image backgroundUI;
         public GameObject audioButton;
         public GameObject pauseScreen;
         public EventSystem eventSystem;
@@ -61,6 +63,7 @@ namespace Com.MorganHouston.Imprecision
         public void OnPause(InputValue value)
         {
             isPaused = true;
+            backgroundUI.enabled = true;
             pauseScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
 
@@ -75,6 +78,7 @@ namespace Com.MorganHouston.Imprecision
         public void OnPause(bool value)
         {
             isPaused = true;
+            backgroundUI.enabled = true;
 #if (UNITY_IOS || UNITY_ANDROID)
             onScreenButtons.SetActive(false);
 #endif
@@ -92,6 +96,7 @@ namespace Com.MorganHouston.Imprecision
         public void UnPause()
         {
             isPaused = false;
+            backgroundUI.enabled = false;
 #if (UNITY_IOS || UNITY_ANDROID)
             onScreenButtons.SetActive(true);
 #endif
