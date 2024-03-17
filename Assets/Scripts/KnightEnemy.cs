@@ -31,13 +31,13 @@ namespace Com.MorganHouston.Imprecision
 
                 Collider myCollider = collision.GetContact(0).thisCollider;
                 Debug.Log(myCollider.name);
-                if (myCollider.name.Contains("Head"))
+                if (myCollider.name.Contains("Head") || myCollider.CompareTag("Head"))
                 {
-                    health.TakeDamage(DetermineDamageToTake((int)HitArea.Body));
+                    health.TakeDamage(DetermineDamageToTake((int)HitArea.Head));
                     anim.SetTrigger("Hurt");
                     Destroy(collision.gameObject);
                 }
-                else if (myCollider.name.Contains("Body"))
+                else if (myCollider.name.Contains("Body") || myCollider.CompareTag("Body"))
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Body));
                     anim.SetTrigger("Hurt");
