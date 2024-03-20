@@ -191,32 +191,38 @@ namespace Com.MorganHouston.Imprecision
             {
                 // POWER
                 case 0:
+                    if (player.Power == 106 && player.UserLevel != 600) return;
                     tmp += (player.Power) * 420 * 10;
                     
                     break;
 
                 // DEXTERITY
                 case 1:
+                    if (player.Dexterity == 106 && player.UserLevel != 600) return;
                     tmp += (player.Dexterity) * 420 * 10;
                     break;
 
                 // ENDURANCE
                 case 2:
+                    if (player.Endurance == 106 && player.UserLevel != 600) return;
                     tmp += (player.Endurance) * 420 * 10;
                     break;
 
                 // VITALITY
                 case 3:
+                    if (player.Vitality == 106 && player.UserLevel != 600) return;
                     tmp += (player.Vitality) * 420 * 10;
                     break;
 
                 // DEFENSE
                 case 4:
+                    if (player.Defense == 106 && player.UserLevel != 600) return;
                     tmp += (player.Defense) * 420 * 10;
                     break;
 
                 // LUCK
                 case 5:
+                    if (player.Luck == 106 && player.UserLevel != 600) return;
                     tmp += (player.Luck) * 420 * 10;
                     break;
             }

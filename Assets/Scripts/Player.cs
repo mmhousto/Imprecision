@@ -148,6 +148,7 @@ namespace Com.MorganHouston.Imprecision
         private void Start()
         {
             maxXP = UserLevel * 420;
+            SetStats();
         }
 
         private void Update()
