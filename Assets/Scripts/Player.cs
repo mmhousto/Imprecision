@@ -170,7 +170,7 @@ namespace Com.MorganHouston.Imprecision
 
         private void UpdateLevel()
         {
-            if (UserXP >= maxXP)
+            if (UserXP >= maxXP && UserLevel != 600)
             {
                 UserLevel++;
                 int rem = UserXP % maxXP;
