@@ -48,6 +48,8 @@ namespace Com.MorganHouston.Imprecision
 
         public void TakeDamage(int damageToTake)
         {
+            if (healthPoints <= 0) return;
+
             HealthPoints -= damageToTake;
             if (HealthPoints < 0)
                 HealthPoints = 0;
