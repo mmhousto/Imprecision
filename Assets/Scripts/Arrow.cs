@@ -114,7 +114,7 @@ namespace Com.MorganHouston.Imprecision
                     rand = Random.Range(0, hitEnemy.Length);
                     audioSource.clip = hitEnemy[rand];
                     audioSource.volume = 0.3f;
-                    audioSource.minDistance = 0.5f;
+                    audioSource.minDistance = 0.1f;
                     audioSource.maxDistance = 15;
                     break;
                 default:
