@@ -82,6 +82,7 @@ namespace Com.MorganHouston.Imprecision
         {
             finishedLevel = true;
             currentRunTimes.Add(currentTime);
+            Player.Instance.SetLevelTime(currentRunTimes.Count, currentTime);
             GameManager.Instance?.GameOver();
         }
 

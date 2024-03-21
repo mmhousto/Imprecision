@@ -10,6 +10,12 @@ namespace Com.MorganHouston.Imprecision
         public string userName;
         public string freeJewelOvertime;
 
+        public int level1Time;
+        public int level2Time;
+        public int level3Time;
+        public int level4Time;
+        public int totalTime;
+
         public int userPoints;
         public int userLevel;
         public int userXP;
@@ -43,10 +49,17 @@ namespace Com.MorganHouston.Imprecision
             userID = player.UserID;
             userName = player.UserName;
             freeJewelOvertime = player.FreeJewelOvertime;
+            level1Time = player.Level1Time;
+            level2Time = player.Level2Time;
+            level3Time = player.Level3Time;
+            level4Time = player.Level4Time;
+            totalTime = player.TotalTime;
+
             userPoints = player.UserPoints;
             userLevel = player.UserLevel;
             userXP = player.UserXP;
             jewels = player.Jewels;
+
             levels = player.Levels;
             storyLevels = player.StoryLevels;
             appleShotOnLevels = player.AppleShotOnLevels;

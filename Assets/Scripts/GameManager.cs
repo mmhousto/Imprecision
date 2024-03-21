@@ -49,6 +49,7 @@ namespace Com.MorganHouston.Imprecision
                 DontDestroyOnLoad(Instance.gameObject);
             }
             tutorialFinished = Convert.ToBoolean(PlayerPrefs.GetInt("TutorialPlayed", 0));
+            StoryManager.currentRunTimes.Clear();
         }
 
         private void OnEnable()
