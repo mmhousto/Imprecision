@@ -295,7 +295,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Restart
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3220377343030796297
@@ -1110,7 +1110,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1174,7 +1174,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3220377344640034890
@@ -1653,6 +1653,14 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 68.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8674616331266784114, guid: 68ff536fa366b417d9879069c81a304c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 8674616331266784114, guid: 68ff536fa366b417d9879069c81a304c, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68ff536fa366b417d9879069c81a304c, type: 3}
 --- !u!224 &6112362942219855619 stripped
@@ -1667,6 +1675,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3220377344545257644}
     m_Modifications:
+    - target: {fileID: 316714770020469078, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 316714770020469078, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 316714770020469078, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 316714770020469078, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontColorGradientPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cd795b0cc363a04cabcc400e633006d, type: 2}
     - target: {fileID: 421369816332574865, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1682,6 +1706,14 @@ PrefabInstance:
     - target: {fileID: 2011849203567904227, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849203637635447, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849203637635447, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2011849203718895117, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1707,6 +1739,62 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -380
       objectReference: {fileID: 0}
+    - target: {fileID: 2011849203728983476, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849203728983476, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849203740973678, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849203740973678, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849203740973678, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849203740973678, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontColorGradientPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cd795b0cc363a04cabcc400e633006d, type: 2}
+    - target: {fileID: 2011849203777811193, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849203777811193, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849203777811193, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849203777811193, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontColorGradientPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cd795b0cc363a04cabcc400e633006d, type: 2}
+    - target: {fileID: 2011849203789383590, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849203789383590, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849203789383590, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849203789383590, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontColorGradientPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cd795b0cc363a04cabcc400e633006d, type: 2}
     - target: {fileID: 2011849203927027528, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1867,6 +1955,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0.81
       objectReference: {fileID: 0}
+    - target: {fileID: 2011849204624227003, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849204624227003, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849204624227003, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849204624227003, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontColorGradientPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cd795b0cc363a04cabcc400e633006d, type: 2}
     - target: {fileID: 2011849204679721335, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1935,6 +2039,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -79
       objectReference: {fileID: 0}
+    - target: {fileID: 2011849204696725879, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849204696725879, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849204739486704, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849204739486704, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849204739486704, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849204739486704, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontColorGradientPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cd795b0cc363a04cabcc400e633006d, type: 2}
     - target: {fileID: 2011849204806102330, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1942,6 +2070,22 @@ PrefabInstance:
     - target: {fileID: 2011849204806102330, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849204865867303, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849204865867303, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849204940252105, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849204940252105, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2011849204942756955, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2003,6 +2147,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2011849205073189381, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849205073189381, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2011849205184405484, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2031,6 +2183,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -79
       objectReference: {fileID: 0}
+    - target: {fileID: 2011849205253268729, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849205253268729, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849205430461320, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 2011849205430461320, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849205430461320, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011849205430461320, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontColorGradientPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cd795b0cc363a04cabcc400e633006d, type: 2}
     - target: {fileID: 2011849205493446220, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2091,6 +2267,38 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0.81
       objectReference: {fileID: 0}
+    - target: {fileID: 4348043028999712720, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 4348043028999712720, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348043028999712720, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348043028999712720, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontColorGradientPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cd795b0cc363a04cabcc400e633006d, type: 2}
+    - target: {fileID: 7239689497197538866, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 7239689497197538866, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239689497197538866, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239689497197538866, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontColorGradientPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cd795b0cc363a04cabcc400e633006d, type: 2}
     - target: {fileID: 7775362125779952595, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2098,6 +2306,14 @@ PrefabInstance:
     - target: {fileID: 7775362125779952595, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259168284849339664, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9ff3820516ea340ae6afe7726d35ab, type: 2}
+    - target: {fileID: 8259168284849339664, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8634518684368265823, guid: d226d8352dabe254c9db9aa0b7711050, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
