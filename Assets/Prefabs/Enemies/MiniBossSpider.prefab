@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2119956979918627079}
   m_Layer: 0
   m_Name: SecondRightLeg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 5700204081016486722}
   m_Layer: 0
   m_Name: FirstRightLeg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 1322474086440163596}
   m_Layer: 0
   m_Name: FourthRightLeg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,6 +377,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!195 &5198649029561139351
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -429,7 +430,7 @@ MonoBehaviour:
   target: {fileID: 0}
   followDistance: 45
   attackDistance: 11
-  attackTime: 0
+  attacking: 0
   scalingfactor: 10
   attackPower: 25
   defensePower: 10
@@ -451,7 +452,7 @@ GameObject:
   - component: {fileID: 3789289287297372277}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -549,7 +550,7 @@ GameObject:
   - component: {fileID: 1401319498500884464}
   m_Layer: 0
   m_Name: ThirdRightLeg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -647,7 +648,7 @@ GameObject:
   - component: {fileID: 4491888929850849566}
   m_Layer: 0
   m_Name: SecondLeftLeg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -745,7 +746,7 @@ GameObject:
   - component: {fileID: 4165434499963933212}
   m_Layer: 0
   m_Name: FirstLeftLeg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -843,7 +844,7 @@ GameObject:
   - component: {fileID: 8704710475570237508}
   m_Layer: 0
   m_Name: FourthLeftLeg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -941,7 +942,7 @@ GameObject:
   - component: {fileID: 8652938450182234454}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1039,7 +1040,7 @@ GameObject:
   - component: {fileID: 8872894434417435558}
   m_Layer: 0
   m_Name: ThirdLeftLeg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
