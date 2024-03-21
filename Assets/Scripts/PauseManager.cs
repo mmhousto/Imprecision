@@ -22,6 +22,7 @@ namespace Com.MorganHouston.Imprecision
         public EventSystem eventSystem;
         public GameObject onScreenButtons;
         public GameObject tutorialScreen;
+        public GameObject hud;
         public bool isPaused;
         private bool isControllerConnected = false;
         private bool isSteamOverlayActive = false;
@@ -65,6 +66,7 @@ namespace Com.MorganHouston.Imprecision
             isPaused = true;
             backgroundUI.enabled = true;
             pauseScreen.SetActive(true);
+            hud.SetActive(false);
             Cursor.lockState = CursorLockMode.Confined;
 
             if(tutorialScreen != null)
@@ -83,6 +85,7 @@ namespace Com.MorganHouston.Imprecision
             onScreenButtons.SetActive(false);
 #endif
             pauseScreen.SetActive(true);
+            hud.SetActive(false);
             Cursor.lockState = CursorLockMode.Confined;
 
             if (tutorialScreen != null)
@@ -101,7 +104,8 @@ namespace Com.MorganHouston.Imprecision
             onScreenButtons.SetActive(true);
 #endif
             pauseScreen.SetActive(false);
-            if(TutorialManager.playedTutorial == false && tutorialScreen != null)
+            hud.SetActive(true);
+            if (TutorialManager.playedTutorial == false && tutorialScreen != null)
                 tutorialScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
