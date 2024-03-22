@@ -83,7 +83,20 @@ namespace Com.MorganHouston.Imprecision
             finishedLevel = true;
             currentRunTimes.Add(currentTime);
             Player.Instance.SetLevelTime(currentRunTimes.Count, currentTime);
+
+            if (currentRunTimes.Count == 4) Player.Instance.SetLevelTime(0, GetTotalTime());
+
             GameManager.Instance?.GameOver();
+        }
+
+        public float GetTotalTime()
+        {
+            float totalTime = 0;
+            foreach (float time in currentRunTimes)
+            {
+                totalTime += time;
+            }
+            return totalTime;
         }
 
         void CheckObjectivesStatus()

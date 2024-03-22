@@ -12,11 +12,13 @@ namespace Com.MorganHouston.Imprecision
     {
         public Button nextLevelBtn;
         public TextMeshProUGUI xpGainedText;
+        public TextMeshProUGUI totalTimeText;
         public MobileDisableAutoSwitchControls uiControls;
         public GameObject restartButton;
         public StoryManager storyManager;
         private GameManager gameManager;
         private Player player;
+        int hours, minutes, seconds, milliseconds;
 
         private void Start()
         {
@@ -40,6 +42,17 @@ namespace Com.MorganHouston.Imprecision
             if (xpGainedText.text != $"XP GAINED: {(Score.score / 10)}")
                 xpGainedText.text = $"XP GAINED: {(Score.score / 10)}";
 
+            if(totalTimeText != null && totalTimeText.text != $"Total Time: {hours}:{minutes}:{seconds}.{milliseconds}")
+            {
+                float currentTime = storyManager.GetTotalTime();
+                hours = Mathf.FloorToInt(currentTime / 3600f);
+                minutes = Mathf.FloorToInt((currentTime - (hours * 3600f)) / 60f);
+                seconds = Mathf.FloorToInt(currentTime - (hours * 3600f) - (minutes * 60f));
+                milliseconds = Mathf.FloorToInt((currentTime - Mathf.Floor(currentTime)) * 1000f);
+
+                totalTimeText.text = $"Total Time: {hours}:{minutes}:{seconds}.{milliseconds}";
+            }
+
             if (gameManager != null && player != null)
                 CheckIfBeatLevel();
 
@@ -59,7 +72,7 @@ namespace Com.MorganHouston.Imprecision
         {
             if (gameManager.playingStoryMode)
             {
-                if (gameManager.LevelSelected == 2)
+                if (gameManager.LevelSelected == 3)
                 {
                     nextLevelBtn.gameObject.SetActive(false);
                 }
@@ -76,7 +89,7 @@ namespace Com.MorganHouston.Imprecision
                 {
                     nextLevelBtn.enabled = true;
                 }
-                else if (player.Levels[gameManager.LevelSelected] == 0 && nextLevelBtn.enabled == true)
+                else if ((player.Levels[gameManager.LevelSelected] == 0 || player.Levels[gameManager.LevelSelected] == 49) && nextLevelBtn.enabled == true)
                 {
                     nextLevelBtn.gameObject.SetActive(false);
                 }

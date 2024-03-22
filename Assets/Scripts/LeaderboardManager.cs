@@ -87,40 +87,64 @@ namespace Com.MorganHouston.Imprecision
         {
 #if (UNITY_IOS || UNITY_ANDROID)
             
-            Social.ReportScore(Player.Instance.Level1Time / 1000, ATBESTLEVEL1TIMEID, (bool success) =>
+            if(Player.Instance.Level1Time != 0)
             {
-                // handle success or failure
-            });
+                Social.ReportScore(Player.Instance.Level1Time / 1000, ATBESTLEVEL1TIMEID, (bool success) =>
+                {
+                    // handle success or failure
+                });
+            }
 
-            Social.ReportScore(Player.Instance.Level2Time / 1000, ATBESTLEVEL2TIMEID, (bool success) =>
+            if (Player.Instance.Level2Time != 0)
             {
-                // handle success or failure
-            });
+                Social.ReportScore(Player.Instance.Level2Time / 1000, ATBESTLEVEL2TIMEID, (bool success) =>
+                {
+                    // handle success or failure
+                });
+            }
 
-            Social.ReportScore(Player.Instance.Level3Time / 1000, ATBESTLEVEL3TIMEID, (bool success) =>
+            if (Player.Instance.Level3Time != 0)
             {
-                // handle success or failure
-            });
+                Social.ReportScore(Player.Instance.Level3Time / 1000, ATBESTLEVEL3TIMEID, (bool success) =>
+                {
+                    // handle success or failure
+                });
+            }
 
-            Social.ReportScore(Player.Instance.Level4Time / 1000, ATBESTLEVEL4TIMEID, (bool success) =>
+            if (Player.Instance.Level4Time != 0)
             {
-                // handle success or failure
-            });
+                Social.ReportScore(Player.Instance.Level4Time / 1000, ATBESTLEVEL4TIMEID, (bool success) =>
+                {
+                    // handle success or failure
+                });
+            }
 
-            Social.ReportScore(Player.Instance.TotalTime / 1000, ATBESTTOTALTIMEID, (bool success) =>
+            if (Player.Instance.TotalTime != 0)
             {
-                // handle success or failure
-            });
+                Social.ReportScore(Player.Instance.TotalTime / 1000, ATBESTTOTALTIMEID, (bool success) =>
+                {
+                    // handle success or failure
+                });
+            }
 #endif
 
 #if !DISABLESTEAMWORKS
             if (CloudSaveLogin.Instance.isSteam && SteamManager.Initialized && CloudSaveLogin.Instance.currentSSO == CloudSaveLogin.ssoOption.Steam)
             {
-                SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level1Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel1Time);
-                SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level2Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel2Time);
-                SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level3Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel3Time);
-                SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level4Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel4Time);
-                SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.TotalTime / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestTotalTime);
+                if (Player.Instance.Level1Time != 0)
+                    SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level1Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel1Time);
+
+                if (Player.Instance.Level2Time != 0)
+                    SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level2Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel2Time);
+
+                if (Player.Instance.Level3Time != 0)
+                    SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level3Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel3Time);
+
+                if (Player.Instance.Level4Time != 0)
+                    SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level4Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel4Time);
+
+                if (Player.Instance.TotalTime != 0)
+                    SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.TotalTime / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestTotalTime);
             }
 #endif
         }
