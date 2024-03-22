@@ -427,7 +427,7 @@ namespace Com.MorganHouston.Imprecision
                     break;
                 case 2:
                     if (timeToSet < Level2Time || Level2Time == 0)
-                        Level2Time = (int)(time * 1000);
+                        Level2Time = timeToSet;
                     break;
                 case 3:
                     if (timeToSet < Level3Time || Level3Time == 0)

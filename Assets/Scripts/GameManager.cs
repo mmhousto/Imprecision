@@ -240,6 +240,7 @@ namespace Com.MorganHouston.Imprecision
 
             // Update Leaderboards
             LeaderboardManager.UpdateAllLeaderboards();
+            LeaderboardManager.UpdateAllTimeLeaderboards();
         }
 
 
