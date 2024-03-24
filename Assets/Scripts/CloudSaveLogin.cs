@@ -893,8 +893,9 @@ namespace Com.MorganHouston.Imprecision
                 SetPlayerData(userID, userName);
 
                 Login();
-
+#if !DISABLESTEAMWORKS
                 steamStats.SetActive(true);
+#endif
 
             }
             catch (AuthenticationException ex)
