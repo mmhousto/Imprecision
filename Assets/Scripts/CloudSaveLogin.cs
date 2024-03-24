@@ -61,6 +61,8 @@ namespace Com.MorganHouston.Imprecision
         public string userName, userID;
 
 #if !DISABLESTEAMWORKS
+        public GameObject steamStats;
+
         Callback<GetAuthSessionTicketResponse_t> m_AuthTicketResponseCallback;
         HAuthTicket m_AuthTicket;
         string m_SessionTicket;
@@ -891,6 +893,8 @@ namespace Com.MorganHouston.Imprecision
                 SetPlayerData(userID, userName);
 
                 Login();
+
+                steamStats.SetActive(true);
 
             }
             catch (AuthenticationException ex)

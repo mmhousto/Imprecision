@@ -61,7 +61,20 @@ public class SteamLeaderboardManager : MonoBehaviour
 
     };
     List<SteamLeaderboard_t> steamLeaderboards = new List<SteamLeaderboard_t>();
-    public List<bool> steamLeaderboardsInit = new List<bool>();
+    private List<bool> steamLeaderboardsInit = new List<bool>
+    {
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    };
     int leaderboardToBeInit = 0;
     int leaderboardsInit = 0;
 
@@ -109,26 +122,32 @@ public class SteamLeaderboardManager : MonoBehaviour
 
             SteamAPICall_t hSteamAPICall6 = SteamUserStats.FindLeaderboard(leaderboardNames[leaderboardToBeInit]);
             m_findResult.Set(hSteamAPICall6, OnLeaderboardFindResult);
+            leaderboardToBeInit++;
             SteamAPI.RunCallbacks();
 
             SteamAPICall_t hSteamAPICall7 = SteamUserStats.FindLeaderboard(leaderboardNames[leaderboardToBeInit]);
             m_findResult.Set(hSteamAPICall7, OnLeaderboardFindResult);
+            leaderboardToBeInit++;
             SteamAPI.RunCallbacks();
 
             SteamAPICall_t hSteamAPICall8 = SteamUserStats.FindLeaderboard(leaderboardNames[leaderboardToBeInit]);
             m_findResult.Set(hSteamAPICall8, OnLeaderboardFindResult);
+            leaderboardToBeInit++;
             SteamAPI.RunCallbacks();
 
             SteamAPICall_t hSteamAPICall9 = SteamUserStats.FindLeaderboard(leaderboardNames[leaderboardToBeInit]);
             m_findResult.Set(hSteamAPICall9, OnLeaderboardFindResult);
+            leaderboardToBeInit++;
             SteamAPI.RunCallbacks();
 
             SteamAPICall_t hSteamAPICall10 = SteamUserStats.FindLeaderboard(leaderboardNames[leaderboardToBeInit]);
             m_findResult.Set(hSteamAPICall10, OnLeaderboardFindResult);
+            leaderboardToBeInit++;
             SteamAPI.RunCallbacks();
 
             SteamAPICall_t hSteamAPICall11 = SteamUserStats.FindLeaderboard(leaderboardNames[leaderboardToBeInit]);
-            m_findResult.Set(hSteamAPICal11, OnLeaderboardFindResult);
+            m_findResult.Set(hSteamAPICall11, OnLeaderboardFindResult);
+            leaderboardToBeInit++;
             SteamAPI.RunCallbacks();
         }
 
