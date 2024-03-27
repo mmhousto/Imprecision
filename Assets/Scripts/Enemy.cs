@@ -28,7 +28,7 @@ namespace Com.MorganHouston.Imprecision
         public bool CanAttack { get { return canAttack; } set { canAttack = value; } }
 
         [SerializeField]
-        protected int scalingfactor = 10;
+        protected float scalingfactor = 10;
 
         [SerializeField]
         protected int attackPower;
@@ -204,11 +204,11 @@ namespace Com.MorganHouston.Imprecision
 
             if (critValue < (1f - crit))
             {
-                damage = (int)(randValue + AttackPower) - (dp * (ul / (ul/2 * scalingfactor)));
+                damage = (int)((randValue + AttackPower) - (dp * (ul * scalingfactor)));
             }
             else
             {
-                damage = ((int)(randValue + AttackPower) - (dp * (ul / (ul/2 * scalingfactor)))) * 2;
+                damage = ((int)((randValue + AttackPower) - (dp * (ul * scalingfactor)))) * 2;
             }
 
             if (damage < 0)
@@ -251,11 +251,11 @@ namespace Com.MorganHouston.Imprecision
 
             if (critValue < (1f - crit))
             {
-                damage = (int)((randValue + ap) - (DefensePower * (ul / (ul / 2 * scalingfactor))));
+                damage = (int)((randValue + ap) - (DefensePower * (ul * scalingfactor)));
             }
             else
             {
-                damage = (int)((randValue + ap) - (DefensePower * (ul / (ul / 2 * scalingfactor))))*2;
+                damage = (int)((randValue + ap) - (DefensePower * (ul * scalingfactor)))*2;
             }
 
             if(damage < 0)
