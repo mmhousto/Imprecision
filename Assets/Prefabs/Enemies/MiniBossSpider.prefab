@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3251373881102815913}
   - component: {fileID: 526028720461008950}
   - component: {fileID: 2119956979918627079}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SecondRightLeg
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 7241722278227805187}
   - component: {fileID: 1579550809593258714}
   - component: {fileID: 5700204081016486722}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirstRightLeg
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 6471679555972864651}
   - component: {fileID: 1306032571244976489}
   - component: {fileID: 1322474086440163596}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FourthRightLeg
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 5198649029561139351}
   - component: {fileID: 752354589165791145}
   - component: {fileID: 140936243706151522}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiniBossSpider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 5151526369039377472}
   - component: {fileID: 3759930616597937284}
   - component: {fileID: 3789289287297372277}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -591,7 +591,7 @@ GameObject:
   - component: {fileID: 2491392950655707108}
   - component: {fileID: 3724112980157444124}
   - component: {fileID: 1401319498500884464}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ThirdRightLeg
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 6691862836810779278}
   - component: {fileID: 2301806536218115727}
   - component: {fileID: 4491888929850849566}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SecondLeftLeg
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 4680938772400057716}
   - component: {fileID: 1383957518501638681}
   - component: {fileID: 4165434499963933212}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirstLeftLeg
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -909,7 +909,7 @@ GameObject:
   - component: {fileID: 904279566104347126}
   - component: {fileID: 4556209901111810307}
   - component: {fileID: 8704710475570237508}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FourthLeftLeg
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1015,7 +1015,7 @@ GameObject:
   - component: {fileID: 537047555990638542}
   - component: {fileID: 5894279894207820793}
   - component: {fileID: 8652938450182234454}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1121,7 +1121,7 @@ GameObject:
   - component: {fileID: 1213484726999246594}
   - component: {fileID: 2408581434970085492}
   - component: {fileID: 8872894434417435558}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ThirdLeftLeg
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1223,6 +1223,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1156168226571676745}
     m_Modifications:
+    - target: {fileID: 2809759533791558511, guid: 26fc15b544902d84498ffc6d1fd27c4d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3247283731392601691, guid: 26fc15b544902d84498ffc6d1fd27c4d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1315,9 +1319,29 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3593064539242746108, guid: 26fc15b544902d84498ffc6d1fd27c4d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4679242661613220918, guid: 26fc15b544902d84498ffc6d1fd27c4d, type: 3}
       propertyPath: m_Name
       value: EnemyHealthCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679242661613220918, guid: 26fc15b544902d84498ffc6d1fd27c4d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778386119606552463, guid: 26fc15b544902d84498ffc6d1fd27c4d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466164837635773539, guid: 26fc15b544902d84498ffc6d1fd27c4d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167887973382241060, guid: 26fc15b544902d84498ffc6d1fd27c4d, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

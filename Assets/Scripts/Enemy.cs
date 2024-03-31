@@ -108,7 +108,13 @@ namespace Com.MorganHouston.Imprecision
             target = GameObject.FindWithTag("Player").transform;
             agent = transform.root.GetComponentInChildren<NavMeshAgent>();
             spawnLocation = transform.position;
-            agent.Warp(spawnLocation);
+            NavMeshHit closestHit;
+
+            if (NavMesh.SamplePosition(spawnLocation, out closestHit, 500f, NavMesh.AllAreas))
+                gameObject.transform.position = closestHit.position;
+            else
+                Debug.LogError("Could not find position on NavMesh!");
+            //agent.Warp(spawnLocation);
             agent.speed = movementSpeed;
             health = GetComponent<Health>();
             attackSpeed = 5 - (attackSpeed / 100) * 4;
@@ -187,7 +193,7 @@ namespace Com.MorganHouston.Imprecision
 
         protected void FollowTarget(Vector3 targetPos)
         {
-            if(targetPos != null)
+            if(targetPos != null && agent.isOnNavMesh)
                 agent.SetDestination(targetPos);
         }
 
