@@ -15,6 +15,13 @@ namespace Com.MorganHouston.Imprecision
 
         private int dots = 1;
 
+        private void Awake()
+        {
+#if UNITY_WSA
+            SceneLoader.ResetLightingData();
+#endif
+        }
+
         void Start()
         {
             InvokeRepeating(nameof(UpdateLoadingText), 0.0f, 1f);
@@ -23,11 +30,6 @@ namespace Com.MorganHouston.Imprecision
 
         IEnumerator LoadAsynchronously(int index)
         {
-#if UNITY_WSA
-            LightmapSettings.lightmaps = new LightmapData[0];
-            Resources.UnloadUnusedAssets();
-#endif
-
             AsyncOperation operation = SceneManager.LoadSceneAsync(index);
 
             while (!operation.isDone)

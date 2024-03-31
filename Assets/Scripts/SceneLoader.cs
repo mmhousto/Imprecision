@@ -23,7 +23,7 @@ namespace Com.MorganHouston.Imprecision
             return SceneManager.GetActiveScene();
         }
 
-        private static void ResetLightingData()
+        public static void ResetLightingData()
         {
             LightmapSettings.lightmaps = new LightmapData[0];
             Resources.UnloadUnusedAssets();

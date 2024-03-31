@@ -106,7 +106,7 @@ namespace StarterAssets
 
 			RotationSpeed = PlayerPrefs.GetFloat("Sensitivity", 20) * 0.05f;
 
-			isFP = Convert.ToBoolean(PlayerPrefs.GetInt("IsFP", 1));
+			isFP = Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1));
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
