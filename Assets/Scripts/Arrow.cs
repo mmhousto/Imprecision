@@ -117,6 +117,24 @@ namespace Com.MorganHouston.Imprecision
                     audioSource.minDistance = 0.1f;
                     audioSource.maxDistance = 15;
                     break;
+                case "apple":
+                    if (Player.Instance.AppleShotOnLevels[GameManager.Instance.LevelSelected] != 1)
+                    {
+                        Player.Instance.AppleShotOnLevels[GameManager.Instance.LevelSelected] = 1;
+
+#if (UNITY_IOS || UNITY_ANDROID)
+                    LeaderboardManager.CheckAppleAchievements();
+#endif
+
+                    }
+                    Score.Instance.AddExtraPoints();
+                    //other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(500f, other.transform.position, 5f);
+                    collision.gameObject.GetComponent<AudioSource>().Play();
+                    GameObject particle = Instantiate(applePS, transform.root.position, applePS.transform.rotation);
+                    Destroy(particle, 2f);
+                    Destroy(collision.gameObject, 2f);
+                    Destroy(this.gameObject); // destroy arrow
+                    break;
                 default:
                     rand = Random.Range(0, hitGround.Length);
                     audioSource.clip = hitGround[rand];
@@ -138,29 +156,6 @@ namespace Com.MorganHouston.Imprecision
 
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("apple"))
-            {
-                if (Player.Instance.AppleShotOnLevels[GameManager.Instance.LevelSelected] != 1)
-                {
-                    Player.Instance.AppleShotOnLevels[GameManager.Instance.LevelSelected] = 1;
-
-#if (UNITY_IOS || UNITY_ANDROID)
-                    LeaderboardManager.CheckAppleAchievements();
-#endif
-
-                }
-                Score.Instance.AddExtraPoints();
-                //other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(500f, other.transform.position, 5f);
-                other.GetComponent<AudioSource>().Play();
-                GameObject particle = Instantiate(applePS, transform.root.position, applePS.transform.rotation);
-                Destroy(particle, 2f);
-                Destroy(other.gameObject, 2f);
-                Destroy(this.gameObject); // destroy arrow
-                
-            }
-        }
 
     }
 }
