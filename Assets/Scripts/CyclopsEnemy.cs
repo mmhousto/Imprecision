@@ -63,7 +63,7 @@ namespace Com.MorganHouston.Imprecision
                 Score.Instance.AddPoints(250);
             currentState = AIState.Dead;
             anim.SetTrigger("Death");
-            Destroy(gameObject, 2.3f);
+            Destroy(gameObject, 4f);
         }
 
         protected override void DetermineState()
