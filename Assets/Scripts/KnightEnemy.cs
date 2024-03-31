@@ -30,7 +30,7 @@ namespace Com.MorganHouston.Imprecision
                 Player.Instance?.HitTarget();
 
                 Collider myCollider = collision.GetContact(0).thisCollider;
-                Debug.Log(myCollider.name);
+
                 if (myCollider.name.Contains("Head") || myCollider.CompareTag("Head"))
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Head));
@@ -45,7 +45,6 @@ namespace Com.MorganHouston.Imprecision
                 }
                 else if (myCollider.CompareTag("Shield"))
                 {
-                    Debug.Log("Blocked");
                     collision.transform.SetParent(myCollider.transform, true); // attach to shield
                 }
                 else
@@ -176,7 +175,6 @@ namespace Com.MorganHouston.Imprecision
                 // perform the attack
                 target.GetComponent<Health>().TakeDamage(DetermineDamageToDeal());
             }*/
-            Debug.Log(anim.GetCurrentAnimatorStateInfo(0).length);
             yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0).Length);
             attacking = false;
             attackTime = attackSpeed;
