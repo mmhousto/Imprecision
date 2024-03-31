@@ -204,16 +204,16 @@ namespace Com.MorganHouston.Imprecision
 
             if (critValue < (1f - crit))
             {
-                damage = (int)((randValue + AttackPower) - (dp * (ul * scalingfactor)));
+                damage = (int)randValue + AttackPower + (ul * (1/6)) - dp;
             }
             else
             {
-                damage = ((int)((randValue + AttackPower) - (dp * (ul * scalingfactor)))) * 2;
+                damage = (int)(randValue + AttackPower + (ul * (1/6)) - dp) * 2;
             }
 
             if (damage < 0)
             {
-                damage = 0;
+                damage = (int)randValue;
             }
 
             return damage;
@@ -251,16 +251,16 @@ namespace Com.MorganHouston.Imprecision
 
             if (critValue < (1f - crit))
             {
-                damage = (int)((randValue + ap) - (DefensePower * (ul * scalingfactor)));
+                damage = (int)randValue + ap - (DefensePower + (ul * (1 / 6)));
             }
             else
             {
-                damage = (int)((randValue + ap) - (DefensePower * (ul * scalingfactor)))*2;
+                damage = (int)(randValue + ap - (DefensePower + (ul * (1 / 6)))) * 2;
             }
 
             if(damage < 0)
             {
-                damage = 0;
+                damage = (int)randValue;
             }
 
             return damage;
