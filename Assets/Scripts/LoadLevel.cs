@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -12,35 +13,72 @@ namespace Com.MorganHouston.Imprecision
         public Slider slider;
         public TextMeshProUGUI progressText;
         public TextMeshProUGUI loadingText;
-
+        public GameObject loadingCanvas;
+        public GameObject loadingCamera;
         private int dots = 1;
 
         private void Awake()
         {
-#if UNITY_WSA
-            SceneLoader.ResetLightingData();
-#endif
+            StartCoroutine(LoadAsynchronously(SceneLoader.levelToLoad));
+                
         }
 
         void Start()
         {
             InvokeRepeating(nameof(UpdateLoadingText), 0.0f, 1f);
-            StartCoroutine(LoadAsynchronously(SceneLoader.levelToLoad));
+            
         }
 
         IEnumerator LoadAsynchronously(int index)
         {
-            AsyncOperation operation = SceneManager.LoadSceneAsync(index);
+
+            AsyncOperation operation = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+            operation.allowSceneActivation = false;
 
             while (!operation.isDone)
             {
-                float progress = Mathf.Clamp01(operation.progress / .9f);
+                float progress = Mathf.Clamp(operation.progress / .9f, 0f, 0.9999f);
 
                 slider.value = progress * 100f;
                 progressText.text = progress * 100f + "%";
 
                 yield return null;
             }
+
+            DestroyImmediate(loadingCanvas);
+            DestroyImmediate(loadingCamera);
+            StartCoroutine(EndLoadAsync(index));
+            
+        }
+
+        IEnumerator EndLoadAsync(int index)
+        {
+            AsyncOperation operation = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+
+            while (!operation.isDone)
+            {
+                yield return null;
+            }
+            operation.allowSceneActivation = true;
+
+            // Activate the new scene
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(index));
+        }
+
+        IEnumerator EndLoadAsync(Scene sceneToUnLoad)
+        {
+            AsyncOperation operation = SceneManager.UnloadSceneAsync(sceneToUnLoad);
+
+            while (!operation.isDone)
+            {
+
+                yield return null;
+            }
+
+
+            // Activate the new scene
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
+            StartCoroutine(LoadAsynchronously(SceneLoader.levelToLoad));
         }
 
         void UpdateLoadingText()

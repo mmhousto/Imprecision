@@ -142,7 +142,7 @@ namespace StarterAssets
 			if(isFP != Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1)))
 				isFP = Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1));
 
-			if (isFP && !fpCam.activeInHierarchy)
+			if (isFP && (!fpCam.activeInHierarchy || tpAimCam.activeInHierarchy || tpCam.activeInHierarchy))
             {
 				fpCam.SetActive(true);
 				tpCam.SetActive(false);
