@@ -98,7 +98,7 @@ namespace Com.MorganHouston.Imprecision
 
         public virtual void Die()
         {
-            Score.Instance.AddPoints(50);
+            Score.Instance.AddPoints(500);
             currentState = AIState.Dead;
             Destroy(gameObject);
         }

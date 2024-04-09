@@ -58,9 +58,9 @@ namespace Com.MorganHouston.Imprecision
         public override void Die()
         {
             if (name.Contains("MiniBoss"))
-                Score.Instance.AddPoints(300);
+                Score.Instance.AddPoints(1000);
             else
-                Score.Instance.AddPoints(250);
+                Score.Instance.AddPoints(500);
             currentState = AIState.Dead;
             anim.SetTrigger("Death");
             Destroy(gameObject, 4f);

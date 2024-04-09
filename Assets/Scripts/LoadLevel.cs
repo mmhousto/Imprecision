@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.PlayerLoop;
+using static UnityEngine.Rendering.HDROutputUtils;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -16,17 +18,28 @@ namespace Com.MorganHouston.Imprecision
         public GameObject loadingCanvas;
         public GameObject loadingCamera;
         private int dots = 1;
+        private float progress;
 
         private void Awake()
         {
-            StartCoroutine(LoadAsynchronously(SceneLoader.levelToLoad));
+            //StartCoroutine(LoadAsynchronously(SceneLoader.levelToLoad));
                 
         }
 
         void Start()
         {
-            InvokeRepeating(nameof(UpdateLoadingText), 0.0f, 1f);
-            
+            //InvokeRepeating(nameof(UpdateLoadingText), 0.0f, 1f);
+            SceneLoader.ResetLightingData();
+            SceneManager.LoadScene(SceneLoader.levelToLoad);
+        }
+
+        void Update()
+        {
+            progress += Time.deltaTime / 10;
+            progress = Mathf.Clamp(progress, 0f, 0.9999f);
+
+            slider.value = progress * 100f;
+            progressText.text = progress * 100f + "%";
         }
 
         IEnumerator LoadAsynchronously(int index)
