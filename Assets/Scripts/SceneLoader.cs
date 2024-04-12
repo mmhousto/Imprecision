@@ -13,7 +13,7 @@ namespace Com.MorganHouston.Imprecision
         public static void LoadThisScene(int sceneToLoad)
         {
             levelToLoad = sceneToLoad;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadSceneAsync(0);
         }
 
         public static Scene GetCurrentScene()

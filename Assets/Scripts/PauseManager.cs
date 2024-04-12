@@ -115,13 +115,15 @@ namespace Com.MorganHouston.Imprecision
         public void ReturnHome()
         {
             Time.timeScale = 1;
-            SceneLoader.LoadThisScene(1);
+            //SceneLoader.LoadThisScene(1);
+            UnLoadLevel.Instance.LoadUnLoad(1);
         }
 
         public void RestartLevel()
         {
             Time.timeScale = 1;
-            SceneLoader.LoadThisScene(SceneLoader.GetCurrentScene().buildIndex);
+            //SceneLoader.LoadThisScene(SceneLoader.GetCurrentScene().buildIndex);
+            UnLoadLevel.Instance.LoadUnLoad(SceneLoader.GetCurrentScene().buildIndex);
         }
 
 #if !DISABLESTEAMWORKS

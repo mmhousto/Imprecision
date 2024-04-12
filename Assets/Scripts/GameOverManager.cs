@@ -101,7 +101,8 @@ namespace Com.MorganHouston.Imprecision
         public void RestartGame()
         {
             Time.timeScale = 1;
-            SceneLoader.LoadThisScene(SceneManager.GetActiveScene().buildIndex);
+            //SceneLoader.LoadThisScene(SceneManager.GetActiveScene().buildIndex);
+            UnLoadLevel.Instance.LoadUnLoad(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void RestartStoryGame()
@@ -109,14 +110,16 @@ namespace Com.MorganHouston.Imprecision
             Time.timeScale = 1;
             StoryManager.currentRunTimes.Clear();
             GameManager.Instance.SetLevel(0);
-            SceneLoader.LoadThisScene(3);
+            //SceneLoader.LoadThisScene(3);
+            UnLoadLevel.Instance.LoadUnLoad(3);
         }
 
         public void ToMainMenu()
         {
             Cursor.lockState = CursorLockMode.Confined;
             Time.timeScale = 1;
-            SceneLoader.LoadThisScene(1);
+            //SceneLoader.LoadThisScene(1);
+            UnLoadLevel.Instance.LoadUnLoad(1);
         }
 
         public void LoadNextLevel()
@@ -130,7 +133,8 @@ namespace Com.MorganHouston.Imprecision
         {
             Time.timeScale = 1;
             gameManager.SetLevel(gameManager.LevelSelected + 1);
-            SceneLoader.LoadThisScene(sceneIndex);
+            //SceneLoader.LoadThisScene(sceneIndex);
+            UnLoadLevel.Instance.LoadUnLoad(sceneIndex);
         }
 
     }

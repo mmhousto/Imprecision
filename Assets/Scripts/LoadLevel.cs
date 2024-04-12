@@ -19,38 +19,42 @@ namespace Com.MorganHouston.Imprecision
         public GameObject loadingCamera;
         private int dots = 1;
         private float progress;
+        private Scene sceneToUnload;
 
         private void Awake()
         {
-            //StartCoroutine(LoadAsynchronously(SceneLoader.levelToLoad));
+            
                 
         }
 
         void Start()
         {
+            /*#if UNITY_WSA
+                        SceneLoader.ResetLightingData();
+            #endif*/
+            sceneToUnload = SceneLoader.GetCurrentScene();
+            StartCoroutine(LoadAsynchronously(SceneLoader.levelToLoad));
+
             //InvokeRepeating(nameof(UpdateLoadingText), 0.0f, 1f);
-            SceneLoader.ResetLightingData();
-            SceneManager.LoadScene(SceneLoader.levelToLoad);
+            //SceneManager.LoadScene(SceneLoader.levelToLoad);
         }
 
-        void Update()
+        /*void Update()
         {
             progress += Time.deltaTime / 10;
             progress = Mathf.Clamp(progress, 0f, 0.9999f);
 
             slider.value = progress * 100f;
             progressText.text = progress * 100f + "%";
-        }
+        }*/
 
         IEnumerator LoadAsynchronously(int index)
         {
+            AsyncOperation load = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
 
-            AsyncOperation operation = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
-            operation.allowSceneActivation = false;
-
-            while (!operation.isDone)
+            while (!load.isDone)
             {
-                float progress = Mathf.Clamp(operation.progress / .9f, 0f, 0.9999f);
+                float progress = Mathf.Clamp(load.progress / .9f, 0f, 0.9999f);
 
                 slider.value = progress * 100f;
                 progressText.text = progress * 100f + "%";
@@ -58,13 +62,28 @@ namespace Com.MorganHouston.Imprecision
                 yield return null;
             }
 
-            DestroyImmediate(loadingCanvas);
-            DestroyImmediate(loadingCamera);
-            StartCoroutine(EndLoadAsync(index));
+            yield return load;
+
+            AsyncOperation unload = SceneManager.UnloadSceneAsync(0);
+
+            while (!unload.isDone)
+            {
+                yield return null;
+            }
             
+            yield return unload;
+
+            AsyncOperation unloadAssets = Resources.UnloadUnusedAssets();
+
+            while (!unloadAssets.isDone)
+            {
+
+                yield return null;
+            }
+
         }
 
-        IEnumerator EndLoadAsync(int index)
+        IEnumerator EndLoadAsync(int index, AsyncOperation loadingScene)
         {
             AsyncOperation operation = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
@@ -72,7 +91,6 @@ namespace Com.MorganHouston.Imprecision
             {
                 yield return null;
             }
-            operation.allowSceneActivation = true;
 
             // Activate the new scene
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(index));
@@ -105,16 +123,16 @@ namespace Com.MorganHouston.Imprecision
             switch (dots)
             {
                 case 1:
-                    loadingText.text = "Loading.";
+                    loadingText.text = "Patience young Örvar.";
                     break;
                 case 2:
-                    loadingText.text = "Loading..";
+                    loadingText.text = "Patience young Örvar..";
                     break;
                 case 3:
-                    loadingText.text = "Loading...";
+                    loadingText.text = "Patience young Örvar...";
                     break;
                 default:
-                    loadingText.text = "Loading...";
+                    loadingText.text = "Patience young Örvar...";
                     break;
             }
 

@@ -407,7 +407,8 @@ namespace Com.MorganHouston.Imprecision
         private void LogoutScreenActivate()
         {
             loggedIn = false;
-            SceneLoader.LoadThisScene(1);
+            //SceneLoader.LoadThisScene(1);
+            UnLoadLevel.Instance.LoadUnLoad(1);
         }
 
         /// <summary>
