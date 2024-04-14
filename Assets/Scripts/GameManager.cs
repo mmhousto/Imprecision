@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -73,19 +74,20 @@ namespace Com.MorganHouston.Imprecision
             if(level.buildIndex == 2)
             {
                 playingStoryMode = false;
-                SetUpGame();
+                StartCoroutine(SetUpGame());
             }else if (level.buildIndex >= 3)
             {
                 playingStoryMode = true;
-                SetUpGame();
+                StartCoroutine(SetUpGame());
             }
         }
 
         /// <summary>
         /// Called when level is loaded to set star rating and get game over components
         /// </summary>
-        private void SetUpGame()
+        private IEnumerator SetUpGame()
         {
+            yield return new WaitForSeconds(.1f);
             GetGameOverComponents();
             GetMaxPointsForLevel();
             isGameOver = false;
@@ -97,7 +99,7 @@ namespace Com.MorganHouston.Imprecision
         private void GetGameOverComponents()
         {
             gameOverScreen = GameObject.FindWithTag("GameOver");
-            gameOverText = gameOverScreen.GetComponentInChildren<TextMeshProUGUI>();
+            gameOverText = gameOverScreen.GetComponentInChildren<TextMeshProUGUI>(true);
             stars = GameObject.FindGameObjectsWithTag("Star");
             gameOverScreen.transform.parent.gameObject.SetActive(false);
             player = GameObject.FindWithTag("Player");

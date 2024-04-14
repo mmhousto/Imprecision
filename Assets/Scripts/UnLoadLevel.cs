@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 namespace Com.MorganHouston.Imprecision
@@ -44,17 +45,25 @@ namespace Com.MorganHouston.Imprecision
         public void LoadUnLoad(int level)
         {
             SceneLoader.levelToLoad = level;
+            EventSystem.current.enabled = false;
             StartCoroutine(LoadAndUnload());
             //SceneManager.LoadScene(0);
         }
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            currentSceneToUnload = SceneLoader.GetCurrentScene();
+            currentSceneToUnload = scene;
+            if (currentSceneToUnload.isLoaded)
+                SceneManager.SetActiveScene(currentSceneToUnload);
+            Debug.Log("Scene loaded: " +  scene.name);
         }
 
         IEnumerator LoadAndUnload()
         {
+            Scene curScene = SceneManager.GetActiveScene();
+
+            yield return null;
+
             AsyncOperation load = SceneManager.LoadSceneAsync(0, LoadSceneMode.Additive);
 
             while (!load.isDone)
@@ -69,23 +78,15 @@ namespace Com.MorganHouston.Imprecision
 
             yield return load;
 
-            AsyncOperation operation = SceneManager.UnloadSceneAsync(currentSceneToUnload);
+            AsyncOperation unload = SceneManager.UnloadSceneAsync(curScene);
 
-            while (!operation.isDone)
-            {
-                yield return null;
-            }
-            Debug.Log("Unloaded");
+            yield return unload;
 
-            yield return operation;
+            Debug.Log("Unloaded last level");
 
-            AsyncOperation unload = Resources.UnloadUnusedAssets();
+            //AsyncOperation unloadAssets = Resources.UnloadUnusedAssets();
 
-            while (!unload.isDone)
-            {
-
-                yield return null;
-            }
+            //yield return unloadAssets;
 
             //SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
 

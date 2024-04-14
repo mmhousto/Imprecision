@@ -20,10 +20,11 @@ namespace Com.MorganHouston.Imprecision
         private int dots = 1;
         private float progress;
         private Scene sceneToUnload;
+        public static List<AsyncOperation> operations;
 
         private void Awake()
         {
-            
+            DontDestroyOnLoad(this.gameObject);
                 
         }
 
@@ -50,6 +51,8 @@ namespace Com.MorganHouston.Imprecision
 
         IEnumerator LoadAsynchronously(int index)
         {
+            yield return null;
+
             AsyncOperation load = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
 
             while (!load.isDone)
@@ -62,25 +65,29 @@ namespace Com.MorganHouston.Imprecision
                 yield return null;
             }
 
+            //SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(index));
+
             yield return load;
 
-            AsyncOperation unload = SceneManager.UnloadSceneAsync(0);
+            AsyncOperation unload = SceneManager.UnloadSceneAsync(sceneToUnload);
 
-            while (!unload.isDone)
-            {
-                yield return null;
-            }
-            
             yield return unload;
 
-            AsyncOperation unloadAssets = Resources.UnloadUnusedAssets();
+            /*AsyncOperation unloadAssets = Resources.UnloadUnusedAssets();
 
             while (!unloadAssets.isDone)
             {
+                float progress = Mathf.Clamp(unloadAssets.progress / .9f, 0f, 0.9999f);
+
+                slider.value = progress * 100f;
+                progressText.text = progress * 100f + "%";
 
                 yield return null;
             }
 
+            yield return unloadAssets;*/
+            if(unload.isDone)
+                Destroy(this.gameObject);
         }
 
         IEnumerator EndLoadAsync(int index, AsyncOperation loadingScene)

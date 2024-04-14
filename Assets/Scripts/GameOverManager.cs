@@ -56,7 +56,7 @@ namespace Com.MorganHouston.Imprecision
             if (gameManager != null && player != null)
                 CheckIfBeatLevel();
 
-            if(EventSystem.current.currentSelectedGameObject == null)
+            if(EventSystem.current != null && EventSystem.current.currentSelectedGameObject == null)
             {
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(restartButton);

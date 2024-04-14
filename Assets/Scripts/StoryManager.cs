@@ -29,14 +29,7 @@ namespace Com.MorganHouston.Imprecision
 
         private void Awake()
         {
-            if (instance != null && instance != this)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
                 instance = this;
-            }
         }
 
 
