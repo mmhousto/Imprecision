@@ -83,7 +83,7 @@ namespace Com.MorganHouston.Imprecision
             }
             else
             {
-                buttonText.text = $"{overTime - DateTime.Now}";
+                buttonText.text = $"{(overTime - DateTime.Now).ToString("hh\\:mm\\:ss\\.f")}";
             }
         }
 

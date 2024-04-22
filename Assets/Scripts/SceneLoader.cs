@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,11 +12,8 @@ namespace Com.MorganHouston.Imprecision
 
         public static void LoadThisScene(int sceneToLoad)
         {
-#if UNITY_WSA
-            ResetLightingData();
-#endif
             levelToLoad = sceneToLoad;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadSceneAsync(0);
         }
 
         public static Scene GetCurrentScene()
@@ -23,7 +21,7 @@ namespace Com.MorganHouston.Imprecision
             return SceneManager.GetActiveScene();
         }
 
-        private static void ResetLightingData()
+        public static void ResetLightingData()
         {
             LightmapSettings.lightmaps = new LightmapData[0];
             Resources.UnloadUnusedAssets();

@@ -23,13 +23,13 @@ namespace Com.MorganHouston.Imprecision
 
         private void Update()
         {
-            if (cam != null && cam.m_Lens.FieldOfView != PreferenceManager.Instance.FoV)
+            if (cam != null && cam.m_Lens.FieldOfView != ((PreferenceManager.Instance != null) ? PreferenceManager.Instance.FoV : 80))
                 SetCamFoVs();
         }
 
         public void SetCamFoVs()
         {
-             cam.m_Lens.FieldOfView = PreferenceManager.Instance.FoV;
+             cam.m_Lens.FieldOfView = (PreferenceManager.Instance != null) ? PreferenceManager.Instance.FoV : 80;
         }
     }
 }

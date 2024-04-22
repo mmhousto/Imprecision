@@ -61,6 +61,8 @@ namespace Com.MorganHouston.Imprecision
         public string userName, userID;
 
 #if !DISABLESTEAMWORKS
+        public GameObject steamStats;
+
         Callback<GetAuthSessionTicketResponse_t> m_AuthTicketResponseCallback;
         HAuthTicket m_AuthTicket;
         string m_SessionTicket;
@@ -405,7 +407,8 @@ namespace Com.MorganHouston.Imprecision
         private void LogoutScreenActivate()
         {
             loggedIn = false;
-            SceneLoader.LoadThisScene(1);
+            //SceneLoader.LoadThisScene(1);
+            UnLoadLevel.Instance.LoadUnLoad(1);
         }
 
         /// <summary>
@@ -891,6 +894,9 @@ namespace Com.MorganHouston.Imprecision
                 SetPlayerData(userID, userName);
 
                 Login();
+#if !DISABLESTEAMWORKS
+                steamStats.SetActive(true);
+#endif
 
             }
             catch (AuthenticationException ex)

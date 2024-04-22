@@ -12,8 +12,9 @@ namespace com.MorganHouston.Imprecision
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                other.GetComponent<CharacterController>().enabled = false;
                 other.transform.position = spawnLocation;
+                other.GetComponent<CharacterController>().enabled = true;
             }
         }
     }

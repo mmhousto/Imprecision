@@ -30,14 +30,14 @@ namespace Com.MorganHouston.Imprecision
                 Player.Instance?.HitTarget();
 
                 Collider myCollider = collision.GetContact(0).thisCollider;
-                Debug.Log(myCollider.name);
-                if (myCollider.name.Contains("Head"))
+
+                if (myCollider.name.Contains("Head") || myCollider.CompareTag("Head"))
                 {
-                    health.TakeDamage(DetermineDamageToTake((int)HitArea.Body));
+                    health.TakeDamage(DetermineDamageToTake((int)HitArea.Head));
                     anim.SetTrigger("Hurt");
                     Destroy(collision.gameObject);
                 }
-                else if (myCollider.name.Contains("Body"))
+                else if (myCollider.name.Contains("Body") || myCollider.CompareTag("Body"))
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Body));
                     anim.SetTrigger("Hurt");
@@ -45,7 +45,6 @@ namespace Com.MorganHouston.Imprecision
                 }
                 else if (myCollider.CompareTag("Shield"))
                 {
-                    Debug.Log("Blocked");
                     collision.transform.SetParent(myCollider.transform, true); // attach to shield
                 }
                 else
@@ -62,9 +61,9 @@ namespace Com.MorganHouston.Imprecision
         public override void Die()
         {
             if (name.Contains("MiniBoss"))
-                Score.Instance.AddPoints(300);
+                Score.Instance.AddPoints(1000);
             else
-                Score.Instance.AddPoints(250);
+                Score.Instance.AddPoints(500);
             currentState = AIState.Dead;
             anim.SetTrigger("Death");
             Destroy(transform.root.gameObject, 2.3f);
@@ -176,7 +175,6 @@ namespace Com.MorganHouston.Imprecision
                 // perform the attack
                 target.GetComponent<Health>().TakeDamage(DetermineDamageToDeal());
             }*/
-            Debug.Log(anim.GetCurrentAnimatorStateInfo(0).length);
             yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0).Length);
             attacking = false;
             attackTime = attackSpeed;

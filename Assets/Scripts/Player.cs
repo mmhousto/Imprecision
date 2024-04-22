@@ -22,6 +22,12 @@ namespace Com.MorganHouston.Imprecision
 
         public string FreeJewelOvertime { get; private set; }
 
+        public int Level1Time { get; private set; }
+        public int Level2Time { get; private set; }
+        public int Level3Time { get; private set; }
+        public int Level4Time { get; private set; }
+        public int TotalTime { get; private set; }
+
         [SerializeField]
         private int userPoints;
         public int UserPoints { get { return userPoints; } private set { userPoints = value; } }
@@ -148,6 +154,7 @@ namespace Com.MorganHouston.Imprecision
         private void Start()
         {
             maxXP = UserLevel * 420;
+            SetStats();
         }
 
         private void Update()
@@ -169,7 +176,7 @@ namespace Com.MorganHouston.Imprecision
 
         private void UpdateLevel()
         {
-            if (UserXP >= maxXP)
+            if (UserXP >= maxXP && UserLevel != 600)
             {
                 UserLevel++;
                 int rem = UserXP % maxXP;
@@ -183,6 +190,11 @@ namespace Com.MorganHouston.Imprecision
             UserID = "";
             UserName = "";
             FreeJewelOvertime = DateTime.Now.AddHours(-24).ToString();
+            Level1Time = 0;
+            Level2Time = 0;
+            Level3Time = 0;
+            Level4Time = 0;
+            TotalTime = 0;
             UserPoints = 0;
             UserLevel = 1;
             UserXP = 0;
@@ -213,6 +225,11 @@ namespace Com.MorganHouston.Imprecision
             UserID = data.userID;
             UserName = data.userName;
             FreeJewelOvertime = String.IsNullOrEmpty(data.freeJewelOvertime) ? DateTime.Now.AddHours(-24).ToString() : data.freeJewelOvertime;
+            Level1Time = data.level1Time;
+            Level2Time = data.level2Time;
+            Level3Time = data.level3Time;
+            Level4Time = data.level4Time;
+            TotalTime = data.totalTime;
             UserPoints = data.userPoints;
             UserLevel = data.userLevel;
             UserXP = data.userXP;
@@ -259,6 +276,11 @@ namespace Com.MorganHouston.Imprecision
             UserID = id;
             UserName = $"Guest_{id}";
             FreeJewelOvertime = DateTime.Now.AddHours(-24).ToString();
+            Level1Time = 0;
+            Level2Time = 0;
+            Level3Time = 0;
+            Level4Time = 0;
+            TotalTime = 0;
             UserPoints = 0;
             UserLevel = 1;
             UserXP = 0;
@@ -289,6 +311,11 @@ namespace Com.MorganHouston.Imprecision
             UserID = id;
             UserName = name;
             FreeJewelOvertime = DateTime.Now.AddHours(-24).ToString();
+            Level1Time = 0;
+            Level2Time = 0;
+            Level3Time = 0;
+            Level4Time = 0;
+            TotalTime = 0;
             UserPoints = 0;
             UserLevel = 1;
             UserXP = 0;
@@ -387,6 +414,35 @@ namespace Com.MorganHouston.Imprecision
         public void SetFreeJewelOvertime(string time)
         {
             FreeJewelOvertime = time;
+        }
+
+        public void SetLevelTime(int level, float time)
+        {
+            int timeToSet = (int)(time * 1000);
+            switch (level)
+            {
+                case 1:
+                    if(timeToSet < Level1Time || Level1Time == 0)
+                        Level1Time = timeToSet;
+                    break;
+                case 2:
+                    if (timeToSet < Level2Time || Level2Time == 0)
+                        Level2Time = timeToSet;
+                    break;
+                case 3:
+                    if (timeToSet < Level3Time || Level3Time == 0)
+                        Level3Time = timeToSet;
+                    break;
+                case 4:
+                    if (timeToSet < Level4Time || Level4Time == 0)
+                        Level4Time = timeToSet;
+                    break;
+                default:
+                    if (timeToSet < TotalTime || TotalTime == 0)
+                        TotalTime = timeToSet;
+                    break;
+
+            }
         }
 
         public void GainJewels(int jewelsToAdd)

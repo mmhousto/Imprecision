@@ -28,7 +28,7 @@ namespace Com.MorganHouston.Imprecision
         public bool CanAttack { get { return canAttack; } set { canAttack = value; } }
 
         [SerializeField]
-        protected int scalingfactor = 10;
+        protected float scalingfactor = 10;
 
         [SerializeField]
         protected int attackPower;
@@ -98,7 +98,7 @@ namespace Com.MorganHouston.Imprecision
 
         public virtual void Die()
         {
-            Score.Instance.AddPoints(50);
+            Score.Instance.AddPoints(500);
             currentState = AIState.Dead;
             Destroy(gameObject);
         }
@@ -108,7 +108,13 @@ namespace Com.MorganHouston.Imprecision
             target = GameObject.FindWithTag("Player").transform;
             agent = transform.root.GetComponentInChildren<NavMeshAgent>();
             spawnLocation = transform.position;
-            agent.Warp(spawnLocation);
+            NavMeshHit closestHit;
+
+            if (NavMesh.SamplePosition(spawnLocation, out closestHit, 500f, NavMesh.AllAreas))
+                gameObject.transform.position = closestHit.position;
+            else
+                Debug.LogError("Could not find position on NavMesh!");
+            //agent.Warp(spawnLocation);
             agent.speed = movementSpeed;
             health = GetComponent<Health>();
             attackSpeed = 5 - (attackSpeed / 100) * 4;
@@ -187,7 +193,7 @@ namespace Com.MorganHouston.Imprecision
 
         protected void FollowTarget(Vector3 targetPos)
         {
-            if(targetPos != null)
+            if(targetPos != null && agent.isOnNavMesh)
                 agent.SetDestination(targetPos);
         }
 
@@ -204,16 +210,16 @@ namespace Com.MorganHouston.Imprecision
 
             if (critValue < (1f - crit))
             {
-                damage = (int)(randValue + AttackPower) - (dp * (ul / scalingfactor));
+                damage = (int)randValue + AttackPower + (ul * (1/6)) - dp;
             }
             else
             {
-                damage = ((int)(randValue + AttackPower) - (dp * (ul / scalingfactor))) * 2;
+                damage = (int)(randValue + AttackPower + (ul * (1/6)) - dp) * 2;
             }
 
             if (damage < 0)
             {
-                damage = 0;
+                damage = (int)randValue;
             }
 
             return damage;
@@ -251,16 +257,16 @@ namespace Com.MorganHouston.Imprecision
 
             if (critValue < (1f - crit))
             {
-                damage = (int)((randValue + ap) - (DefensePower * (ul / scalingfactor)));
+                damage = (int)randValue + ap - (DefensePower + (ul * (1 / 6)));
             }
             else
             {
-                damage = (int)((randValue + ap) - (DefensePower * (ul / scalingfactor)))*2;
+                damage = (int)(randValue + ap - (DefensePower + (ul * (1 / 6)))) * 2;
             }
 
             if(damage < 0)
             {
-                damage = 0;
+                damage = (int)randValue;
             }
 
             return damage;

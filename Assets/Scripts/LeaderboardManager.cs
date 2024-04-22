@@ -21,6 +21,11 @@ namespace Com.MorganHouston.Imprecision
         private const string ATMOSTBULLSEYESID = "CgkIqK61pYkHEAIQFw";
         private const string ATMOSTJEWELSID = "CgkIqK61pYkHEAIQGA";
         private const string ATBESTACCURACYID = "CgkIqK61pYkHEAIQGQ";
+        private const string ATBESTLEVEL1TIMEID = "CgkIqK61pYkHEAIQGg";
+        private const string ATBESTLEVEL2TIMEID = "CgkIqK61pYkHEAIQGw";
+        private const string ATBESTLEVEL3TIMEID = "CgkIqK61pYkHEAIQHA";
+        private const string ATBESTLEVEL4TIMEID = "CgkIqK61pYkHEAIQHQ";
+        private const string ATBESTTOTALTIMEID = "CgkIqK61pYkHEAIQHg";
 
         public static void UpdateLeaderboard(int value, string leaderboardID)
         {
@@ -78,8 +83,74 @@ namespace Com.MorganHouston.Imprecision
 #endif
         }
 
+        public static void UpdateAllTimeLeaderboards()
+        {
+#if (UNITY_IOS || UNITY_ANDROID)
+            
+            if(Player.Instance.Level1Time != 0)
+            {
+                Social.ReportScore(Player.Instance.Level1Time / 1000, ATBESTLEVEL1TIMEID, (bool success) =>
+                {
+                    // handle success or failure
+                });
+            }
 
-#region APPLES
+            if (Player.Instance.Level2Time != 0)
+            {
+                Social.ReportScore(Player.Instance.Level2Time / 1000, ATBESTLEVEL2TIMEID, (bool success) =>
+                {
+                    // handle success or failure
+                });
+            }
+
+            if (Player.Instance.Level3Time != 0)
+            {
+                Social.ReportScore(Player.Instance.Level3Time / 1000, ATBESTLEVEL3TIMEID, (bool success) =>
+                {
+                    // handle success or failure
+                });
+            }
+
+            if (Player.Instance.Level4Time != 0)
+            {
+                Social.ReportScore(Player.Instance.Level4Time / 1000, ATBESTLEVEL4TIMEID, (bool success) =>
+                {
+                    // handle success or failure
+                });
+            }
+
+            if (Player.Instance.TotalTime != 0)
+            {
+                Social.ReportScore(Player.Instance.TotalTime / 1000, ATBESTTOTALTIMEID, (bool success) =>
+                {
+                    // handle success or failure
+                });
+            }
+#endif
+
+#if !DISABLESTEAMWORKS
+            if (CloudSaveLogin.Instance.isSteam && SteamManager.Initialized && CloudSaveLogin.Instance.currentSSO == CloudSaveLogin.ssoOption.Steam)
+            {
+                if (Player.Instance.Level1Time != 0)
+                    SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level1Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel1Time);
+
+                if (Player.Instance.Level2Time != 0)
+                    SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level2Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel2Time);
+
+                if (Player.Instance.Level3Time != 0)
+                    SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level3Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel3Time);
+
+                if (Player.Instance.Level4Time != 0)
+                    SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.Level4Time / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestLevel4Time);
+
+                if (Player.Instance.TotalTime != 0)
+                    SteamLeaderboardManager.Instance.UpdateScore(Player.Instance.TotalTime / 1000, SteamLeaderboardManager.LeaderboardName.AllTimeBestTotalTime);
+            }
+#endif
+        }
+
+
+        #region APPLES
 
 
         public static void UnlockApple1()
