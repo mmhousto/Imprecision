@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool sprint;
 		public bool aiming;
 		public bool isPullingBack;
+		public bool isSkipping;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -61,7 +62,8 @@ namespace StarterAssets
 
 		public void OnSkip(InputValue value)
         {
-			IntroSceneManager.Instance.SkipScene();
+			isSkipping = value.isPressed;
+			//IntroSceneManager.Instance.SkipScene();
         }
 
 		public void MoveInput(Vector2 newMoveDirection)

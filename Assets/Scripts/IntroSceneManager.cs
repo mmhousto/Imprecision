@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,29 +8,25 @@ namespace Com.MorganHouston.Imprecision
 {
     public class IntroSceneManager : MonoBehaviour
     {
-        private static IntroSceneManager instance;
-
-        public static IntroSceneManager Instance { get { return instance; } }
-
         public GameObject[] cams;
 
         public GameObject cutsceneCanvas;
-
+        public StarterAssetsInputs inputs;
         private PlayableDirector _currentDirector;
         private bool _sceneSkipped = false;
         private float _timeToSkipTo;
 
         private void Awake()
         {
-            if(instance != this && instance != null)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                instance = this;
-            }
             GetDirector(GetComponent<PlayableDirector>());
+        }
+
+        private void Update()
+        {
+            if(_sceneSkipped == false && inputs.isSkipping)
+            {
+                SkipScene();
+            }
         }
 
         public void DeleteCams()
