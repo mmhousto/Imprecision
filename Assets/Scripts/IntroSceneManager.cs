@@ -68,6 +68,7 @@ namespace Com.MorganHouston.Imprecision
             {
                 _currentDirector.time = _timeToSkipTo;
                 _sceneSkipped = true;
+                inputs.isSkipping = false;
                 //cutsceneCanvas.SetActive(false);
             }
             
