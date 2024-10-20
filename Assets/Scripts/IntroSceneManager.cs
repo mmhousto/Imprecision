@@ -15,6 +15,7 @@ namespace Com.MorganHouston.Imprecision
         private PlayableDirector _currentDirector;
         private bool _sceneSkipped = false;
         private float _timeToSkipTo;
+        private bool _cutsceneTriggered = false;
 
         private void Awake()
         {
@@ -26,6 +27,15 @@ namespace Com.MorganHouston.Imprecision
             if(_sceneSkipped == false && inputs.isSkipping)
             {
                 SkipScene();
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player") && _cutsceneTriggered == false)
+            {
+                _cutsceneTriggered = true;
+                _currentDirector.Play();
             }
         }
 
