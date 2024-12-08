@@ -191,6 +191,16 @@ namespace Com.MorganHouston.Imprecision
             AnimatePullBack();
         }
 
+        public void StopAiming()
+        {
+            startedPullingBack = false;
+            pullingBack = false;
+            _input.aiming = false;
+            _input.isPullingBack = false;
+            aiming = false;
+            RumbleManager.instance?.StopRumbleNow();
+        }
+
     }
 
 }

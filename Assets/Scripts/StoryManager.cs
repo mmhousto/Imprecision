@@ -16,6 +16,7 @@ namespace Com.MorganHouston.Imprecision
         public GameObject miniBoss;
         public TextMeshProUGUI currentTimeLabel;
         public float timeToBeat;
+        public bool isPaused;
 
         public static List<float> currentRunTimes = new List<float>();
 
@@ -121,7 +122,7 @@ namespace Com.MorganHouston.Imprecision
 
         void HandleTime()
         {
-            if(GameManager.Instance?.isGameOver == false)
+            if(GameManager.Instance?.isGameOver == false && isPaused == false)
             {
                 currentTime += Time.deltaTime;
                 
@@ -132,6 +133,11 @@ namespace Com.MorganHouston.Imprecision
             seconds = Mathf.FloorToInt(currentTime - (hours * 3600f) - (minutes * 60f));
             milliseconds = Mathf.FloorToInt((currentTime - Mathf.Floor(currentTime)) * 1000f);
             currentTimeLabel.text = $"TIME: {hours}:{minutes}:{seconds}.{milliseconds}";
+        }
+
+        public void PauseTimer(bool pause)
+        {
+            isPaused = pause;
         }
 
         public int GetStarRating()
