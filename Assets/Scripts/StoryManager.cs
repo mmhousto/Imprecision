@@ -28,6 +28,11 @@ namespace Com.MorganHouston.Imprecision
         public float currentTime;
         int hours, minutes, seconds, milliseconds;
 
+        [InspectorButton("DefeatedMiniBoss")]
+        public bool defeatMiniBoss;
+        [InspectorButton("LevelComplete")]
+        public bool completeLevel;
+
         private void Awake()
         {
                 instance = this;
@@ -114,6 +119,7 @@ namespace Com.MorganHouston.Imprecision
                 beatInTime = true;
             }
         }
+
 
         void DefeatedMiniBoss()
         {

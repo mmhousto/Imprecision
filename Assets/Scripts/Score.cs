@@ -30,14 +30,7 @@ namespace Com.MorganHouston.Imprecision
 
         private void Awake()
         {
-            if (instance != this && instance != null)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                instance = this;
-            }
+            instance = this;
             scoreLbl = GetComponent<TextMeshProUGUI>();
         }
 
