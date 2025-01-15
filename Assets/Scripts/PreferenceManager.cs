@@ -25,12 +25,10 @@ namespace Com.MorganHouston.Imprecision
         {
             if (instance != null && instance != this)
             {
-                Destroy(this);
+                Destroy(instance);
             }
-            else
-            {
-                instance = this;
-            }
+
+            instance = this;
 
             GetPrefs();
         }
