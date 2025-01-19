@@ -91,9 +91,38 @@ namespace Com.MorganHouston.Imprecision
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Legs));
                 }
+                StartCoroutine(PushBack());
+                StartCoroutine(ShowDamageTaken(myCollider.GetComponent<MeshRenderer>()));
                 Player.Instance.HitTarget();
                 Destroy(collision.gameObject);
             }
+        }
+
+        protected IEnumerator ShowDamageTaken(MeshRenderer mesh)
+        {
+            mesh.material.EnableKeyword("_EMISSION");
+            yield return new WaitForSeconds(0.5f);
+            mesh.material.DisableKeyword("_EMISSION");
+        }
+
+        protected IEnumerator ShowDamageTaken(SkinnedMeshRenderer mesh)
+        {
+            mesh.material.EnableKeyword("_EMISSION");
+            yield return new WaitForSeconds(0.5f);
+            mesh.material.DisableKeyword("_EMISSION");
+        }
+
+        protected IEnumerator PushBack()
+        {
+            agent.SetDestination(transform.position);
+            // disable the agent
+            agent.updatePosition = false;
+            agent.updateRotation = false;
+            agent.isStopped = true;
+            yield return new WaitForSeconds(1f);
+            agent.updatePosition = true;
+            agent.updateRotation = true;
+            agent.isStopped = false;
         }
 
         public virtual void Die()

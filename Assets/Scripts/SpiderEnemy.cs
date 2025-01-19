@@ -6,6 +6,7 @@ namespace Com.MorganHouston.Imprecision
 {
     public class SpiderEnemy : Enemy
     {
+
         // Start is called before the first frame update
         void Start()
         {
@@ -23,6 +24,8 @@ namespace Com.MorganHouston.Imprecision
         {
             if (collision.gameObject.CompareTag("arrow"))
             {
+                StartCoroutine(PushBack());
+
                 Collider myCollider = collision.GetContact(0).thisCollider;
                 if (myCollider.name == "Head")
                 {
@@ -36,6 +39,7 @@ namespace Com.MorganHouston.Imprecision
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Legs));
                 }
+                StartCoroutine(ShowDamageTaken(myCollider.GetComponent<MeshRenderer>()));
                 Player.Instance.HitTarget();
                 Destroy(collision.gameObject);
             }
