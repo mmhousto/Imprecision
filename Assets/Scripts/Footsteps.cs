@@ -11,9 +11,14 @@ namespace Com.MorganHouston.Imprecision
         public AudioSource audioSource;
         private float delay = 1f;
 
+        private void Start()
+        {
+            delay = 0;
+        }
+
         private void Update()
         {
-            if (delay > 0)
+            if (delay >= 0)
             {
                 delay -= Time.deltaTime;
             }
