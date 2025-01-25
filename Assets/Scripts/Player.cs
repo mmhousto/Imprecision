@@ -130,7 +130,7 @@ namespace Com.MorganHouston.Imprecision
         private int critChance;
         public int CritChance { get { return critChance; } private set { critChance = value; } }
         private int critMin = 1;
-        private int critMax = 100;
+        private int critMax = 1000;
 
         protected int maxXP;
 
@@ -170,8 +170,8 @@ namespace Com.MorganHouston.Imprecision
 
         private void UpdateMaxXp()
         {
-            if (maxXP != userLevel * 420)
-                maxXP = userLevel * 420;
+            if (maxXP != UserLevel * 420)
+                maxXP = UserLevel * 420;
         }
 
         private void UpdateLevel()
@@ -179,8 +179,7 @@ namespace Com.MorganHouston.Imprecision
             if (UserXP >= maxXP && UserLevel != 600)
             {
                 UserLevel++;
-                int rem = UserXP % maxXP;
-                UserXP = 0 + rem;
+                UserXP -= maxXP;
             }
         }
 
