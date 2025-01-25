@@ -83,7 +83,12 @@ namespace Com.MorganHouston.Imprecision
             currentRunTimes.Add(currentTime);
             Player.Instance.SetLevelTime(currentRunTimes.Count, currentTime);
 
-            if (currentRunTimes.Count == 4) Player.Instance.SetLevelTime(0, GetTotalTime());
+            if (currentRunTimes.Count == 4)
+            {
+                miniBossDefeated = true;
+                Score.Instance.AddPoints(1000000);
+                Player.Instance.SetLevelTime(0, GetTotalTime());
+            }
 
             GameManager.Instance?.GameOver();
         }
