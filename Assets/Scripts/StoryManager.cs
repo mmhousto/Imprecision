@@ -63,13 +63,13 @@ namespace Com.MorganHouston.Imprecision
 
         public void CutsceneStart()
         {
-            AudioManager.Instance.GetComponent<AudioSource>().Pause();
+            AudioManager.Instance?.GetComponent<AudioSource>().Pause();
         }
 
         public void LevelStarted()
         {
             currentTime = 0;
-            AudioManager.Instance.GetComponent<AudioSource>().Play();
+            AudioManager.Instance?.GetComponent<AudioSource>().Play();
         }
 
         private void OnDisable()
