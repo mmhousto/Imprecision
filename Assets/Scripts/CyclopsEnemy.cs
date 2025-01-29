@@ -49,9 +49,12 @@ namespace Com.MorganHouston.Imprecision
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Legs));
                 }
+                StartCoroutine(ShowDamageTaken(GetComponentInChildren<SkinnedMeshRenderer>()));
+                StartCoroutine(PushBack());
                 Player.Instance.HitTarget();
                 anim.SetTrigger("Hurt");
                 Destroy(collision.gameObject);
+                
             }
         }
 

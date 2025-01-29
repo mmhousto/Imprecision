@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -17,7 +14,7 @@ namespace Com.MorganHouston.Imprecision
         public float attackDistance = 2f; // the distance at which the enemy will start attacking the player
         [Tooltip("Tells wether the enemy is attacking or not.")]
         public bool attacking = false;
-        
+
         protected Health health;
         protected enum AIState { Idle, Follow, Attack, Patrol, Dead }; // enum for the enemy states
         protected AIState currentState = AIState.Idle; // current state of the enemy
@@ -79,7 +76,7 @@ namespace Com.MorganHouston.Imprecision
             if (collision.gameObject.CompareTag("arrow"))
             {
                 Collider myCollider = collision.GetContact(0).thisCollider;
-                if(myCollider.name == "Head")
+                if (myCollider.name == "Head")
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Head));
                 }
@@ -91,9 +88,45 @@ namespace Com.MorganHouston.Imprecision
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Legs));
                 }
+                StartCoroutine(PushBack());
+                StartCoroutine(ShowDamageTaken(myCollider.GetComponent<MeshRenderer>()));
                 Player.Instance.HitTarget();
                 Destroy(collision.gameObject);
             }
+        }
+
+        protected IEnumerator ShowDamageTaken(MeshRenderer mesh)
+        {
+            mesh.material.EnableKeyword("_EMISSION");
+            yield return new WaitForSeconds(0.5f);
+            mesh.material.DisableKeyword("_EMISSION");
+        }
+
+        protected IEnumerator ShowDamageTaken(SkinnedMeshRenderer mesh)
+        {
+            mesh.material.EnableKeyword("_EMISSION");
+            yield return new WaitForSeconds(0.5f);
+            mesh.material.DisableKeyword("_EMISSION");
+        }
+
+        protected IEnumerator PushBack()
+        {
+            if (agent != null)
+            {
+                agent.SetDestination(transform.position);
+                // disable the agent
+                agent.updatePosition = false;
+                agent.updateRotation = false;
+                agent.isStopped = true;
+            }
+            yield return new WaitForSeconds(1f);
+            if (agent != null)
+            {
+                agent.updatePosition = true;
+                agent.updateRotation = true;
+                agent.isStopped = false;
+            }
+
         }
 
         public virtual void Die()
@@ -123,7 +156,7 @@ namespace Com.MorganHouston.Imprecision
 
         protected virtual void DetermineState()
         {
-            if(target == null)
+            if (target == null)
             {
                 FollowTarget(spawnLocation);
             }
@@ -174,12 +207,12 @@ namespace Com.MorganHouston.Imprecision
                         break;
                 }
             }
-            
+
         }
 
         protected void CheckCanAttack()
         {
-            if(attackTime <= 0)
+            if (attackTime <= 0)
             {
                 attackTime = 0;
                 canAttack = true;
@@ -193,7 +226,7 @@ namespace Com.MorganHouston.Imprecision
 
         protected void FollowTarget(Vector3 targetPos)
         {
-            if(targetPos != null && agent.isOnNavMesh)
+            if (targetPos != null && agent.isOnNavMesh)
                 agent.SetDestination(targetPos);
         }
 
@@ -210,11 +243,11 @@ namespace Com.MorganHouston.Imprecision
 
             if (critValue < (1f - crit))
             {
-                damage = (int)randValue + AttackPower + (ul * (1/6)) - dp;
+                damage = (int)randValue + AttackPower + (ul * (1 / 6)) - dp;
             }
             else
             {
-                damage = (int)(randValue + AttackPower + (ul * (1/6)) - dp) * 2;
+                damage = (int)(randValue + AttackPower + (ul * (1 / 6)) - dp) * 2;
             }
 
             if (damage < 0)
@@ -229,7 +262,7 @@ namespace Com.MorganHouston.Imprecision
         {
             Player player = Player.Instance;
             float randValue = 10;
-            float crit = player != null ? player.CritChance/100f : 5 / 100f;
+            float crit = player != null ? player.CritChance / 100f : 5 / 100f;
             int ap = player != null ? player.AttackPower : 10;
             int ul = player != null ? player.UserLevel : 1;
 
@@ -252,8 +285,8 @@ namespace Com.MorganHouston.Imprecision
 
             int damage = 0;
             float critValue = UnityEngine.Random.value;
-            
-            
+
+
 
             if (critValue < (1f - crit))
             {
@@ -264,7 +297,7 @@ namespace Com.MorganHouston.Imprecision
                 damage = (int)(randValue + ap - (DefensePower + (ul * (1 / 6)))) * 2;
             }
 
-            if(damage < 0)
+            if (damage < 0)
             {
                 damage = (int)randValue;
             }

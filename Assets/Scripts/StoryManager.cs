@@ -63,13 +63,13 @@ namespace Com.MorganHouston.Imprecision
 
         public void CutsceneStart()
         {
-            AudioManager.Instance.GetComponent<AudioSource>().Pause();
+            AudioManager.Instance?.GetComponent<AudioSource>().Pause();
         }
 
         public void LevelStarted()
         {
             currentTime = 0;
-            AudioManager.Instance.GetComponent<AudioSource>().Play();
+            AudioManager.Instance?.GetComponent<AudioSource>().Play();
         }
 
         private void OnDisable()
@@ -83,7 +83,13 @@ namespace Com.MorganHouston.Imprecision
             currentRunTimes.Add(currentTime);
             Player.Instance.SetLevelTime(currentRunTimes.Count, currentTime);
 
-            if (currentRunTimes.Count == 4) Player.Instance.SetLevelTime(0, GetTotalTime());
+            if (currentRunTimes.Count == 4)
+            {
+                allEnemiesDefeated = true;
+                miniBossDefeated = true;
+                Score.Instance.AddPoints(1000000);
+                Player.Instance.SetLevelTime(0, GetTotalTime());
+            }
 
             GameManager.Instance?.GameOver();
         }

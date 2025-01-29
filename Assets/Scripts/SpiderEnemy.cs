@@ -6,10 +6,15 @@ namespace Com.MorganHouston.Imprecision
 {
     public class SpiderEnemy : Enemy
     {
+        private Animator anim;
+        private Rigidbody rb;
+
         // Start is called before the first frame update
         void Start()
         {
             AgentSetup();
+            anim = GetComponent<Animator>();
+            rb = GetComponent<Rigidbody>();
         }
 
         // Update is called once per frame
@@ -23,6 +28,8 @@ namespace Com.MorganHouston.Imprecision
         {
             if (collision.gameObject.CompareTag("arrow"))
             {
+                StartCoroutine(PushBack());
+
                 Collider myCollider = collision.GetContact(0).thisCollider;
                 if (myCollider.name == "Head")
                 {
@@ -36,6 +43,7 @@ namespace Com.MorganHouston.Imprecision
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Legs));
                 }
+                StartCoroutine(ShowDamageTaken(myCollider.GetComponent<MeshRenderer>()));
                 Player.Instance.HitTarget();
                 Destroy(collision.gameObject);
             }
@@ -48,7 +56,13 @@ namespace Com.MorganHouston.Imprecision
             else
                 Score.Instance.AddPoints(500);
             currentState = AIState.Dead;
-            Destroy(gameObject);
+            
+            DisableAgent();
+            Destroy(agent);
+            Destroy(rb);
+
+            anim.SetTrigger("Death");
+            Destroy(gameObject, 1.5f);
         }
 
         protected override void DetermineState()
@@ -106,7 +120,7 @@ namespace Com.MorganHouston.Imprecision
                     case AIState.Patrol:
                         break;
                     case AIState.Dead:
-                        FollowTarget(transform.position);
+                        //FollowTarget(transform.position);
                         break;
                     default:
                         currentState = AIState.Idle;
@@ -116,7 +130,7 @@ namespace Com.MorganHouston.Imprecision
 
         }
 
-        private void JumpAndAttack()
+        private void DisableAgent()
         {
             if (agent.enabled)
             {
@@ -130,10 +144,15 @@ namespace Com.MorganHouston.Imprecision
                 agent.updateRotation = false;
                 agent.isStopped = true;
             }
+        }
+
+        private void JumpAndAttack()
+        {
+            DisableAgent();
 
             // make the spider jump towards the player
             Vector3 directionToPlayer = (target.position - transform.position).normalized;
-            GetComponent<Rigidbody>().AddForce(directionToPlayer * 5 + Vector3.up * 5, ForceMode.Impulse);
+            rb.AddForce(directionToPlayer * 5 + Vector3.up * 5, ForceMode.Impulse);
 
             // check if the player is within attack range
             float distanceToPlayer = Vector3.Distance(transform.position, target.position);

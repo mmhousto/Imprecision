@@ -74,6 +74,9 @@ namespace Com.MorganHouston.Imprecision
             
         }
 
-
+        public void PlayMusic()
+        {
+            AudioManager.Instance.GetComponent<AudioSource>().Play();
+        }
     }
 }

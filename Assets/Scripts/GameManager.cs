@@ -162,7 +162,7 @@ namespace Com.MorganHouston.Imprecision
                 ActivateStars(3);
                 gameOverText.text = "Perfection";
                 Player.Instance.SetStarForLevel(levelSelected, 3);
-
+                Score.score *= 3;
 #if (UNITY_IOS || UNITY_ANDROID)
                 LeaderboardManager.CheckPerfectAchievements();
 #endif
@@ -172,6 +172,7 @@ namespace Com.MorganHouston.Imprecision
                 ActivateStars(2);
                 gameOverText.text = "Excellent";
                 Player.Instance.SetStarForLevel(levelSelected, 2);
+                Score.score *= 2;
             }
             else if (score >= oneStar)
             {
@@ -184,6 +185,7 @@ namespace Com.MorganHouston.Imprecision
                 gameOverText.text = "Try Again";
                 Player.Instance.SetStarForLevel(levelSelected, 0);
             }
+            score = Score.score;
             Player.Instance.GainPoints(score);
 
             // If Perfect, updates user stats and checks/updates progress on bullseye achievements
@@ -208,19 +210,19 @@ namespace Com.MorganHouston.Imprecision
         /// </summary>
         private void DetermineStars(int starsToShow)
         {
-            var score = Score.score;
-
             switch (starsToShow)
             {
                 case 3:
                     ActivateStars(3);
                     gameOverText.text = "Perfection";
                     Player.Instance.SetStarForStoryLevel(levelSelected, 3);
+                    Score.score *= 3;
                     break;
                 case 2:
                     ActivateStars(2);
                     gameOverText.text = "Excellent";
                     Player.Instance.SetStarForStoryLevel(levelSelected, 2);
+                    Score.score *= 2;
                     break;
                 case 1:
                     ActivateStars(1);
@@ -234,7 +236,8 @@ namespace Com.MorganHouston.Imprecision
                 default:
                     break;
             }
-            
+            var score = Score.score;
+
             Player.Instance.GainPoints(score);
 
             // Save data to cloud/local

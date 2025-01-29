@@ -31,6 +31,9 @@ namespace Com.MorganHouston.Imprecision
 
                 Collider myCollider = collision.GetContact(0).thisCollider;
 
+                StartCoroutine(ShowDamageTaken(GetComponentInChildren<SkinnedMeshRenderer>()));
+                StartCoroutine(PushBack());
+
                 if (myCollider.name.Contains("Head") || myCollider.CompareTag("Head"))
                 {
                     health.TakeDamage(DetermineDamageToTake((int)HitArea.Head));
@@ -53,8 +56,7 @@ namespace Com.MorganHouston.Imprecision
                     anim.SetTrigger("Hurt");
                     Destroy(collision.gameObject);
                 }
-                
-                
+
             }
         }
 

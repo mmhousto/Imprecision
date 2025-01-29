@@ -19,6 +19,11 @@ namespace Com.MorganHouston.Imprecision
             {
                 cursor.SetActive(false);
             }
+
+            if(cursor != null && cursor.transform.localPosition != Vector3.zero)
+            {
+                cursor.transform.localPosition = Vector3.zero;
+            }
         }
 
         private void UpdateCursor()
