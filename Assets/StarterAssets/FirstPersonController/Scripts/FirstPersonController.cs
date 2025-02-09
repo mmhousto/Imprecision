@@ -48,6 +48,10 @@ namespace StarterAssets
 		[Header("Cinemachine")]
 		[Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
 		public GameObject CinemachineCameraTarget;
+        [Tooltip("The follow target's parent for First Person")]
+        public Transform cinemachineFPCamParent;
+        [Tooltip("The follow target's parent for Third Person")]
+        public Transform cinemachineTPCamParent;
 		[Tooltip("How far in degrees can you move the camera up")]
 		public float TopClamp = 90.0f;
 		[Tooltip("How far in degrees can you move the camera down")]
@@ -73,6 +77,7 @@ namespace StarterAssets
 		[SerializeField]
 		private bool isFP;
 
+		private Vector3 _cinemachineCamFollowPos; 
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private PlayerAnimatorManager _anim;
@@ -98,6 +103,7 @@ namespace StarterAssets
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 			_anim = GetComponent<PlayerAnimatorManager>();
+			_cinemachineCamFollowPos = CinemachineCameraTarget.transform.localPosition;
 
 			player = Player.Instance;
 			float movementSpeed = player != null ? player.MovementSpeed : 5;
@@ -147,10 +153,14 @@ namespace StarterAssets
 				fpCam.SetActive(true);
 				tpCam.SetActive(false);
 				tpAimCam.SetActive(false);
+				CinemachineCameraTarget.transform.SetParent(cinemachineFPCamParent);
+				CinemachineCameraTarget.transform.localPosition = _cinemachineCamFollowPos;
             }
             else if(isFP == false)
             {
-				if(fpCam.activeInHierarchy)
+				if(CinemachineCameraTarget.transform.parent != cinemachineTPCamParent)
+					CinemachineCameraTarget.transform.SetParent(cinemachineTPCamParent);
+                if (fpCam.activeInHierarchy)
 					fpCam.SetActive(false);
                 if (_input.aiming && !tpAimCam.activeInHierarchy)
                 {
@@ -184,7 +194,7 @@ namespace StarterAssets
 				if(isFP)
 					_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 				else
-                    _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -40, 27.5f);
+                    _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -80, 80f);
 
                 // Update Cinemachine camera target pitch
                 CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
