@@ -9,7 +9,7 @@ namespace Com.MorganHouston.Imprecision
 
         public AudioClip[] audioClips;
         public AudioSource audioSource;
-        private float delay = 1f;
+        private float delay = 0.1f;
 
         private void Start()
         {
@@ -33,7 +33,7 @@ namespace Com.MorganHouston.Imprecision
                 int rand = Random.Range(0, audioClips.Length);
                 audioSource.clip = audioClips[rand];
                 audioSource.PlayOneShot(audioSource.clip);
-                delay = 1f;
+                delay = 0.1f;
             }
             
         }
