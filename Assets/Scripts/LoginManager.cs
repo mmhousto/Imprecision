@@ -24,15 +24,7 @@ namespace Com.MorganHouston.Imprecision
 
         private void Awake()
         {
-            if (instance != null && instance != this)
-            {
-                Destroy(this.gameObject);
-                return;
-            }
-            else
-            {
                 instance = this;
-            }
         }
 
         // Start is called before the first frame update
