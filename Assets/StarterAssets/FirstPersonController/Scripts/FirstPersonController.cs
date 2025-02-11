@@ -76,6 +76,7 @@ namespace StarterAssets
 
 		[SerializeField]
 		private bool isFP;
+		private bool lastPerspectiveFP;
 
 		private Vector3 _cinemachineCamFollowPos; 
 		private CharacterController _controller;
@@ -174,6 +175,8 @@ namespace StarterAssets
 			
 			isFP = Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1));
         }
+
+
 
 		private void GroundedCheck()
 		{

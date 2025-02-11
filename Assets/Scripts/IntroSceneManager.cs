@@ -2,6 +2,7 @@ using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.Playables;
 
 namespace Com.MorganHouston.Imprecision
@@ -34,6 +35,7 @@ namespace Com.MorganHouston.Imprecision
         {
             if (other.CompareTag("Player") && _cutsceneTriggered == false)
             {
+                other.GetComponent<RigBuilder>().enabled = false;
                 _cutsceneTriggered = true;
                 _currentDirector.Play();
             }
