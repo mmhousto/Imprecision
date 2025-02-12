@@ -1,7 +1,9 @@
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.Playables;
 
 namespace Com.MorganHouston.Imprecision
@@ -9,22 +11,27 @@ namespace Com.MorganHouston.Imprecision
     public class IntroSceneManager : MonoBehaviour
     {
         public GameObject[] cams;
-
         public GameObject cutsceneCanvas;
         public StarterAssetsInputs inputs;
+        
         private PlayableDirector _currentDirector;
         private bool _sceneSkipped = false;
         private float _timeToSkipTo;
-        private bool _cutsceneTriggered = false;
+        public bool _cutsceneTriggered = false;
 
         private void Awake()
         {
             GetDirector(GetComponent<PlayableDirector>());
         }
 
+        private void Start()
+        {
+            _sceneSkipped = false;
+        }
+
         private void Update()
         {
-            if(_sceneSkipped == false && inputs.isSkipping)
+            if(_sceneSkipped == false && inputs.isSkipping && _cutsceneTriggered)
             {
                 SkipScene();
             }
@@ -34,6 +41,7 @@ namespace Com.MorganHouston.Imprecision
         {
             if (other.CompareTag("Player") && _cutsceneTriggered == false)
             {
+                other.GetComponent<RigBuilder>().enabled = false;
                 _cutsceneTriggered = true;
                 _currentDirector.Play();
             }

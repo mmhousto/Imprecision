@@ -76,6 +76,7 @@ namespace StarterAssets
 
 		[SerializeField]
 		private bool isFP;
+		private bool lastPerspectiveFP;
 
 		private Vector3 _cinemachineCamFollowPos; 
 		private CharacterController _controller;
@@ -112,7 +113,8 @@ namespace StarterAssets
 
 			RotationSpeed = PlayerPrefs.GetFloat("Sensitivity", 20) * 0.05f;
 
-			isFP = Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1));
+			//isFP = Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1));
+			isFP = true;
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
@@ -134,8 +136,8 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
-			UpdateCamera();
 			CameraRotation();
+			UpdateCamera();
 		}
 
 		public void UpdateSensitivity(float value)
@@ -145,8 +147,6 @@ namespace StarterAssets
 
 		private void UpdateCamera()
         {
-			if(isFP != Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1)))
-				isFP = Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1));
 
 			if (isFP && (!fpCam.activeInHierarchy || tpAimCam.activeInHierarchy || tpCam.activeInHierarchy))
             {
@@ -172,7 +172,11 @@ namespace StarterAssets
 					tpCam.SetActive(true);
 				}
             }
+			
+			isFP = Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1));
         }
+
+
 
 		private void GroundedCheck()
 		{

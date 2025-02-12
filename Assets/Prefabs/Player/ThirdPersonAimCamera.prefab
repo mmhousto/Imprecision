@@ -27,6 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4132902171839946094}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.10661118, y: 0, z: 0, w: 0.9943008}
   m_LocalPosition: {x: 1.6637001, y: 2.671983, z: -0.6107352}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,7 +35,6 @@ Transform:
   m_Children:
   - {fileID: 4132902172084309658}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 12.24, y: 0, z: 0}
 --- !u!114 &4132902171839946095
 MonoBehaviour:
@@ -59,12 +59,13 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 80
     OrthographicSize: 10
-    NearClipPlane: 0.001
+    NearClipPlane: 0.01
     FarClipPlane: 500
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
+    FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
@@ -88,7 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AimCollisionFilter:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 3713
   IgnoreTag: Player
   AimDistance: 200
   AimTargetReticle: {fileID: 0}
@@ -154,13 +155,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4132902172084309653}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.10667679, y: -0.020801393, z: -0.0020347883, w: 0.99407405}
   m_LocalPosition: {x: -1.3387334, y: -2.3527737, z: 2.744732}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4132902171839946092}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4132902172084309657
 MonoBehaviour:
