@@ -226,7 +226,7 @@ namespace Com.MorganHouston.Imprecision
 
         protected void FollowTarget(Vector3 targetPos)
         {
-            if (targetPos != null && agent.isOnNavMesh)
+            if (targetPos != null && agent != null && agent.isOnNavMesh)
                 agent.SetDestination(targetPos);
         }
 

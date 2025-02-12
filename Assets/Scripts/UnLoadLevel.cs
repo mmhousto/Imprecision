@@ -45,7 +45,7 @@ namespace Com.MorganHouston.Imprecision
         public void LoadUnLoad(int level)
         {
             SceneLoader.levelToLoad = level;
-            EventSystem.current.enabled = false;
+            //EventSystem.current.enabled = false;
             StartCoroutine(LoadAndUnload());
             //SceneManager.LoadScene(0);
         }

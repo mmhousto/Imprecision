@@ -17,16 +17,21 @@ namespace Com.MorganHouston.Imprecision
         private PlayableDirector _currentDirector;
         private bool _sceneSkipped = false;
         private float _timeToSkipTo;
-        private bool _cutsceneTriggered = false;
+        public bool _cutsceneTriggered = false;
 
         private void Awake()
         {
             GetDirector(GetComponent<PlayableDirector>());
         }
 
+        private void Start()
+        {
+            _sceneSkipped = false;
+        }
+
         private void Update()
         {
-            if(_sceneSkipped == false && inputs.isSkipping)
+            if(_sceneSkipped == false && inputs.isSkipping && _cutsceneTriggered)
             {
                 SkipScene();
             }

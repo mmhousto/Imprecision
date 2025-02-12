@@ -110,8 +110,8 @@ namespace Com.MorganHouston.Imprecision
             Time.timeScale = 1;
             StoryManager.currentRunTimes.Clear();
             GameManager.Instance.SetLevel(0);
-            //SceneLoader.LoadThisScene(3);
-            UnLoadLevel.Instance.LoadUnLoad(3);
+            SceneLoader.LoadThisScene(3);
+            //UnLoadLevel.Instance.LoadUnLoad(3);
         }
 
         public void ToMainMenu()
