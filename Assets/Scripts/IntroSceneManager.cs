@@ -1,6 +1,7 @@
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Playables;
@@ -10,9 +11,9 @@ namespace Com.MorganHouston.Imprecision
     public class IntroSceneManager : MonoBehaviour
     {
         public GameObject[] cams;
-
         public GameObject cutsceneCanvas;
         public StarterAssetsInputs inputs;
+        
         private PlayableDirector _currentDirector;
         private bool _sceneSkipped = false;
         private float _timeToSkipTo;
