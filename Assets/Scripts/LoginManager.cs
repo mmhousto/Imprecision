@@ -18,7 +18,7 @@ namespace Com.MorganHouston.Imprecision
 
         public static LoginManager Instance { get { return instance; } }
 
-        public GameObject appleLogin, googleLogin, facebookLogin, steamLogin, signInPanel, mainMenuPanel, levelSelectButton, steamStatsAchieveLeader;
+        public GameObject appleLogin, googleLogin, facebookLogin, steamLogin, signInPanel, mainMenuPanel, levelSelectButton, steamStatsAchieveLeader, anonymousButton;
 
         public TextMeshProUGUI leaderboardsAchievementsLabel;
 
@@ -65,6 +65,9 @@ namespace Com.MorganHouston.Imprecision
             {
                 Login();
             }
+
+            if (signInPanel.activeInHierarchy == false && EventSystem.current.currentSelectedGameObject == anonymousButton)
+                EventSystem.current.SetSelectedGameObject(levelSelectButton);
 
             if (CloudSaveLogin.Instance.loggedIn && leaderboardsAchievementsLabel.text != "You Must be signed in to view leaderboards or achievements!" && CloudSaveLogin.Instance.currentSSO != CloudSaveLogin.ssoOption.Steam)
                 leaderboardsAchievementsLabel.text = "You Must be signed in to view leaderboards or achievements!";
