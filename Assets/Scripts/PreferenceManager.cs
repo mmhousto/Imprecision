@@ -20,14 +20,11 @@ namespace Com.MorganHouston.Imprecision
         public bool Shadows { get; set; }
         public bool FirstPerson { get; set; }
         public bool PlayedTutorial { get; set; }
+        public int QualityLevel { get; set; }
 
         private void Awake()
         {
-            if (instance != null && instance != this)
-            {
-                Destroy(instance);
-            }
-
+            
             instance = this;
 
             GetPrefs();
@@ -50,6 +47,7 @@ namespace Com.MorganHouston.Imprecision
             Shadows = Convert.ToBoolean(PlayerPrefs.GetInt("Shadows", 1));
             FirstPerson = Convert.ToBoolean(PlayerPrefs.GetInt("FP", 1));
             PlayedTutorial = Convert.ToBoolean(PlayerPrefs.GetInt("TutorialPlayed", 0));
+            QualityLevel = PlayerPrefs.GetInt("Quality", 2);
         }
 
         public void SetMasterValue(float value)
@@ -107,6 +105,12 @@ namespace Com.MorganHouston.Imprecision
         {
             PlayedTutorial = value;
             PlayerPrefs.SetInt("TutorialPlayed", Convert.ToInt32(value));
+        }
+
+        public void SetQuality(int value)
+        {
+            QualityLevel = value;
+            PlayerPrefs.SetInt("Quality", value);
         }
 
     }
