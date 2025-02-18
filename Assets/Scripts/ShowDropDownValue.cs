@@ -19,6 +19,8 @@ namespace Com.MorganHouston.Imprecision
             dropDownValue = PlayerPrefs.GetInt("Quality", 2);
             dropDown = GetComponent<TMP_Dropdown>();
             dropDown.value = dropDownValue;
+
+
         }
     }
 }
