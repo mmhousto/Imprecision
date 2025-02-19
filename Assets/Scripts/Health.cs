@@ -37,7 +37,12 @@ namespace Com.MorganHouston.Imprecision
                 healthBar.value = HealthPoints;
                 label.text = $"{HealthPoints}/{healthBar.maxValue}";
             }
-            
+
+            if (CompareTag("Enemy"))
+            {
+                healthBar.gameObject.SetActive(false);
+            }
+
         }
 
         // Update is called once per frame
@@ -53,6 +58,11 @@ namespace Com.MorganHouston.Imprecision
             HealthPoints -= damageToTake;
             if (HealthPoints < 0)
                 HealthPoints = 0;
+
+            if (CompareTag("Enemy") && healthBar.gameObject.activeInHierarchy == false)
+            {
+                healthBar.gameObject.SetActive(true);
+            }
 
             healthBar.value = HealthPoints;
             label.text = $"{HealthPoints}/{healthBar.maxValue}";

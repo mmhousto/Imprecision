@@ -181,6 +181,15 @@ namespace Com.MorganHouston.Imprecision
                         {
                             currentState = AIState.Attack;
                         }
+
+                        if (agent.isStopped)
+                        {
+                            agent.Warp(transform.position);
+                            agent.updatePosition = true;
+                            agent.updateRotation = true;
+                            agent.isStopped = false;
+                            FollowTarget(target.position);
+                        }
                         break;
                     case AIState.Attack:
                         if (canAttack)
@@ -191,6 +200,7 @@ namespace Com.MorganHouston.Imprecision
                         }
                         else
                         {
+                            agent.Warp(transform.position);
                             agent.updatePosition = true;
                             agent.updateRotation = true;
                             agent.isStopped = false;
