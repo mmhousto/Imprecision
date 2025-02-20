@@ -14,12 +14,19 @@ namespace Com.MorganHouston.Imprecision
         void Start()
         {
             SetShadowsOnOff();
+            SetQuality(PreferenceManager.Instance.QualityLevel);
         }
 
         // Update is called once per frame
         void Update()
         {
         
+        }
+
+        public void SetQuality(int qualityLevel)
+        {
+            QualitySettings.SetQualityLevel(qualityLevel);
+            PreferenceManager.Instance.SetQuality(qualityLevel);
         }
 
         public void SetShadowsOnOff()

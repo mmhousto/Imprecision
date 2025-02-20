@@ -8,6 +8,7 @@ namespace Com.MorganHouston.Imprecision
     {
         private Animator anim;
         private Rigidbody rb;
+        private Coroutine attacking;
 
         // Start is called before the first frame update
         void Start()
@@ -98,6 +99,15 @@ namespace Com.MorganHouston.Imprecision
                         {
                             currentState = AIState.Attack;
                         }
+
+                        if (agent.isStopped && attacking == null)
+                        {
+                            agent.Warp(transform.position);
+                            agent.updatePosition = true;
+                            agent.updateRotation = true;
+                            agent.isStopped = false;
+                            FollowTarget(target.position);
+                        }
                         break;
                     case AIState.Attack:
                         // If not in attack zone but in follow distance, switch to follow state
@@ -107,15 +117,18 @@ namespace Com.MorganHouston.Imprecision
                             break;
                         }
 
-                        if (canAttack)
-                            JumpAndAttack();
-                        else
+                        if (canAttack && attacking == null)
+                            attacking = StartCoroutine(JumpAndAttack());
+
+                        if (!canAttack && agent.isStopped)
                         {
+                            agent.Warp(transform.position);
                             agent.updatePosition = true;
                             agent.updateRotation = true;
                             agent.isStopped = false;
-                            FollowTarget(target.position);
                         }
+                        if(attacking == null)
+                            FollowTarget(target.position);
                         break;
                     case AIState.Patrol:
                         break;
@@ -146,13 +159,15 @@ namespace Com.MorganHouston.Imprecision
             }
         }
 
-        private void JumpAndAttack()
+        private IEnumerator JumpAndAttack()
         {
             DisableAgent();
 
             // make the spider jump towards the player
             Vector3 directionToPlayer = (target.position - transform.position).normalized;
-            rb.AddForce(directionToPlayer * 5 + Vector3.up * 5, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 3, ForceMode.VelocityChange);
+            yield return new WaitForSeconds(.1f);
+            rb.AddForce(new Vector3(directionToPlayer.x, 0, directionToPlayer.z) * 15, ForceMode.Impulse);
 
             // check if the player is within attack range
             float distanceToPlayer = Vector3.Distance(transform.position, target.position);
@@ -162,9 +177,11 @@ namespace Com.MorganHouston.Imprecision
                 target.GetComponent<Health>().TakeDamage(DetermineDamageToDeal());
             }
 
+            yield return new WaitForSeconds(.9f);
+
             attackTime = attackSpeed;
             canAttack = false;
-
+            attacking = null;
         }
     }
 }
