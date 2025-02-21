@@ -165,9 +165,12 @@ namespace Com.MorganHouston.Imprecision
 
             // make the spider jump towards the player
             Vector3 directionToPlayer = (target.position - transform.position).normalized;
-            rb.AddForce(Vector3.up * 3, ForceMode.VelocityChange);
+
+            if (rb != null)
+                rb.AddForce(Vector3.up * 3, ForceMode.VelocityChange);
             yield return new WaitForSeconds(.1f);
-            rb.AddForce(new Vector3(directionToPlayer.x, 0, directionToPlayer.z) * 15, ForceMode.Impulse);
+            if(rb != null)
+                rb.AddForce(new Vector3(directionToPlayer.x, 0, directionToPlayer.z) * 15, ForceMode.Impulse);
 
             // check if the player is within attack range
             float distanceToPlayer = Vector3.Distance(transform.position, target.position);

@@ -111,7 +111,7 @@ namespace Com.MorganHouston.Imprecision
 
         protected IEnumerator PushBack()
         {
-            if (agent != null)
+            if (agent != null && agent.isOnNavMesh)
             {
                 agent.SetDestination(transform.position);
                 // disable the agent
