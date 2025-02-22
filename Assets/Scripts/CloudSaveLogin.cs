@@ -12,7 +12,7 @@ using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
 using System.Threading.Tasks;
 using Unity.Services.Core;
-using Facebook.Unity;
+//using Facebook.Unity;
 using System;
 using AppleAuth;
 using AppleAuth.Native;
@@ -109,7 +109,7 @@ namespace Com.MorganHouston.Imprecision
                 isSigningIn = true;
             }
 
-            if (!FB.IsInitialized)
+            /*if (!FB.IsInitialized)
             {
                 // Initialize the Facebook SDK
                 FB.Init(InitCallback, OnHideUnity);
@@ -118,7 +118,7 @@ namespace Com.MorganHouston.Imprecision
             {
                 // Already initialized, signal an app activation App Event
                 FB.ActivateApp();
-            }
+            }*/
 
 #endif
 
@@ -227,7 +227,7 @@ namespace Com.MorganHouston.Imprecision
         /// <summary>
         /// Signs user into facebook account with authentication from Facebook.
         /// </summary>
-        public void SignInFacebook()
+        /*public void SignInFacebook()
         {
             if (isSigningIn || AuthenticationService.Instance.IsSignedIn) return;
             isSigningIn = true;
@@ -243,7 +243,7 @@ namespace Com.MorganHouston.Imprecision
 #endif
             isSigningIn = false;
 
-        }
+        }*/
 
         /// <summary>
         /// Signs user into Apple with Auth from Apple.
@@ -381,10 +381,10 @@ namespace Com.MorganHouston.Imprecision
         /// <summary>
         /// Logs out of facebook.
         /// </summary>
-        public void FacebookLogout()
+        /*public void FacebookLogout()
         {
             FB.LogOut();
-        }
+        }*/
 
 
 #endregion
@@ -418,10 +418,10 @@ namespace Com.MorganHouston.Imprecision
         {
             SaveCloudData();
 
-            if (FB.IsLoggedIn)
+            /*if (FB.IsLoggedIn)
             {
                 FacebookLogout();
-            }
+            }*/
 
             if (currentSSO == ssoOption.Google)
             {
@@ -637,7 +637,7 @@ namespace Com.MorganHouston.Imprecision
 
 #endregion
 
-
+/*
 #region Facebook Auth
 
         /// <summary>
@@ -783,7 +783,7 @@ namespace Com.MorganHouston.Imprecision
 
 
 #endregion
-
+*/
 
 #region Google Play Auth
 

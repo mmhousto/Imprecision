@@ -13,6 +13,7 @@ namespace Com.MorganHouston.Imprecision
         public GameObject[] cams;
         public GameObject cutsceneCanvas;
         public StarterAssetsInputs inputs;
+        public PauseManager pausedManager;
         
         private PlayableDirector _currentDirector;
         private bool _sceneSkipped = false;
@@ -31,7 +32,7 @@ namespace Com.MorganHouston.Imprecision
 
         private void Update()
         {
-            if(_sceneSkipped == false && inputs.isSkipping && _cutsceneTriggered)
+            if(_sceneSkipped == false && inputs.isSkipping && _cutsceneTriggered && pausedManager.isPaused == false)
             {
                 SkipScene();
             }
@@ -76,7 +77,6 @@ namespace Com.MorganHouston.Imprecision
             {
                 _currentDirector.time = _timeToSkipTo;
                 _sceneSkipped = true;
-                inputs.isSkipping = false;
                 //cutsceneCanvas.SetActive(false);
             }
             

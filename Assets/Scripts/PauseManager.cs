@@ -98,7 +98,7 @@ namespace Com.MorganHouston.Imprecision
 
         public void UnPause()
         {
-            isPaused = false;
+            Invoke(nameof(DelayUnPause), 0.5f);
             backgroundUI.enabled = false;
 #if (UNITY_IOS || UNITY_ANDROID)
             onScreenButtons.SetActive(true);
@@ -110,6 +110,11 @@ namespace Com.MorganHouston.Imprecision
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
             RumbleManager.instance?.ResumeRumble();
+        }
+
+        private void DelayUnPause()
+        {
+            isPaused = false;
         }
 
         public void ReturnHome()

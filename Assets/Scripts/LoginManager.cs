@@ -18,7 +18,7 @@ namespace Com.MorganHouston.Imprecision
 
         public static LoginManager Instance { get { return instance; } }
 
-        public GameObject appleLogin, googleLogin, facebookLogin, steamLogin, signInPanel, mainMenuPanel, levelSelectButton, steamStatsAchieveLeader, anonymousButton;
+        public GameObject appleLogin, googleLogin, /*facebookLogin,*/ steamLogin, signInPanel, mainMenuPanel, levelSelectButton, steamStatsAchieveLeader, anonymousButton;
 
         public TextMeshProUGUI leaderboardsAchievementsLabel;
 
@@ -44,13 +44,13 @@ namespace Com.MorganHouston.Imprecision
 #if UNITY_WSA
             facebookLogin.SetActive(false);
 #else
-            facebookLogin.SetActive(true);
+            //facebookLogin.SetActive(true);
 #endif
 
 #if DISABLESTEAMWORKS
             steamLogin.SetActive(false);
 #else
-            facebookLogin.SetActive(false);
+            //facebookLogin.SetActive(false);
             steamLogin.SetActive(true);
 #endif
 
@@ -87,7 +87,7 @@ namespace Com.MorganHouston.Imprecision
 
         public void SignInFacebook()
         {
-            CloudSaveLogin.Instance.SignInFacebook();
+            //CloudSaveLogin.Instance.SignInFacebook();
         }
 
         public void SignInApple()
