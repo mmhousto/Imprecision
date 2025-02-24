@@ -1039,7 +1039,7 @@ namespace Com.MorganHouston.Imprecision
             catch
             {
                 SavePlayerData data = SaveSystem.LoadPlayer();
-                LoadPlayerData();
+                LoadPlayerData(data);
             }
 
 

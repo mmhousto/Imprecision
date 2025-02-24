@@ -28,7 +28,7 @@ using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.DualShock;
 using System.Collections;
 
-// IMPORTANT: State layout must match with GamepadInputStatePS5 in native.
+/*// IMPORTANT: State layout must match with GamepadInputStatePS5 in native.
 [StructLayout(LayoutKind.Explicit, Size = 4)]
 internal struct GamepadStatePS5Lite : IInputStateTypeInfo
 {
@@ -53,7 +53,7 @@ internal struct GamepadStatePS5Lite : IInputStateTypeInfo
 
 [InputControlLayout(stateType = typeof(GamepadStatePS5Lite), displayName = "PS5 DualSense (on PS5)")]
 //[Scripting.Preserve]
-class DualSenseGamepadLite : DualShockGamepad { }
+class DualSenseGamepadLite : DualShockGamepad { }*/
 
 namespace Com.MorganHouston.Imprecision
 {
@@ -86,19 +86,19 @@ namespace Com.MorganHouston.Imprecision
         private void Awake()
         {
             psAuth = GetComponent<PSAuth>();
-            //PSGamePad[] gamePads = GetComponents<PSGamePad>();
+            PSGamePad[] gamePads = GetComponents<PSGamePad>();
 
-            //PSUser.Initialize(gamePads);
+            PSUser.Initialize(gamePads);
             //PSUserProfiles.Initialize();
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            InputSystem.RegisterLayout<DualSenseGamepadLite>("PS5DualSenseGamepad",
+            /*InputSystem.RegisterLayout<DualSenseGamepadLite>("PS5DualSenseGamepad",
             matches: new UnityEngine.InputSystem.Layouts.InputDeviceMatcher()
                 .WithInterface("PS5")
-                .WithDeviceClass("PS5DualShockGamepad"));
+                .WithDeviceClass("PS5DualShockGamepad"));*/
 
             psAuth = GetComponent<PSAuth>();
 

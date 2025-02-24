@@ -18,7 +18,7 @@ namespace Com.MorganHouston.Imprecision
 
         public static LoginManager Instance { get { return instance; } }
 
-        public GameObject appleLogin, googleLogin, /*facebookLogin,*/ autoLogin, signInPanel, mainMenuPanel, levelSelectButton, steamStatsAchieveLeader, anonymousButton;
+        public GameObject appleLogin, googleLogin, /*facebookLogin,*/ autoLogin, signInPanel, mainMenuPanel, levelSelectButton, steamStatsAchieveLeader, anonymousButton, exitButton;
 
         public TextMeshProUGUI leaderboardsAchievementsLabel;
 
@@ -55,6 +55,9 @@ namespace Com.MorganHouston.Imprecision
             autoLogin.SetActive(true);
 #endif
 
+#if UNITY_PS5
+            exitButton.SetActive(false);
+#endif
 
         }
 

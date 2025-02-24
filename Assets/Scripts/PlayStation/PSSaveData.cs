@@ -283,7 +283,7 @@ public class PSSaveData : MonoBehaviour
         dirName.Data = "Autosave";
 
         HandleAutoSaveError((uint)ReturnCodes.DATA_ERROR_NO_SPACE_FS);
-        //StartSaveDataCoroutine(SaveData.AutoSaveProcess.StartAutoSaveProcess(userId, newItem, newDirName, newSaveDataBlocks, saveDataParams, fileRequest, fileResponse, backup, HandleAutoSaveError));
+        StartSaveDataCoroutine(SaveData.AutoSaveProcess.StartAutoSaveProcess(userId, newItem, newDirName, newSaveDataBlocks, saveDataParams, fileRequest, fileResponse, backup, HandleAutoSaveError));
     }
 
     public void StartAutoSaveLoad()
