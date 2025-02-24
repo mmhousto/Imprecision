@@ -44,6 +44,47 @@ namespace Com.MorganHouston.Imprecision
         public int stamina;
         public int critChance;
 
+        public SavePlayerData()
+        {
+            userID = "";
+            userName = "";
+            freeJewelOvertime = DateTime.Now.AddHours(-24).ToString();
+            level1Time = 0;
+            level2Time = 0;
+            level3Time = 0;
+            level4Time = 0;
+            totalTime = 0;
+
+            userPoints = 0;
+            userLevel = 1;
+            userXP = 0;
+            jewels = 0;
+
+            levels = new int[50];
+            storyLevels = new int[4];
+            appleShotOnLevels = new int[50];
+            bullseyesOnLevels = new int[50];
+            arrowsFired = 0;
+            targetsHit = 0;
+            bullseyesHit = 0;
+
+            power = 1;
+            dexterity = 1;
+            endurance = 1;
+            vitality = 1;
+            defense = 1;
+            luck = 1;
+
+            healthPoints = 100;
+            attackPower = 10;
+            defensePower = 10;
+            attackSpeed = 1;
+            movementSpeed = 1;
+            stamina = 1;
+            critChance = 1;
+
+        }
+
         public SavePlayerData(Player player)
         {
             userID = player.UserID;
@@ -63,6 +104,7 @@ namespace Com.MorganHouston.Imprecision
             levels = player.Levels;
             storyLevels = player.StoryLevels;
             appleShotOnLevels = player.AppleShotOnLevels;
+            bullseyesOnLevels = player.BullseyesOnLevels;
             arrowsFired = player.ArrowsFired;
             targetsHit = player.TargetsHit;
             bullseyesHit = player.BullseyesHit;

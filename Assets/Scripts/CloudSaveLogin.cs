@@ -12,6 +12,7 @@ using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
 using System.Threading.Tasks;
 using Unity.Services.Core;
+using PSNSample;
 //using Facebook.Unity;
 using System;
 using AppleAuth;
@@ -41,7 +42,7 @@ namespace Com.MorganHouston.Imprecision
         public static CloudSaveLogin Instance { get { return instance; } }
 
         // What SSO Option the use is using atm.
-        public enum ssoOption { Anonymous, Facebook, Google, Apple, Steam }
+        public enum ssoOption { Anonymous, Facebook, Google, Apple, Steam, PS }
 
         // Player Data Object
         private Player player;
@@ -55,7 +56,7 @@ namespace Com.MorganHouston.Imprecision
         public bool isSteam;
         public bool devModeActivated = false;
         public bool loggedIn;
-        private bool isSigningIn = false;
+        public bool isSigningIn = false;
 
         // User Info.
         public string userName, userID;
@@ -102,6 +103,9 @@ namespace Com.MorganHouston.Imprecision
 
 
 #if UNITY_WSA
+
+#elif UNITY_PS5
+
 #else
             if (isSteam && SteamManager.Initialized)
             {
@@ -192,10 +196,10 @@ namespace Com.MorganHouston.Imprecision
         }*/
 
 
-#endregion
+        #endregion
 
 
-#region Public Sign In/Out Methods
+        #region Public Sign In/Out Methods
 
 
         /// <summary>
@@ -208,7 +212,24 @@ namespace Com.MorganHouston.Imprecision
 
             currentSSO = ssoOption.Anonymous;
             AuthenticationService.Instance.SwitchProfile("default");
-            await SignInAnonymouslyAsync();
+
+
+            if (AuthenticationService.Instance.IsSignedIn)
+            {
+                userID = AuthenticationService.Instance.PlayerId;
+                userName = "Guest_" + userID;
+                SetPlayerData(userID);
+
+#if UNITY_PS5 && !UNITY_EDITOR
+                userName = PSUser.GetActiveUserName;
+
+                player.SetPlayerName(userName);
+#endif
+
+                Login();
+            }
+            else
+                await SignInAnonymouslyAsync();
 
         }
 
@@ -223,6 +244,39 @@ namespace Com.MorganHouston.Imprecision
             devModeActivated = true;
             await SignInAnonymouslyAsync();
         }
+
+#if UNITY_PS5 && !UNITY_EDITOR
+        public void PSAuthInit()
+        {
+            GetComponent<PSAuth>().Initialize();
+        }
+
+        public void PSSignIn()
+        {
+            GetComponent<PSNManager>().Initialize();
+        }
+
+        public void SignInPS(string psnUserID, string tokenID, string authCode)
+        {
+            currentSSO = ssoOption.PS;
+
+            if (PSSaveData.singleton.initialized)
+                PSSaveData.singleton.StartAutoSaveLoad();
+            else
+                PSSaveData.singleton.InitializeSaveData();
+
+            //PSUDS.Initialize();
+            //PSTrophies.Initialize();
+
+            userID = PSUser.GetActiveUserId.ToString();
+            userName = PSUser.GetActiveUserName;
+
+            SetPlayerData(psnUserID, userName);
+
+            Login();
+
+        }
+#endif
 
         /// <summary>
         /// Signs user into facebook account with authentication from Facebook.
@@ -933,6 +987,12 @@ namespace Com.MorganHouston.Imprecision
 
                 userID = AuthenticationService.Instance.PlayerId;
 
+#if UNITY_PS5 && !UNITY_EDITOR
+                userName = PSUser.GetActiveUserName;
+
+                player.SetPlayerName(userName);
+#endif
+
                 SetPlayerData(userID);
 
                 Login();
@@ -958,20 +1018,28 @@ namespace Com.MorganHouston.Imprecision
         }
 
         /// <summary>
-        /// Loads player data from cloud or creates a new player.
+        /// Loads player data from cloud or local if not creates a new player.
         /// </summary>
         /// <param name="id"></param>
         private async void SetPlayerData(string id)
         {
-            SavePlayerData incomingSample = await RetrieveSpecificData<SavePlayerData>(id);
+            try
+            {
+                SavePlayerData incomingSample = await RetrieveSpecificData<SavePlayerData>(id);
 
-            if (incomingSample != null)
-            {
-                LoadPlayerData(incomingSample);
+                if (incomingSample != null)
+                {
+                    LoadPlayerData(incomingSample);
+                }
+                else
+                {
+                    LoadPlayerData(id);
+                }
             }
-            else
+            catch
             {
-                LoadPlayerData(id);
+                SavePlayerData data = SaveSystem.LoadPlayer();
+                LoadPlayerData();
             }
 
 
@@ -1035,7 +1103,7 @@ namespace Com.MorganHouston.Imprecision
         {
             try
             {
-                var keys = await SaveData.RetrieveAllKeysAsync();
+                var keys = await CloudSaveService.Instance.Data.RetrieveAllKeysAsync();
 
                 Debug.Log($"Keys count: {keys.Count}\n" +
                           $"Keys: {String.Join(", ", keys)}");
@@ -1076,7 +1144,7 @@ namespace Com.MorganHouston.Imprecision
                     oneElement.Add(key, value);
                 }
 
-                await SaveData.ForceSaveAsync(oneElement);
+                await CloudSaveService.Instance.Data.ForceSaveAsync(oneElement);
 
                 //Debug.Log($"Successfully saved {key}:{value}");
             }
@@ -1107,7 +1175,7 @@ namespace Com.MorganHouston.Imprecision
                     { key, value }
                 };
 
-                await SaveData.ForceSaveAsync(oneElement);
+                await CloudSaveService.Instance.Data.ForceSaveAsync(oneElement);
 
                 //Debug.Log($"Successfully saved {key}:{value}");
             }
@@ -1131,7 +1199,7 @@ namespace Com.MorganHouston.Imprecision
         {
             try
             {
-                var results = await SaveData.LoadAsync(new HashSet<string> { key });
+                var results = await CloudSaveService.Instance.Data.LoadAsync(new HashSet<string> { key });
 
                 if (results.TryGetValue(key, out string value))
                 {
@@ -1164,7 +1232,7 @@ namespace Com.MorganHouston.Imprecision
             {
                 // If you wish to load only a subset of keys rather than everything, you
                 // can call a method LoadAsync and pass a HashSet of keys into it.
-                var results = await SaveData.LoadAllAsync();
+                var results = await CloudSaveService.Instance.Data.LoadAllAsync();
 
                 //Debug.Log($"Elements loaded!");
 
@@ -1195,7 +1263,7 @@ namespace Com.MorganHouston.Imprecision
         {
             try
             {
-                await SaveData.ForceDeleteAsync(key);
+                await CloudSaveService.Instance.Data.ForceDeleteAsync(key);
 
                 //Debug.Log($"Successfully deleted {key}");
             }
@@ -1213,9 +1281,18 @@ namespace Com.MorganHouston.Imprecision
         /// Loads data from cloud.
         /// </summary>
         /// <param name="incomingSample"></param>
-        private void LoadPlayerData(SavePlayerData incomingSample)
+        public void LoadPlayerData(SavePlayerData incomingSample)
         {
             player.SetData(incomingSample);
+        }
+
+        /// <summary>
+        /// Creates offline anonymous player
+        /// </summary>
+        /// <param name="id"></param>
+        private void LoadPlayerData()
+        {
+            player.SetData();
         }
 
         /// <summary>

@@ -18,7 +18,7 @@ namespace Com.MorganHouston.Imprecision
 
         public static LoginManager Instance { get { return instance; } }
 
-        public GameObject appleLogin, googleLogin, /*facebookLogin,*/ steamLogin, signInPanel, mainMenuPanel, levelSelectButton, steamStatsAchieveLeader, anonymousButton;
+        public GameObject appleLogin, googleLogin, /*facebookLogin,*/ autoLogin, signInPanel, mainMenuPanel, levelSelectButton, steamStatsAchieveLeader, anonymousButton;
 
         public TextMeshProUGUI leaderboardsAchievementsLabel;
 
@@ -32,7 +32,7 @@ namespace Com.MorganHouston.Imprecision
         {
 #if UNITY_ANDROID
             appleLogin.SetActive(false);
-            googleLogin.SetActive(true);
+            googleLogin.SetActive(false);
 #elif UNITY_IOS
             appleLogin.SetActive(true);
             googleLogin.SetActive(false);
@@ -42,20 +42,19 @@ namespace Com.MorganHouston.Imprecision
 #endif
 
 #if UNITY_WSA
-            facebookLogin.SetActive(false);
+            //facebookLogin.SetActive(false);
+            autoLogin.SetActive(true);
 #else
             //facebookLogin.SetActive(true);
 #endif
 
 #if DISABLESTEAMWORKS
-            steamLogin.SetActive(false);
+            autoLogin.SetActive(true);
 #else
             //facebookLogin.SetActive(false);
-            steamLogin.SetActive(true);
+            autoLogin.SetActive(true);
 #endif
 
-            if(!CloudSaveLogin.Instance.isSteam)
-                steamLogin.SetActive(false);
 
         }
 
@@ -73,6 +72,22 @@ namespace Com.MorganHouston.Imprecision
                 leaderboardsAchievementsLabel.text = "You Must be signed in to view leaderboards or achievements!";
             else if (CloudSaveLogin.Instance.loggedIn && leaderboardsAchievementsLabel.text != "View Leaderboards & Achievements on the Steam Community Hub Page!" && CloudSaveLogin.Instance.currentSSO == CloudSaveLogin.ssoOption.Steam)
                 leaderboardsAchievementsLabel.text = "View Leaderboards & Achievements on the Steam Community Hub Page!";
+        }
+
+        public void SignInAuto()
+        {
+#if UNITY_ANDROID
+            SignInAnon();
+#elif UNITY_IOS
+            SignInApple();
+#elif UNITY_PS5 && !UNITY_EDITOR
+            CloudSaveLogin.Instance.PSSignIn();
+#else
+            if (CloudSaveLogin.Instance.isSteam && Application.internetReachability != NetworkReachability.NotReachable)
+                SignInSteam();
+            else
+                SignInAnonymously();
+#endif
         }
 
         public void SignInAnonymously()
