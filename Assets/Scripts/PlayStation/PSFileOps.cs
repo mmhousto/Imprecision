@@ -22,19 +22,41 @@ namespace Com.MorganHouston.Imprecision
     {
         public string userID;
         public string userName;
-        public int points = 0;
-        public int coins = 0;
-        public int currentBlaster = 0;
-        public int currentSkin = 0;
-        public int highestWave = 0;
-        public int highestWaveParty = 0;
-        public string playerName = "PlayerName";
-        public string RewardOvertime { get; private set; }
-        public int[] ownedBlasters = { 1, 0, 0, 0, 0, 0, 0, 0, 0 };
-        public int[] ownedSkins = { 1, 0, 0, 0, 0, 0, 0, 0, 0 };
-        public int cubesEliminated = 0;
-        public int totalPointsEarned = 0;
-        public int totalProjectilesFired = 0;
+        public string freeJewelOvertime;
+
+        public int level1Time;
+        public int level2Time;
+        public int level3Time;
+        public int level4Time;
+        public int totalTime;
+
+        public int userPoints;
+        public int userLevel;
+        public int userXP;
+        public int jewels;
+
+        public int[] levels = new int[50];
+        public int[] storyLevels = new int[4];
+        public int[] appleShotOnLevels = new int[50];
+        public int[] bullseyesOnLevels = new int[50];
+        public int arrowsFired;
+        public int targetsHit;
+        public int bullseyesHit;
+
+        public int power;
+        public int dexterity;
+        public int endurance;
+        public int vitality;
+        public int defense;
+        public int luck;
+
+        public int healthPoints;
+        public int attackPower;
+        public int defensePower;
+        public int attackSpeed;
+        public int movementSpeed;
+        public int stamina;
+        public int critChance;
 
         public override void DoFileOperations(Mounting.MountPoint mp, FileOps.FileOperationResponse response)
         {
