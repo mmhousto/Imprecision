@@ -102,7 +102,8 @@ namespace Com.MorganHouston.Imprecision
         {
             Time.timeScale = 1;
             //SceneLoader.LoadThisScene(SceneManager.GetActiveScene().buildIndex);
-            UnLoadLevel.Instance.LoadUnLoad(SceneManager.GetActiveScene().buildIndex);
+            SceneLoader.LoadThisScene(SceneManager.GetActiveScene().buildIndex);
+            //UnLoadLevel.Instance.LoadUnLoad(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void RestartStoryGame()

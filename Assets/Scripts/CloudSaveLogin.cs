@@ -984,14 +984,8 @@ namespace Com.MorganHouston.Imprecision
             {
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
                 Debug.Log("Sign in anonymously succeeded!");
-
+                
                 userID = AuthenticationService.Instance.PlayerId;
-
-#if UNITY_PS5 && !UNITY_EDITOR
-                userName = PSUser.GetActiveUserName;
-
-                player.SetPlayerName(userName);
-#endif
 
                 SetPlayerData(userID);
 
@@ -1026,7 +1020,6 @@ namespace Com.MorganHouston.Imprecision
             try
             {
                 SavePlayerData incomingSample = await RetrieveSpecificData<SavePlayerData>(id);
-
                 if (incomingSample != null)
                 {
                     LoadPlayerData(incomingSample);
